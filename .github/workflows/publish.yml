@@ -1,0 +1,89 @@
+# Builds the signed index from this repository and publishes it, with the
+# package files, at https://registry.roostack.cloud/v1/ (GitHub Pages),
+# where labs fetch it (Roostack's SPEC.md §8.3.3).
+#
+# Pull requests: every package is checked (roostack registry index -check:
+# each package validated, the package policy applied, the image registries
+# asked for each image's processors); nothing is signed or published.
+# main, and every day: the same, signed with the signing key, and published.
+# The daily run signs a fresh index even with no changes, so a lab can tell
+# an index that's merely unchanged from one it can't get any more (Roostack
+# warns once its newest is over 14 days old).
+#
+# Set up (README.md, "Publishing"; Roostack's docs/REGISTRY-KEYS.md):
+# - the environment "publish", usable only from main, holding the secret
+#   REGISTRY_SIGNING_KEY (from roostack registry keygen), and an
+#   environment "check" with no secrets, for pull requests;
+# - keys/keys.json and keys/keys.json.sig, from roostack registry delegate;
+# - the variables ROOSTACK_REPO and ROOSTACK_REF: the Roostack repository
+#   and the release (tag) whose roostack builds the index, and the secret
+#   ROOSTACK_READ_TOKEN while that repository is private;
+# - Pages: source "GitHub Actions", custom domain registry.roostack.cloud.
+name: Publish
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # The signing key is only in this environment, which only main can use.
+    environment: ${{ github.event_name == 'pull_request' && 'check' || 'publish' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: services
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.ROOSTACK_REPO }}
+          ref: ${{ vars.ROOSTACK_REF }}
+          token: ${{ secrets.ROOSTACK_READ_TOKEN || github.token }}
+          path: roostack
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: roostack/go.mod
+      - name: Build roostack
+        run: cd roostack && CGO_ENABLED=0 go build -o ../roostack-bin ./cmd/roostack
+      - name: Check the packages
+        if: github.event_name == 'pull_request'
+        run: ./roostack-bin registry index -check -repo services
+      - name: Check the packages and build the signed index
+        if: github.event_name != 'pull_request'
+        env:
+          REGISTRY_SIGNING_KEY: ${{ secrets.REGISTRY_SIGNING_KEY }}
+        run: ./roostack-bin registry index -repo services -out site/v1 -commit "$GITHUB_SHA"
+      - name: Prepare the site
+        if: github.event_name != 'pull_request'
+        run: |
+          echo registry.roostack.cloud > site/CNAME
+          printf '<!doctype html><title>Roostack service registry</title><p>The <a href="https://github.com/roostack/services">Roostack service registry</a>. Roostack labs read <code>v1/index.json</code>.</p>\n' > site/index.html
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        with:
+          path: site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
