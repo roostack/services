@@ -4,7 +4,10 @@
 #
 # Pull requests: every package is checked (roostack registry index -check:
 # each package validated, the package policy applied, the image registries
-# asked for each image's processors); nothing is signed or published.
+# asked for each image's processors), and what each added or changed
+# package generates is shown in the run's summary, with the difference
+# from its previous version (.github/render-changes.sh); nothing is signed
+# or published.
 # main, and every day: the same, signed with the signing key, and published.
 # The daily run signs a fresh index even with no changes, so a lab can tell
 # an index that's merely unchanged from one it can't get any more (Roostack
@@ -45,6 +48,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: services
+          # All of it (it's small), so a pull request can be compared with
+          # its base.
+          fetch-depth: 0
       - name: Get roostack (a release, checked by its SHA-256)
         env:
           URL: ${{ vars.ROOSTACK_BINARY_URL }}
@@ -56,6 +62,12 @@ jobs:
       - name: Check the packages
         if: github.event_name == 'pull_request'
         run: ./roostack-bin registry index -check -repo services
+      - name: Show what the changed packages generate
+        if: github.event_name == 'pull_request'
+        working-directory: services
+        env:
+          BASE: origin/${{ github.base_ref }}
+        run: .github/render-changes.sh "$GITHUB_WORKSPACE/roostack-bin" "$BASE"
       - name: Check the packages and build the signed index
         if: github.event_name != 'pull_request'
         env:
