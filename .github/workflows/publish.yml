@@ -15,9 +15,9 @@
 #   REGISTRY_SIGNING_KEY (from roostack registry keygen), and an
 #   environment "check" with no secrets, for pull requests;
 # - keys/keys.json and keys/keys.json.sig, from roostack registry delegate;
-# - the variables ROOSTACK_REPO and ROOSTACK_REF: the Roostack repository
-#   and the release (tag) whose roostack builds the index, and the secret
-#   ROOSTACK_READ_TOKEN while that repository is private;
+# - the variables ROOSTACK_BINARY_URL and ROOSTACK_BINARY_SHA256: a
+#   Roostack release's linux/amd64 roostack binary, which builds the index,
+#   and its SHA-256 (so a changed download fails the run);
 # - Pages: source "GitHub Actions", custom domain registry.roostack.cloud.
 name: Publish
 
@@ -45,17 +45,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: services
-      - uses: actions/checkout@v4
-        with:
-          repository: ${{ vars.ROOSTACK_REPO }}
-          ref: ${{ vars.ROOSTACK_REF }}
-          token: ${{ secrets.ROOSTACK_READ_TOKEN || github.token }}
-          path: roostack
-      - uses: actions/setup-go@v5
-        with:
-          go-version-file: roostack/go.mod
-      - name: Build roostack
-        run: cd roostack && CGO_ENABLED=0 go build -o ../roostack-bin ./cmd/roostack
+      - name: Get roostack (a release, checked by its SHA-256)
+        env:
+          URL: ${{ vars.ROOSTACK_BINARY_URL }}
+          SHA256: ${{ vars.ROOSTACK_BINARY_SHA256 }}
+        run: |
+          curl -fsSL --retry 3 -o roostack-bin "$URL"
+          echo "$SHA256  roostack-bin" | sha256sum -c -
+          chmod +x roostack-bin
       - name: Check the packages
         if: github.event_name == 'pull_request'
         run: ./roostack-bin registry index -check -repo services
