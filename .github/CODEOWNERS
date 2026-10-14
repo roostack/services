@@ -1,0 +1,13 @@
+# Who reviews what (Roostack's SPEC.md §8.3.4): a pull request needs the
+# approval of an owner of every file it changes, once the main branch
+# requires reviews from code owners.
+#
+# The registry's maintainers own everything: the packages, every
+# registry.yaml (a package's tier, maintainers and withdrawals), keys/
+# and .github/. Once community packages open, each community package's
+# folder also gets its own maintainers here, and its registry.yaml stays
+# the registry maintainers' alone:
+#
+#   /packages/<name>/                @roostack/registry-maintainers @<its maintainers>
+#   /packages/<name>/registry.yaml   @roostack/registry-maintainers
+*   @roostack/registry-maintainers

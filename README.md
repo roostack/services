@@ -56,7 +56,13 @@ On every merge to `main`, and once a day, the Publish workflow
 (`.github/workflows/publish.yml`) checks every package, builds the signed
 index Roostack labs read, and publishes it with the package files at
 `https://registry.roostack.cloud/v1/`. Pull requests get the same checks,
-with nothing signed or published. `keys/` holds the root key's statement
+with nothing signed or published, and the run's summary shows what each
+added or changed package generates (its default settings in an example
+lab), with the difference from the package's previous version.
+
+`.github/CODEOWNERS` says who reviews what: the registry's maintainers
+own everything, including every `registry.yaml`. Once community packages
+open, each one's folder also lists its maintainers. `keys/` holds the root key's statement
 naming the key CI signs with. How the keys are made and replaced is in
 Roostack's `docs/REGISTRY-KEYS.md`.
 
