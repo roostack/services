@@ -50,6 +50,16 @@ packages/
 Review checks how Roostack sets the app up, and where its images come from.
 The app itself is its own project's work.
 
+## Publishing
+
+On every merge to `main`, and once a day, the Publish workflow
+(`.github/workflows/publish.yml`) checks every package, builds the signed
+index Roostack labs read, and publishes it with the package files at
+`https://registry.roostack.cloud/v1/`. Pull requests get the same checks,
+with nothing signed or published. `keys/` holds the root key's statement
+naming the key CI signs with. How the keys are made and replaced is in
+Roostack's `docs/REGISTRY-KEYS.md`.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
