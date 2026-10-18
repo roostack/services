@@ -1,0 +1,159 @@
+# Gitea: one container, Postgres run by Roostack. Image digest looked up
+# 2026-10-18. Forgejo, in the catalog too, is a fork of Gitea run by a
+# non-profit; both are offered, as people ask for each by name.
+schema: roostack/v1alpha1
+name: gitea
+title: Gitea
+description: Git hosting with issues and pull requests, a self-hosted alternative to GitHub
+version: 28.1.0-roostack.1
+
+about:
+  maker: the Gitea community, with Gitea Ltd
+  website: https://about.gitea.com
+  source: https://github.com/go-gitea/gitea
+  licence: MIT
+  support: https://opencollective.com/gitea
+  # A placeholder, not Gitea's logo: the project states no terms for
+  # using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [development]
+  keywords: [git, code, issues, pull requests, github alternative]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator account, created by the install hook below.
+  - key: admin_username
+    title: Administrator username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_email
+    title: Administrator email
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: signups_allowed
+    title: Allow anyone to create an account
+    description: Otherwise the administrator creates accounts
+    type: bool
+    default: false
+
+containers:
+  app:
+    # The rootless image runs as uid 1000 and keeps everything under
+    # /var/lib/gitea, with app.ini moved there too (which holds generated keys, so it
+    # must be backed up with the data).
+    image: docker.io/gitea/gitea:28.1.0-rootless@sha256:b1a90409ae9afcd5a5725404c3639da7245248848b99e35332968891290b953e
+    memory: 150 MB               # 94 MB in use idle, measured 2026-10-18; more while pushing
+    env:
+      GITEA_APP_INI: /var/lib/gitea/custom/conf/app.ini
+      GITEA__server__ROOT_URL: "{{ .Routes.web.URL }}/"
+      # Git over SSH uses Gitea's built-in SSH server on 2222, published
+      # on the host when the Admin turns the ssh port on.
+      GITEA__server__DISABLE_SSH: "{{ not .Ports.ssh.Enabled }}"
+      GITEA__server__START_SSH_SERVER: "true"
+      GITEA__server__SSH_LISTEN_PORT: "2222"
+      GITEA__server__SSH_PORT: "{{ .Ports.ssh.HostPort }}"   # shown in clone URLs
+      GITEA__server__SSH_DOMAIN: "{{ .Routes.web.Host }}"
+      GITEA__security__INSTALL_LOCK: "true"   # skip Gitea's install page
+      GITEA__service__DISABLE_REGISTRATION: "{{ not .Settings.signups_allowed }}"
+      GITEA__database__DB_TYPE: postgres
+      GITEA__database__HOST: "{{ .Databases.main.Host }}:5432"
+      GITEA__database__NAME: "{{ .Databases.main.Name }}"
+      GITEA__database__USER: "{{ .Databases.main.User }}"
+    secrets:
+      GITEA__database__PASSWD: databases.main.password
+    mounts:
+      - { storage: data, path: /var/lib/gitea }
+    health:
+      http: { port: 3000, path: /api/healthz }
+    depends_on: [databases.main]
+    quadlet:
+      Container:
+        UserNS: keep-id:uid=1000,gid=1000   # data dir writable by uid 1000
+
+storage:
+  data:
+    title: Repositories, attachments and settings
+    class: critical              # repositories, attachments, app.ini
+
+databases:
+  main:
+    type: postgres               # Roostack's default Postgres image
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: git
+    exposure: private
+    max_body_size: 1GB           # large pushes and release attachments
+    public:
+      private_paths:
+        - path: /admin
+          reason: Gitea's site administration (users, settings, and running tasks on the server). Anyone who gets an administrator's password could use it.
+      login_paths:
+        - /user/login
+        - /user/sign_up
+
+links:                           # most settings live in Gitea itself
+  - title: Site administration
+    description: Users, organisations, email and other Gitea settings (log in as the administrator)
+    route: web
+    path: /admin
+
+hooks:
+  # Create the administrator. Values arrive as environment variables, never
+  # in the command itself. Safe to re-run: an existing admin is kept (e.g.
+  # reinstalling on top of existing data).
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - sh
+      - -c
+      - |
+        set -e
+        if gitea admin user list --admin | awk 'NR > 1 { print $2 }' | grep -qxF "$ADMIN_USERNAME"; then
+          echo "The administrator $ADMIN_USERNAME already exists."
+          exit 0
+        fi
+        # They chose the password themselves: don't ask them to change it.
+        gitea admin user create --admin --username "$ADMIN_USERNAME" --email "$ADMIN_EMAIL" \
+          --password "$ADMIN_PASSWORD" --must-change-password=false
+
+  - on: action
+    name: reset-password
+    title: Reset a password
+    description: Sets a new password for a Gitea account, e.g. if the administrator forgot theirs.
+    container: app
+    inputs:
+      - { key: username, title: Username, type: string }
+      - { key: password, title: New password, type: secret, min_length: 8 }
+    env:
+      USERNAME: "{{ .Inputs.username }}"
+    secrets:
+      NEW_PASSWORD: inputs.password
+    # --must-change-password is only changed when given, so clear it
+    # explicitly (accounts created by "admin user create" have it set).
+    command: [sh, -c, 'gitea admin user change-password --username "$USERNAME" --password "$NEW_PASSWORD" --must-change-password=false && echo "Password changed for $USERNAME."']
+
+ports:
+  ssh:
+    title: Git over SSH
+    description: Lets people clone and push with SSH keys (git@…). HTTPS works without it.
+    container: app
+    port: 2222
+    host_port: 2222              # port 22 is the machine's own SSH
+    # off by default; private (home network only) by default
