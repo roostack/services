@@ -1,0 +1,113 @@
+# Audiobookshelf: one container, SQLite. Image digest looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: audiobookshelf
+title: Audiobookshelf
+description: Your audiobooks and podcasts, streamed to your phone and remembering where you got to
+version: 2.37.1-roostack.1
+
+about:
+  maker: advplyr and contributors
+  website: https://www.audiobookshelf.org
+  source: https://github.com/advplyr/audiobookshelf
+  licence: GPL-3.0-only          # its package.json says GPL-3.0
+  # A placeholder, not Audiobookshelf's logo: the project states no terms
+  # for using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [media]
+  keywords: [audiobooks, podcasts, books, listening, streaming]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator ("root" in Audiobookshelf), made by the install hook
+  # below. Until there's one, Audiobookshelf lets whoever opens it first
+  # make it.
+  - key: admin_username
+    title: Administrator username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+
+containers:
+  app:
+    # Runs as the container's root: Roostack's own user on the host.
+    image: ghcr.io/advplyr/audiobookshelf:2.37.1@sha256:581d68b2a6fc7ebf58d81c878a9f387cbbc0d88ac9d37b298b9cee10168af85b
+    mounts:
+      - { storage: config,     path: /config }
+      - { storage: metadata,   path: /metadata }
+      # Libraries: add them in Audiobookshelf as /audiobooks and /podcasts.
+      # Podcasts it downloads and books uploaded in it land here.
+      - { storage: audiobooks, path: /audiobooks }
+      - { storage: podcasts,   path: /podcasts }
+    health:
+      http: { port: 80, path: /healthcheck }
+    memory: 150 MB               # 77 MB in use idle, measured 2026-10-18; more while streaming
+
+storage:
+  config:
+    title: Accounts, libraries and listening progress
+    class: critical
+  metadata:
+    title: Covers, descriptions and Audiobookshelf's own backups
+    class: critical
+  audiobooks:
+    title: Audiobooks
+    class: critical
+    location: media              # the large data disk, if one is configured
+  podcasts:
+    title: Podcasts
+    class: critical
+    location: media
+
+databases:
+  main:
+    type: sqlite
+    path: config/absdatabase.sqlite
+
+hooks:
+  # The administrator, through Audiobookshelf's own first-run call, which
+  # works only while there's none. Safe to re-run: once there's one, done.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - node
+      - -e
+      - |
+        const http = require('node:http')
+        const get = (path) => new Promise((ok, no) => http.get({ host: '127.0.0.1', port: 80, path }, (res) => {
+          let d = ''; res.on('data', (c) => { d += c }); res.on('end', () => ok(JSON.parse(d)))
+        }).on('error', no))
+        const post = (path, body) => new Promise((ok, no) => {
+          const b = JSON.stringify(body)
+          const req = http.request({ host: '127.0.0.1', port: 80, path, method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(b) } }, (res) => { res.resume(); ok(res.statusCode) })
+          req.on('error', no); req.end(b)
+        })
+        ;(async () => {
+          const status = await get('/status')
+          if (status.isInit) { console.log('The administrator exists already.'); return }
+          const code = await post('/init', { newRoot: { username: process.env.ADMIN_USERNAME, password: process.env.ADMIN_PASSWORD } })
+          if (code !== 200) { console.error('Making the administrator failed:', code); process.exit(1) }
+          console.log('The administrator is made.')
+        })().catch((e) => { console.error('Audiobookshelf is not answering yet:', e.message); process.exit(1) })
+
+routes:
+  web:
+    container: app
+    port: 80
+    subdomain: books
+    exposure: private
+    max_body_size: 2GB           # uploaded audiobooks
+    public:
+      login_paths:
+        - /login
