@@ -1,0 +1,98 @@
+# Wiki.js 2: one container and Postgres. Pages, uploads and settings are
+# all in the database. Image digest looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: wiki-js
+title: Wiki.js
+description: A wiki for writing and organising shared documentation
+version: 2.5.316-roostack.1
+
+about:
+  maker: Nicolas Giard (Requarks), with backers
+  website: https://js.wiki
+  # The 2.x line, maintained in its own repository; 3.0 is in beta.
+  source: https://github.com/requarks/wiki-v2
+  licence: AGPL-3.0-only
+  support: https://js.wiki/donate
+  # A placeholder, not Wiki.js's logo: the project states no terms for
+  # using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [documents]
+  keywords: [wiki, documentation, knowledge base, markdown, confluence alternative]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator, made by the install hook below through Wiki.js's
+  # own setup step, so its setup page isn't left open for anyone.
+  - key: admin_email
+    title: Your email address
+    description: For signing in to Wiki.js as its administrator
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+
+containers:
+  app:
+    image: ghcr.io/requarks/wiki:2.5.316@sha256:fffff288a52f76e5b8c19a4fbcd0f3e538e96edea642c4f2d813d54d59a876de
+    env:
+      DB_TYPE: postgres
+      DB_HOST: "{{ .Databases.main.Host }}"
+      DB_PORT: "{{ .Databases.main.Port }}"
+      DB_USER: "{{ .Databases.main.User }}"
+      DB_NAME: "{{ .Databases.main.Name }}"
+    secrets:
+      DB_PASS: databases.main.password
+    health:
+      # Only once setup is done; before, it answers 404, which counts as
+      # up.
+      http: { port: 3000, path: /healthz }
+    depends_on: [databases.main]
+    memory: 250 MB
+
+databases:
+  main:
+    type: postgres               # pages, history, uploads, accounts, settings
+
+hooks:
+  # Wiki.js's setup step, as its setup page would send it, with telemetry
+  # off. Safe to re-run: once set up, the step no longer exists (404).
+  - on: install
+    container: app
+    env:
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+      SITE_URL: "{{ .Routes.web.URL }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - node
+      - -e
+      - |
+        const body = JSON.stringify({ adminEmail: process.env.ADMIN_EMAIL, adminPassword: process.env.ADMIN_PASSWORD,
+          adminPasswordConfirm: process.env.ADMIN_PASSWORD, siteUrl: process.env.SITE_URL, telemetry: false })
+        fetch('http://localhost:3000/finalize', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body })
+          .then(async (r) => {
+            if (r.status === 404) { console.log('Wiki.js is already set up.'); return }
+            const out = await r.json().catch(() => ({}))
+            if (!r.ok || !out.ok) { console.error('Setup failed:', r.status, out.message || ''); process.exit(1) }
+            console.log('Wiki.js is set up.')
+          })
+          .catch((e) => { console.error('Wiki.js is not answering yet:', e.message); process.exit(1) })
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: wiki
+    exposure: private
+    max_body_size: 50MB          # uploads; Wiki.js's own limit is 5 MB a file, 10 at once
+    public:
+      # Sign-in itself goes through /graphql, which the whole app uses:
+      # limiting it would slow every visitor, so only the page is listed.
+      login_paths:
+        - /login
