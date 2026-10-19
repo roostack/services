@@ -1,0 +1,103 @@
+# Navidrome: one container, SQLite; it plays the media libraries chosen for
+# it. Image digest looked up 2026-10-19.
+schema: roostack/v1alpha1
+name: navidrome
+title: Navidrome
+description: Your music collection, streamed to your phone and browser, from your own media libraries
+version: 0.64.2-roostack.1
+
+about:
+  maker: Deluan Quintão and contributors
+  website: https://www.navidrome.org
+  source: https://github.com/navidrome/navidrome
+  licence: GPL-3.0-only
+  support: https://github.com/sponsors/deluan
+  # A placeholder, not Navidrome's logo: the project states no terms for
+  # using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [media]
+  keywords: [music, streaming, subsonic, albums, playlists]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator, made by the install hook below. Until there's one,
+  # Navidrome lets whoever opens it first make it.
+  - key: admin_username
+    title: Administrator username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+
+containers:
+  app:
+    # Runs as the container's root: Roostack's own user on the host.
+    image: docker.io/deluan/navidrome:0.64.2@sha256:38dc2727bfcfd5ede290f8ada114fc90368146f265ae4701ddddbcbe2a44ee52
+    env:
+      # It finds music anywhere under the libraries chosen for it (each at
+      # /media/<library>), and leaves other files alone.
+      ND_MUSICFOLDER: /media
+      ND_DATAFOLDER: /data
+      ND_CACHEFOLDER: /cache
+      ND_ENABLEINSIGHTSCOLLECTOR: "false"   # no anonymous usage reports
+    mounts:
+      - { storage: data,  path: /data }
+      - { storage: cache, path: /cache }
+      - { libraries: true, path: /media }
+    health:
+      http: { port: 4533, path: /ping }
+    memory: 100 MB               # 34 MB idle, measured 2026-10-19
+
+storage:
+  data:
+    title: Accounts, playlists, ratings and play counts
+    class: critical
+  cache:
+    title: Artwork and transcoded music
+    class: replaceable
+
+databases:
+  main:
+    type: sqlite
+    path: data/navidrome.db
+
+hooks:
+  # The administrator, through Navidrome's own first-run call, which works
+  # only while there are no accounts. Values arrive as environment
+  # variables. Safe to re-run: once there's an account, done.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - sh
+      - -c
+      - |
+        wget -q -O /dev/null http://127.0.0.1:4533/ping || { echo "Navidrome is still starting." >&2; exit 1; }
+        json() { printf '%s' "$1" | sed 's/\\/\\\\/g; s/"/\\"/g'; }
+        out=$(wget -q -S -O - --header 'Content-Type: application/json' \
+          --post-data "{\"username\":\"$(json "$ADMIN_USERNAME")\",\"password\":\"$(json "$ADMIN_PASSWORD")\"}" \
+          http://127.0.0.1:4533/auth/createAdmin 2>&1)
+        case "$out" in
+          *" 200 "*|*'"username"'*) echo "The administrator $ADMIN_USERNAME is made." ;;
+          *" 403 "*|*"another first admin"*) echo "Navidrome has its administrator already." ;;
+          *) echo "Making the administrator failed: $out" | head -c 500 >&2; exit 1 ;;
+        esac
+
+routes:
+  web:
+    container: app
+    port: 4533
+    subdomain: music
+    exposure: private
+    public:
+      login_paths:
+        - /auth/login
