@@ -1,0 +1,110 @@
+# Jellyfin: one container; it plays the media libraries chosen for it.
+# Image digest looked up 2026-10-19.
+schema: roostack/v1alpha1
+name: jellyfin
+title: Jellyfin
+description: Plays your films, TV and music on your TV, phone and computer, from your own media libraries
+version: 12.2-roostack.1
+
+about:
+  maker: the Jellyfin project, volunteers
+  website: https://jellyfin.org
+  source: https://github.com/jellyfin/jellyfin
+  licence: GPL-2.0-only
+  support: https://opencollective.com/jellyfin
+  # A placeholder, not Jellyfin's logo: its terms aren't settled here.
+  # Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [media]
+  keywords: [films, tv, music, streaming, media server, plex alternative]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator, made by the install hook below through Jellyfin's
+  # first-run setup. Until then, Jellyfin lets whoever opens it on the home
+  # network make it.
+  - key: admin_username
+    title: Administrator username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: hardware_acceleration
+    title: Use the GPU for video transcoding
+    description: Turn it on in Jellyfin too (Dashboard → Playback → Transcoding).
+    type: bool
+    default: auto                # on if Roostack detects a supported GPU
+
+containers:
+  app:
+    # Runs as the container's root: Roostack's own user on the host.
+    image: docker.io/jellyfin/jellyfin:12.2@sha256:357724bf0ae27a672c7cbaa899db2d9abeb13dbd8657ccce750258a4c059d037
+    env:
+      JELLYFIN_PublishedServerUrl: "{{ .Routes.web.URL }}"
+    mounts:
+      - { storage: config, path: /config }
+      - { storage: cache,  path: /cache }
+      # The media libraries chosen for it, read-only: add them in Jellyfin
+      # as its libraries, from /media/<library>.
+      - { libraries: true, path: /media }
+    devices:
+      - gpu: intel
+        when: "{{ .Settings.hardware_acceleration }}"
+    health:
+      http: { port: 8096, path: /health }
+    memory: 400 MB               # 167 MB idle, measured 2026-10-19; more while transcoding
+
+storage:
+  config:
+    title: Accounts, libraries, watched history and artwork
+    class: critical
+  cache:
+    title: Transcoded video and image cache
+    class: replaceable
+
+hooks:
+  # The administrator, through Jellyfin's own first-run setup (only while
+  # it isn't finished, and only from the home network: this runs inside
+  # the container). Safe to re-run: once setup is finished, done.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+      SERVER_NAME: "{{ .Service.Name }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - sh
+      - -c
+      - |
+        set -e
+        J=http://127.0.0.1:8096
+        info=$(curl -fsS $J/System/Info/Public) || { echo "Jellyfin is still starting." >&2; exit 1; }
+        if echo "$info" | grep -q '"StartupWizardCompleted":true'; then
+          echo "Jellyfin is set up already."
+          exit 0
+        fi
+        json() { printf '%s' "$1" | sed 's/\\/\\\\/g; s/"/\\"/g'; }
+        curl -fsS -o /dev/null -H 'Content-Type: application/json' -X POST $J/Startup/Configuration \
+          -d "{\"ServerName\":\"$(json "$SERVER_NAME")\",\"UICulture\":\"en-GB\",\"MetadataCountryCode\":\"GB\",\"PreferredMetadataLanguage\":\"en\"}"
+        curl -fsS -o /dev/null $J/Startup/User
+        curl -fsS -o /dev/null -H 'Content-Type: application/json' -X POST $J/Startup/User \
+          -d "{\"Name\":\"$(json "$ADMIN_USERNAME")\",\"Password\":\"$(json "$ADMIN_PASSWORD")\"}"
+        curl -fsS -o /dev/null -X POST $J/Startup/Complete
+        echo "The administrator $ADMIN_USERNAME is made."
+
+routes:
+  web:
+    container: app
+    port: 8096
+    subdomain: jellyfin
+    exposure: private
+    public:
+      login_paths:
+        - /Users/AuthenticateByName
