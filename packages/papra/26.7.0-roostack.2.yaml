@@ -1,0 +1,152 @@
+# Papra: one container, SQLite. Image digest looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: papra
+title: Papra
+description: Stores and organises your scanned and digital documents so they're easy to find later
+version: 26.7.0-roostack.2
+
+about:
+  maker: Corentin Thomasset, an independent developer
+  website: https://papra.app
+  source: https://github.com/papra-hq/papra
+  licence: AGPL-3.0-or-later
+  support: https://papra.app/en/sponsor
+  # A placeholder, not Papra's logo: the project states no terms for
+  # using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [documents]
+  keywords: [documents, scans, paperless, archive, receipts, search, ocr]
+requires:
+  roostack: "0.1"
+
+settings:
+  # Your account, registered by the install hook below as Papra first
+  # starts, so it's the first one: Papra makes the first account its
+  # administrator.
+  - key: admin_email
+    title: Your email address
+    description: For signing in to Papra
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: signups_allowed
+    title: Allow anyone to create an account
+    description: Otherwise only you have an account; turn it on for a while to let others sign up
+    type: bool
+    default: false
+    # Papra makes an account only by signing up, so sign-ups are on until
+    # the install hook has signed you up.
+    install_value: true
+  - key: auth_secret
+    title: Sign-in secret
+    type: secret
+    generate: true               # signs sessions; kept across restarts
+
+containers:
+  app:
+    image: ghcr.io/papra-hq/papra:26.7.0-rootless@sha256:bf4a66e776d0a40d71543747a2e17af800204b4a81d19f7951b8552c8032dbeb
+    env:
+      APP_BASE_URL: "{{ .Routes.web.URL }}"
+      CLIENT_BASE_URL: "{{ .Routes.web.URL }}"   # the image sets it to localhost
+      AUTH_IS_REGISTRATION_ENABLED: "{{ .Settings.signups_allowed }}"
+      AUTH_FIRST_USER_AS_ADMIN: "true"
+      POSTHOG_ENABLED: "false"
+    secrets:
+      AUTH_SECRET: auth_secret
+    mounts:
+      - { storage: data, path: /app/app-data }
+    health:
+      http: { port: 1221, path: /api/health }
+    memory: 150 MB               # 130 MB in use, measured 2026-10-18
+    quadlet:
+      Container:
+        # The image's user has no fixed ID; run it as 1000, mapped to
+        # Roostack's user, so the data folder is its own.
+        User: "1000:1000"
+        UserNS: keep-id:uid=1000,gid=1000
+
+storage:
+  data:
+    title: Your documents
+    class: critical
+
+databases:
+  main:
+    type: sqlite
+    path: data/db/db.sqlite
+
+hooks:
+  # Your account. Safe to re-run: an existing account is kept.
+  - on: install
+    container: app
+    env:
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+      SITE_URL: "{{ .Routes.web.URL }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - node
+      - -e
+      - |
+        // node:http, not fetch: fetch adds browser headers and drops Origin,
+        // and Papra refuses a sign-up without its own address as the origin.
+        const http = require('node:http')
+        const email = process.env.ADMIN_EMAIL
+        const body = JSON.stringify({ email, password: process.env.ADMIN_PASSWORD, name: email.split('@')[0] })
+        const req = http.request({ host: 'localhost', port: 1221, path: '/api/auth/sign-up/email', method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body), Origin: process.env.SITE_URL } }, (res) => {
+          let data = ''
+          res.on('data', (c) => { data += c })
+          res.on('end', () => {
+            let out = {}
+            try { out = JSON.parse(data) } catch {}
+            if (res.statusCode >= 200 && res.statusCode < 300) { console.log('Your account is made.'); return }
+            if (out.code === 'USER_ALREADY_EXISTS' || /already exists/i.test(out.message || '')) { console.log('The account already exists.'); return }
+            console.error('Signing up failed:', res.statusCode, out.message || ''); process.exit(1)
+          })
+        })
+        req.on('error', (e) => { console.error('Papra is not answering yet:', e.message); process.exit(1) })
+        req.end(body)
+
+routes:
+  web:
+    container: app
+    port: 1221
+    subdomain: documents
+    exposure: private
+    max_body_size: 100MB         # scans and PDFs
+    public:
+      login_paths:
+        - /api/auth/sign-in/email
+        - /api/auth/sign-up/email
+
+# Single sign-on (SPEC.md §5.2), the only way in while it's on (the
+# Owner's choice, 2026-10-20): Papra's own email-and-password sign-in is
+# off, and sign-ups are on, so people from the lab get an account the
+# first time they sign in, and nobody can sign up any other way. Papra
+# doesn't link an account it has already (it wants a verified email, and
+# the account made at install has none), so that account is out of reach
+# until single sign-on is off again. Its provider list holds the client
+# secret, so it's made as a Podman secret (secret_env), never written into
+# a file.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/api/auth/oauth2/callback/roostack]
+  env:
+    app:
+      AUTH_PROVIDERS_EMAIL_IS_ENABLED: "false"
+      AUTH_IS_REGISTRATION_ENABLED: "true"
+  secret_env:
+    app:
+      AUTH_PROVIDERS_CUSTOMS: >-
+        [{"providerId": "roostack", "providerName": {{ json .SSO.ProviderName }}, "type": "oidc",
+        "clientId": {{ json .SSO.ClientID }}, "clientSecret": {{ json .SSO.ClientSecret }},
+        "discoveryUrl": {{ json .SSO.DiscoveryURL }}, "scopes": ["openid", "profile", "email"], "pkce": true}]
+  note: While it's on, everyone signs in through the lab, and Papra's own email-and-password sign-in is off, so the account made at install can't be used until it's off again.
