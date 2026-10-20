@@ -1,0 +1,137 @@
+# Navidrome: one container, SQLite; it plays the media libraries chosen for
+# it. Image digest looked up 2026-10-19.
+schema: roostack/v1alpha1
+name: navidrome
+title: Navidrome
+description: Your music collection, streamed to your phone and browser, from your own media libraries
+version: 0.64.2-roostack.2
+
+about:
+  maker: Deluan Quintão and contributors
+  website: https://www.navidrome.org
+  source: https://github.com/navidrome/navidrome
+  licence: GPL-3.0-only
+  support: https://github.com/sponsors/deluan
+  # A placeholder, not Navidrome's logo: the project states no terms for
+  # using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [media]
+  keywords: [music, streaming, subsonic, albums, playlists]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator, made by the install hook below. Until there's one,
+  # Navidrome lets whoever opens it first make it.
+  - key: admin_username
+    title: Administrator username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+
+containers:
+  app:
+    # Runs as the container's root: Roostack's own user on the host.
+    image: docker.io/deluan/navidrome:0.64.2@sha256:38dc2727bfcfd5ede290f8ada114fc90368146f265ae4701ddddbcbe2a44ee52
+    env:
+      # It finds music anywhere under the libraries chosen for it (each at
+      # /media/<library>), and leaves other files alone.
+      ND_MUSICFOLDER: /media
+      ND_DATAFOLDER: /data
+      ND_CACHEFOLDER: /cache
+      ND_ENABLEINSIGHTSCOLLECTOR: "false"   # no anonymous usage reports
+    mounts:
+      - { storage: data,  path: /data }
+      - { storage: cache, path: /cache }
+      - { libraries: true, path: /media }
+    health:
+      http: { port: 4533, path: /ping }
+    memory: 100 MB               # 34 MB idle, measured 2026-10-19
+    # Started through a shell, so that with single sign-on on it trusts
+    # the Remote-User header only from its own address: requests Caddy
+    # forwards arrive from there, while another container reaching it
+    # directly comes from its network's gateway (docs/ASSUMPTIONS.md V15).
+    # Its address is known only once it runs.
+    command:
+      - -c
+      - 'if [ -n "$ND_EXTAUTH_USERHEADER" ]; then ND_EXTAUTH_TRUSTEDSOURCES="$(hostname -i | tr " " "\n" | grep -m1 -E "^[0-9.]+$")/32"; export ND_EXTAUTH_TRUSTEDSOURCES; fi; exec /app/navidrome'
+    quadlet:
+      Container:
+        Entrypoint: /bin/sh
+
+storage:
+  data:
+    title: Accounts, playlists, ratings and play counts
+    class: critical
+  cache:
+    title: Artwork and transcoded music
+    class: replaceable
+
+databases:
+  main:
+    type: sqlite
+    path: data/navidrome.db
+
+hooks:
+  # The administrator, through Navidrome's own first-run call, which works
+  # only while there are no accounts. Values arrive as environment
+  # variables. Safe to re-run: once there's an account, done.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - sh
+      - -c
+      - |
+        wget -q -O /dev/null http://127.0.0.1:4533/ping || { echo "Navidrome is still starting." >&2; exit 1; }
+        json() { printf '%s' "$1" | sed 's/\\/\\\\/g; s/"/\\"/g'; }
+        out=$(wget -q -S -O - --header 'Content-Type: application/json' \
+          --post-data "{\"username\":\"$(json "$ADMIN_USERNAME")\",\"password\":\"$(json "$ADMIN_PASSWORD")\"}" \
+          http://127.0.0.1:4533/auth/createAdmin 2>&1)
+        case "$out" in
+          *" 200 "*|*'"username"'*) echo "The administrator $ADMIN_USERNAME is made." ;;
+          *" 403 "*|*"another first admin"*) echo "Navidrome has its administrator already." ;;
+          *) echo "Making the administrator failed: $out" | head -c 500 >&2; exit 1 ;;
+        esac
+
+routes:
+  web:
+    container: app
+    port: 4533
+    subdomain: music
+    exposure: private
+    public:
+      login_paths:
+        - /auth/login
+
+# Single sign-on (SPEC.md §5.2): Navidrome has no OIDC, so it goes behind
+# the wall and reads who someone is from the Remote-User header Caddy adds
+# there (and removes from visitors, on every address). It makes an account
+# the first time someone opens it, or uses the one with that username (its
+# administrator, made at install, if it has yours). Only its own address,
+# where Caddy's requests arrive from, is trusted to send the header (the
+# command above).
+# Subsonic apps (/rest) and share links (/share) stay outside the wall:
+# Navidrome checks its own passwords and share keys there.
+sso:
+  forward_auth:
+    route: web
+    bypass_paths:
+      - path: /rest
+        reason: Subsonic and other music apps, which sign in with Navidrome's own passwords.
+      - path: /share
+        reason: Share links, which work without an account and only for what was shared.
+  env:
+    app:
+      ND_EXTAUTH_USERHEADER: Remote-User
+      ND_EXTAUTH_LOGOUTURL: "{{ .SSO.Issuer }}/sign-out"
+  note: Music apps keep Navidrome's own passwords; someone whose account single sign-on made sets one in Navidrome's Profile.
