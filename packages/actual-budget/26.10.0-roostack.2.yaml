@@ -1,0 +1,124 @@
+# Actual Budget: one container; its data is SQLite and budget files.
+# Image digest looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: actual-budget
+title: Actual Budget
+description: Personal budgeting that keeps your money's details on your own server, synced between your devices
+version: 26.10.0-roostack.2
+
+about:
+  maker: the Actual Budget community, volunteers
+  website: https://actualbudget.org
+  source: https://github.com/actualbudget/actual
+  licence: MIT
+  support: https://opencollective.com/actual
+  # A placeholder, not Actual's logo: the project states no terms for
+  # using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [productivity]
+  keywords: [budget, money, finance, envelope budgeting, expenses]
+requires:
+  roostack: "0.1"
+
+settings:
+  # Actual has one server password, set by the install hook below. Until
+  # it's set, whoever opens Actual first chooses it.
+  - key: server_password
+    title: Server password
+    description: Everyone using this Actual signs in with it. At least 8 characters. Roostack forgets it once it's set; change it later in Actual's settings.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+
+containers:
+  app:
+    image: docker.io/actualbudget/actual-server:26.10.0@sha256:24645e971da6bb1a1f953d6859e307a0b29be1e8b4130a35b3220c209b5b860c
+    env:
+      ACTUAL_LOGIN_METHOD: password
+    mounts:
+      - { storage: data, path: /data }
+    health:
+      http: { port: 5006, path: /health }
+    memory: 250 MB               # 235 MB in use, measured 2026-10-18
+    quadlet:
+      Container:
+        # The image's user is 1001: mapped to Roostack's user, so the data
+        # folder is its own.
+        UserNS: keep-id:uid=1001,gid=1001
+
+storage:
+  data:
+    title: Your budgets
+    class: critical
+
+databases:
+  # Accounts and sign-ins. Each budget's sync log is a SQLite file of its
+  # own (user-files/group-<id>.sqlite), backed up as a plain file: it's
+  # written only while a device syncs, and every device keeps the whole
+  # budget too.
+  account:
+    type: sqlite
+    path: data/server-files/account.sqlite
+
+hooks:
+  # The server password, through Actual's own first-run call, which works
+  # only while none is set. Safe to re-run: once it's set, done.
+  - on: install
+    container: app
+    secrets:
+      SERVER_PASSWORD: server_password
+    command:
+      - node
+      - -e
+      - |
+        const http = require('node:http')
+        const body = JSON.stringify({ password: process.env.SERVER_PASSWORD })
+        const req = http.request({ host: '127.0.0.1', port: 5006, path: '/account/bootstrap', method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) } }, (res) => {
+          let data = ''
+          res.on('data', (c) => { data += c })
+          res.on('end', () => {
+            let out = {}
+            try { out = JSON.parse(data) } catch {}
+            if (out.status === 'ok') { console.log('The server password is set.'); return }
+            if (out.reason === 'already-bootstrapped') { console.log('The server password was set already.'); return }
+            console.error('Setting the server password failed:', res.statusCode, out.reason || data); process.exit(1)
+          })
+        })
+        req.on('error', (e) => { console.error('Actual is not answering yet:', e.message); process.exit(1) })
+        req.end(body)
+
+routes:
+  web:
+    container: app
+    port: 5006
+    subdomain: budget
+    exposure: private
+    max_body_size: 50MB          # budget files synced from devices
+    public:
+      login_paths:
+        - /account/login
+        - /account/bootstrap
+
+# Single sign-on (SPEC.md §5.2): Actual moves from its one server password
+# to accounts. The first person to sign in through the lab becomes its
+# owner, typing the server password once to take over the budgets; each
+# person after gets an account of their own, by their username. Turned
+# off, Actual still lists OpenID as its sign-in method (it keeps that
+# in its own database): the server password works with Password on its
+# sign-in page, and its owner can switch back in Actual's Settings.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/openid/callback]
+  env:
+    app:
+      ACTUAL_LOGIN_METHOD: openid
+      ACTUAL_OPENID_DISCOVERY_URL: "{{ .SSO.Issuer }}"
+      ACTUAL_OPENID_CLIENT_ID: "{{ .SSO.ClientID }}"
+      ACTUAL_OPENID_SERVER_HOSTNAME: "{{ .Routes.web.URL }}"
+      ACTUAL_USER_CREATION_MODE: login
+  secrets:
+    app:
+      ACTUAL_OPENID_CLIENT_SECRET: sso.client_secret
+  note: Sign in through the lab first yourself, with the server password at hand; the first person to sign in becomes Actual's owner. If single sign-on is turned off, choose Password on Actual's sign-in page.

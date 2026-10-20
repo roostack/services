@@ -1,0 +1,116 @@
+# Vaultwarden: one container, SQLite. Image digests looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: vaultwarden
+title: Vaultwarden
+description: Password manager compatible with the Bitwarden apps
+version: 1.37.4-roostack.2          # upstream version + package revision
+
+about:                           # the project, credited in the catalog
+  maker: Daniel García and volunteer maintainers
+  source: https://github.com/dani-garcia/vaultwarden
+  licence: AGPL-3.0-only         # SPDX, from its Cargo.toml
+  support: https://github.com/sponsors/dani-garcia
+  icon: icon.png
+  categories: [passwords]
+  keywords: [password manager, bitwarden, two-factor, passkeys]
+requires:
+  roostack: "0.1"                # the oldest Roostack that can run it
+
+settings:                        # shown in the UI at install and in settings
+  - key: signups_allowed
+    title: Allow anyone to create an account
+    type: bool
+    default: false
+  - key: admin_token
+    title: Admin token
+    description: Needed to open Vaultwarden's admin panel
+    type: secret
+    generate: true               # Roostack creates it; stored as a Podman secret
+    reveal: true                 # shown to Admins on request, for the admin panel
+
+containers:
+  app:
+    image: docker.io/vaultwarden/server:1.37.4@sha256:efb3cde962015fcc036b2ea625242248611943b27212ebf4392841fb30fad055
+    env:
+      DOMAIN: "{{ .Routes.web.URL }}"
+      SIGNUPS_ALLOWED: "{{ .Settings.signups_allowed }}"
+    secrets:
+      ADMIN_TOKEN: admin_token
+    mounts:
+      - { storage: data, path: /data }
+    health:
+      http: { port: 80, path: /alive }
+    memory: 50 MB                # typical use, for the install summary
+
+storage:
+  data:
+    title: Passwords, accounts and settings
+    class: critical              # backed up by default
+
+databases:
+  main:
+    type: sqlite                 # Roostack handles consistent backups itself
+    path: data/db.sqlite3
+
+links:                           # most settings live in the app itself
+  - title: Admin panel
+    description: Users, invitations, email and other Vaultwarden settings (asks for the admin token)
+    route: web
+    path: /admin
+
+routes:
+  web:
+    container: app
+    port: 80
+    subdomain: vault             # default; user can change it
+    exposure: private            # default; user can make it public
+    client_ip_header: X-Real-IP  # what Vaultwarden reads (IP_HEADER) for its login limits and logs
+    public:                      # when it is public
+      private_paths:
+        - path: /admin
+          reason: Vaultwarden's admin panel, which changes the server's settings and every account. Anyone who guesses or steals the admin token could use it.
+      login_paths:               # strict rate limit for outside visitors
+        - /identity/connect/token
+        - /identity/accounts/prelogin   # and /prelogin/password under it (1.37.4 removed /api/accounts/prelogin)
+
+# --- Matching instance (desired state) ---
+# /var/lib/roostack/services/vaultwarden.yaml
+#
+# package: vaultwarden
+# version: 1.37.4-roostack.3
+# routes:
+#   web: { subdomain: passwords, exposure: private }
+# settings:
+#   signups_allowed: false
+# updates: minor                 # notify | patch | minor | all
+#
+# --- Generated output ---
+# ~/.config/containers/systemd/roostack-vaultwarden-app.container
+# ~/.config/containers/systemd/roostack-vaultwarden.network
+# /var/lib/roostack/caddy/sites/vaultwarden.caddy
+# /srv/roostack/services/vaultwarden/data/
+
+# Single sign-on (SPEC.md §5.2): Vaultwarden signs people in through OIDC
+# (since 1.35), finding an account by its email (yours, from installing,
+# if it's the email Roostack has for you) or making one. The master
+# password still unlocks each vault: single sign-on replaces only the
+# login before it. Vaultwarden then keeps its own sessions
+# (SSO_AUTH_ONLY_NOT_SESSION), as the sign-in page's access tokens last an
+# hour and Bitwarden apps stay signed in for days.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/identity/connect/oidc-signin]
+  env:
+    app:
+      SSO_ENABLED: "true"
+      SSO_AUTHORITY: "{{ .SSO.Issuer }}"
+      SSO_CLIENT_ID: "{{ .SSO.ClientID }}"
+      SSO_SCOPES: email profile
+      SSO_PKCE: "true"
+      SSO_SIGNUPS_MATCH_EMAIL: "true"
+      SSO_AUTH_ONLY_NOT_SESSION: "true"
+  secrets:
+    app:
+      SSO_CLIENT_SECRET: sso.client_secret
+  note: Each vault is still unlocked with its master password. The admin page keeps its admin token.
