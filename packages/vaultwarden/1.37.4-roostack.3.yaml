@@ -3,7 +3,7 @@ schema: roostack/v1alpha1
 name: vaultwarden
 title: Vaultwarden
 description: Password manager compatible with the Bitwarden apps
-version: 1.37.4-roostack.2          # upstream version + package revision
+version: 1.37.4-roostack.3          # upstream version + package revision
 
 about:                           # the project, credited in the catalog
   maker: Daniel García and volunteer maintainers
