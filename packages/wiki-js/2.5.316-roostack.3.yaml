@@ -1,0 +1,269 @@
+# Wiki.js 2: one container and Postgres. Pages, uploads and settings are
+# all in the database. Image digest looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: wiki-js
+title: Wiki.js
+description: A wiki for writing and organising shared documentation
+version: 2.5.316-roostack.3
+
+about:
+  maker: Nicolas Giard (Requarks), with backers
+  website: https://js.wiki
+  # The 2.x line, maintained in its own repository; 3.0 is in beta.
+  source: https://github.com/requarks/wiki-v2
+  licence: AGPL-3.0-only
+  support: https://js.wiki/donate
+  # A placeholder, not Wiki.js's logo: the project states no terms for
+  # using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [documents]
+  keywords: [wiki, documentation, knowledge base, markdown, confluence alternative]
+built_with: [node]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator, made by the install hook below through Wiki.js's
+  # own setup step, so its setup page isn't left open for anyone.
+  - key: admin_email
+    title: Your email address
+    description: For signing in to Wiki.js as its administrator
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hooks succeed
+  # A key Wiki.js makes at install, which single sign-on's hook uses to set
+  # Wiki.js's sign-in (it takes it only through its API). Wiki.js's keys
+  # that can change sign-in have full access, so Roostack keeps it like a
+  # password.
+  - key: settings_key
+    title: Roostack's key to Wiki.js
+    description: Wiki.js makes it at install, so Roostack can set up single sign-on. It has full access to Wiki.js (Wiki.js has no narrower key that can change its sign-in), and is never shown.
+    type: secret
+    from_hook: true
+
+containers:
+  app:
+    image: ghcr.io/requarks/wiki:2.5.316@sha256:fffff288a52f76e5b8c19a4fbcd0f3e538e96edea642c4f2d813d54d59a876de
+    env:
+      DB_TYPE: postgres
+      DB_HOST: "{{ .Databases.main.Host }}"
+      DB_PORT: "{{ .Databases.main.Port }}"
+      DB_USER: "{{ .Databases.main.User }}"
+      DB_NAME: "{{ .Databases.main.Name }}"
+    secrets:
+      DB_PASS: databases.main.password
+    health:
+      # Only once setup is done; before, it answers 404, which counts as
+      # up.
+      http: { port: 3000, path: /healthz }
+    depends_on: [databases.main]
+    memory: 250 MB
+
+databases:
+  main:
+    type: postgres               # pages, history, uploads, accounts, settings
+
+hooks:
+  # Wiki.js's setup step, as its setup page would send it, with telemetry
+  # off. Safe to re-run: once set up, the step no longer exists (404).
+  - on: install
+    container: app
+    env:
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+      SITE_URL: "{{ .Routes.web.URL }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - node
+      - -e
+      - |
+        const body = JSON.stringify({ adminEmail: process.env.ADMIN_EMAIL, adminPassword: process.env.ADMIN_PASSWORD,
+          adminPasswordConfirm: process.env.ADMIN_PASSWORD, siteUrl: process.env.SITE_URL, telemetry: false })
+        fetch('http://localhost:3000/finalize', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body })
+          .then(async (r) => {
+            if (r.status === 404) { console.log('Wiki.js is already set up.'); return }
+            const out = await r.json().catch(() => ({}))
+            if (!r.ok || !out.ok) { console.error('Setup failed:', r.status, out.message || ''); process.exit(1) }
+            console.log('Wiki.js is set up.')
+          })
+          .catch((e) => { console.error('Wiki.js is not answering yet:', e.message); process.exit(1) })
+
+  # A key for Roostack, made by the administrator: Wiki.js's API is turned
+  # on (keys work only then), an older key named Roostack is revoked, and
+  # the new one is printed, and only it, on standard output, which Roostack
+  # keeps as settings_key; everything else goes to standard error, the
+  # log. The Connect action below runs the same script.
+  - on: install
+    title: Make a key for Roostack
+    container: app
+    env:
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    saves: settings_key
+    command: &make-key
+      - node
+      - -e
+      - |
+        const gql = async (query, variables, token) => {
+          const r = await fetch('http://localhost:3000/graphql', { method: 'POST',
+            headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: 'Bearer ' + token } : {}) },
+            body: JSON.stringify({ query, variables }) })
+          const out = await r.json()
+          if (out.errors) throw new Error(out.errors.map((e) => e.message).join('; '))
+          return out.data
+        }
+        const ok = (res, what) => { if (!res.succeeded) throw new Error(what + ': ' + res.message) }
+        ;(async () => {
+          const login = (await gql(`mutation ($u: String!, $p: String!) { authentication { login(username: $u, password: $p, strategy: "local") {
+            responseResult { succeeded message } jwt } } }`, { u: process.env.ADMIN_EMAIL, p: process.env.ADMIN_PASSWORD })).authentication.login
+          ok(login.responseResult, 'Signing in as the administrator failed')
+          const jwt = login.jwt
+          ok((await gql('mutation { authentication { setApiState(enabled: true) { responseResult { succeeded message } } } }', {}, jwt))
+            .authentication.setApiState.responseResult, "Turning on Wiki.js's API failed")
+          const keys = (await gql('{ authentication { apiKeys { id name isRevoked } } }', {}, jwt)).authentication.apiKeys
+          for (const k of keys) {
+            if (k.name === 'Roostack' && !k.isRevoked) {
+              await gql('mutation ($id: Int!) { authentication { revokeApiKey(id: $id) { responseResult { succeeded } } } }', { id: k.id }, jwt)
+            }
+          }
+          const made = (await gql(`mutation { authentication { createApiKey(name: "Roostack", expiration: "10y", fullAccess: true) {
+            responseResult { succeeded message } key } } }`, {}, jwt)).authentication.createApiKey
+          ok(made.responseResult, 'Making the key failed')
+          console.error("Made a key named Roostack, for Wiki.js's sign-in settings.")
+          process.stdout.write(made.key + '\n')
+        })().catch((e) => { console.error('Wiki.js:', e.message); process.exit(1) })
+
+  # For a Wiki.js installed before Roostack kept a key, or whose key is
+  # gone (revoked in Wiki.js, say): the Single sign-on card offers it.
+  - on: action
+    name: connect
+    title: Connect Roostack to Wiki.js
+    description: Makes a key Roostack keeps, so Roostack can set up single sign-on. Type Wiki.js's administrator email and password once; Roostack keeps only the key.
+    container: app
+    inputs:
+      - { key: email, title: Administrator email, type: string }
+      - { key: password, title: Administrator password, type: secret }
+    env:
+      ADMIN_EMAIL: "{{ .Inputs.email }}"
+    secrets:
+      ADMIN_PASSWORD: inputs.password
+    saves: settings_key
+    command: *make-key
+
+  # Single sign-on (SPEC.md §5.2): Wiki.js keeps its sign-in methods in its
+  # database, changed only through its API, all at once (a method left out
+  # is deleted), so every method is sent back as it was, with the lab's
+  # (key roostack) added or changed. Wiki.js doesn't read the provider's
+  # configuration, so each address is given. It doesn't ask for groups and
+  # never links an account it has already: everyone who signs in gets an
+  # account of their own in a group named after the lab, which can read
+  # and edit pages (the Owner's choice, 2026-10-20). The group is made the
+  # first time, and only renamed after that, so changes made to it in
+  # Wiki.js stay. Off turns the method off and forgets its secret, keeping
+  # the accounts it made. Safe to run again.
+  - on: sso
+    title: Set Wiki.js's sign-in
+    container: app
+    env:
+      NAME: "{{ .SSO.ProviderName }}"
+      ISSUER: "{{ .SSO.Issuer }}"
+      AUTHORIZE_URL: "{{ .SSO.AuthorizeURL }}"
+      TOKEN_URL: "{{ .SSO.TokenURL }}"
+      USERINFO_URL: "{{ .SSO.UserinfoURL }}"
+      CLIENT_ID: "{{ .SSO.ClientID }}"
+    secrets:
+      API_KEY: settings_key
+      CLIENT_SECRET: sso.client_secret
+    command:
+      - node
+      - -e
+      - |
+        const gql = async (query, variables) => {
+          const r = await fetch('http://localhost:3000/graphql', { method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + process.env.API_KEY },
+            body: JSON.stringify({ query, variables }) })
+          const out = await r.json()
+          if (out.errors) throw new Error(out.errors.map((e) => e.message).join('; '))
+          return out.data
+        }
+        const ok = (res, what) => { if (!res.succeeded) throw new Error(what + ': ' + res.message) }
+        const on = process.env.ROOSTACK_SSO === 'on', name = process.env.NAME
+        const perms = ['read:pages', 'write:pages', 'manage:pages', 'delete:pages', 'read:source', 'read:history',
+          'read:assets', 'write:assets', 'read:comments', 'write:comments']
+        ;(async () => {
+          const strategies = (await gql(`{ authentication { activeStrategies { key strategy { key } displayName order isEnabled
+            config { key value } selfRegistration domainWhitelist autoEnrollGroups } } }`)).authentication.activeStrategies
+          const ours = strategies.find((s) => s.key === 'roostack')
+          if (!on && !ours) { console.log('Wiki.js has no single sign-on to turn off.'); return }
+          const setGroup = async (id, n, r, p, pr, what) => ok((await gql(`mutation ($id: Int!, $n: String!, $r: String!, $p: [String]!,
+            $pr: [PageRuleInput]!) { groups { update(id: $id, name: $n, redirectOnLogin: $r, permissions: $p, pageRules: $pr) {
+            responseResult { succeeded message } } } }`, { id, n, r, p, pr })).groups.update.responseResult, what)
+          let group = ours && ours.autoEnrollGroups[0]
+          if (on) {
+            const groups = (await gql('{ groups { list { id name } } }')).groups.list
+            const found = group && groups.find((g) => g.id === group)
+            if (found && found.name !== name) {
+              // Renamed with the lab; its permissions stay as they are.
+              const g = (await gql('query ($id: Int!) { groups { single(id: $id) { redirectOnLogin permissions pageRules { id deny match roles path locales } } } }', { id: group })).groups.single
+              await setGroup(group, name, g.redirectOnLogin || '/', g.permissions, g.pageRules, 'Renaming its group failed')
+            } else if (!found) {
+              // The first time: the lab's group (one an earlier, failed run
+              // made, if there's one), able to read and edit pages.
+              const named = groups.find((g) => g.name === name)
+              if (named) {
+                group = named.id
+              } else {
+                const made = (await gql('mutation ($n: String!) { groups { create(name: $n) { responseResult { succeeded message } group { id } } } }', { n: name })).groups.create
+                ok(made.responseResult, 'Making its group failed')
+                group = made.group.id
+              }
+              await setGroup(group, name, '/', perms, [{ id: 'default', deny: false, match: 'START', roles: perms, path: '', locales: [] }],
+                "Setting its group's permissions failed")
+              console.log('The group ' + name + ' can read and edit pages.')
+            }
+          }
+          const v = (x) => JSON.stringify({ v: x })
+          const config = { clientId: process.env.CLIENT_ID, clientSecret: on ? process.env.CLIENT_SECRET : '',
+            authorizationURL: process.env.AUTHORIZE_URL, tokenURL: process.env.TOKEN_URL, userInfoURL: process.env.USERINFO_URL,
+            issuer: process.env.ISSUER, skipUserProfile: false, emailClaim: 'email', displayNameClaim: 'name', pictureClaim: '',
+            mapGroups: false, groupsClaim: 'groups', logoutURL: process.env.ISSUER + '/sign-out', acrValues: '' }
+          const list = strategies.filter((s) => s.key !== 'roostack').map((s) => ({ key: s.key, strategyKey: s.strategy.key,
+            displayName: s.displayName, order: s.order, isEnabled: s.isEnabled, selfRegistration: s.selfRegistration,
+            domainWhitelist: s.domainWhitelist, autoEnrollGroups: s.autoEnrollGroups,
+            config: s.config.map((c) => ({ key: c.key, value: v(JSON.parse(c.value).value) })) }))
+          list.push({ key: 'roostack', strategyKey: 'oidc', displayName: name, order: ours ? ours.order : list.length,
+            isEnabled: on, selfRegistration: true, domainWhitelist: [], autoEnrollGroups: group ? [group] : [],
+            config: Object.entries(config).map(([key, x]) => ({ key, value: v(x) })) })
+          ok((await gql(`mutation ($s: [AuthenticationStrategyInput]!) { authentication { updateStrategies(strategies: $s) {
+            responseResult { succeeded message } } } }`, { s: list })).authentication.updateStrategies.responseResult,
+            "Changing Wiki.js's sign-in failed")
+          console.log(on ? "Wiki.js's sign-in now offers the lab's sign-in page." : "Wiki.js's single sign-on is off.")
+        })().catch((e) => { console.error('Wiki.js:', e.message); process.exit(1) })
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: wiki
+    exposure: private
+    max_body_size: 50MB          # uploads; Wiki.js's own limit is 5 MB a file, 10 at once
+    public:
+      # Sign-in itself goes through /graphql, which the whole app uses:
+      # limiting it would slow every visitor, so only the page is listed.
+      login_paths:
+        - /login
+
+# Single sign-on (SPEC.md §5.2): set through Wiki.js's API by the sso hook
+# above, with the key Roostack keeps.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/login/roostack/callback]
+  note: Everyone who signs in gets an account of their own that can read and edit pages, also the lab's Owners and Admins; Wiki.js's administration stays with the account made at install, signed in with its password. API keys stay Wiki.js's own.

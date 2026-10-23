@@ -1,0 +1,101 @@
+# Radicale: one container; calendars and contacts are plain files.
+# Image digest looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: radicale
+title: Radicale
+description: Your calendars and contacts, synced to your phone and computer (CalDAV and CardDAV)
+version: 3.8.3-roostack.2
+
+about:
+  maker: the Radicale team, volunteers (originally Guillaume Ayoub)
+  website: https://radicale.org
+  source: https://github.com/Kozea/Radicale
+  licence: GPL-3.0-only
+  # A placeholder, not Radicale's logo: the project states no terms for
+  # using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [productivity]
+  keywords: [calendar, contacts, caldav, carddav, sync, address book]
+built_with: [python]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The first person's account, made by the install hook below. Add others
+  # with the "Add a person or change a password" button.
+  - key: admin_username
+    title: Your username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+
+containers:
+  app:
+    image: ghcr.io/kozea/radicale:3.8.3@sha256:62e281f4b35f1a5e52209cd99ad7081add25532f4c10df225b3a1519e64f70ca
+    quadlet:
+      Container:
+        # The image's user is 1000: mapped to Roostack's user, so the data
+        # folder is its own.
+        UserNS: keep-id:uid=1000,gid=1000
+        # Radicale won't start without its users file, and the install
+        # hook adds the first one once it runs: the shell makes an empty
+        # file first.
+        Entrypoint: /bin/sh
+    command:                     # one line: Quadlet's Exec takes no line breaks
+      - -c
+      - touch /var/lib/radicale/users && exec /app/bin/python /app/bin/radicale --hosts 0.0.0.0:5232 --auth-type htpasswd --auth-htpasswd-filename /var/lib/radicale/users --auth-htpasswd-encryption bcrypt --storage-filesystem-folder /var/lib/radicale/collections
+    mounts:
+      - { storage: data, path: /var/lib/radicale }
+    health:
+      http: { port: 5232, path: /.web/ }
+    memory: 50 MB                # 27 MB in use, measured 2026-10-18
+
+storage:
+  data:
+    title: Your calendars, contacts and accounts
+    class: critical
+
+hooks:
+  # The first account. Values arrive as environment variables; htpasswd
+  # reads the password from its input, never the command line. Safe to
+  # re-run: it sets the same password again.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command: [sh, -c, 'printf %s "$ADMIN_PASSWORD" | htpasswd -i -B /var/lib/radicale/users "$ADMIN_USERNAME"']
+
+  - on: action
+    name: set-password
+    title: Add a person or change a password
+    description: Makes an account for someone new, or sets a new password for an account that exists.
+    container: app
+    inputs:
+      - { key: username, title: Username, type: string }
+      - { key: password, title: Password, type: secret, min_length: 8 }
+    env:
+      USERNAME: "{{ .Inputs.username }}"
+    secrets:
+      NEW_PASSWORD: inputs.password
+    command: [sh, -c, 'printf %s "$NEW_PASSWORD" | htpasswd -i -B /var/lib/radicale/users "$USERNAME"']
+
+routes:
+  web:
+    container: app
+    port: 5232
+    subdomain: dav
+    exposure: private
+    public:
+      unsafe: >-
+        Calendar and contact apps send the password with every request rather
+        than signing in on a page, so Roostack has no login page to rate-limit;
+        Radicale waits a second after each wrong password. Making it public lets
+        phones sync away from home: use strong passwords.

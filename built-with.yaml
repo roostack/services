@@ -1,0 +1,128 @@
+# The names packages may give in built_with: (Roostack's SPEC.md §6.16,
+# docs/RED-BUTTON-PLAN.md §4.1). Every package's names must be here; the
+# names of its databases (sqlite, postgres, mysql, mariadb, valkey or redis)
+# are added by Roostack, so they're here too.
+#
+# Each has a title as people write it, a line about it, and the package
+# URLs (without versions) and CPE names (NVD's dictionary) the registry's
+# watcher matches vulnerability feeds against. A name with neither is still
+# matched by its title. Add a name in the same change as the first package
+# that uses it.
+
+# Languages and runtimes
+- name: dotnet
+  title: .NET
+  about: Microsoft's runtime for C# and other languages.
+  cpes: ["cpe:2.3:a:microsoft:.net:*:*:*:*:*:*:*:*", "cpe:2.3:a:microsoft:asp.net_core:*:*:*:*:*:*:*:*"]
+- name: go
+  title: Go
+  about: Google's programming language; apps are one compiled program.
+  cpes: ["cpe:2.3:a:golang:go:*:*:*:*:*:*:*:*"]
+- name: java
+  title: Java
+  about: The Java runtime (OpenJDK).
+  cpes: ["cpe:2.3:a:oracle:openjdk:*:*:*:*:*:*:*:*"]
+- name: node
+  title: Node.js
+  about: JavaScript on the server.
+  cpes: ["cpe:2.3:a:nodejs:node.js:*:*:*:*:*:*:*:*"]
+- name: php
+  title: PHP
+  about: The PHP language and runtime.
+  cpes: ["cpe:2.3:a:php:php:*:*:*:*:*:*:*:*"]
+- name: python
+  title: Python
+  about: The Python language and runtime.
+  cpes: ["cpe:2.3:a:python:python:*:*:*:*:*:*:*:*"]
+- name: rust
+  title: Rust
+  about: A systems language; apps are one compiled program.
+  cpes: ["cpe:2.3:a:rust-lang:rust:*:*:*:*:*:*:*:*"]
+
+# Frameworks and servers
+- name: django
+  title: Django
+  about: A Python web framework.
+  purls: ["pkg:pypi/django"]
+  cpes: ["cpe:2.3:a:djangoproject:django:*:*:*:*:*:*:*:*"]
+- name: frankenphp
+  title: FrankenPHP
+  about: A PHP app server built on Caddy.
+  purls: ["pkg:golang/github.com/dunglas/frankenphp"]
+  cpes: ["cpe:2.3:a:php:frankenphp:*:*:*:*:*:*:*:*"]
+- name: laravel
+  title: Laravel
+  about: A PHP web framework.
+  purls: ["pkg:composer/laravel/framework"]
+  cpes: ["cpe:2.3:a:laravel:framework:*:*:*:*:*:*:*:*"]
+- name: nextjs
+  title: Next.js
+  about: A React framework for Node.js.
+  purls: ["pkg:npm/next"]
+  cpes: ["cpe:2.3:a:vercel:next.js:*:*:*:*:*:*:*:*"]
+- name: spring
+  title: Spring
+  about: A Java framework.
+  purls: ["pkg:maven/org.springframework/spring-core", "pkg:maven/org.springframework/spring-web"]
+  cpes: ["cpe:2.3:a:vmware:spring_framework:*:*:*:*:*:*:*:*", "cpe:2.3:a:pivotal_software:spring_framework:*:*:*:*:*:*:*:*"]
+
+# Tools apps hand files to: visitors' uploads can reach them
+- name: chromium
+  title: Chromium
+  about: The browser engine, run without a screen to save or capture web pages.
+  cpes: ["cpe:2.3:a:google:chrome:*:*:*:*:*:*:*:*"]
+- name: ffmpeg
+  title: FFmpeg
+  about: Reads, converts and streams audio and video.
+  cpes: ["cpe:2.3:a:ffmpeg:ffmpeg:*:*:*:*:*:*:*:*"]
+- name: ghostscript
+  title: Ghostscript
+  about: Reads and converts PDF and PostScript files.
+  cpes: ["cpe:2.3:a:artifex:ghostscript:*:*:*:*:*:*:*:*"]
+- name: git
+  title: Git
+  about: Version control; git servers run it on every push and pull.
+  cpes: ["cpe:2.3:a:git-scm:git:*:*:*:*:*:*:*:*"]
+- name: libreoffice
+  title: LibreOffice
+  about: The office suite, run without a screen to convert documents.
+  cpes: ["cpe:2.3:a:libreoffice:libreoffice:*:*:*:*:*:*:*:*"]
+- name: libvips
+  title: libvips
+  about: Reads, resizes and converts images (through sharp in Node.js apps).
+  purls: ["pkg:npm/sharp"]
+  cpes: ["cpe:2.3:a:libvips:libvips:*:*:*:*:*:*:*:*", "cpe:2.3:a:libvips_project:libvips:*:*:*:*:*:*:*:*"]
+- name: tensorflow
+  title: TensorFlow
+  about: Google's machine-learning library, used to recognise what's in photos.
+  cpes: ["cpe:2.3:a:google:tensorflow:*:*:*:*:*:*:*:*"]
+- name: tesseract
+  title: Tesseract
+  about: Reads text in images and scanned documents (OCR).
+  cpes: ["cpe:2.3:a:tesseract_ocr_project:tesseract_ocr:*:*:*:*:*:*:*:*", "cpe:2.3:a:tesseract-ocr:tesseract_ocr:*:*:*:*:*:*:*:*"]
+
+# Databases (Roostack adds these from each package's databases)
+- name: mariadb
+  title: MariaDB
+  about: A MySQL-compatible database.
+  cpes: ["cpe:2.3:a:mariadb:mariadb:*:*:*:*:*:*:*:*"]
+- name: mysql
+  title: MySQL
+  about: Oracle's database.
+  cpes: ["cpe:2.3:a:oracle:mysql:*:*:*:*:*:*:*:*"]
+- name: postgres
+  title: PostgreSQL
+  about: A database server.
+  cpes: ["cpe:2.3:a:postgresql:postgresql:*:*:*:*:*:*:*:*"]
+- name: redis
+  title: Redis
+  about: An in-memory store, used for caches and queues.
+  cpes: ["cpe:2.3:a:redis:redis:*:*:*:*:*:*:*:*"]
+- name: sqlite
+  title: SQLite
+  about: A database kept in one file, inside the app.
+  cpes: ["cpe:2.3:a:sqlite:sqlite:*:*:*:*:*:*:*:*"]
+- name: valkey
+  title: Valkey
+  about: An open-source fork of Redis, which Roostack runs for apps that need Redis.
+  cpes: ["cpe:2.3:a:lfprojects:valkey:*:*:*:*:*:*:*:*"]
