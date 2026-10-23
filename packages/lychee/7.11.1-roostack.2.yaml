@@ -17,7 +17,7 @@ about:
   icon: icon.png
   categories: [photos]
   keywords: [photos, gallery, albums, sharing, portfolio]
-built_with: [php, frankenphp, laravel]
+built_with: [php, frankenphp, laravel, go, ffmpeg, imagemagick, ghostscript]
 requires:
   roostack: "0.1"
 
