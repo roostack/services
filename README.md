@@ -70,6 +70,17 @@ bills on `main`, and Roostack's watcher checks the exact versions in them
 for known security problems. How it works is in Roostack's
 `docs/REGISTRY-WATCH.md`.
 
+Every hour, the Watch workflow (`.github/workflows/watch.yml`) looks for
+security problems in the registry's packages: their projects' own
+advisories, CISA's list of exploited vulnerabilities, and more. When a
+version here is affected and the problem is critical or being used in
+attacks, it opens a pull request adding a draft advisory to
+`advisories/`, and pushes an urgent one to the maintainers' phones. A
+maintainer checks the draft and merges it, and the next Publish run
+sends it to labs. Weaker matches are collected for a digest issue each
+Monday. What it has handled is kept in `watch/state.json`, so nothing is
+drafted twice. How it works is in Roostack's `docs/REGISTRY-WATCH.md`.
+
 `.github/CODEOWNERS` says who reviews what: the registry's maintainers
 own everything, including every `registry.yaml`. Once community packages
 open, each one's folder also lists its maintainers. `keys/` holds the root key's statement
