@@ -21,7 +21,7 @@ about:
   icon: icon.png
   categories: [documents]
   keywords: [pdf, merge, split, convert, compress, sign, ocr]
-built_with: [java, spring, libreoffice, tesseract]
+built_with: [java, spring, libreoffice, tesseract, python, ffmpeg]
 requires:
   roostack: "0.1"
 

@@ -19,7 +19,7 @@ about:
   icon: icon.png
   categories: [documents]
   keywords: [bookmarks, read later, web archive, collections, pocket alternative]
-built_with: [node, nextjs, chromium]
+built_with: [node, nextjs, chromium, libvips]
 requires:
   roostack: "0.1"
 

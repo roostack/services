@@ -21,12 +21,10 @@
 - name: go
   title: Go
   about: Google's programming language; apps are one compiled program.
-  purls: ["pkg:golang/stdlib"]
   cpes: ["cpe:2.3:a:golang:go:*:*:*:*:*:*:*:*"]
 - name: java
   title: Java
   about: The Java runtime (OpenJDK).
-  purls: ["pkg:maven/"]
   cpes: ["cpe:2.3:a:oracle:openjdk:*:*:*:*:*:*:*:*"]
 - name: node
   title: Node.js
@@ -79,37 +77,37 @@
 - name: chromium
   title: Chromium
   about: The browser engine, run without a screen to save or capture web pages.
-  purls: ["pkg:deb/debian/chromium*", "pkg:apk/alpine/chromium*", "pkg:npm/playwright*"]
+  purls: ["pkg:deb/debian/chromium*", "pkg:deb/ubuntu/chromium*", "pkg:apk/alpine/chromium*", "pkg:npm/playwright*"]
   cpes: ["cpe:2.3:a:google:chrome:*:*:*:*:*:*:*:*"]
 - name: ffmpeg
   title: FFmpeg
   about: Reads, converts and streams audio and video.
-  purls: ["pkg:generic/ffmpeg", "pkg:deb/debian/ffmpeg", "pkg:deb/debian/libavcodec*", "pkg:apk/alpine/ffmpeg*"]
+  purls: ["pkg:generic/ffmpeg", "pkg:deb/debian/ffmpeg", "pkg:deb/ubuntu/ffmpeg", "pkg:deb/debian/libavcodec*", "pkg:deb/debian/jellyfin-ffmpeg*", "pkg:deb/ubuntu/libavcodec*", "pkg:deb/ubuntu/jellyfin-ffmpeg*", "pkg:apk/alpine/ffmpeg*"]
   cpes: ["cpe:2.3:a:ffmpeg:ffmpeg:*:*:*:*:*:*:*:*"]
 - name: ghostscript
   title: Ghostscript
   about: Reads and converts PDF and PostScript files.
-  purls: ["pkg:deb/debian/ghostscript", "pkg:apk/alpine/ghostscript"]
+  purls: ["pkg:deb/debian/ghostscript", "pkg:deb/ubuntu/ghostscript", "pkg:apk/alpine/ghostscript"]
   cpes: ["cpe:2.3:a:artifex:ghostscript:*:*:*:*:*:*:*:*"]
 - name: git
   title: Git
   about: Version control; git servers run it on every push and pull.
-  purls: ["pkg:deb/debian/git", "pkg:apk/alpine/git"]
+  purls: ["pkg:deb/debian/git", "pkg:deb/ubuntu/git", "pkg:apk/alpine/git"]
   cpes: ["cpe:2.3:a:git-scm:git:*:*:*:*:*:*:*:*"]
 - name: imagemagick
   title: ImageMagick
   about: Reads, resizes and converts images, including many little-used formats.
-  purls: ["pkg:deb/debian/imagemagick*", "pkg:deb/debian/libmagickcore*", "pkg:apk/alpine/imagemagick*"]
+  purls: ["pkg:deb/debian/imagemagick*", "pkg:deb/ubuntu/imagemagick*", "pkg:deb/debian/libmagickcore*", "pkg:deb/ubuntu/libmagickcore*", "pkg:apk/alpine/imagemagick*"]
   cpes: ["cpe:2.3:a:imagemagick:imagemagick:*:*:*:*:*:*:*:*"]
 - name: libreoffice
   title: LibreOffice
   about: The office suite, run without a screen to convert documents.
-  purls: ["pkg:deb/debian/libreoffice-core*", "pkg:apk/alpine/libreoffice*"]
+  purls: ["pkg:deb/debian/libreoffice-core*", "pkg:deb/ubuntu/libreoffice-core*", "pkg:apk/alpine/libreoffice*"]
   cpes: ["cpe:2.3:a:libreoffice:libreoffice:*:*:*:*:*:*:*:*"]
 - name: libvips
   title: libvips
   about: Reads, resizes and converts images (through sharp in Node.js apps).
-  purls: ["pkg:npm/sharp", "pkg:deb/debian/libvips42*", "pkg:apk/alpine/vips*"]
+  purls: ["pkg:npm/sharp", "pkg:deb/debian/libvips42*", "pkg:deb/ubuntu/libvips42*", "pkg:apk/alpine/vips*"]
   cpes: ["cpe:2.3:a:libvips:libvips:*:*:*:*:*:*:*:*", "cpe:2.3:a:libvips_project:libvips:*:*:*:*:*:*:*:*"]
 - name: tensorflow
   title: TensorFlow
@@ -119,7 +117,7 @@
 - name: tesseract
   title: Tesseract
   about: Reads text in images and scanned documents (OCR).
-  purls: ["pkg:deb/debian/tesseract-ocr*", "pkg:apk/alpine/tesseract-ocr*", "pkg:pypi/ocrmypdf"]
+  purls: ["pkg:deb/debian/tesseract-ocr*", "pkg:deb/ubuntu/tesseract-ocr*", "pkg:apk/alpine/tesseract-ocr*", "pkg:pypi/ocrmypdf"]
   cpes: ["cpe:2.3:a:tesseract_ocr_project:tesseract_ocr:*:*:*:*:*:*:*:*", "cpe:2.3:a:tesseract-ocr:tesseract_ocr:*:*:*:*:*:*:*:*"]
 
 # Databases (Roostack adds these from each package's databases)

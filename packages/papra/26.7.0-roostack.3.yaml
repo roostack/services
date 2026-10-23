@@ -16,7 +16,7 @@ about:
   icon: icon.png
   categories: [documents]
   keywords: [documents, scans, paperless, archive, receipts, search, ocr]
-built_with: [node]
+built_with: [node, libvips]
 requires:
   roostack: "0.1"
 

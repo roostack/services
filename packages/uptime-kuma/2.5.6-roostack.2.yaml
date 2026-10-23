@@ -16,7 +16,7 @@ about:
   icon: icon.png
   categories: [network]
   keywords: [monitoring, uptime, status page, alerts, ping]
-built_with: [node]
+built_with: [node, chromium]
 requires:
   roostack: "0.1"
 

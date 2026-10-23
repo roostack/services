@@ -17,7 +17,7 @@ about:
   icon: icon.png
   categories: [documents]
   keywords: [documents, scans, ocr, paperless, archive, receipts, search, tags]
-built_with: [python, django, tesseract, ghostscript]
+built_with: [python, django, tesseract, ghostscript, imagemagick]
 requires:
   roostack: "0.1"
 

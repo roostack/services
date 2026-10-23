@@ -17,7 +17,7 @@ about:
   icon: icon.png
   categories: [photos]
   keywords: [photos, videos, gallery, faces, places, albums]
-built_with: [go, ffmpeg, tensorflow]
+built_with: [go, ffmpeg, tensorflow, libvips, imagemagick, ghostscript]
 requires:
   roostack: "0.1"
 

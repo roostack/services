@@ -16,7 +16,7 @@ about:
   icon: icon.png
   categories: [publishing]
   keywords: [blog, newsletter, publishing, writing, website]
-built_with: [node]
+built_with: [node, libvips]
 requires:
   roostack: "0.1"
 
