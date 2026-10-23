@@ -6,8 +6,11 @@
 # each package validated, the package policy applied, the image registries
 # asked for each image's processors), and what each added or changed
 # package generates is shown in the run's summary, with the difference
-# from its previous version (.github/render-changes.sh); nothing is signed
-# or published.
+# from its previous version (.github/render-changes.sh); and each new
+# version's images are scanned with Syft and compared with its built_with
+# (.github/scan-boms.sh, roostack registry bom-check), in the summary too.
+# Nothing is signed, published or committed: the Bills of materials
+# workflow keeps the bills once merged.
 # main, and every day: the same, signed with the signing key, and published.
 # The daily run signs a fresh index even with no changes, so a lab can tell
 # an index that's merely unchanged from one it can't get any more (Roostack
@@ -68,6 +71,17 @@ jobs:
         env:
           BASE: origin/${{ github.base_ref }}
         run: .github/render-changes.sh "$GITHUB_WORKSPACE/roostack-bin" "$BASE"
+      - name: Get Syft (a release, checked by its SHA-256)
+        if: github.event_name == 'pull_request'
+        run: services/.github/get-syft.sh
+      - name: Compare the new versions' images with their built_with
+        if: github.event_name == 'pull_request'
+        working-directory: services
+        run: |
+          scanned=$(.github/scan-boms.sh "$GITHUB_WORKSPACE/roostack-bin" "$GITHUB_WORKSPACE/syft-bin" | paste -sd, -)
+          if [ -n "$scanned" ]; then
+            "$GITHUB_WORKSPACE/roostack-bin" registry bom-check -repo . -only "$scanned" >> "$GITHUB_STEP_SUMMARY"
+          fi
       - name: Check the packages and build the signed index
         if: github.event_name != 'pull_request'
         env:

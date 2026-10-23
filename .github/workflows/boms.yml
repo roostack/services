@@ -1,0 +1,59 @@
+# Keeps a bill of materials for each package's newest version (Roostack's
+# docs/REGISTRY-WATCH.md and docs/RED-BUTTON-PLAN.md §10.1.2): after each
+# merge that changes packages/, Syft scans the images of each newest
+# version that hasn't a bill yet, and the bills are committed to boms/ on
+# main. The Watch workflow asks OSV about the exact library versions in
+# them. Run it by hand to make the first ones.
+#
+# Set up: the variables ROOSTACK_BINARY_URL and ROOSTACK_BINARY_SHA256, as
+# for Publish (a Roostack release with roostack registry images), and the
+# secret WATCH_TOKEN, as for Watch (or main must accept a commit from the
+# workflow's own token).
+name: Bills of materials
+
+on:
+  push:
+    branches: [main]
+    paths: ["packages/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: boms
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: services
+          token: ${{ secrets.WATCH_TOKEN || github.token }}
+      - name: Get roostack (a release, checked by its SHA-256)
+        env:
+          URL: ${{ vars.ROOSTACK_BINARY_URL }}
+          SHA256: ${{ vars.ROOSTACK_BINARY_SHA256 }}
+        run: |
+          curl -fsSL --retry 3 -o roostack-bin "$URL"
+          echo "$SHA256  roostack-bin" | sha256sum -c -
+          chmod +x roostack-bin
+      - name: Get Syft (a release, checked by its SHA-256)
+        run: services/.github/get-syft.sh
+      - name: Scan the images that haven't a bill yet, and keep the bills
+        working-directory: services
+        run: |
+          scanned=$(.github/scan-boms.sh "$GITHUB_WORKSPACE/roostack-bin" "$GITHUB_WORKSPACE/syft-bin" | paste -sd, -)
+          if [ -z "$scanned" ]; then
+            echo "Every newest version has its bills of materials."
+            exit 0
+          fi
+          "$GITHUB_WORKSPACE/roostack-bin" registry bom-check -repo . -only "$scanned" >> "$GITHUB_STEP_SUMMARY"
+          git config user.name "Roostack watcher"
+          git config user.email "watcher@users.noreply.github.com"
+          git add boms
+          git commit -q -m "Bills of materials: ${scanned//,/, }"
+          git pull -q --rebase origin main
+          git push -q origin HEAD:main

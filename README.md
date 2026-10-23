@@ -60,6 +60,16 @@ with nothing signed or published, and the run's summary shows what each
 added or changed package generates (its default settings in an example
 lab), with the difference from the package's previous version.
 
+Each package's newest version has a bill of materials for each of its
+images, in `boms/`: what Syft finds inside, cut down to each library's
+name, version and package URL. A pull request's summary compares a new
+version's bills with its `built_with:`, saying what an image has that
+`built_with:` doesn't name, and the other way round. After the merge,
+the Bills of materials workflow (`.github/workflows/boms.yml`) keeps the
+bills on `main`, and Roostack's watcher checks the exact versions in them
+for known security problems. How it works is in Roostack's
+`docs/REGISTRY-WATCH.md`.
+
 `.github/CODEOWNERS` says who reviews what: the registry's maintainers
 own everything, including every `registry.yaml`. Once community packages
 open, each one's folder also lists its maintainers. `keys/` holds the root key's statement
