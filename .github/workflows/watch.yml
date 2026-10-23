@@ -10,7 +10,9 @@
 # version, critical or being used in attacks) is opened as a pull request
 # adding advisories/<YYYY-NNNN>.yaml, and an urgent one (critical and being
 # used in attacks) is also pushed to the maintainers' phones through ntfy.
-# Weaker matches wait in watch/state.json, which is committed to main.
+# Weaker matches wait in watch/state.json, which is committed to main when
+# something in it changes, or once a day for the time of the last run (it
+# doesn't start Publish).
 # Mondays: the weaker matches are opened as a digest issue instead.
 #
 # Set up:
@@ -106,5 +108,14 @@ jobs:
         run: |
           git config user.name "Roostack watcher"
           git config user.email "watcher@users.noreply.github.com"
+          # Not when only the time of the run changed, unless the kept time
+          # is a day old: an hourly commit would be noise on main.
+          old=$(git show HEAD:watch/state.json 2>/dev/null || echo '{}')
+          if jq -e --slurpfile new watch/state.json '
+              del(.last_run) == ($new[0] | del(.last_run)) and
+              ((.last_run // "") | sub("\\.[0-9]+"; "") | try fromdateiso8601 catch 0) > now - 86400' <<<"$old" >/dev/null; then
+            echo "Only the time of this run changed: not committed"
+            exit 0
+          fi
           git add watch/state.json
           git diff --cached --quiet || { git commit -q -m "Watcher: what it has seen" && git push -q origin HEAD:main; }

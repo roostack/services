@@ -12,6 +12,10 @@
 # Nothing is signed, published or committed: the Bills of materials
 # workflow keeps the bills once merged.
 # main, and every day: the same, signed with the signing key, and published.
+# Not for a push that changes only watch/ or boms/ (the Watch and Bills of
+# materials workflows' own commits), which the index doesn't use: with
+# WATCH_TOKEN, the watcher's hourly commit would otherwise publish a new
+# index every hour and send every linked lab to fetch it.
 # The daily run signs a fresh index even with no changes, so a lab can tell
 # an index that's merely unchanged from one it can't get any more (Roostack
 # warns once its newest is over 14 days old).
@@ -30,6 +34,7 @@ name: Publish
 on:
   push:
     branches: [main]
+    paths-ignore: ["watch/**", "boms/**"]
   pull_request:
   schedule:
     - cron: "17 3 * * *"
