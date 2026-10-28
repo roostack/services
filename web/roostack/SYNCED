@@ -1,0 +1,10 @@
+# Copied from Roostack (https://github.com/roostack/roostack) by
+# tools/sync-roostack.sh; Apache-2.0. The commit, then each copy and its
+# path in Roostack, which tools/check-roostack.sh compares.
+commit 0232dcdf2af49da274155fd2122a88d47fbf3720
+css/tokens.css=internal/web/static/css/tokens.css
+css/themes/teal.css=internal/web/static/css/themes/teal.css
+css/app.css=internal/web/static/css/app.css
+fonts/space-grotesk-latin.woff2=internal/web/static/fonts/space-grotesk-latin.woff2
+fonts/space-grotesk-OFL.txt=internal/web/static/fonts/space-grotesk-OFL.txt
+yaml-2.9.1.min.js=internal/editor/static/yaml-2.9.1.min.js
