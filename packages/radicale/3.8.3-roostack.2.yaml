@@ -11,8 +11,7 @@ about:
   website: https://radicale.org
   source: https://github.com/Kozea/Radicale
   licence: GPL-3.0-only
-  # A placeholder, not Radicale's logo: the project states no terms for
-  # using it. Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [productivity]
   keywords: [calendar, contacts, caldav, carddav, sync, address book]

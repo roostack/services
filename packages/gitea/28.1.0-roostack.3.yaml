@@ -13,8 +13,7 @@ about:
   source: https://github.com/go-gitea/gitea
   licence: MIT
   support: https://opencollective.com/gitea
-  # A placeholder, not Gitea's logo: the project states no terms for
-  # using it. Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [development]
   keywords: [git, code, issues, pull requests, github alternative]

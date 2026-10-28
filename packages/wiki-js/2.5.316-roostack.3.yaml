@@ -13,8 +13,7 @@ about:
   source: https://github.com/requarks/wiki-v2
   licence: AGPL-3.0-only
   support: https://js.wiki/donate
-  # A placeholder, not Wiki.js's logo: the project states no terms for
-  # using it. Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [documents]
   keywords: [wiki, documentation, knowledge base, markdown, confluence alternative]

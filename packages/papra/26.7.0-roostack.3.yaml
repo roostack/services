@@ -11,8 +11,7 @@ about:
   source: https://github.com/papra-hq/papra
   licence: AGPL-3.0-or-later
   support: https://papra.app/en/sponsor
-  # A placeholder, not Papra's logo: the project states no terms for
-  # using it. Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [documents]
   keywords: [documents, scans, paperless, archive, receipts, search, ocr]

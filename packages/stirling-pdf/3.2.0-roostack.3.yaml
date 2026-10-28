@@ -16,8 +16,7 @@ about:
   website: https://www.stirlingpdf.com
   source: https://github.com/Stirling-Tools/Stirling-PDF
   licence: MIT                   # outside app/proprietary, whose features stay off here
-  # A placeholder, not Stirling-PDF's logo: the project states no terms
-  # for using it. Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [documents]
   keywords: [pdf, merge, split, convert, compress, sign, ocr]

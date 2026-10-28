@@ -10,8 +10,7 @@ about:
   website: https://www.audiobookshelf.org
   source: https://github.com/advplyr/audiobookshelf
   licence: GPL-3.0-only          # its package.json says GPL-3.0
-  # A placeholder, not Audiobookshelf's logo: the project states no terms
-  # for using it. Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [media]
   keywords: [audiobooks, podcasts, books, listening, streaming]

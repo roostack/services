@@ -11,8 +11,7 @@ about:
   maker: Plex, Inc.
   website: https://www.plex.tv
   licence: closed
-  # A placeholder, not Plex's logo: Plex's brand terms ask for permission.
-  # Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [media]
   keywords: [films, tv, music, streaming, media server]

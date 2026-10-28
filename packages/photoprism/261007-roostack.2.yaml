@@ -12,8 +12,7 @@ about:
   source: https://github.com/photoprism/photoprism
   licence: AGPL-3.0-only
   support: https://www.photoprism.app/membership
-  # A placeholder, not PhotoPrism's logo: its trademark terms ask for
-  # permission. Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [photos]
   keywords: [photos, videos, gallery, faces, places, albums]

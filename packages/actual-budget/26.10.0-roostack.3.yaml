@@ -12,8 +12,7 @@ about:
   source: https://github.com/actualbudget/actual
   licence: MIT
   support: https://opencollective.com/actual
-  # A placeholder, not Actual's logo: the project states no terms for
-  # using it. Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [productivity]
   keywords: [budget, money, finance, envelope budgeting, expenses]

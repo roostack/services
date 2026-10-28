@@ -12,8 +12,7 @@ about:
   source: https://github.com/jellyfin/jellyfin
   licence: GPL-2.0-only
   support: https://opencollective.com/jellyfin
-  # A placeholder, not Jellyfin's logo: its terms aren't settled here.
-  # Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [media]
   keywords: [films, tv, music, streaming, media server, plex alternative]

@@ -11,8 +11,7 @@ about:
   source: https://github.com/binwiederhier/ntfy
   licence: Apache-2.0 OR GPL-2.0-only   # dual licensed, per its README
   support: https://github.com/sponsors/binwiederhier
-  # A placeholder, not ntfy's logo: the project states no terms for
-  # using it. Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [productivity]
   keywords: [notifications, push, alerts, phone, scripts]

@@ -11,8 +11,7 @@ about:
   website: https://miniflux.app
   source: https://github.com/miniflux/v2
   licence: Apache-2.0
-  # A placeholder, not Miniflux's logo: the project states no terms for
-  # using it. Replace before go-live (Roostack's TASKS).
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
   icon: icon.png
   categories: [productivity]
   keywords: [rss, atom, feeds, news, reader, blogs]
