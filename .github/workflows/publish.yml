@@ -9,9 +9,13 @@
 # from its previous version (.github/render-changes.sh); and each new
 # version's images are scanned with Syft and compared with its built_with
 # (.github/scan-boms.sh, roostack registry bom-check), in the summary too.
+# The registry's page (web/) is checked too: its script parses,
+# notices.json is JSON, and its copies of Roostack's files are exactly the
+# commit web/roostack/SYNCED names (tools/check-roostack.sh).
 # Nothing is signed, published or committed: the Bills of materials
 # workflow keeps the bills once merged.
-# main, and every day: the same, signed with the signing key, and published.
+# main, and every day: the same, signed with the signing key, and published
+# with the page at the site's root.
 # Not for a push that changes only watch/ or boms/ (the Watch and Bills of
 # materials workflows' own commits), which the index doesn't use: with
 # WATCH_TOKEN, the watcher's hourly commit would otherwise publish a new
@@ -67,6 +71,12 @@ jobs:
           curl -fsSL --retry 3 -o roostack-bin "$URL"
           echo "$SHA256  roostack-bin" | sha256sum -c -
           chmod +x roostack-bin
+      - name: Check the registry's page
+        working-directory: services
+        run: |
+          node --check web/registry.js
+          python3 -m json.tool web/notices.json > /dev/null
+          tools/check-roostack.sh
       - name: Check the packages
         if: github.event_name == 'pull_request'
         run: ./roostack-bin registry index -check -repo services
@@ -96,7 +106,8 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           echo registry.roostack.cloud > site/CNAME
-          printf '<!doctype html><title>Roostack service registry</title><p>The <a href="https://github.com/roostack/services">Roostack service registry</a>. Roostack labs read <code>v1/index.json</code>.</p>\n' > site/index.html
+          # The page (web/, README.md "The registry's page") beside v1/.
+          cp -r services/web/. site/
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         if: github.event_name != 'pull_request'
         with:

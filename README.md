@@ -7,8 +7,9 @@ rest (systemd units, web server config, secrets, folders, the backup plan).
 
 This repository is the source of truth: every package and every change to
 one is a reviewed commit. Labs read it through a signed index that CI builds
-from it after each merge (not built yet; until then each Roostack release
-fetches a pinned commit of this repository).
+from it after each merge, published at
+[registry.roostack.cloud](https://registry.roostack.cloud) with a page
+anyone can browse.
 
 ## Layout
 
@@ -18,6 +19,8 @@ packages/
     <version>.yaml   one file per version; never edited once published
     icon.png         the project's logo (about.icon)
     registry.yaml    tier, maintainers and any withdrawals
+web/                 the registry's page (below)
+tools/               copying Roostack's files for the page, and checking them
 ```
 
 - **`<version>.yaml`** is the package itself, named by its `version`:
@@ -86,6 +89,32 @@ own everything, including every `registry.yaml`. Once community packages
 open, each one's folder also lists its maintainers. `keys/` holds the root key's statement
 naming the key CI signs with. How the keys are made and replaced is in
 Roostack's `docs/REGISTRY-KEYS.md`.
+
+## The registry's page
+
+`https://registry.roostack.cloud/` is a page that lists every service, with
+search and filters, and shows each one's full record. It's plain HTML, CSS
+and JavaScript in `web/`, which Publish copies beside `v1/`; it reads the
+same signed index labs do and, when a service is opened, its newest package
+file, which it checks against the index's SHA-256 before showing it.
+
+- **`web/roostack/`** is copied from Roostack: its design system (tokens,
+  the default theme, `app.css`, the display font) and the YAML parser its
+  package editor vendors. Don't edit these: run
+  `tools/sync-roostack.sh <Roostack checkout> [ref]` to copy them from a
+  Roostack commit, which `web/roostack/SYNCED` names. Publish checks them
+  against that commit on every run (`tools/check-roostack.sh`).
+- **`web/notices.json`** holds notices a project asks for on its service's
+  page, by package name (Plex's trademark notice): package files can't
+  change once published, so these live here.
+- **Logos** are each project's own, shown to identify its app; where they
+  came from, and any terms, is in each package's `registry.yaml`. The page
+  says a listing doesn't mean a project is affiliated with Roostack or
+  endorses it.
+
+To try it, build an index into a folder (`roostack registry index -out
+<dir>/v1`, with a development key: Roostack's docs/REGISTRY-KEYS.md), copy
+`web/` into `<dir>`, and serve `<dir>` with any web server.
 
 ## Contributing
 
