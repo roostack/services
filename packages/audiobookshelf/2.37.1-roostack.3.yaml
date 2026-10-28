@@ -1,0 +1,256 @@
+# Audiobookshelf: one container, SQLite. Image digest looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: audiobookshelf
+title: Audiobookshelf
+description: Your audiobooks and podcasts, streamed to your phone and remembering where you got to
+version: 2.37.1-roostack.3
+
+about:
+  maker: advplyr and contributors
+  website: https://www.audiobookshelf.org
+  source: https://github.com/advplyr/audiobookshelf
+  licence: GPL-3.0-only          # its package.json says GPL-3.0
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [media]
+  keywords: [audiobooks, podcasts, books, listening, streaming]
+built_with: [node, ffmpeg]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator ("root" in Audiobookshelf), made by the install hook
+  # below. Until there's one, Audiobookshelf lets whoever opens it first
+  # make it.
+  - key: admin_username
+    title: Administrator username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hooks succeed
+  # A key Audiobookshelf makes at install, which single sign-on's hook
+  # uses to set Audiobookshelf's sign-in (it takes it only through its
+  # API). Audiobookshelf's keys can't be narrowed: this one has its
+  # administrator's whole power, so Roostack keeps it like a password.
+  - key: settings_key
+    title: Roostack's key to Audiobookshelf
+    description: Audiobookshelf makes it at install, so Roostack can set up single sign-on. It can do anything Audiobookshelf's administrator can (Audiobookshelf has no narrower key), and is never shown.
+    type: secret
+    from_hook: true
+
+containers:
+  app:
+    # Runs as the container's root: Roostack's own user on the host.
+    image: ghcr.io/advplyr/audiobookshelf:2.37.1@sha256:581d68b2a6fc7ebf58d81c878a9f387cbbc0d88ac9d37b298b9cee10168af85b
+    mounts:
+      - { storage: config,     path: /config }
+      - { storage: metadata,   path: /metadata }
+      # Libraries: add them in Audiobookshelf as /audiobooks and /podcasts.
+      # Podcasts it downloads and books uploaded in it land here.
+      - { storage: audiobooks, path: /audiobooks }
+      - { storage: podcasts,   path: /podcasts }
+    health:
+      http: { port: 80, path: /healthcheck }
+    memory: 150 MB               # 77 MB in use idle, measured 2026-10-18; more while streaming
+
+storage:
+  config:
+    title: Accounts, libraries and listening progress
+    class: critical
+  metadata:
+    title: Covers, descriptions and Audiobookshelf's own backups
+    class: critical
+  audiobooks:
+    title: Audiobooks
+    class: critical
+    location: media              # the large data disk, if one is configured
+  podcasts:
+    title: Podcasts
+    class: critical
+    location: media
+
+databases:
+  main:
+    type: sqlite
+    path: config/absdatabase.sqlite
+
+hooks:
+  # The administrator, through Audiobookshelf's own first-run call, which
+  # works only while there's none. Safe to re-run: once there's one, done.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - node
+      - -e
+      - |
+        const http = require('node:http')
+        const get = (path) => new Promise((ok, no) => http.get({ host: '127.0.0.1', port: 80, path }, (res) => {
+          let d = ''; res.on('data', (c) => { d += c }); res.on('end', () => ok(JSON.parse(d)))
+        }).on('error', no))
+        const post = (path, body) => new Promise((ok, no) => {
+          const b = JSON.stringify(body)
+          const req = http.request({ host: '127.0.0.1', port: 80, path, method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(b) } }, (res) => { res.resume(); ok(res.statusCode) })
+          req.on('error', no); req.end(b)
+        })
+        ;(async () => {
+          const status = await get('/status')
+          if (status.isInit) { console.log('The administrator exists already.'); return }
+          const code = await post('/init', { newRoot: { username: process.env.ADMIN_USERNAME, password: process.env.ADMIN_PASSWORD } })
+          if (code !== 200) { console.error('Making the administrator failed:', code); process.exit(1) }
+          console.log('The administrator is made.')
+        })().catch((e) => { console.error('Audiobookshelf is not answering yet:', e.message); process.exit(1) })
+
+  # A key for Roostack, made by the administrator: it prints the key, and
+  # only the key, on standard output, which Roostack keeps as
+  # settings_key; everything else goes to standard error, the log. An
+  # older key named Roostack is deleted first. The Connect action below
+  # runs the same script.
+  - on: install
+    title: Make a key for Roostack
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    saves: settings_key
+    command: &make-key
+      - node
+      - -e
+      - |
+        const http = require('node:http')
+        const call = (method, path, body, headers = {}) => new Promise((resolve, reject) => {
+          const data = body === undefined ? '' : JSON.stringify(body)
+          const req = http.request({ host: '127.0.0.1', port: 80, path, method,
+            headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(data), ...headers } }, (res) => {
+            let out = ''
+            res.on('data', (c) => { out += c })
+            res.on('end', () => { let json = null; try { json = JSON.parse(out) } catch {}; resolve({ status: res.statusCode, json, text: out }) })
+          })
+          req.on('error', reject)
+          req.end(data)
+        })
+        const fail = (what, r) => { console.error(what, r.status, String((r.json && r.json.error) || r.text || '').slice(0, 200)); process.exit(1) }
+        ;(async () => {
+          const login = await call('POST', '/login', { username: process.env.ADMIN_USERNAME, password: process.env.ADMIN_PASSWORD })
+          const user = login.json && login.json.user
+          if (login.status !== 200 || !user) fail('Signing in as the administrator failed:', login)
+          if (user.type !== 'root' && user.type !== 'admin') { console.error(process.env.ADMIN_USERNAME + " isn't Audiobookshelf's administrator."); process.exit(1) }
+          const auth = { Authorization: 'Bearer ' + (user.accessToken || user.token) }
+          const keys = await call('GET', '/api/api-keys', undefined, auth)
+          for (const k of ((keys.json && keys.json.apiKeys) || [])) {
+            if (k.name === 'Roostack') await call('DELETE', '/api/api-keys/' + k.id, undefined, auth)
+          }
+          const made = await call('POST', '/api/api-keys', { name: 'Roostack', userId: user.id, isActive: true }, auth)
+          const key = made.json && made.json.apiKey && made.json.apiKey.apiKey
+          if (made.status !== 200 || !key) fail('Making the key failed:', made)
+          console.error("Made a key named Roostack, for Audiobookshelf's sign-in settings.")
+          process.stdout.write(key + '\n')
+        })().catch((e) => { console.error('Audiobookshelf is not answering yet:', e.message); process.exit(1) })
+
+  # For an Audiobookshelf installed before Roostack kept a key, or whose
+  # key is gone: the Single sign-on card offers it.
+  - on: action
+    name: connect
+    title: Connect Roostack to Audiobookshelf
+    description: Makes a key Roostack keeps, so Roostack can set up single sign-on. Type Audiobookshelf's administrator username and password once; Roostack keeps only the key.
+    container: app
+    inputs:
+      - { key: username, title: Administrator username, type: string }
+      - { key: password, title: Administrator password, type: secret }
+    env:
+      ADMIN_USERNAME: "{{ .Inputs.username }}"
+    secrets:
+      ADMIN_PASSWORD: inputs.password
+    saves: settings_key
+    command: *make-key
+
+  # Single sign-on (SPEC.md §5.2): Audiobookshelf keeps its sign-in
+  # settings in its database, changed only through its API. It reads the
+  # lab's endpoints itself (its own discovery), then they're saved with
+  # the rest. Safe to run again. Off turns OpenID off and forgets the
+  # secret; accounts it made keep their progress, and need a password
+  # (Audiobookshelf's Users) to sign in again.
+  - on: sso
+    title: Set Audiobookshelf's sign-in
+    container: app
+    env:
+      ISSUER: "{{ .SSO.Issuer }}"
+      CLIENT_ID: "{{ .SSO.ClientID }}"
+      BUTTON: "{{ .SSO.ButtonText }}"
+    secrets:
+      API_KEY: settings_key
+      CLIENT_SECRET: sso.client_secret
+    command:
+      - node
+      - -e
+      - |
+        const http = require('node:http')
+        const call = (method, path, body) => new Promise((resolve, reject) => {
+          const data = body === undefined ? '' : JSON.stringify(body)
+          const req = http.request({ host: '127.0.0.1', port: 80, path, method,
+            headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(data), Authorization: 'Bearer ' + process.env.API_KEY } }, (res) => {
+            let out = ''
+            res.on('data', (c) => { out += c })
+            res.on('end', () => { let json = null; try { json = JSON.parse(out) } catch {}; resolve({ status: res.statusCode, json, text: out }) })
+          })
+          req.on('error', reject)
+          req.end(data)
+        })
+        const fail = (what, r) => { console.error(what, r.status, String((r.json && r.json.error) || r.text || '').slice(0, 200)); process.exit(1) }
+        ;(async () => {
+          if (process.env.ROOSTACK_SSO !== 'on') {
+            const off = await call('PATCH', '/api/auth-settings', { authActiveAuthMethods: ['local'], authOpenIDClientSecret: '' })
+            if (off.status !== 200) fail("Changing Audiobookshelf's sign-in failed:", off)
+            console.log("Audiobookshelf's single sign-on is off.")
+            return
+          }
+          const found = await call('GET', '/auth/openid/config?issuer=' + encodeURIComponent(process.env.ISSUER))
+          const d = found.json
+          if (found.status !== 200 || !d || !d.authorization_endpoint) fail("Audiobookshelf couldn't read the lab's sign-in page:", found)
+          const set = await call('PATCH', '/api/auth-settings', {
+            authActiveAuthMethods: ['local', 'openid'],
+            authOpenIDIssuerURL: d.issuer, authOpenIDAuthorizationURL: d.authorization_endpoint,
+            authOpenIDTokenURL: d.token_endpoint, authOpenIDUserInfoURL: d.userinfo_endpoint,
+            authOpenIDJwksURL: d.jwks_uri, authOpenIDLogoutURL: d.end_session_endpoint || null,
+            authOpenIDClientID: process.env.CLIENT_ID, authOpenIDClientSecret: process.env.CLIENT_SECRET,
+            authOpenIDTokenSigningAlgorithm: 'RS256', authOpenIDButtonText: process.env.BUTTON,
+            authOpenIDAutoRegister: true, authOpenIDAutoLaunch: false,
+            // Its administrator, made at install, has no email: found by username.
+            authOpenIDMatchExistingBy: 'username', authOpenIDGroupClaim: 'groups',
+            authOpenIDSubfolderForRedirectURLs: '', authOpenIDMobileRedirectURIs: ['audiobookshelf://oauth'] })
+          if (set.status !== 200) fail("Changing Audiobookshelf's sign-in failed:", set)
+          console.log("Audiobookshelf's sign-in now uses the lab's sign-in page.")
+        })().catch((e) => { console.error('Audiobookshelf is not answering yet:', e.message); process.exit(1) })
+
+routes:
+  web:
+    container: app
+    port: 80
+    subdomain: books
+    exposure: private
+    max_body_size: 2GB           # uploaded audiobooks
+    public:
+      login_paths:
+        - /login
+
+# Single sign-on (SPEC.md §5.2): set through Audiobookshelf's API by the sso
+# hook above, with the key Roostack keeps. Its administrator, made at
+# install, is found by username; others get an account at first sign-in.
+# Audiobookshelf reads admin or user from the groups claim, and refuses
+# anyone with neither.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/auth/openid/callback, /auth/openid/mobile-redirect]
+    groups: { users: user, admins: admin }
+  note: The phone apps sign in with single sign-on too. Podcast feeds and shares stay Audiobookshelf's own.
