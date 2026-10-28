@@ -1,0 +1,152 @@
+# HedgeDoc: one container and Postgres. Image digest looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: hedgedoc
+title: HedgeDoc
+description: Markdown notes several people can write at the same time, in the browser
+version: 1.12.0-roostack.3
+
+about:
+  maker: a volunteer community
+  website: https://hedgedoc.org
+  source: https://github.com/hedgedoc/hedgedoc
+  # Its README says "Licensed under AGPLv3", without "or later".
+  licence: AGPL-3.0-only
+  support: https://opencollective.com/hedgedoc
+  # A placeholder, not HedgeDoc's logo: its usage guidelines ask for
+  # permission to show it with "repackaged or preinstalled versions"
+  # (github.com/hedgedoc/hedgedoc-logo). Replace before go-live (TASKS).
+  icon: icon.png
+  categories: [documents]
+  keywords: [notes, markdown, collaborative, real-time, slides, hackmd alternative]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The first account, created by the install hook below: with sign-ups
+  # off, nobody else can make one.
+  - key: admin_email
+    title: Your email address
+    description: For signing in to HedgeDoc
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: signups_allowed
+    title: Allow anyone to create an account
+    description: Otherwise only the accounts made on the command line can sign in
+    type: bool
+    default: false
+  - key: guests_allowed
+    title: Let people without an account read and write notes
+    description: Anyone who can reach HedgeDoc could then create notes
+    type: bool
+    default: false
+  - key: avatars
+    title: Show account pictures from Libravatar
+    description: "Pictures come from libravatar.org, matched by email address: each visitor's browser asks it, so it learns who uses HedgeDoc"
+    type: bool
+    default: false
+  - key: session_secret
+    title: Session secret
+    type: secret
+    generate: true               # signs the sign-in cookie; kept across restarts
+
+containers:
+  app:
+    image: quay.io/hedgedoc/hedgedoc:1.12.0@sha256:202460cadb220ca568328045827f49a6e5575cb33de337b7ee59e6a5f9b79509
+    env:
+      CMD_DOMAIN: "{{ .Routes.web.Host }}"
+      CMD_PROTOCOL_USESSL: "true"
+      CMD_URL_ADDPORT: "false"
+      CMD_DB_DIALECT: postgres
+      CMD_DB_HOST: "{{ .Databases.main.Host }}"
+      CMD_DB_PORT: "{{ .Databases.main.Port }}"
+      CMD_DB_USERNAME: "{{ .Databases.main.User }}"
+      CMD_DB_DATABASE: "{{ .Databases.main.Name }}"
+      CMD_IMAGE_UPLOAD_TYPE: filesystem
+      CMD_ALLOW_EMAIL_REGISTER: "{{ .Settings.signups_allowed }}"
+      CMD_ALLOW_ANONYMOUS: "{{ .Settings.guests_allowed }}"
+      CMD_ALLOW_GRAVATAR: "{{ .Settings.avatars }}"
+    secrets:
+      CMD_DB_PASSWORD: databases.main.password
+      CMD_SESSION_SECRET: session_secret
+    mounts:
+      - { storage: uploads, path: /hedgedoc/public/uploads }
+    health:
+      http: { port: 3000, path: /_health }
+    depends_on: [databases.main]
+    memory: 200 MB               # 173 MB in use, measured 2026-10-18
+
+storage:
+  uploads:
+    title: Images added to notes
+    class: critical
+
+databases:
+  main:
+    type: postgres               # the notes themselves, and accounts
+
+hooks:
+  # The first account. Safe to re-run: manage_users exits 2 when the
+  # account exists (reinstalling on top of existing data, say).
+  - on: install
+    container: app
+    env:
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - sh
+      - -c
+      - |
+        cd /hedgedoc
+        status=0
+        node bin/manage_users --add "$ADMIN_EMAIL" --pass "$ADMIN_PASSWORD" || status=$?
+        if [ "$status" -eq 2 ]; then
+          echo "The account $ADMIN_EMAIL already exists."
+          exit 0
+        fi
+        exit "$status"
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: notes
+    exposure: private
+    max_body_size: 10MB          # HedgeDoc's own limit for images
+    public:
+      login_paths:
+        - /login
+        - /register
+
+# Single sign-on (SPEC.md §5.2): HedgeDoc 1 signs people in through OAuth2
+# with each address given (it doesn't read the provider's configuration),
+# making an account at their first sign-in, keyed by the provider's ID.
+# Accounts made with an email and password stay separate.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/auth/oauth2/callback]
+  env:
+    app:
+      CMD_OAUTH2_PROVIDERNAME: "{{ .SSO.ProviderName }}"
+      CMD_OAUTH2_AUTHORIZATION_URL: "{{ .SSO.AuthorizeURL }}"
+      CMD_OAUTH2_TOKEN_URL: "{{ .SSO.TokenURL }}"
+      CMD_OAUTH2_USER_PROFILE_URL: "{{ .SSO.UserinfoURL }}"
+      CMD_OAUTH2_CLIENT_ID: "{{ .SSO.ClientID }}"
+      CMD_OAUTH2_SCOPE: openid profile email
+      CMD_OAUTH2_USER_PROFILE_ID_ATTR: sub
+      CMD_OAUTH2_USER_PROFILE_USERNAME_ATTR: preferred_username
+      CMD_OAUTH2_USER_PROFILE_DISPLAY_NAME_ATTR: name
+      CMD_OAUTH2_USER_PROFILE_EMAIL_ATTR: email
+      CMD_OAUTH2_PKCE: "true"
+  secrets:
+    app:
+      CMD_OAUTH2_CLIENT_SECRET: sso.client_secret
+  note: Accounts made with an email and password stay separate from single sign-on's.
