@@ -1,0 +1,137 @@
+# Linkwarden: one container (the web app and its archiving worker, with a
+# browser for taking copies of pages) and Postgres. Image digest looked up
+# 2026-10-18. Meilisearch (faster search) is left out for now: Linkwarden
+# searches its database without it.
+schema: roostack/v1alpha1
+name: linkwarden
+title: Linkwarden
+description: Saves and organises your bookmarks, and keeps a copy of each page in case it disappears
+version: 2.16.3-roostack.3
+
+about:
+  maker: a small independent team
+  website: https://linkwarden.app
+  source: https://github.com/linkwarden/linkwarden
+  licence: AGPL-3.0-only
+  support: https://opencollective.com/linkwarden
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [documents]
+  keywords: [bookmarks, read later, web archive, collections, pocket alternative]
+built_with: [node, nextjs, chromium, libvips]
+requires:
+  roostack: "0.1"
+
+settings:
+  # Your account, made by the install hook below: Linkwarden makes an
+  # account only by signing up, and its first is the administrator.
+  - key: admin_username
+    title: Your username
+    description: For signing in to Linkwarden
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: signups_allowed
+    title: Allow anyone to create an account
+    description: Otherwise you add accounts yourself, as the administrator
+    type: bool
+    default: false
+    install_value: true          # on until the install hook has signed you up
+  - key: auth_secret
+    title: Sign-in secret
+    type: secret
+    generate: true               # signs sessions; kept across restarts
+
+containers:
+  app:
+    image: ghcr.io/linkwarden/linkwarden:v2.16.3@sha256:0664c28a039bda8ffa6663389e8536b2fc717219e329f85b83faca7efed3b144
+    env:
+      NEXTAUTH_URL: "{{ .Routes.web.URL }}/api/v1/auth"
+      NEXT_PUBLIC_DISABLE_REGISTRATION: "{{ if .Settings.signups_allowed }}false{{ else }}true{{ end }}"
+      NEXT_PUBLIC_ADMIN: "1"     # the first account
+    secrets:
+      DATABASE_URL: databases.main.url   # Linkwarden (Prisma) takes only a URL
+      NEXTAUTH_SECRET: auth_secret
+    mounts:
+      - { storage: data, path: /data/data }
+    health:
+      http: { port: 3000, path: / }
+    depends_on: [databases.main]
+    memory: 500 MB               # 412 MB just after archiving a page, measured 2026-10-18
+
+storage:
+  data:
+    title: Copies of your saved pages
+    class: critical
+
+databases:
+  main:
+    type: postgres               # bookmarks, collections, tags, accounts
+
+hooks:
+  # Your account. Safe to re-run: Linkwarden answers 400 "already exists".
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - node
+      - -e
+      - |
+        const http = require('node:http')
+        const body = JSON.stringify({ name: process.env.ADMIN_USERNAME, username: process.env.ADMIN_USERNAME, password: process.env.ADMIN_PASSWORD })
+        const req = http.request({ host: '127.0.0.1', port: 3000, path: '/api/v1/users', method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) } }, (res) => {
+          let data = ''
+          res.on('data', (c) => { data += c })
+          res.on('end', () => {
+            let out = {}
+            try { out = JSON.parse(data) } catch {}
+            if (res.statusCode === 201) { console.log('Your account is made.'); return }
+            if (/already exists/i.test(String(out.response || ''))) { console.log('The account already exists.'); return }
+            console.error('Signing up failed:', res.statusCode, JSON.stringify(out.response || '')); process.exit(1)
+          })
+        })
+        req.on('error', (e) => { console.error('Linkwarden is not answering yet:', e.message); process.exit(1) })
+        req.end(body)
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: links
+    exposure: private
+    max_body_size: 100MB         # imported bookmarks and uploaded files
+    public:
+      login_paths:
+        - /api/v1/auth/callback/credentials
+        - /api/v1/users
+
+# Single sign-on (SPEC.md §5.2): Linkwarden (NextAuth) signs people in
+# through OIDC, finding an account by its verified email or making one.
+# Its administrator, made at install, has no email (Linkwarden stores one
+# only when it sends mail), so it isn't found: it keeps its password, and
+# signing in through the lab with the same username is refused
+# (OAuthCreateAccount).
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/api/v1/auth/callback/oidc]
+  env:
+    app:
+      NEXT_PUBLIC_OIDC_ENABLED: "true"
+      OIDC_CUSTOM_NAME: "{{ .SSO.ProviderName }}"
+      OIDC_WELLKNOWN_URL: "{{ .SSO.DiscoveryURL }}"
+      OIDC_CLIENT_ID: "{{ .SSO.ClientID }}"
+  secrets:
+    app:
+      OIDC_CLIENT_SECRET: sso.client_secret
+  note: The administrator made at install keeps signing in with its password (Linkwarden can't link it). The phone apps and API keys keep Linkwarden's own sign-in.

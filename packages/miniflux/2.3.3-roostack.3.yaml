@@ -1,0 +1,101 @@
+# Miniflux: one container, Postgres run by Roostack; everything is in the
+# database. Image digest looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: miniflux
+title: Miniflux
+description: A fast, simple reader for news and blogs you follow (RSS and Atom feeds)
+version: 2.3.3-roostack.3
+
+about:
+  maker: Frédéric Guillot and contributors
+  website: https://miniflux.app
+  source: https://github.com/miniflux/v2
+  licence: Apache-2.0
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [productivity]
+  keywords: [rss, atom, feeds, news, reader, blogs]
+built_with: [go]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator account, created by the install hook below.
+  - key: admin_username
+    title: Administrator username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+
+containers:
+  app:
+    image: docker.io/miniflux/miniflux:2.3.3@sha256:49d7b60987616387c306a8023087b31f2c9b7b21288b523026cb04058e8b6dbb
+    env:
+      BASE_URL: "{{ .Routes.web.URL }}"
+      RUN_MIGRATIONS: "1"
+      # Everything but the password, which its Postgres driver (lib/pq)
+      # takes from PGPASSWORD, so it never appears in a generated file.
+      DATABASE_URL: "host={{ .Databases.main.Host }} port={{ .Databases.main.Port }} user={{ .Databases.main.User }} dbname={{ .Databases.main.Name }} sslmode=disable"
+    secrets:
+      PGPASSWORD: databases.main.password
+    health:
+      http: { port: 8080, path: /healthcheck }
+    depends_on: [databases.main]
+    memory: 50 MB                # 15-20 MB in use, measured 2026-10-18
+
+databases:
+  main:
+    type: postgres
+
+hooks:
+  # The administrator, from the environment. -create-admin only asks at a
+  # terminal; CREATE_ADMIN makes it from the environment as Miniflux
+  # starts, and -run-cleanup-tasks then exits instead of serving. Safe to
+  # re-run: Miniflux skips an account that exists.
+  - on: install
+    container: app
+    env:
+      CREATE_ADMIN: "1"
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command: [/usr/bin/miniflux, -run-cleanup-tasks]
+
+routes:
+  web:
+    container: app
+    port: 8080
+    subdomain: news
+    exposure: private
+    public:
+      login_paths:
+        - /login
+
+# Single sign-on (SPEC.md §5.2): Miniflux signs people in through OIDC,
+# making an account at their first sign-in. It finds an account only by
+# the provider's ID, never by username or email, so its administrator,
+# made at install, is linked from Miniflux's Settings (Link my account),
+# signed in with its password once; until then, signing in through the
+# lab with the same username is refused.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/oauth2/oidc/callback]
+  env:
+    app:
+      OAUTH2_PROVIDER: oidc
+      OAUTH2_CLIENT_ID: "{{ .SSO.ClientID }}"
+      OAUTH2_REDIRECT_URL: "{{ .Routes.web.URL }}/oauth2/oidc/callback"
+      OAUTH2_OIDC_DISCOVERY_ENDPOINT: "{{ .SSO.Issuer }}"
+      OAUTH2_OIDC_PROVIDER_NAME: "{{ .SSO.ProviderName }}"
+      OAUTH2_USER_CREATION: "1"
+  secrets:
+    app:
+      OAUTH2_CLIENT_SECRET: sso.client_secret
+  note: The administrator made at install links single sign-on in Miniflux's Settings, signed in with its password once. Reader apps (Fever, Google Reader) keep their own passwords.
