@@ -1,0 +1,149 @@
+/* The registry's page (registry.roostack.cloud): Roostack's design system
+   (tokens.css, its default theme and app.css, copied into roostack/ by
+   tools/sync-roostack.sh) with this page's layout. Purpose tokens and
+   scales only, as app.css (Roostack's docs/DESIGN.md). */
+
+html { background: var(--canvas); }
+body.reg { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* Header: the brand on the left, links and the mode on the right. */
+.reg-header { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;
+  max-width: 1480px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: var(--space-4) var(--space-5) 0; }
+.reg-header .brand { color: var(--fg); text-decoration: none; }
+.reg-header .brand-mark { width: 36px; height: 36px; }
+.reg-brand-text { font-family: var(--font-display); font-size: var(--text-lg); }
+.reg-brand-text span { font-weight: var(--weight-normal); color: var(--muted); }
+.reg-links { margin-left: auto; display: flex; align-items: center; gap: var(--space-4); font-size: var(--text-sm); }
+.reg-links a { color: var(--muted); text-decoration: none; }
+.reg-links a:hover { color: var(--fg); }
+
+.reg-main { flex: 1; max-width: 1480px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: var(--space-5); display: grid; gap: var(--space-5); align-content: start; }
+.reg-foot { max-width: 1480px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 0 var(--space-5) var(--space-6);
+  font-size: var(--text-sm); color: var(--muted); }
+.reg-foot p { margin: var(--space-1) 0; }
+
+/* The list's head: a heading that says what this is, and the figures. */
+.reg-hero h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.1; margin: 0; }
+.reg-hero .lede { max-width: 46rem; margin: var(--space-2) 0 0; color: var(--muted); font-size: var(--text-lg); }
+.reg-figures { margin-top: var(--space-4); }
+.reg-figures .figure-value { font-family: var(--font-display); font-size: 1.6rem; font-weight: var(--weight-bold); }
+
+/* Search and filters: the search box wide, then the chips; tier,
+   processor and order as small segmented controls on one line. */
+.reg-filters { display: grid; gap: var(--space-3); }
+.reg-search { position: relative; }
+.reg-search input { width: 100%; box-sizing: border-box; padding-left: 40px; font-size: var(--text-base); }
+.reg-search .icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+.reg-filter-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-3) var(--space-5); }
+.reg-filter-group { display: grid; gap: 4px; }
+/* More filters: always open on wider screens (its line hidden), folded
+   on phones unless one is in use. */
+.reg-more > summary { display: none; }
+/* Neither the filters nor the package file are indented with app.css's
+   disclosure line: the filters open by themselves on wide screens, and the
+   file is a code panel. */
+body.reg details:is(.reg-more, .reg-file)[open] > :not(summary) { margin: 0; padding: 0; border-left: 0; }
+.reg-filter-row .segmented { margin: 0; }
+.reg-filter-label { font-size: var(--text-xs); font-weight: var(--weight-bold); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.filter-chips button .reg-count { margin-left: 4px; color: var(--muted); font-size: var(--text-xs); }
+.filter-chips button[aria-pressed="true"] .reg-count { color: inherit; }
+.reg-shown { margin: 0; font-size: var(--text-sm); color: var(--muted); }
+
+/* The services as cards in a grid: logo, name and badges, description,
+   then version and processors along the foot. The whole card opens the
+   service's page. */
+.reg-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); }
+.reg-card { position: relative; display: flex; flex-direction: column; gap: var(--space-3); height: 100%; box-sizing: border-box;
+  transition: border-color 0.15s, transform 0.15s; }
+.reg-card:hover { border-color: var(--accent); }
+.reg-card:focus-within { box-shadow: var(--focus-ring); }
+.reg-card-head { display: flex; gap: var(--space-3); align-items: center; min-width: 0; }
+.reg-card h2 { margin: 0; font-size: var(--text-lg); line-height: 1.2; }
+.reg-card h2 a { color: var(--fg); text-decoration: none; }
+.reg-card h2 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.reg-card h2 a:focus-visible { outline: none; }
+.reg-card .badge { font-size: var(--text-xs); }
+.reg-card-desc { margin: 0; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.reg-card-foot { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-2);
+  font-size: var(--text-xs); color: var(--muted); }
+.reg-card-foot .reg-version { font-family: var(--font-mono); color: var(--fg); }
+.reg-tag { display: inline-block; padding: 1px 8px; border-radius: var(--radius-pill); background: var(--glass-2); color: var(--muted); font-size: var(--text-xs); }
+.reg-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.reg-empty { text-align: center; padding: var(--space-6) var(--space-4); }
+
+/* Wide screens: the filters in a column down the left that stays in view
+   as the results scroll, the categories a list in it, each filter's
+   choices across its width; the cards narrower, so three fit beside it
+   on a laptop and four on a large screen (three from about 1000 px either
+   way). */
+.reg-browse { display: grid; gap: var(--space-4); }
+.reg-results { display: grid; gap: var(--space-3); align-content: start; min-width: 0; }
+@media (min-width: 1180px) {
+  .reg-browse { grid-template-columns: 16rem minmax(0, 1fr); gap: var(--space-5); align-items: start; }
+  .reg-filters { position: sticky; top: var(--space-4); max-height: calc(100vh - var(--space-4) * 2); overflow-y: auto;
+    align-content: start; padding-right: 2px; }
+  .reg-cats { flex-direction: column; flex-wrap: nowrap; gap: 2px; }
+  .reg-cats button { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); width: 100%;
+    padding: 7px 10px; text-align: left; border-color: transparent; border-radius: var(--radius); font-size: var(--text-sm); }
+  .reg-cats button[aria-pressed="true"] { border-color: transparent; }
+  .reg-filter-row { flex-direction: column; align-items: stretch; gap: var(--space-4); }
+  .reg-filter-group, .reg-filter-group .segmented { width: 100%; box-sizing: border-box; }
+  .reg-filter-group .segmented label { flex: 1; justify-content: center; padding-left: 6px; padding-right: 6px; }
+  .reg-browse .reg-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.5rem), 1fr)); }
+}
+
+/* A service's page. */
+.reg-back { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--text-sm); text-decoration: none; }
+.reg-detail { display: grid; gap: var(--space-5); }
+.reg-detail .page-head-title h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.reg-detail .page-head-title .badge { vertical-align: 0.3em; margin-left: var(--space-1); }
+.reg-detail .lede { max-width: 48rem; }
+.reg-cols { display: grid; gap: var(--space-5); grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); align-items: start; }
+.reg-col { display: grid; gap: var(--space-5); min-width: 0; }
+.reg-detail .card h2 { font-size: var(--text-lg); }
+.reg-detail dl.facts { margin: 0; }
+.reg-detail code { overflow-wrap: anywhere; }
+.reg-check { display: flex; gap: var(--space-3); align-items: flex-start; }
+.reg-check .icon { flex: none; width: 22px; height: 22px; margin-top: 2px; }
+.reg-check.ok .icon { color: var(--ok); }
+.reg-check.bad .icon { color: var(--bad); }
+.reg-check p { margin: 0; }
+.reg-check .hint { font-size: var(--text-sm); }
+.reg-route + .reg-route { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--border); }
+.reg-route h3, .reg-sub { margin: 0 0 var(--space-2); font-size: var(--text-base); }
+.reg-paths { margin: var(--space-2) 0 0; padding-left: var(--space-4); }
+.reg-paths li { margin: var(--space-1) 0; }
+.reg-paths .hint { display: block; font-size: var(--text-sm); }
+.reg-detail table.list td.wrap { white-space: normal; }
+.reg-detail table.list td small { display: block; color: var(--muted); font-size: var(--text-xs); white-space: normal; }
+.reg-file pre { max-height: 32rem; }
+.reg-notice { margin: var(--space-4) 0 0; font-size: var(--text-sm); }
+.reg-logo-link { display: inline-flex; border-radius: 14px; }
+.reg-logo-link:hover .logo-tile { border-color: var(--accent); }
+.reg-file summary { cursor: pointer; font-weight: var(--weight-bold); }
+.reg-file[open] summary { margin-bottom: var(--space-3); }
+.reg-install ol { margin: var(--space-2) 0 0; padding-left: var(--space-5); }
+
+@media (max-width: 1000px) {
+  .reg-cols { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .reg-header { padding: var(--space-3) var(--space-4) 0; }
+  .reg-main { padding: var(--space-4); gap: var(--space-4); }
+  .reg-foot { padding: 0 var(--space-4) var(--space-5); }
+  .reg-links a:not(:first-child) { display: none; }
+  .reg-brand-text span { display: none; }
+  .reg-filters > .filter-chips { flex-wrap: nowrap; overflow-x: auto; margin: 0 calc(var(--space-4) * -1); padding: 0 var(--space-4) 2px; scrollbar-width: none; }
+  .reg-filters > .filter-chips button { flex: none; }
+  .reg-more > summary { display: list-item; cursor: pointer; font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--muted); }
+  .reg-more[open] > summary { margin-bottom: var(--space-3); }
+  .reg-filter-row { gap: var(--space-3); }
+  .reg-filter-group, .reg-filter-group .segmented { width: 100%; }
+  .reg-filter-group .segmented label { flex: 1; justify-content: center; }
+  .reg-figures { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
+  .reg-figures > .card { padding: var(--space-3); }
+  .reg-figures .figure-value { font-size: var(--text-lg); }
+  .reg-hero .lede { font-size: var(--text-base); }
+  .reg-detail .page-head-title { align-items: flex-start; }
+}

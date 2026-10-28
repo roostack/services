@@ -1,5 +1,12 @@
 # What the registry says about this package, kept by the registry's
 # maintainers rather than the package's author. See README.md.
+# icon.png is PhotoPrism's logo, from homarr-labs/dashboard-icons
+# (png/photoprism.png), checked against PhotoPrism's own, made square at
+# 256 px (2026-10-28). PhotoPrism's trademark terms allow it as fair use to
+# indicate that its software is available to install, without implying
+# affiliation or endorsement (the registry's page says it implies neither),
+# and to link to its website and repositories. Older package files still
+# call it a placeholder.
 tier: official
 maintainers:
   - roostack

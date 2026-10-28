@@ -7,8 +7,11 @@
 # asked for each image's processors), and what each added or changed
 # package generates is shown in the run's summary, with the difference
 # from its previous version (.github/render-changes.sh); nothing is signed
-# or published.
-# main, and every day: the same, signed with the signing key, and published.
+# or published. The registry's page (web/) is checked too: its script
+# parses, notices.json is JSON, and its copies of Roostack's files are
+# exactly the commit web/roostack/SYNCED names (tools/check-roostack.sh).
+# main, and every day: the same, signed with the signing key, and published
+# with the page at the site's root.
 # The daily run signs a fresh index even with no changes, so a lab can tell
 # an index that's merely unchanged from one it can't get any more (Roostack
 # warns once its newest is over 14 days old).
@@ -59,6 +62,12 @@ jobs:
           curl -fsSL --retry 3 -o roostack-bin "$URL"
           echo "$SHA256  roostack-bin" | sha256sum -c -
           chmod +x roostack-bin
+      - name: Check the registry's page
+        working-directory: services
+        run: |
+          node --check web/registry.js
+          python3 -m json.tool web/notices.json > /dev/null
+          tools/check-roostack.sh
       - name: Check the packages
         if: github.event_name == 'pull_request'
         run: ./roostack-bin registry index -check -repo services
@@ -77,7 +86,8 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           echo registry.roostack.cloud > site/CNAME
-          printf '<!doctype html><title>Roostack service registry</title><p>The <a href="https://github.com/roostack/services">Roostack service registry</a>. Roostack labs read <code>v1/index.json</code>.</p>\n' > site/index.html
+          # The page (web/, README.md "The registry's page") beside v1/.
+          cp -r services/web/. site/
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         if: github.event_name != 'pull_request'
         with:

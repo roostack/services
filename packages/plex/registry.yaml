@@ -1,5 +1,12 @@
 # What the registry says about this package, kept by the registry's
 # maintainers rather than the package's author. See README.md.
+# icon.png is Plex's application icon, from homarr-labs/dashboard-icons
+# (png/plex.png), checked against Plex's own, made square at 256 px
+# (2026-10-28). Plex's brand guidelines allow it as a link to Plex and to
+# show compatibility, with the notice "Plex, the Plex Play logo and Plex
+# Media Server are trademarks of Plex and used under a license" on the
+# service's page (the registry's page shows it). Older package files still
+# call it a placeholder.
 tier: official
 maintainers:
   - roostack
