@@ -1,0 +1,57 @@
+# Finds new versions of the registry's apps, and rebuilt images, and opens
+# a pull request for each (Roostack's SPEC.md §8.3.8, the update bot, and
+# docs/REGISTRY-UPDATES.md). Every hour, roostack registry updates looks at
+# each package's newest version: a newer tag of its app's images is a new
+# version (<version>-roostack.1); an image whose tag points to another
+# digest is the next revision. updates.yaml says what each package follows
+# (a line it stays on, versions to skip, how its tags are made). Each
+# update is written from the newest version's file, on its own branch
+# (update/<package>/<version>), and opened as a pull request, labelled by
+# its kind as labs read it (update:patch, :minor, :major, :other, or
+# :revision for a rebuild); Publish checks it like any package. Nothing
+# merges itself yet: testing each update on a lab and merging official
+# patches and rebuilds is the next step (TASKS).
+#
+# Set up, as for the Watch workflow:
+# - the variables ROOSTACK_BINARY_URL and ROOSTACK_BINARY_SHA256 naming a
+#   Roostack release with roostack registry updates (0.1.1 or newer);
+# - the secret WATCH_TOKEN (contents and pull requests write): pull
+#   requests opened with the workflow's own token don't start Publish.
+name: Updates
+
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: updates
+  cancel-in-progress: false
+
+jobs:
+  updates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: services
+          token: ${{ secrets.WATCH_TOKEN || github.token }}
+      - name: Get roostack (a release, checked by its SHA-256)
+        env:
+          URL: ${{ vars.ROOSTACK_BINARY_URL }}
+          SHA256: ${{ vars.ROOSTACK_BINARY_SHA256 }}
+        run: |
+          curl -fsSL --retry 3 -o roostack-bin "$URL"
+          echo "$SHA256  roostack-bin" | sha256sum -c -
+          chmod +x roostack-bin
+      - name: Find updates, and write their revisions
+        run: ./roostack-bin registry updates -repo services -write > updates.json
+      - name: Open a pull request for each
+        working-directory: services
+        env:
+          GH_TOKEN: ${{ secrets.WATCH_TOKEN || github.token }}
+        run: .github/open-updates.sh ../updates.json

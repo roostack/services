@@ -1,0 +1,16 @@
+# What the update check (roostack registry updates, run hourly by the
+# Updates workflow) follows for each package; a package not named here
+# follows any newer version of its app, and rebuilt images. Roostack's
+# docs/REGISTRY-UPDATES.md says what each rule does. The index's build
+# doesn't read this file, so a rule never changes what labs see.
+packages:
+  forgejo:
+    track: minor
+    reason: >-
+      The package follows Forgejo's long-term support line, 15, until 19
+      (April 2027); 17 had an upstream "don't upgrade" warning (Roostack's
+      TASKS).
+  plex:
+    tags:
+      app: "{version}-*"
+    reason: Plex's tags end in a build hash (1.43.4.10903-e5521bd8c).
