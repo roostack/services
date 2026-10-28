@@ -1,0 +1,138 @@
+# Ghost: one container, MySQL run by Roostack. Image digest looked up
+# 2026-10-19.
+schema: roostack/v1alpha1
+name: ghost
+title: Ghost
+description: A blog and newsletter of your own, for writing and publishing
+version: 6.71.0-roostack.2
+
+about:
+  maker: the Ghost Foundation, a non-profit
+  website: https://ghost.org
+  source: https://github.com/TryGhost/Ghost
+  licence: MIT
+  # A placeholder, not Ghost's logo: Ghost's brand terms ask for
+  # permission. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [publishing]
+  keywords: [blog, newsletter, publishing, writing, website]
+built_with: [node, libvips]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The site's owner, made by the install hook below. Until there's one,
+  # Ghost lets whoever opens its admin pages first make it.
+  - key: site_title
+    title: Site title
+    type: string
+    default: My blog
+    required: true
+    install_only: true
+  - key: owner_name
+    title: Your name
+    type: string
+    required: true
+    install_only: true
+  - key: owner_email
+    title: Your email address
+    description: For signing in to Ghost's admin pages
+    type: string
+    required: true
+    install_only: true
+  - key: owner_password
+    title: Your password
+    description: At least 10 characters, and not a common one (Ghost's rules). Roostack forgets it once the account exists.
+    type: secret
+    min_length: 10
+    install_only: true           # deleted once the install hook succeeds
+  - key: device_verification
+    title: Confirm new browsers by email
+    description: >-
+      Ghost emails a code when someone signs in from a browser it hasn't seen.
+      Turn it on only once Ghost can send email (its mail settings): without
+      email, nobody could sign in from a new browser.
+    type: bool
+    default: false
+
+containers:
+  app:
+    # Starts as the container's root (Roostack's own user on the host) and
+    # runs Ghost as its node user.
+    image: docker.io/library/ghost:6.71.0@sha256:00032f15726204565bf799ac272ee6fef588547cce50bedd38de3db55272c053
+    env:
+      url: "{{ .Routes.web.URL }}"
+      NODE_ENV: production
+      security__staffDeviceVerification: "{{ .Settings.device_verification }}"
+      database__client: mysql
+      database__connection__host: "{{ .Databases.main.Host }}"
+      database__connection__port: "{{ .Databases.main.Port }}"
+      database__connection__user: "{{ .Databases.main.User }}"
+      database__connection__database: "{{ .Databases.main.Name }}"
+    secrets:
+      database__connection__password: databases.main.password
+    mounts:
+      - { storage: content, path: /var/lib/ghost/content }
+    health:
+      http: { port: 2368, path: /ghost/api/admin/site/ }
+    depends_on: [databases.main]
+    memory: 250 MB               # 175 MB in use, measured 2026-10-19
+
+storage:
+  content:
+    title: Images, themes and settings files
+    class: critical
+
+databases:
+  main:
+    type: mysql                  # Ghost supports MySQL 8 only
+
+hooks:
+  # The owner, through Ghost's own setup call, which works only while there
+  # isn't one. Values arrive as environment variables. Safe to re-run: once
+  # Ghost is set up, done.
+  - on: install
+    container: app
+    env:
+      SITE_TITLE: "{{ .Settings.site_title }}"
+      OWNER_NAME: "{{ .Settings.owner_name }}"
+      OWNER_EMAIL: "{{ .Settings.owner_email }}"
+      SITE_URL: "{{ .Routes.web.URL }}"
+    secrets:
+      OWNER_PASSWORD: owner_password
+    command:
+      - node
+      - -e
+      - |
+        const http = require('node:http')
+        const site = new URL(process.env.SITE_URL)
+        const call = (method, body) => new Promise((ok, no) => {
+          const b = body ? JSON.stringify(body) : ''
+          const req = http.request({ host: '127.0.0.1', port: 2368, path: '/ghost/api/admin/authentication/setup/', method,
+            headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(b), Host: site.host, Origin: site.origin,
+              'X-Forwarded-Proto': site.protocol.replace(':', '') } }, (res) => {
+            let d = ''; res.on('data', (c) => { d += c }); res.on('end', () => ok({ code: res.statusCode, body: d }))
+          })
+          req.on('error', no); req.end(b)
+        })
+        ;(async () => {
+          const st = await call('GET')
+          if (st.code >= 500 || st.code === 0) throw new Error('status ' + st.code)
+          if (/"status":true/.test(st.body)) { console.log('Ghost is set up already.'); return }
+          const r = await call('POST', { setup: [{ name: process.env.OWNER_NAME, email: process.env.OWNER_EMAIL,
+            password: process.env.OWNER_PASSWORD, blogTitle: process.env.SITE_TITLE }] })
+          if (r.code >= 200 && r.code < 300) { console.log('Your account is made.'); return }
+          console.error('Setting up Ghost failed:', r.code, r.body.slice(0, 300)); process.exit(1)
+        })().catch((e) => { console.error('Ghost is not answering yet:', e.message); process.exit(1) })
+
+routes:
+  web:
+    container: app
+    port: 2368
+    subdomain: blog
+    exposure: private
+    max_body_size: 100MB         # images and theme uploads
+    public:
+      login_paths:
+        - /ghost/api/admin/session
+        - /ghost/api/admin/authentication

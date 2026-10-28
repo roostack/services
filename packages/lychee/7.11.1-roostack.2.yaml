@@ -1,0 +1,140 @@
+# Lychee: one container, Postgres run by Roostack. Image digest looked up
+# 2026-10-18.
+schema: roostack/v1alpha1
+name: lychee
+title: Lychee
+description: A photo gallery for sharing albums, with private and public albums and links to share
+version: 7.11.1-roostack.2
+
+about:
+  maker: LycheeOrg, volunteers
+  website: https://lycheeorg.dev
+  source: https://github.com/LycheeOrg/Lychee
+  licence: MIT
+  support: https://opencollective.com/LycheeOrg
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [photos]
+  keywords: [photos, gallery, albums, sharing, portfolio]
+built_with: [php, frankenphp, laravel, go, ffmpeg, imagemagick, ghostscript]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator account, created by the install hook below. Until
+  # there's one, Lychee lets whoever opens it first make it.
+  - key: admin_username
+    title: Administrator username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: app_key
+    title: Encryption key
+    type: secret
+    generate: true               # Laravel's APP_KEY; kept across restarts
+
+containers:
+  app:
+    image: docker.io/lycheeorg/lychee:v7.11.1@sha256:51d867c272c26d2a6a4c6a200e26ed888a35a7ad4652c1871953a85519a78eba
+    quadlet:
+      Container:
+        # No UserNS=keep-id: the image's entrypoint must start as the
+        # container's root (Roostack's own user on the host) to set owners
+        # and switch to www-data, and keep-id would start it as the mapped
+        # user. Its files belong to www-data, one of Roostack's sub-UIDs;
+        # backups read them inside the user namespace.
+        # Lychee wants APP_KEY as Laravel writes it, "base64:" and 32 bytes
+        # in standard base64; Roostack's generated secret is 32 bytes in
+        # URL-safe base64 without padding. The shell converts it, then
+        # starts the image's own entrypoint and command.
+        Entrypoint: /bin/sh
+    command:                     # one line: Quadlet's Exec takes no line breaks
+      - -c
+      - export APP_KEY="base64:$(printf %s "$GENERATED_KEY" | tr '_-' '/+')="; unset GENERATED_KEY; exec /usr/local/bin/entrypoint.sh php artisan octane:start --server=frankenphp --host=0.0.0.0 --port=8000
+    env:
+      APP_URL: "{{ .Routes.web.URL }}"
+      APP_ENV: production
+      APP_TIMEZONE: "{{ .Lab.TimeZone }}"
+      TRUSTED_PROXIES: "*"        # only Roostack's web proxy reaches it
+      PUID: "33"                  # www-data's own: another runs usermod, which fails here
+      PGID: "33"
+      DB_CONNECTION: pgsql
+      DB_HOST: "{{ .Databases.main.Host }}"
+      DB_PORT: "{{ .Databases.main.Port }}"
+      DB_DATABASE: "{{ .Databases.main.Name }}"
+      DB_USERNAME: "{{ .Databases.main.User }}"
+      QUEUE_CONNECTION: sync      # jobs run as they come: no worker container
+      AI_VISION_ENABLED: "false"  # needs its own face-recognition container
+    secrets:
+      GENERATED_KEY: app_key
+      DB_PASSWORD: databases.main.password
+    mounts:
+      - { storage: uploads, path: /app/public/uploads }
+      - { storage: logs,    path: /app/storage/logs }
+    health:
+      http: { port: 8000, path: /up }
+    depends_on: [databases.main]
+    memory: 250 MB               # 184 MB in use, measured 2026-10-18
+
+storage:
+  uploads:
+    title: Your photos
+    class: critical              # originals, and the sizes Lychee makes of them
+    location: media              # the large data disk, if one is configured
+  logs:
+    title: Lychee's logs
+    class: replaceable
+
+databases:
+  main:
+    type: postgres
+
+hooks:
+  # The administrator: Lychee makes the first account an administrator.
+  # Values arrive as environment variables, never in the command itself.
+  # It waits until Lychee answers: the entrypoint migrates the database
+  # first, and an account made meanwhile was lost. Safe to re-run: an
+  # account that exists is kept.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - sh
+      - -c
+      - |
+        cd /app
+        if ! curl -fsS -o /dev/null http://localhost:8000/up; then
+          echo "Lychee is still starting (migrating its database)." >&2
+          exit 1
+        fi
+        if out=$(gosu www-data php artisan lychee:create_user "$ADMIN_USERNAME" "$ADMIN_PASSWORD" 2>&1); then
+          echo "The administrator $ADMIN_USERNAME is made."
+        elif echo "$out" | grep -q "Username already exists"; then
+          echo "The administrator $ADMIN_USERNAME already exists."
+        else
+          echo "$out" >&2
+          exit 1
+        fi
+
+routes:
+  web:
+    container: app
+    port: 8000
+    subdomain: gallery
+    exposure: private
+    max_body_size: 200MB         # photos and short videos
+    public:
+      private_paths:
+        - path: /install
+          reason: Lychee's installer, which made its first administrator before Roostack's setup did.
+      login_paths:
+        - /api/v2/Auth::login     # colons allowed from Roostack 2026-10-18
