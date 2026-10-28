@@ -1,0 +1,1386 @@
+/* Roostack components and page layout (docs/DESIGN.md). Uses only purpose
+   tokens and scales from tokens.css. The gallery (/design) shows every
+   component; add new ones there too. */
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+:root { font-family: var(--font-sans); font-size: 16px; line-height: var(--leading); accent-color: var(--accent); }
+/* The canvas: the page's own background, deeper in dark mode (--canvas
+   needs color-mix; older browsers keep --bg). On <html> only, so the
+   aurora (z-index -1) shows above it. */
+html { background: var(--bg); }
+@supports (color: color-mix(in srgb, red 50%, blue)) { html { background: var(--canvas); } }
+body { margin: 0; color: var(--fg); }
+[x-cloak] { display: none !important; }
+a { color: var(--accent); text-underline-offset: 2px; }
+/* Headings in the display font (Space Grotesk), a little tighter. */
+h1, h2, h3 { font-family: var(--font-display); font-weight: var(--weight-bold); letter-spacing: -0.015em; }
+h1 { font-size: 1.65rem; line-height: 1.15; margin: 0 0 var(--space-4); }
+h2 { font-size: var(--text-lg); line-height: 1.25; margin: var(--space-5) 0 var(--space-2); }
+h1 + h2, .heading h2 { margin-top: 0; }
+/* A card's padding is its heading's space above. */
+.card > h2:first-child { margin-top: 0; }
+p { margin: 0 0 var(--space-3); }
+code, pre { font-family: var(--font-mono); font-size: 0.9em; }
+small, .hint { color: var(--muted); }
+.hint { font-size: var(--text-sm); }
+.error { color: var(--bad); }
+:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); }
+
+/* ---------- Layout: Console glass (docs/DESIGN.md "Layout") ---------- */
+/* A sidebar floating 8px from the window's edge, the page beside it; on
+   phones the sidebar is a drawer behind the menu button. */
+.shell { display: grid; grid-template-columns: 256px minmax(0, 1fr); min-height: 100vh; padding: 8px 0 0 8px; }
+.main { min-width: 0; display: flex; flex-direction: column; }
+/* The page's parts are spaced by the grid's gap alone (24px), not their
+   own margins; a part that refreshes itself (.live) lays its contents
+   out as the page's own. */
+.page { width: 100%; max-width: 1560px; padding: var(--space-2) var(--space-5) var(--space-7); flex: 1;
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-5); align-content: start; }
+.page > *, .page > .section { margin-block: 0; min-width: 0; }
+.live { display: contents; }
+.narrow { max-width: 460px; margin: var(--space-6) auto; }
+.medium { max-width: 680px; margin: var(--space-5) auto; }
+.page > :is(.narrow, .medium) { margin-block: 0; width: 100%; }
+/* Beside the sidebar, a page of one form or card lines up under its
+   heading (centred only without a login), a little wider. */
+.shell .page > :is(.narrow, .medium) { margin-inline: 0; max-width: 760px; }
+.section { margin-top: var(--space-4); }
+.stack > * + * { margin-top: var(--space-3); }
+
+/* The aurora: three soft glows in the accent, highlight and first chart
+   colour, still, behind everything. --aurora is how strongly they show
+   (the contrast test checks text on glass over them). Each is a radial
+   gradient, solid in the middle and fading at its edge: they were circles
+   blurred 90px and slowly moving, which made every glass card re-blur on
+   every frame, and Firefox scroll slowly (2026-10-16; DESIGN.md). */
+.aurora { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.aurora span { position: absolute; width: 60vmax; height: 60vmax; }
+.aurora span:nth-child(1) { background: radial-gradient(closest-side, var(--accent) 60%, transparent); left: -22vmax; top: -26vmax; opacity: var(--aurora); }
+.aurora span:nth-child(2) { background: radial-gradient(closest-side, var(--highlight) 60%, transparent); right: -26vmax; top: -8vmax; opacity: calc(var(--aurora) * 0.75); }
+.aurora span:nth-child(3) { background: radial-gradient(closest-side, var(--chart-1) 60%, transparent); left: 18vmax; top: 45vmax; opacity: calc(var(--aurora) * 0.3); }
+@media print { .aurora { display: none; } }
+
+/* The sidebar: the surface at 70% (solid without color-mix), no blur
+   behind it (see the cards). Status shows here only as a pill on its own tint,
+   never as bare text (the contrast test, 2026-10-15). */
+.sidebar { position: sticky; top: 8px; height: calc(100vh - 16px); display: flex; flex-direction: column;
+  gap: var(--space-3); padding: var(--space-4) var(--space-3) var(--space-3); border-radius: 16px; font-size: 15px;
+  background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-1); }
+@supports (color: color-mix(in srgb, red 50%, blue)) {
+  .sidebar { background: color-mix(in srgb, var(--surface) 70%, transparent); border: 0;
+    box-shadow: inset 0 0 0 1px var(--edge-strong), var(--lift); }
+}
+.sidebar-lab { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-1) var(--space-2); color: var(--fg); text-decoration: none; }
+.sidebar-lab .brand-mark { width: 32px; height: 32px; }
+.sidebar-lab-name { display: grid; line-height: 1.15; min-width: 0; }
+.sidebar-lab-name span { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+.sidebar-lab-name strong { font-family: var(--font-display); font-size: 1.05rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* The links scroll when the window is short; the lab's name and the foot stay. */
+.sidebar-nav { flex: 1; min-height: 0; overflow-y: auto; display: grid; align-content: start; gap: var(--space-4);
+  margin: 0 calc(var(--space-3) * -1); padding: 2px var(--space-3); }
+.nav-group { display: grid; gap: 2px; }
+.nav-item, .nav-sub { display: flex; align-items: center; gap: var(--space-3); border-radius: var(--radius); color: var(--fg); text-decoration: none; }
+.nav-item { padding: 7px var(--space-3); font-weight: var(--weight-medium); }
+.nav-item .icon { width: 18px; height: 18px; vertical-align: 0; }
+/* A main area's own pages under it while you're there (Services: each
+   service), smaller, on a faint line. */
+.nav-children { display: grid; gap: 1px; margin: 2px 0 4px calc(var(--space-3) + 8px); padding-left: var(--space-3); border-left: 1px solid var(--border); }
+@supports (color: color-mix(in srgb, red 50%, blue)) { .nav-children { border-left-color: var(--edge-strong); } }
+.nav-sub { padding: 4px var(--space-3); font-size: var(--text-sm); }
+.nav-sub:not([aria-current]) { color: var(--muted); }
+.nav-sub:not([aria-current]):hover { color: var(--fg); }
+/* A sub-item's icon (a service's logo, if it has one), smaller than a
+   main item's; where you are, in the highlight. */
+.nav-sub .icon, .nav-logo { width: 16px; height: 16px; flex: none; vertical-align: 0; }
+.nav-logo { border-radius: 4px; object-fit: contain; }
+.nav-sub[aria-current] .icon { color: var(--highlight); }
+/* How many need attention (Servers): a warning pill, never bare text. */
+.nav-count { margin-left: auto; padding: 1px 7px; border-radius: var(--radius-pill); font-size: var(--text-xs); font-weight: var(--weight-bold);
+  background: var(--warn-bg); color: var(--warn); }
+.nav-item:hover, .nav-sub:hover { background: var(--surface-2); }
+/* Where you are: the highlight tint with a faint highlight edge. */
+.nav-item[aria-current], .nav-sub[aria-current] { background: var(--highlight-soft); font-weight: var(--weight-bold);
+  box-shadow: inset 0 0 0 1px var(--highlight); }
+.nav-item[aria-current] .icon { color: var(--highlight); }
+@supports (color: color-mix(in srgb, red 50%, blue)) {
+  .nav-item:hover, .nav-sub:hover { background: var(--glass-2); }
+  .nav-item[aria-current], .nav-sub[aria-current] { background: color-mix(in srgb, var(--highlight-soft) 80%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--highlight) 30%, transparent); }
+}
+.sidebar-foot { display: grid; gap: var(--space-2); }
+.sidebar-tools { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.sidebar-tools > a, .sidebar-tools button { display: inline-flex; align-items: center; gap: 6px; padding: 6px 8px; border-radius: var(--radius-sm);
+  font: inherit; font-size: var(--text-sm); font-weight: var(--weight-normal); color: var(--muted); background: none; border: 0; text-decoration: none; }
+.sidebar-tools > a:hover, .sidebar-tools button:hover { color: var(--fg); background: var(--surface-2); filter: none; }
+.sidebar-tools form { margin: 0; }
+.sidebar-tools .icon { color: currentColor; }
+.who { display: flex; align-items: center; gap: var(--space-1); padding: var(--space-1); border-radius: var(--radius); background: var(--surface-2); }
+@supports (color: color-mix(in srgb, red 50%, blue)) { .who { background: var(--glass); box-shadow: inset 0 0 0 1px var(--edge); } }
+.who-link { flex: 1; min-width: 0; display: flex; align-items: center; gap: var(--space-3); padding: var(--space-1); border-radius: var(--radius-sm);
+  color: var(--fg); text-decoration: none; }
+.who-link[aria-current] { box-shadow: inset 0 0 0 1px var(--highlight); }
+.avatar { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-weight: 700; font-size: var(--text-sm);
+  background: var(--accent); color: var(--accent-fg); background: linear-gradient(135deg, var(--accent), var(--highlight)); }
+.who-name { display: grid; min-width: 0; line-height: 1.2; font-size: var(--text-sm); }
+.who-name strong { font-weight: var(--weight-bold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.who-name span { font-size: var(--text-xs); color: var(--muted); }
+.who form { margin: 0; }
+/* A button that's only an icon (its label for screen readers). */
+button.icon-button { padding: 6px; background: none; color: var(--muted); border: 0; }
+button.icon-button:hover { color: var(--fg); background: var(--surface-2); filter: none; }
+button.icon-button .icon { color: currentColor; width: 18px; height: 18px; vertical-align: 0; }
+
+/* The page's header sits on the page (no band, no border): where you are
+   (breadcrumbs, each step a link, the page itself last) and its help, on
+   a line of its own when both don't fit (a phone). */
+.page-header { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-3); min-height: 56px; padding: var(--space-2) var(--space-5); }
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-2); min-width: 0; font-size: var(--text-sm); color: var(--muted); }
+.crumbs > * + *::before { content: "/"; margin-right: var(--space-2); color: var(--muted); font-weight: var(--weight-normal); opacity: 0.7; }
+.crumbs a { color: inherit; text-decoration: none; }
+.crumbs a:hover { color: var(--fg); text-decoration: underline; }
+.crumbs strong { color: var(--fg); font-weight: var(--weight-bold); overflow-wrap: anywhere; }
+.page-help { margin-left: auto; font-size: var(--text-sm); white-space: nowrap; }
+.page-help > .icon { width: 1.05em; height: 1.05em; margin-right: 0.3em; vertical-align: -0.15em; color: currentColor; }
+.menu-button { display: none; }
+footer.site { padding: 0 var(--space-5) var(--space-5); font-size: var(--text-sm); color: var(--muted); }
+footer.site a { color: var(--muted); }
+footer.site .version { font-family: var(--font-mono); font-size: 0.95em; }
+.theme-toggle .icon { width: 15px; height: 15px; }
+/* Without a login (sign-in, first-run setup): the mark and the help; in
+   the setup wizard, also its step and Log out. */
+.bare { min-height: 100vh; display: flex; flex-direction: column; }
+.bare-header { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-3); padding: var(--space-3) var(--space-5); }
+.bare-header form { margin: 0; }
+.bare .page { margin: 0 auto; }
+/* The setup wizard's steps: a column in the middle, the heading and
+   cards aligned in it as in the shell. */
+.bare .page.wizard { max-width: 860px; }
+.page.wizard > :is(.narrow, .medium) { margin-inline: 0; max-width: 760px; }
+.brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-weight: var(--weight-bold);
+  font-size: var(--text-lg); text-decoration: none; color: var(--fg); }
+/* The brand mark (brandmark.go, generated by assets/brand/generate.py):
+   text colour on a soft-highlight tile, highlight comb, online light. */
+.brand-mark { width: 28px; height: 28px; flex: none; display: block; }
+.bm-f-fg { fill: var(--fg); } .bm-s-fg { stroke: var(--fg); }
+.bm-f-hi { fill: var(--highlight); }
+.bm-f-soft { fill: var(--highlight-soft); } .bm-s-soft { stroke: var(--highlight-soft); }
+.bm-f-led { fill: var(--ok-on-fg); }
+
+/* Phones and small windows: the sidebar is a drawer behind the menu
+   button, solid (the surface), over a dimmed page. */
+@media (max-width: 900px) {
+  .shell { grid-template-columns: minmax(0, 1fr); padding: 0; }
+  .sidebar { position: fixed; z-index: 30; left: 0; top: 0; bottom: 0; height: auto; width: min(300px, 84vw);
+    border-radius: 0 16px 16px 0; translate: -105% 0; visibility: hidden; transition: translate 0.25s, visibility 0.25s; }
+  @supports (color: color-mix(in srgb, red 50%, blue)) {
+    .sidebar { background: var(--surface); }
+  }
+  .menu-open .sidebar { translate: 0 0; visibility: visible; box-shadow: 0 0 60px rgb(0 0 0 / 40%); }
+  .scrim { position: fixed; inset: 0; z-index: 20; background: rgb(0 0 0 / 45%); }
+  .menu-button { display: inline-grid; place-items: center; width: 40px; height: 40px; margin-left: calc(var(--space-2) * -1); padding: 0;
+    background: none; color: var(--fg); border: 0; border-radius: var(--radius); }
+  .menu-button:hover { background: var(--surface-2); filter: none; }
+  .menu-button .icon { width: 22px; height: 22px; color: currentColor; vertical-align: 0; }
+  .page-header, .bare-header { padding-inline: var(--space-4); }
+  .page { padding-inline: var(--space-4); }
+  footer.site { padding-inline: var(--space-4); }
+  h1 { font-size: 1.45rem; }
+}
+@media (prefers-reduced-motion: reduce) { .sidebar { transition: none; } }
+
+/* ---------- Card ---------- */
+/* Cards: the surface at 80%, so the aurora tints them only a little
+   (solid without color-mix). No blur behind them: the aurora is already
+   soft, so it barely showed, and blurring every card made Firefox scroll
+   slowly (2026-10-16; DESIGN.md). On glass the edge is an inset shadow
+   and there's no border: a transparent border would still show the
+   card's own background as a light ring outside it. */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: var(--space-5); box-shadow: var(--shadow-1); }
+@supports (color: color-mix(in srgb, red 50%, blue)) {
+  .card { background: color-mix(in srgb, var(--surface) 80%, transparent); border: 0;
+    box-shadow: inset 0 0 0 1px var(--edge-strong), var(--lift); }
+}
+.card > :last-child { margin-bottom: 0; }
+/* A heading row: title on the left, a link or action on the right. */
+.heading { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3);
+  margin-bottom: var(--space-3); }
+/* A long name in a heading (a service's full address) wraps instead of widening the page. */
+.heading h1, .heading h2 { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.back { display: inline-block; margin-bottom: var(--space-3); font-size: var(--text-sm); }
+
+/* ---------- Facts (label / value list) ---------- */
+/* ---------- Icons (icons.go) ---------- */
+.icon { width: 1.1em; height: 1.1em; flex: none; vertical-align: -0.2em; color: var(--muted); }
+
+/* ---------- A lab's address (setup-domain): two choices (SPEC.md §6.6) ---------- */
+.address-choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: var(--space-3); margin: var(--space-4) 0; }
+.address-choice { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); margin: 0; }
+.address-choice.recommended, .address-choice.chosen { border: 2px solid var(--accent); }
+.address-choice p { margin: 0; }
+/* Addresses (link.<a long domain>:51820) wrap rather than widen the page on a phone. */
+.address-choice code { overflow-wrap: anywhere; }
+.address-choice-title { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font-weight: var(--weight-medium); }
+.address-choice-title .icon { color: var(--accent); }
+.address-choice > button, .address-choice > .button { justify-self: start; }
+.address-name { display: flex; align-items: center; gap: var(--space-1); margin: 0; }
+.address-name input { flex: 1; min-width: 0; }
+.address-name span:last-child { color: var(--muted); }
+.address-waiting { margin: var(--space-1) 0; font-size: var(--text-sm); }
+.address-waiting-text { color: var(--warn); }
+.address-waiting-text .icon { color: var(--warn); margin-right: var(--space-1); }
+/* Linking to Roostack Cloud (SPEC.md §6.6): the code to compare, while it waits. */
+.cloud-waiting { margin-top: var(--space-3); }
+.cloud-waiting-title { font-weight: var(--weight-medium); margin-bottom: var(--space-1); }
+.cloud-waiting-title .icon { color: var(--warn); margin-right: var(--space-1); }
+.cloud-code { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+.link-code { font-family: var(--font-mono); font-size: 1.4em; letter-spacing: 0.1em; padding: var(--space-1) var(--space-3);
+  background: var(--surface-2); border-radius: var(--radius); }
+.cloud-linked { color: var(--ok); }
+.name-check { display: block; }
+.name-taken { color: var(--bad); }
+.server-chip { display: inline-flex; align-items: center; gap: var(--space-1); padding: 0 var(--space-2);
+  border-radius: var(--radius-pill); background: var(--surface-2); border: 1px solid var(--border); color: var(--fg);
+  font-weight: var(--weight-medium); white-space: nowrap; }
+.server-chip .icon { width: 0.95em; height: 0.95em; color: var(--accent); }
+
+dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-4); margin: var(--space-3) 0; }
+dl.facts dt { color: var(--muted); }
+/* break-word only breaks long words when they don't fit (anywhere also
+   shrinks the column, breaking domains mid-word). */
+dl.facts dd { margin: 0; min-width: 0; overflow-wrap: break-word; }
+dl.facts dt .icon, .with-icon .icon { margin-right: var(--space-2); }
+/* After a link's text, in the link's colour: it opens in a new window. */
+.new-window .icon { width: 0.85em; height: 0.85em; margin-left: 0.2em; vertical-align: -0.05em; color: currentColor; }
+/* Rows separated by lines, for cards with many facts (Settings → Servers). */
+dl.facts-lined { gap: 0 var(--space-4); }
+dl.facts-lined > dt, dl.facts-lined > dd { padding: var(--space-3) 0; border-top: 1px solid var(--border); }
+dl.facts-lined > dt:first-of-type, dl.facts-lined > dt:first-of-type + dd { border-top: 0; }
+dl.facts-lined > dd > p:first-child { margin-top: 0; }
+/* The key's labels take up to about half the width (on a phone they wrap),
+   so a size with a note after it isn't squeezed into a strip. */
+.space-list { display: grid; grid-template-columns: fit-content(55%) minmax(0, 1fr); gap: var(--space-1) var(--space-4); margin: var(--space-2) 0;
+  font-size: var(--text-sm); }
+.space-list dt { color: var(--muted); }
+.space-list dt.sub { padding-left: var(--space-4); }
+.space-list dd { margin: 0; }
+@media (max-width: 480px) {
+  dl.facts { grid-template-columns: 1fr; gap: 0; }
+  dl.facts dt { margin-top: var(--space-2); font-size: var(--text-sm); }
+  dl.facts-lined > dd { border-top: 0; padding-top: 0; }
+}
+
+/* ---------- Notice: info (default), ok, warn, error ---------- */
+/* A tinted card with its kind's icon at the left (drawn by CSS, so every
+   notice has one), a faint edge in its colour, as in the mock-ups. */
+.notice { position: relative; margin: var(--space-3) 0; padding: var(--space-3) var(--space-4) var(--space-3) calc(var(--space-4) + 18px + var(--space-3));
+  border-radius: var(--radius-lg); background: var(--accent-soft); color: var(--fg); --notice-colour: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--border); }
+@supports (color: color-mix(in srgb, red 50%, blue)) { .notice { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--notice-colour) 25%, transparent); } }
+.notice::before { content: ""; position: absolute; left: var(--space-4); top: calc(var(--space-3) + 0.15em); width: 18px; height: 18px;
+  background: var(--notice-colour); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5M12 8h.01'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5M12 8h.01'/%3E%3C/svg%3E") center / contain no-repeat; }
+.notice > :last-child { margin-bottom: 0; }
+/* An error's text (a path, a key) may have no break points. */
+.notice { overflow-wrap: anywhere; }
+.notice-ok { background: var(--ok-bg); --notice-colour: var(--ok); }
+.notice-ok::before { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='m8 12 3 3 5-6'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='m8 12 3 3 5-6'/%3E%3C/svg%3E"); }
+.notice-warn { background: var(--warn-bg); --notice-colour: var(--warn); }
+.notice-error { background: var(--bad-bg); --notice-colour: var(--bad); }
+.notice-warn::before, .notice-error::before { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4 2.5 20h19z'/%3E%3Cpath d='M12 10v4M12 17h.01'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4 2.5 20h19z'/%3E%3Cpath d='M12 10v4M12 17h.01'/%3E%3C/svg%3E"); }
+.notice-list p { margin: 0 0 var(--space-2); font-weight: var(--weight-medium); }
+.notice-list ul { margin: 0; padding-left: var(--space-5); }
+.notice-list li { overflow-wrap: anywhere; }
+.notice-list li + li { margin-top: var(--space-1); }
+
+/* ---------- Buttons: primary (default), secondary, danger, quiet ---------- */
+button, a.button, summary.button { display: inline-flex; align-items: center; gap: var(--space-2); font: inherit;
+  font-weight: var(--weight-bold); padding: 10px 16px; border: 1px solid transparent; border-radius: 10px;
+  background: var(--accent); color: var(--accent-fg); cursor: pointer; text-decoration: none; white-space: nowrap; }
+button:hover, a.button:hover, summary.button:hover { filter: brightness(1.08); }
+/* On a phone a long label ("Link and go back to <lab>") wraps rather than
+   leaving its card; a short one still fits on one line. */
+@media (max-width: 640px) { button, a.button { white-space: normal; max-width: 100%; } }
+button:disabled { opacity: 0.55; cursor: default; filter: none; }
+button.secondary, a.button.secondary, summary.button.secondary { background: var(--surface); color: var(--fg); border-color: var(--border-strong); }
+button.secondary:hover, a.button.secondary:hover, summary.button.secondary:hover { background: var(--surface-2); filter: none; }
+/* On glass, secondary buttons are translucent text colour (the website's). */
+@supports (color: color-mix(in srgb, red 50%, blue)) {
+  button.secondary, a.button.secondary { background: var(--glass-2); border-color: var(--edge-strong); }
+  button.secondary:hover, a.button.secondary:hover { background: color-mix(in srgb, var(--fg) 11%, transparent); }
+}
+/* Small: in tables, notices and card headings. */
+button.small, a.button.small { padding: 5px 12px; font-size: var(--text-sm); }
+button.danger, a.button.danger { background: var(--bad); color: var(--bad-fg); }
+/* Outlined in red: a way to something drastic but safe, such as pausing
+   public access (SPEC.md §6.16), which shouldn't look like the page's
+   main action. */
+button.outline-danger, a.button.outline-danger { background: none; color: var(--bad); border-color: var(--bad); }
+button.outline-danger:hover, a.button.outline-danger:hover { background: var(--bad-bg); filter: none; }
+/* An icon in a coloured button takes the button's text colour (icons are
+   muted elsewhere, which would show the accent's green on red). */
+button.danger .icon, a.button.danger .icon, button.outline-danger .icon, a.button.outline-danger .icon { color: currentColor; }
+/* Quiet: looks like a link (for small or less important actions). */
+button.quiet { background: none; border: 0; padding: 0; color: var(--accent); font-weight: var(--weight-normal);
+  text-decoration: underline; text-underline-offset: 2px; }
+button.quiet.danger { color: var(--bad); background: none; }
+button.quiet:hover { filter: none; }
+.actions-row { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; margin-top: var(--space-4); }
+
+/* ---------- Forms ---------- */
+form label { display: block; margin-bottom: var(--space-4); font-weight: var(--weight-medium); }
+form label small { display: block; font-weight: var(--weight-normal); margin-top: var(--space-1); }
+input, select { display: block; width: 100%; margin-top: var(--space-2); padding: 10px 12px; font: inherit;
+  color: inherit; background: var(--surface-2); border: 1px solid var(--border-strong); border-radius: var(--radius); }
+input:focus-visible, select:focus-visible { border-color: var(--highlight); }
+input[type="checkbox"], input[type="radio"] { display: inline-block; width: auto; margin: 0; }
+fieldset { border: 0; padding: 0; margin: 0 0 var(--space-4); }
+legend { font-weight: var(--weight-medium); padding: 0; margin-bottom: var(--space-2); }
+label.check { display: flex; gap: var(--space-3); align-items: flex-start; margin-bottom: var(--space-3); }
+label.check input { margin-top: 5px; }
+label.check small { display: block; font-weight: var(--weight-normal); }
+.with-suffix { display: flex; align-items: center; gap: var(--space-2); }
+.with-suffix input { flex: 1; }
+.with-suffix span { color: var(--muted); font-weight: var(--weight-normal); margin-top: var(--space-2); }
+.with-prefix { display: flex; align-items: center; gap: var(--space-1); }
+.with-prefix input { flex: 1; }
+.with-prefix > span { color: var(--muted); font-weight: var(--weight-normal); margin-top: var(--space-2); font-family: var(--font-mono); }
+/* A dropdown inside a sentence ("Restart automatically at [04:00]"). */
+select.inline { display: inline-block; width: auto; margin: 0 0 0 var(--space-2); padding: var(--space-1) var(--space-2); }
+.inline-form { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+.inline-form label { margin: 0; }
+/* An input with its button after it (Rename, Save): the button as tall as
+   the input, on the same line; the input as wide as a name, not the card. */
+.inline-form > :is(input, select) { margin-top: 0; width: auto; flex: 1 1 12rem; max-width: 24rem; }
+.inline-form > button { align-self: stretch; }
+/* A dropdown in a sentence before a button: as tall as an input, so the
+   button beside it lines up. */
+.inline-form select.inline { padding-top: 9px; padding-bottom: 9px; }
+.inline-form > small { flex-basis: 100%; }
+
+/* Segmented control: a small exclusive choice as one row of buttons
+   (radios). Inside a .seg-group, the chosen one's .seg-panel shows; CSS
+   only, so it works without scripts. On phones a full-size one fills the
+   width, its choices equal columns with the icon above the words. */
+.segmented { display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 3px; margin: 0 0 var(--space-3);
+  border: 1px solid var(--edge-strong); border-radius: var(--radius); background: var(--glass); }
+.segmented label { position: relative; display: inline-flex; align-items: center; gap: var(--space-2); margin: 0;
+  padding: 7px 14px; border-radius: calc(var(--radius) - 3px); color: var(--muted); font-weight: var(--weight-medium);
+  cursor: pointer; white-space: nowrap; }
+.segmented label:hover { color: var(--fg); }
+.segmented input { position: absolute; opacity: 0; pointer-events: none; margin: 0; }
+.segmented label:has(input:checked) { background: var(--surface); color: var(--fg);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.18), inset 0 0 0 1px var(--edge-strong); }
+.segmented label:has(input:checked) .icon { color: var(--accent); }
+.segmented label:has(input:focus-visible) { box-shadow: var(--focus-ring); }
+.segmented .icon { width: 18px; height: 18px; }
+.segmented.small label { padding: 4px 12px; font-size: var(--text-sm); }
+@media (max-width: 640px) {
+  .segmented:not(.small) { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; width: 100%; }
+  .segmented:not(.small) label { flex-direction: column; justify-content: center; gap: 2px; padding: 8px 4px;
+    white-space: normal; text-align: center; font-size: var(--text-sm); line-height: 1.2; }
+}
+.seg-panel { display: none; }
+.seg-group:has(> .segmented > label:nth-child(1) > input:checked) > .seg-panel[data-seg="1"],
+.seg-group:has(> .segmented > label:nth-child(2) > input:checked) > .seg-panel[data-seg="2"],
+.seg-group:has(> .segmented > label:nth-child(3) > input:checked) > .seg-panel[data-seg="3"],
+.seg-group:has(> .segmented > label:nth-child(4) > input:checked) > .seg-panel[data-seg="4"] { display: block; }
+/* The chosen choice's one-line hint, first in its panel. */
+.seg-hint { margin: calc(-1 * var(--space-1)) 0 var(--space-4); }
+
+/* Switch: an on/off setting that saves with its form, drawn as a switch
+   (a checkbox with role="switch", so it's still a checkbox without
+   styles or scripts). Ticking items from a list, or confirming something,
+   stays a checkbox. */
+label.check input.switch { appearance: none; flex: none; position: relative; width: 36px; height: 20px; margin-top: 2px;
+  border-radius: var(--radius-pill); background: var(--border-strong); cursor: pointer; transition: background 0.15s; }
+label.check input.switch::before { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px;
+  border-radius: 50%; background: var(--surface); box-shadow: 0 1px 2px rgb(0 0 0 / 0.3); transition: transform 0.15s; }
+label.check input.switch:checked { background: var(--accent); }
+label.check input.switch:checked::before { transform: translateX(16px); background: var(--accent-fg); }
+label.check input.switch:focus-visible { border-radius: var(--radius-pill); }
+label.check input.switch:disabled { opacity: 0.55; cursor: default; }
+@media (prefers-reduced-motion: reduce) { label.check input.switch, label.check input.switch::before { transition: none; } }
+
+/* Fields side by side (server and port, username and password), one under
+   another when there isn't room. */
+.field-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0 var(--space-4); }
+.field-row.wide-first { grid-template-columns: minmax(14rem, 1fr) minmax(7rem, 10rem); }
+@media (max-width: 640px) { .field-row.wide-first { grid-template-columns: 1fr; } }
+/* An input as wide as what it usually holds (a name). */
+input.name-input { max-width: 24rem; }
+/* A number's input as wide as a number (a size, a port), its unit after it. */
+input.number-input { max-width: 9rem; }
+.with-suffix input.number-input { flex: 0 1 9rem; }
+/* A label for a control that isn't an input (the folder chosen). */
+.field-label { margin: 0 0 var(--space-2); font-weight: var(--weight-medium); }
+/* A form's section heading (the install form's "Name and address"):
+   small capitals, quieter than a card's heading. */
+h2.form-section { margin: 0 0 var(--space-3); font-family: var(--font-sans); font-size: var(--text-sm);
+  font-weight: var(--weight-bold); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+/* A Details line inside a form, for a field rarely changed (a service's
+   name): quiet, close under the fields above it. */
+details.form-more { margin: calc(-1 * var(--space-2)) 0 var(--space-4); }
+details.form-more > summary { color: var(--muted); font-size: var(--text-sm); cursor: pointer; }
+details.form-more[open] > summary { margin-bottom: var(--space-3); }
+/* The install form, and what it sets up beside it, staying in view (under
+   it when there isn't room). */
+.install-grid { align-items: start; }
+.install-aside { position: sticky; top: var(--space-4); }
+.install-aside .install-summary > h2 { margin-top: 0; }
+select.host-select { max-width: 24rem; }
+
+/* A rule between a form's parts (where something is, then its name). */
+hr.form-rule { border: 0; border-top: 1px solid var(--border); margin: var(--space-5) 0 var(--space-4); }
+/* Checkboxes side by side (services that can read a library). */
+.check-row { display: flex; flex-wrap: wrap; gap: 0 var(--space-5); }
+p.error[role="alert"] { background: var(--bad-bg); color: var(--bad); padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius); }
+
+/* ---------- Status pill (the website's) and badge ---------- */
+/* A status pill: a dot and a word on the status tint (solid, so it reads
+   on glass too). Work in progress (installing, updating): text on the
+   info tint, its dot pulsing (still with reduced motion). */
+.status, .badge { display: inline-block; padding: 2px 10px; border-radius: var(--radius-pill);
+  font-size: var(--text-sm); font-weight: var(--weight-medium); white-space: nowrap; }
+/* .pill is the same look for other states (a server's): .pill-ok,
+   -warn, -bad, -info (in progress), or plain. */
+.status, .pill { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px 2px 8px; border-radius: var(--radius-pill);
+  font-size: var(--text-xs); font-weight: var(--weight-bold); line-height: 1.6; white-space: nowrap; background: var(--surface-2); color: var(--muted); }
+.status::before, .pill::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.status-running, .pill-ok { background: var(--ok-bg); color: var(--ok); }
+.status-starting, .status-waiting, .pill-warn { background: var(--warn-bg); color: var(--warn); }
+.status-failed, .status-registry-stop, .status-held, .pill-bad { background: var(--bad-bg); color: var(--bad); }
+.status-installing, .status-updating, .pill-info { background: var(--accent-soft); color: var(--fg); }
+.status-installing::before, .status-updating::before, .pill-info::before { background: var(--accent); animation: status-pulse 1.6s ease-in-out infinite; }
+@keyframes status-pulse { 50% { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .status::before, .pill::before { animation: none; } }
+
+/* ---------- Uptime (monitoring, SPEC.md §6.15) ---------- */
+/* A bar per day, oldest first: up, down a little (warn), down an hour or
+   more (bad), not checked (the border colour). .mini is the small one in
+   lists; .bar-ends labels the bar's two ends under it. */
+.uptime-bar { display: flex; gap: 2px; height: 28px; margin: var(--space-3) 0 var(--space-1); }
+.uptime-bar span { flex: 1; min-width: 0; border-radius: 2px; background: var(--ok); }
+.uptime-bar span.warn { background: var(--warn); }
+.uptime-bar span.bad { background: var(--bad); }
+.uptime-bar span.none { background: var(--border); }
+.uptime-bar.mini { height: 18px; width: 150px; gap: 1px; margin: 0; }
+.uptime-bar.mini span { border-radius: 1px; }
+@media (max-width: 600px) { .uptime-bar { gap: 1px; } .uptime-bar span { border-radius: 1px; } }
+.bar-ends { display: flex; justify-content: space-between; margin-top: 0; }
+/* An answer-time line over a day (an inline SVG polyline). */
+.spark { display: block; width: 100%; height: 80px; color: var(--accent); margin-top: var(--space-3); }
+
+/* ---------- Console glass page parts (docs/DESIGN.md "Layout") ---------- */
+/* A page's own heading: its title and a line under it, its main actions
+   on the right (under it on phones). */
+.page-head { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-3) var(--space-4); }
+.page-head h1 { margin: 0; }
+.page-head .lede { margin: 6px 0 0; color: var(--muted); }
+.page-head-actions { margin-left: auto; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+/* A page about one thing (a service): its logo beside the title, its
+   state beside the title's text. */
+.page-head-title { display: flex; align-items: center; gap: var(--space-4); min-width: 0; }
+.page-head-title > .logo-tile { width: 56px; height: 56px; border-radius: 14px; }
+.page-head-title > .logo-tile .icon { width: 30px; height: 30px; }
+.title-line { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+/* Gradient text: at most once a page (the website's). */
+.gradient-text { background: linear-gradient(100deg, var(--accent), var(--highlight)); -webkit-background-clip: text; background-clip: text;
+  color: transparent; }
+/* A 12-column grid for cards side by side; one column on phones. */
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-4); align-items: start; }
+.grid > * { grid-column: span 12; min-width: 0; margin: 0; }
+.grid > .span-3 { grid-column: span 3; } .grid > .span-4 { grid-column: span 4; } .grid > .span-5 { grid-column: span 5; }
+.grid > .span-6 { grid-column: span 6; } .grid > .span-7 { grid-column: span 7; } .grid > .span-8 { grid-column: span 8; }
+
+@media (max-width: 1100px) { .grid > .span-3 { grid-column: span 6; } .grid > :is(.span-4, .span-5, .span-6, .span-7, .span-8) { grid-column: span 12; } }
+/* Several cards stacked in one grid cell (a 4-wide column of them). */
+.grid-column { display: grid; gap: var(--space-4); align-content: start; }
+.grid-column > *, .grid-column .card.section { margin: 0; }
+.section-heading + .server-switcher { margin-top: 0; }
+/* A card's heading row: its title, and a link to more on the right. */
+.card-head { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+.card-head h2 { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.card-head > .button { margin-left: auto; }
+/* An on/off switch for the card's subject, at the right of its head. */
+.card-head > form.head-switch { margin-left: auto; display: flex; align-items: center; gap: var(--space-2); }
+.card-head > form.head-switch label.check { margin: 0; align-items: center; }
+.card-head > form.head-switch label.check input.switch { margin-top: 0; }
+.card-head .more { margin-left: auto; font-size: var(--text-sm); font-weight: var(--weight-medium); white-space: nowrap; }
+/* A small heading between groups of cards ("Your whole lab"). */
+.section-heading { margin: var(--space-2) 0 calc(var(--space-3) - var(--space-5)); font-family: var(--font-display); font-size: var(--text-xs); font-weight: var(--weight-bold);
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+
+/* Figures strip: a row of cards, each a few words and a big number
+   (Home: services, servers, last backup, disk space). */
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+.figures > .card { display: grid; gap: 2px; align-content: start; padding: var(--space-4); }
+.figure-label { font-size: var(--text-xs); font-weight: var(--weight-bold); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.figure-value { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 6px; font-family: var(--font-display); font-size: 1.6rem;
+  font-weight: var(--weight-bold); letter-spacing: -0.02em; line-height: 1.25; }
+.figure-value small { font-family: var(--font-sans); font-size: var(--text-sm); font-weight: var(--weight-normal); letter-spacing: 0; color: var(--muted); }
+.figure-note { font-size: var(--text-sm); color: var(--muted); }
+.figure-note.warn { color: var(--warn); } .figure-note.bad { color: var(--bad); }
+/* The big figure (the website's 3:02): one number a card is about. */
+.big-figure { display: block; font-family: var(--font-display); font-size: 3rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+.big-figure small { margin-left: 6px; font-family: var(--font-sans); font-size: var(--text-sm); font-weight: var(--weight-normal); letter-spacing: 0; color: var(--muted); }
+
+/* Table list: things people scan and act on (services, servers,
+   restores, people), 15px, full width of its card. Columns that matter
+   less get .hide-phone; the last column holds the row's action. */
+/* Positioned, so screen-reader-only labels in a wide table scroll with
+   it instead of widening the page. */
+.table-wrap { position: relative; overflow-x: auto; margin: 0 calc(var(--space-5) * -1) calc(var(--space-5) * -1); }
+.table-wrap:not(:last-child) { margin-bottom: var(--space-3); }
+table.list { width: 100%; border-collapse: collapse; font-size: 15px; }
+table.list th { padding: 8px var(--space-3); text-align: left; white-space: nowrap; font-size: var(--text-xs); font-weight: var(--weight-bold);
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+table.list td { padding: 10px var(--space-3); border-top: 1px solid var(--border); vertical-align: middle; }
+table.list :is(th, td):first-child { padding-left: var(--space-5); }
+table.list :is(th, td):last-child { padding-right: var(--space-5); text-align: right; }
+table.list tr[aria-current] td { background: var(--highlight-soft); }
+@supports (color: color-mix(in srgb, red 50%, blue)) { table.list td { border-top-color: var(--edge); } }
+/* The first column: a logo or icon tile, the name, a line under it. */
+.list-name { display: flex; align-items: center; gap: var(--space-3); min-width: 0; font-weight: var(--weight-bold); font-size: var(--text-base); }
+.list-name a { color: var(--fg); }
+.list-name small { display: block; margin-top: 2px; font-weight: var(--weight-normal); font-size: var(--text-xs); color: var(--muted); }
+.list-name small :is(.install-line, .address-waiting) { margin: 0; font-size: inherit; }
+.list-name .badge { font-size: var(--text-xs); vertical-align: 0.1em; }
+/* Links in tables are quiet: the name in the text colour, others in the
+   accent, underlined only on hover; the row's action in bold. */
+table.list a { text-decoration: none; }
+table.list a:hover { text-decoration: underline; }
+.list-name > div > a { color: var(--fg); }
+.list-name > div { white-space: nowrap; }
+.list-name small { white-space: normal; }
+.table-action { font-size: var(--text-sm); font-weight: var(--weight-bold); }
+/* A small bar of how full something is (a server's disks), its width
+   from data-width (app.js); the status colour when it's running low. */
+.meter { width: 100%; min-width: 6rem; max-width: 10rem; height: 6px; border-radius: var(--radius-pill); overflow: hidden;
+  background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--border); }
+.meter > span { display: block; height: 100%; background: var(--chart-1); }
+.meter-warning > span { background: var(--warn); } .meter-problem > span { background: var(--bad); }
+td .meter + small { display: block; margin-top: 2px; font-size: var(--text-xs); }
+/* Recent activity: a dot, what happened (and where) and when. */
+.activity-list { list-style: none; margin: 0; padding: 0; }
+.activity-list li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--space-3); align-items: baseline;
+  padding: var(--space-2) 0; border-top: 1px solid var(--border); }
+.activity-list li:first-child { border-top: 0; padding-top: 0; }
+.activity-list .dot { margin: 0; }
+.activity-what a { color: var(--fg); text-decoration: none; font-weight: var(--weight-medium); }
+.activity-what a:hover { text-decoration: underline; }
+.activity-what small { display: block; font-size: var(--text-xs); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.activity-list time { font-size: var(--text-xs); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+@supports (color: color-mix(in srgb, red 50%, blue)) { .activity-list li { border-top-color: var(--edge); } }
+/* Only the first column wraps (names and addresses); the rest stay on a line. */
+table.list td:not(:first-child, .wrap) { white-space: nowrap; }
+table.list .with-icon { display: inline-flex; align-items: center; gap: var(--space-1); }
+.list-name .logo-tile { width: 34px; height: 34px; padding: 3px; }
+.list-name .logo-tile .icon { width: 20px; height: 20px; }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* A short command in running text (`sshd -T`): not broken at its hyphen. */
+code.nowrap { white-space: nowrap; }
+/* Only on phones (where a .hide-phone column's content moves). */
+.show-phone { display: none; }
+
+/* Friendly/Technical switch (the website's): flips a part of the page
+   between what it does and the files behind it. The part is .views; its
+   .friendly-only and .technical-only children show one at a time. */
+.view-switch { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; padding: 3px; border-radius: var(--radius-pill);
+  background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--border-strong); cursor: pointer; user-select: none; margin: 0; font-weight: var(--weight-normal); }
+.view-switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.view-switch::before { content: ""; position: absolute; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px); border-radius: var(--radius-pill);
+  background: var(--fg); transition: translate 0.3s cubic-bezier(0.3, 0.7, 0.2, 1); }
+.view-switch:has(input:checked)::before { translate: 100% 0; }
+.view-switch:has(input:focus-visible) { box-shadow: var(--focus-ring); }
+.view-switch span:not(.sr-only) { position: relative; padding: 5px 16px; text-align: center; font-size: var(--text-xs); font-weight: var(--weight-bold);
+  pointer-events: none; transition: color 0.3s; }
+.view-switch span:nth-of-type(1) { color: var(--bg); } .view-switch span:nth-of-type(2) { color: var(--muted); }
+.view-switch:has(input:checked) span:nth-of-type(1) { color: var(--muted); } .view-switch:has(input:checked) span:nth-of-type(2) { color: var(--bg); }
+@supports (color: color-mix(in srgb, red 50%, blue)) { .view-switch { background: var(--glass-2); box-shadow: inset 0 0 0 1px var(--edge-strong); } }
+@media (prefers-reduced-motion: reduce) { .view-switch::before, .view-switch span { transition: none; } }
+.views .technical-only { display: none; }
+.views:has(.view-switch input:checked) .friendly-only { display: none; }
+.views:has(.view-switch input:checked) .technical-only { display: grid; }
+
+/* Code panel: a file Roostack wrote, or a command and what it shows, with
+   where it lives in the bar above. */
+.code-panel { margin: 0; border-radius: var(--radius-lg); overflow: hidden; background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--border); min-width: 0; }
+@supports (color: color-mix(in srgb, red 50%, blue)) {
+  .code-panel { background: color-mix(in srgb, var(--surface-2) 85%, transparent); }
+}
+.code-bar { display: flex; align-items: center; gap: var(--space-2); padding: 8px 14px; border-bottom: 1px solid var(--border);
+  font: 12px var(--font-mono); color: var(--muted); overflow-wrap: anywhere; }
+.code-bar .icon { color: currentColor; }
+.code-panel pre { margin: 0; padding: 14px 16px; font-size: 12.5px; line-height: 1.6; overflow-x: auto; white-space: pre; }
+.code-comment { color: var(--muted); } .code-section { color: var(--accent); }
+
+/* Phones: grids and figures in one or two columns, tables lose their
+   minor columns, page heads stack. */
+@media (max-width: 900px) {
+  .grid > [class*="span-"] { grid-column: span 12; }
+  .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+  .figures > .card { padding: var(--space-3); }
+  .figure-value { font-size: 1.35rem; }
+  .big-figure { font-size: 2.6rem; }
+  .table-wrap { margin: 0 calc(var(--space-4) * -1) calc(var(--space-4) * -1); }
+  table.list :is(th, td):first-child { padding-left: var(--space-4); }
+  table.list :is(th, td):last-child { padding-right: var(--space-4); }
+  .hide-phone { display: none !important; }
+  .show-phone { display: inline !important; }
+  .list-name .logo-tile { display: none; }
+  .page-head-actions { margin-left: 0; width: 100%; }
+  .card { padding: var(--space-4); }
+}
+
+/* ---------- Install steps (install-steps, install-line) ---------- */
+ol.install-steps { list-style: none; padding: 0; margin: var(--space-3) 0; display: grid; gap: var(--space-2); }
+ol.install-steps li { display: grid; grid-template-columns: 1.4em minmax(0, 1fr) auto; gap: var(--space-2); align-items: baseline; color: var(--muted); }
+ol.install-steps li.step-done { color: var(--fg); }
+ol.install-steps li.step-done .mark { color: var(--ok); }
+ol.install-steps li.step-now { color: var(--fg); font-weight: var(--weight-medium); }
+ol.install-steps .mark { text-align: center; }
+ol.install-steps small { color: var(--muted); font-weight: var(--weight-normal); }
+/* How long a step took stays on one line; a note under a step's words
+   (the link code, cloud-linked.html) wraps on a phone. */
+ol.install-steps li > small { white-space: nowrap; }
+ol.install-steps span small { display: block; }
+.address-pending { color: var(--muted); overflow-wrap: anywhere; }
+.install-line { font-size: var(--text-sm); color: var(--muted); margin: var(--space-1) 0; }
+.badge { background: var(--accent-soft); color: var(--accent); }
+/* A badge beside a title in the heading itself (a service of your own). */
+h1 > .badge, h2 > .badge { vertical-align: 0.2em; }
+.badge-highlight { background: var(--highlight-soft); color: var(--highlight); }
+.badge-ok { background: var(--ok-bg); color: var(--ok); }
+.badge-warn { background: var(--warn-bg); color: var(--warn); }
+
+/* ---------- Lists: bordered rows ---------- */
+ul.rows, ul.kept, ul.users { list-style: none; padding: 0; margin: var(--space-3) 0; }
+ul.rows > li, ul.kept > li, ul.users > li { border-top: 1px solid var(--border); padding: var(--space-3) 0; }
+ul.rows > li:last-child, ul.kept > li:last-child, ul.users > li:last-child { border-bottom: 1px solid var(--border); }
+.row-split, ul.kept > li { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3);
+  overflow-wrap: anywhere; }
+.row-actions { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; justify-content: flex-end; }
+ul.guests .row-split { flex-wrap: wrap; }
+ul.pauses .row-split > :last-child { flex: none; } /* the text wraps, never a button's label */
+ul.guests .row-split > strong { flex: 1 1 10em; } /* the buttons go underneath when there isn't room */
+ul.guests .guest-space { margin: var(--space-2) 0 var(--space-1); }
+ul.plain { list-style: none; padding: 0; margin: var(--space-2) 0; }
+ul.plain li { margin: var(--space-2) 0; }
+/* Long names (repository files, addresses) wrap rather than overflow on a phone. */
+ul.plain code { overflow-wrap: anywhere; }
+
+/* ---------- Disclosure (details) ---------- */
+details > summary { cursor: pointer; color: var(--muted); font-size: var(--text-sm); }
+details > summary:hover { color: var(--fg); }
+details.technical { margin: var(--space-1) 0 var(--space-5); }
+/* An open disclosure's contents are indented under it, with a line down
+   the left tying them to their summary. Not for logs, action lists, tiles
+   or the package editor (which styles its own: internal/editor). */
+details:not(.activity-details, .action, .tile > details, .pe details)[open] > :not(summary) {
+  margin: 0 0 0 var(--space-2); padding: var(--space-1) 0 var(--space-1) var(--space-3);
+  border-left: 3px solid var(--accent-soft); }
+details:not(.activity-details, .action, .tile > details, .pe details)[open] > summary + * { margin-top: var(--space-2); padding-top: var(--space-2); }
+details:not(.activity-details, .action, .tile > details, .pe details)[open] > :last-child { margin-bottom: var(--space-2); padding-bottom: var(--space-2); }
+details:not(.activity-details, .action, .tile > details, .pe details)[open] > :is(ul, ol) { padding-left: calc(var(--space-3) + 1.25em); }
+/* An action (a service's): a row with a chevron that opens its form. */
+details.action { border-top: 1px solid var(--border); padding: var(--space-3) 0; }
+.card-head + details.action { border-top: 0; padding-top: 0; }
+details.action > summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); list-style: none;
+  color: var(--fg); font-size: var(--text-base); font-weight: var(--weight-medium); }
+details.action > summary::-webkit-details-marker { display: none; }
+details.action > summary::after { content: ""; flex: none; width: 16px; height: 16px; background: var(--muted); transition: rotate 0.2s;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m10 7 5 5-5 5'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m10 7 5 5-5 5'/%3E%3C/svg%3E") center / contain no-repeat; }
+details.action[open] > summary::after { rotate: 90deg; }
+@supports (color: color-mix(in srgb, red 50%, blue)) { details.action { border-top-color: var(--edge); } }
+
+/* ---------- Activity (live status + collapsed log) ---------- */
+.activity { margin: var(--space-3) 0; }
+.activity-status { margin: 0 0 var(--space-2); }
+.activity-status.ok { color: var(--ok); }
+.activity-status.failed { color: var(--bad); }
+pre.output { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3); white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.85em;
+  max-height: 16em; overflow: auto; }
+.activity-log { max-height: 24em; }
+
+/* ---------- Logo tile (a service's logo, or a drawn icon) ---------- */
+.logo-tile { flex: none; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box;
+  width: 48px; height: 48px; padding: 4px; border-radius: var(--radius); border: 1px solid var(--border);
+  background: var(--logo-tile); color: var(--logo-tile-fg); }
+.logo-tile img { width: 100%; height: 100%; object-fit: contain; border-radius: var(--radius-sm); }
+.logo-tile .icon { width: 26px; height: 26px; color: var(--logo-tile-fg); }
+
+/* ---------- Project credit (who makes an app; install page) ---------- */
+.project-credit { display: flex; gap: var(--space-3); align-items: flex-start; margin: var(--space-3) 0; }
+.project-credit p { margin: 0; }
+.project-links { display: flex; flex-wrap: wrap; gap: 0 var(--space-3); }
+.spinner { display: inline-block; width: 0.8em; height: 0.8em; border: 2px solid var(--border);
+  border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: -0.1em; }
+/* 0.8s: static/app.js keeps spinners in step by this. */
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
+
+/* ---------- Secrets and codes ---------- */
+.secret { display: block; margin: var(--space-2) 0; padding: var(--space-3); font-size: var(--text-lg);
+  letter-spacing: 0.05em; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius);
+  overflow-wrap: anywhere; user-select: all; }
+code.secret { display: inline-block; font-size: 1.1em; padding: var(--space-1) var(--space-2); }
+.secret-row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3);
+  margin: var(--space-3) 0; overflow-wrap: anywhere; }
+/* The text to copy, its copy button floating at its top right (an
+   icon: a tick for a moment once copied). */
+.copy-box { position: relative; margin: var(--space-2) 0; }
+.copy-box pre.output { margin: 0; padding-right: calc(var(--space-3) + 34px); }
+.copy-box .copy-button { position: absolute; top: 4px; right: 4px; padding: 6px; border-radius: var(--radius-sm);
+  background: var(--surface); border: 1px solid var(--border); }
+.copy-box .copy-button:hover { background: var(--surface-2); }
+.copy-box .copy-button span:not(.sr-only) { display: flex; }
+.qr-box { margin: var(--space-3) 0; }
+svg.qr { display: block; width: 200px; height: 200px; border-radius: var(--radius-sm); }
+.recovery { font-size: var(--text-lg); text-align: center; }
+.steps li { margin-bottom: var(--space-3); }
+/* A checklist whose steps are marked by their state's dot, not numbers. */
+.public-steps { list-style: none; padding-left: 0; }
+.public-steps .qr-box { margin: var(--space-2) 0; }
+.public-steps small { display: block; }
+
+/* ---------- Home ---------- */
+/* Needs attention: each item a notice (problem or warning) with its first
+   sentence in bold, the rest muted, and what to do as a button. */
+.attention ul { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+.attention .item { display: flex; align-items: center; gap: var(--space-3) var(--space-4); margin: 0; }
+.attention .item-text { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.attention .item-text strong { display: block; }
+.attention .item-text span { font-size: var(--text-sm); }
+.attention .item > a { flex: none; }
+.tiles { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr)); }
+.tile { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; }
+.tile > details { align-self: stretch; }
+.tile h2 { margin: 0; }
+@media (max-width: 640px) {
+  .attention .item { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---------- Services ---------- */
+.services { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+.service { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); }
+.service h2 { margin: 0; }
+.service h2 a { color: var(--fg); }
+.service a { overflow-wrap: break-word; }
+/* The catalog (Add a service): a search box and category filters over
+   the list, filtering as people type (Alpine); without scripts they stay
+   hidden and every service shows. */
+.catalog-filter { display: grid; gap: var(--space-2); margin-bottom: var(--space-4); }
+.filter-chips { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.filter-chips button { padding: var(--space-1) var(--space-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: none; font-size: var(--text-sm); font-weight: var(--weight-normal); color: var(--fg); }
+.filter-chips button:hover { background: var(--surface-2); filter: none; }
+.filter-chips button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+li.card.offer { display: flex; align-items: center; gap: var(--space-3); }
+.offer-text { flex: 1 1 auto; min-width: 0; }
+.offer-text h2 { display: inline; margin: 0 var(--space-1) 0 0; }
+.offer-text .badge { vertical-align: 0.15em; margin-right: var(--space-1); }
+.offer-text p { margin: var(--space-1) 0 0; }
+.offer-categories { font-size: var(--text-sm); color: var(--muted); }
+.offer-action { flex: none; display: flex; align-items: center; gap: var(--space-2); }
+.offer-later { max-width: 14rem; text-align: right; font-size: var(--text-sm); color: var(--muted); margin: 0; }
+@media (max-width: 640px) {
+  li.card.offer { flex-wrap: wrap; align-items: flex-start; }
+  .offer-text { flex-basis: calc(100% - 48px - var(--space-3)); }
+  .offer-action { flex-basis: 100%; justify-content: flex-end; padding-left: calc(48px + var(--space-3)); }
+  .offer-later { max-width: none; flex: 1; text-align: left; }
+}
+form.port { border-top: 1px solid var(--border); padding-top: var(--space-4); margin-bottom: var(--space-4); }
+
+/* ---------- Misc page parts ---------- */
+
+.provider { border-left: 3px solid var(--border); padding-left: var(--space-3); margin-bottom: var(--space-3); }
+table.compare { border-collapse: collapse; margin: var(--space-3) 0; width: 100%; }
+table.compare th { text-align: left; padding: var(--space-2) var(--space-3) var(--space-2) 0; color: var(--muted);
+  font-weight: var(--weight-medium); width: 5em; }
+table.compare td { padding: var(--space-2) 0; overflow-wrap: anywhere; }
+ul.scope { margin: var(--space-1) 0 var(--space-3); padding-left: var(--space-5); }
+ul.scope li { margin-bottom: var(--space-1); }
+
+@media print {
+  .sidebar, .page-header, button, form, .hint, footer.site { display: none !important; }
+  .recovery { border: 2px solid #000; }
+}
+a.danger-link { color: var(--bad); font-size: var(--text-sm); }
+form.later { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--border); }
+
+/* ---------- Theme picker (Account) ---------- */
+/* Each preview is a tiny page in its own palette and mode: the page
+   background, a card, a line of text, and the accent and highlight. The
+   backgrounds are what tell similar themes (Catppuccin flavours) apart. */
+.theme-choice { align-items: center; }
+.theme-previews { display: inline-flex; gap: var(--space-2); flex-shrink: 0; }
+.theme-preview { display: inline-flex; padding: 6px; border-radius: var(--radius-sm);
+  background: var(--bg); border: 1px solid var(--border-strong); }
+.tp-card { display: inline-flex; flex-direction: column; gap: 4px; padding: 5px 6px; border-radius: 4px;
+  background: var(--surface); border: 1px solid var(--border); }
+.tp-text { width: 34px; height: 4px; border-radius: 2px; background: var(--fg); opacity: 0.85; }
+.tp-dots { display: inline-flex; gap: 3px; }
+.tp-accent, .tp-highlight { width: 12px; height: 12px; border-radius: 3px; }
+.tp-accent { background: var(--accent); }
+.tp-highlight { background: var(--highlight); }
+/* Accent choices: a light and a dark dot per colour. */
+.accents { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0 var(--space-3); }
+.accents legend { grid-column: 1 / -1; }
+.accent-choice { align-items: center; margin-bottom: var(--space-2); font-weight: var(--weight-normal); }
+.accent-dots { display: inline-flex; gap: 2px; }
+.accent-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 1px solid var(--border); }
+
+/* ---------- Screen-reader-only text ---------- */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+
+/* ---------- Backup drive picker (setup-backup) ---------- */
+.drives { display: grid; gap: var(--space-2); margin: var(--space-3) 0; }
+.drive { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--space-2);
+  padding: var(--space-2) var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-md); }
+.drive > label { margin: 0; flex: 1 1 16rem; }
+.drive-unusable > label { color: var(--muted); }
+.drive-erase { flex: 0 0 auto; }
+
+.activity-status { overflow-wrap: anywhere; }
+
+/* ---------- Backup plan (backup-plan): numbered backups and empty slots ---------- */
+/* The plan's copies one under another, whatever the width (the Owner,
+   2026-10-18: side by side, their numbers read wrong, and a box being
+   added took a row of its own, away from where it was). */
+.plan-list { list-style: none; padding: 0; margin: var(--space-3) 0; display: grid; gap: var(--space-3); }
+@supports (color: color-mix(in srgb, red 50%, blue)) {
+  .plan-card:not(.plan-slot) { background: var(--glass); border: 0; box-shadow: inset 0 0 0 1px var(--edge); }
+  .plan-card.plan-data { background: var(--glass-2); }
+}
+.plan-card { display: flex; gap: var(--space-3); align-items: flex-start; padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.plan-slot { border-style: dashed; border-color: var(--border-strong); background: transparent; align-items: center; }
+.plan-adding { border-color: var(--accent); }
+.plan-num { flex: 0 0 auto; display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%;
+  background: var(--accent-soft); color: var(--fg); font-weight: 600; }
+.plan-data { background: var(--surface-2); }
+.plan-extra { background: none; border: 1px solid var(--border-strong); color: var(--accent); }
+.plan-more-info { margin: 0 0 var(--space-3); }
+.plan-more-info ul { padding-left: var(--space-5, 1.5rem); }
+.plan-more-info li { margin-bottom: var(--space-2); }
+.plan-slot .plan-num { background: none; border: 1px dashed var(--border-strong); color: var(--muted); }
+.plan-body { flex: 1 1 auto; min-width: 0; }
+.plan-body p { margin: 0 0 var(--space-1); }
+.plan-title { font-weight: 600; }
+.plan-slot .plan-title { color: var(--muted); }
+/* On a phone a card's body takes the card's whole width: the number sits
+   beside the title only, and an open disclosure's indent is smaller. */
+@media (max-width: 640px) {
+  .plan-card:not(.plan-slot) { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center;
+    padding: var(--space-3); }
+  .plan-card:not(.plan-slot) > .plan-body { display: contents; }
+  .plan-card:not(.plan-slot) > .plan-body > :not(.plan-title) { grid-column: 1 / -1; }
+  .plan-card .plan-body details[open] > :not(summary) { margin-left: 0; padding-left: var(--space-2); }
+}
+.space-low { color: var(--warn); font-weight: 600; }
+.space-bar { display: flex; height: 10px; border-radius: var(--radius-pill); background: var(--surface-2); overflow: hidden;
+  border: 1px solid var(--border); margin: var(--space-1) 0 var(--space-2); max-width: 28rem; }
+/* The parts of a disk's use (Settings → Servers, Storage for others):
+   chart colours, with a 2px gap between segments; a swatch in the key
+   matches each. Low space outlines the bar in the status colour (the
+   notice under it says why). */
+.space-bar > span + span { border-left: 2px solid var(--surface); }
+.space-bar.space-warning { border: 2px solid var(--warn); }
+.space-bar.space-problem { border: 2px solid var(--bad); }
+.space-used, .space-other { background: var(--muted); }
+.space-services { background: var(--chart-1); }
+.space-backups { background: var(--chart-2); }
+.space-guests { background: var(--chart-3); }
+.space-promised { background: repeating-linear-gradient(45deg, var(--chart-3) 0 2px, transparent 2px 6px); }
+.space-free { background: var(--surface-2); border: 1px solid var(--border); }
+/* Reserved by the system: at the far end of the bar, after the free space. */
+.space-reserved { background: repeating-linear-gradient(135deg, var(--muted) 0 2px, transparent 2px 5px); }
+.space-bar > .space-reserved { margin-left: auto; }
+.disk + .disk { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--border); }
+.disk-title { margin: 0 0 var(--space-1); }
+.swatch { display: inline-block; width: 0.8em; height: 0.8em; border-radius: 3px; margin-right: var(--space-2);
+  vertical-align: -0.05em; }
+ul.guests .space-used { background: var(--chart-3); }
+.plan-where { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); margin: var(--space-2) 0;
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius); background: var(--surface-2); }
+.plan-where form { display: flex; gap: var(--space-2); }
+/* A failed backup's first line wraps anywhere; the rest (restic's stack
+   trace, at worst) is under Details. */
+.plan-card p.error { overflow-wrap: anywhere; }
+.plan-error { margin: var(--space-2) 0; }
+.plan-manage { margin-top: var(--space-2); }
+.plan-manage code { overflow-wrap: anywhere; }
+/* "Tell me more" under a card's notice, and the new-key form in Manage. */
+.plan-more, .plan-key { margin: var(--space-2) 0; }
+/* Rolling a backup back: the date and time, side by side where they fit. */
+.plan-when { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; margin-bottom: var(--space-2); }
+.plan-when legend { width: 100%; }
+.plan-when input { width: auto; }
+/* Manage's buttons wrap their words at phone width, nested as they are. */
+.plan-manage .plan-actions button { white-space: normal; }
+.plan-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; margin-top: var(--space-2); }
+.plan-choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--space-2); margin: var(--space-3) 0; }
+.plan-choice { display: flex; gap: var(--space-2); align-items: flex-start; margin: 0; padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; }
+.plan-choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.plan-choice span { display: grid; }
+.plan-invite { margin-top: var(--space-3); }
+.plan-invite label { margin-bottom: var(--space-1); font-weight: 600; }
+.code-input { width: 100%; min-height: 8rem; font-family: var(--font-mono); font-size: var(--text-sm);
+  word-break: break-all; resize: vertical; }
+/* The 3-2-1 checks as pills under the plan's heading. */
+.plan-checks { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0 0 var(--space-3); }
+/* The last backup's time as a big figure, what it added under it. */
+.backup-last { display: grid; gap: var(--space-1); margin: 0 0 var(--space-2); }
+
+/* ---------- Settings: overview grid and area pages ---------- */
+.settings-group-title { margin: var(--space-5) 0 var(--space-3); }
+.page-head + .settings-group-title { margin-top: 0; }
+.area-grid { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.area-card { display: flex; flex-direction: column; gap: var(--space-1); height: 100%; padding: var(--space-4);
+  color: var(--fg); text-decoration: none; }
+.area-card:hover { border-color: var(--accent); }
+.area-title { font-weight: var(--weight-bold); }
+.area-title::after { content: " →"; color: var(--muted); font-weight: var(--weight-normal); }
+.area-summary { color: var(--muted); font-size: var(--text-sm); }
+/* A per-server area with several servers: a line each, divided. */
+.area-servers { display: grid; margin-top: var(--space-1); }
+.area-server { display: flex; align-items: baseline; gap: 0; padding: var(--space-2) 0; border-top: 1px solid var(--border);
+  font-size: var(--text-sm); }
+.area-server:first-child { border-top: 0; padding-top: 0; }
+.area-server .area-summary { display: inline; }
+.dot-none { background: var(--border-strong); }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: var(--space-2);
+  vertical-align: 1px; background: var(--muted); }
+.dot-ok { background: var(--ok); } .dot-warn { background: var(--warn); } .dot-problem { background: var(--bad); }
+
+/* Your account's areas: a row of tabs at the top of each (Settings' pages
+   are in the sidebar). */
+.settings-nav.area-tabs { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-bottom: 0; border-bottom: 1px solid var(--border); }
+@supports (color: color-mix(in srgb, red 50%, blue)) { .settings-nav.area-tabs { border-bottom-color: var(--edge-strong); } }
+.settings-nav.area-tabs a { color: var(--muted); text-decoration: none; padding: var(--space-2) var(--space-3); border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.settings-nav.area-tabs a:hover { color: var(--fg); }
+.settings-nav.area-tabs a.active { color: var(--fg); font-weight: var(--weight-medium); border-bottom-color: var(--highlight); }
+
+/* ---------- Data tables (e.g. DNS records) ---------- */
+table.records { width: 100%; border-collapse: collapse; margin: var(--space-3) 0; font-size: var(--text-sm); }
+table.records th { text-align: left; color: var(--muted); font-weight: var(--weight-medium);
+  border-bottom: 1px solid var(--border-strong); padding: var(--space-2) var(--space-3) var(--space-2) 0; }
+table.records td { border-bottom: 1px solid var(--border); padding: var(--space-2) var(--space-3) var(--space-2) 0;
+  overflow-wrap: anywhere; }
+
+/* ---------- Dialogs (confirmations) ---------- */
+dialog.dialog { border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-4);
+  background: var(--surface); color: var(--text); min-width: min(22rem, calc(100vw - 2 * var(--space-4))); max-width: min(32rem, calc(100vw - 2 * var(--space-4)));
+  box-shadow: 0 10px 40px rgb(0 0 0 / 0.25); }
+dialog.dialog::backdrop { background: rgb(0 0 0 / 0.45); }
+dialog.dialog p { margin: 0 0 var(--space-4); overflow-wrap: anywhere; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-3); flex-wrap: wrap; }
+form.confirm { display: inline; }
+
+/* A form in a dialog (adding a check, someone, an invite, a server): its
+   heading and a close button, the form, then Cancel and its button. A
+   link with data-dialog="ID" opens it (app.js); without scripts the link
+   reloads the page with the dialog open in the page, as a card. A form
+   that came back with a mistake opens as a dialog again. */
+dialog.dialog.form-dialog { position: fixed; width: min(34rem, calc(100vw - 2 * var(--space-4))); max-width: none;
+  max-height: calc(100dvh - 2 * var(--space-4)); overflow-y: auto; margin: auto; padding: var(--space-5); }
+dialog.form-dialog:not(:modal) { position: static; width: auto; margin: var(--space-4) 0 0; box-shadow: none; }
+/* A wider form, loaded as it opens (data-load): adding a media library or
+   a location, with drive cards; it scrolls inside the dialog. */
+dialog.dialog.form-dialog.wide { width: min(44rem, calc(100vw - 2 * var(--space-4))); max-height: calc(100dvh - 4 * var(--space-4)); overflow: auto; }
+dialog.form-dialog .dialog-body > form.card { box-shadow: none; border: 0; padding: 0; margin: 0; background: none; }
+.dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-3); }
+.dialog-head h2 { margin: 0; }
+dialog.form-dialog .dialog-actions { margin-top: var(--space-4); }
+/* A dialog of several small forms (a person's role, password, removal):
+   one under another. */
+dialog.form-dialog > form + form, dialog.form-dialog > form + .confirm { display: block; margin-top: var(--space-3); }
+@media (max-width: 640px) {
+  dialog.dialog.form-dialog:modal { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); margin: auto 8px 8px; padding: var(--space-4); }
+}
+
+/* The folder picker: the folder chosen as a value with a button to
+   change it (.folder-choice), and the picker (folders opened as crumbs,
+   then the folders here, each with what it holds), in a dialog or, without
+   scripts, a page. */
+.folder-choice { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; padding: var(--space-3);
+  margin: 0 0 var(--space-4); border: 1px solid var(--border); border-radius: var(--radius); background: var(--glass); }
+.folder-choice > .icon { width: 22px; height: 22px; color: var(--accent); flex: none; }
+.folder-choice .path { flex: 1 1 12rem; min-width: 0; }
+.folder-choice .path strong { display: block; overflow-wrap: anywhere; }
+.folder-choice .path small { display: block; }
+.folder-choice.empty .path strong { color: var(--muted); font-weight: var(--weight-normal); }
+.picker-title { margin: 0 0 var(--space-2); font-size: var(--text-lg); }
+.picker-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 2px var(--space-1); margin: 0 0 var(--space-2); font-size: var(--text-sm); }
+.picker-crumbs .sep { color: var(--muted); }
+.picker-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--border); border-radius: var(--radius);
+  max-height: 20rem; overflow-y: auto; background: var(--surface); }
+.picker-list li + li { border-top: 1px solid var(--border); }
+.picker-list a { display: flex; align-items: center; gap: var(--space-3); padding: 10px var(--space-3); color: var(--fg); text-decoration: none; }
+.picker-list a:hover, .picker-list a:focus-visible { background: var(--glass-2); }
+.picker-list a:hover .name { text-decoration: underline; }
+.picker-list .icon { width: 20px; height: 20px; color: var(--muted); flex: none; }
+.picker-list .icon:first-child { color: var(--accent); }
+.picker-list .name { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.picker-list small { flex: none; }
+.picker-list .empty-note { padding: var(--space-3); color: var(--muted); font-size: var(--text-sm); }
+.picker-here { margin: var(--space-2) 0 0; }
+.folder-picker .dialog-actions { margin-top: var(--space-4); align-items: center; }
+.folder-picker .dialog-actions .hint { margin: 0 auto 0 0; }
+/* In its dialog: wider than a question, the close button in the corner;
+   nearly the whole screen on phones. margin: auto keeps it centred in a
+   card, whose last child loses its bottom margin. */
+dialog.dialog.picker { position: fixed; width: min(38rem, calc(100vw - 2 * var(--space-4))); max-width: none; margin: auto; }
+dialog.picker .picker-close { position: absolute; top: var(--space-3); right: var(--space-3); }
+dialog.picker .picker-title { padding-right: var(--space-6); }
+@media (max-width: 640px) {
+  dialog.dialog.picker { width: calc(100vw - 16px); height: calc(100dvh - 16px); max-height: none; margin: 8px; }
+  dialog.picker[open], dialog.picker .picker-body, dialog.picker .folder-picker { display: flex; flex-direction: column; min-height: 0; }
+  dialog.picker .picker-body, dialog.picker .folder-picker { flex: 1; }
+  dialog.picker .picker-list { max-height: none; flex: 1; }
+}
+
+/* ---------- Service cards ---------- */
+li.card.service { display: block; }
+.section-title { margin-top: var(--space-6); }
+
+/* ---------- Server switcher (per-server settings) ---------- */
+/* Error scenes (internal/errpage): the small mark's hen and server with
+   props, coloured from the theme. The amber is the bright warning amber in
+   both modes, as the server's light borrows the other mode's green. */
+.es-scene { width: 100%; max-width: 320px; height: auto; overflow: visible; display: block; margin: 0 auto; }
+.es-wash { stop-color: var(--highlight-soft); }
+.es-bg { fill: var(--surface); } .es-bgline { stroke: var(--surface); }
+.es-fg { fill: var(--fg); } .es-fgline { stroke: var(--fg); }
+.es-hi { fill: var(--highlight); } .es-hiline { stroke: var(--highlight); }
+.es-ok { fill: var(--ok-on-fg); }
+.es-warn { fill: var(--status-warn-d); } .es-warnline { stroke: var(--status-warn-d); }
+.es-bad { fill: var(--bad); } .es-badline { stroke: var(--bad); }
+.es-off, .es-dimfill { fill: var(--muted); } .es-dim { fill: var(--muted); opacity: .5; }
+.es-dimline { stroke: var(--muted); opacity: .7; } .es-shadow { fill: var(--fg); opacity: .08; }
+.es-txt { font-family: var(--font-sans); font-weight: 800; }
+.error-page { text-align: center; }
+.error-scenes { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--space-4); align-items: end; }
+
+/* A heading between groups of cards on one page (Backups: each server's,
+   then the whole lab's). */
+.area-heading { font-size: var(--text-xl); margin: var(--space-6) 0 var(--space-2); }
+h1 + .area-heading { margin-top: 0; }
+/* The server switcher: a tile per server with its state in a line, the
+   chosen one outlined in the highlight. */
+.card.server-switcher { padding: 0; background: none; border: 0; box-shadow: none; margin-bottom: var(--space-4); }
+.server-switcher ul { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; }
+.server-switcher li { display: grid; gap: 0; margin: 0; padding: var(--space-2) var(--space-3); border-radius: var(--radius-lg);
+  background: var(--surface); box-shadow: inset 0 0 0 1px var(--border); }
+@supports (color: color-mix(in srgb, red 50%, blue)) { .server-switcher li { background: color-mix(in srgb, var(--surface) 80%, transparent); box-shadow: inset 0 0 0 1px var(--edge-strong); } }
+.server-switcher li.current { box-shadow: inset 0 0 0 2px var(--highlight); }
+.server-switcher li .hint { font-size: var(--text-xs); }
+.server-switcher a { text-decoration: none; color: var(--fg); }
+.server-switcher a::after { content: ""; position: absolute; inset: 0; }
+.server-switcher li { position: relative; }
+
+/* ---------- Statistics (Visitors through the relay) ---------- */
+/* A row of choices for how far back (links; the current one marked). */
+.period-choice { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.period-choice a { padding: var(--space-1) var(--space-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-size: var(--text-sm); text-decoration: none; color: var(--fg); }
+.period-choice a[aria-current] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+/* Figures in tiles. */
+.stat-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr)); gap: var(--space-2); margin: var(--space-3) 0; }
+.stat-tiles > div { background: var(--surface-2); border-radius: var(--radius); padding: var(--space-2) var(--space-3); }
+.stat-tiles dt { font-size: var(--text-sm); color: var(--muted); }
+.stat-tiles dd { margin: 0; font-size: var(--text-xl); }
+.stat-tiles dd.hint { font-size: var(--text-sm); }
+/* The bar chart: columns, their heights from data-height (app.js). */
+.bar-chart { margin: var(--space-3) 0; }
+.bar-chart figcaption { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--space-1); }
+.bar-cols { display: flex; align-items: stretch; gap: 3px; height: 7rem; }
+.bar-col { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; }
+.bar { display: block; background: var(--chart-1); border-radius: 3px 3px 0 0; min-height: 1px; }
+.bar-label { height: 1.5em; font-size: var(--text-sm); color: var(--muted); text-align: center; white-space: nowrap;
+  border-top: 1px solid var(--border); padding-top: 2px; overflow: visible; }
+/* A ranked list: name, a bar for its share (data-width), the count. */
+.rank-list { list-style: none; margin: 0; padding: 0; }
+.rank-list li { display: grid; grid-template-columns: minmax(6rem, 9rem) 1fr auto; gap: var(--space-2); align-items: center;
+  padding: 2px 0; }
+.rank-bar { height: 8px; border-radius: var(--radius-pill); background: var(--surface-2); overflow: hidden; }
+.rank-bar > span { display: block; height: 100%; background: var(--chart-1); }
+.rank-other .rank-bar > span { background: var(--muted); }
+.rank-count { color: var(--muted); font-variant-numeric: tabular-nums; }
+.stat-lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--space-4); }
+.stat-lists h3 { font-size: var(--text-sm); color: var(--muted); font-weight: normal; margin: 0 0 var(--space-1); }
+
+/* Adding a check of your own (Monitoring): the form opens under its button. */
+.add-check { margin-top: var(--space-4); }
+.add-check > summary { list-style: none; display: inline-block; }
+.add-check > summary::-webkit-details-marker { display: none; }
+.add-check form { margin-top: var(--space-4); max-width: 34rem; }
+
+/* The sign-in page for services, login.<domain> (SPEC.md §5.2; mock-ups
+   in docs/mockups/sso): the bare layout, one narrow card, in the lab's
+   look. */
+.signin-page { display: grid; gap: var(--space-3); justify-items: center; padding-block: var(--space-6, 32px); }
+.signin-card { margin: 0; width: 100%; }
+.signin-card h1 { margin: 0 0 var(--space-1); }
+.signin-card form { margin-top: var(--space-4); }
+.signin-card label:not(.check) { display: block; margin-bottom: var(--space-4); }
+.signin-card label:not(.check) input { display: block; width: 100%; margin-top: var(--space-1); }
+.signin-brand { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-5); }
+.signin-brand > .brand-mark, .signin-mark { width: 44px; height: 44px; flex: none; border-radius: 12px; }
+.signin-brand strong { font-family: var(--font-display); font-size: var(--text-lg, 1.2rem); }
+.signin-wide { display: inline-flex; max-width: 100%; }
+.signin-wide img { display: block; height: 56px; width: auto; max-width: 100%; object-fit: contain; }
+/* A wide logo without a dark version sits on a light panel in dark mode,
+   so dark lettering stays readable. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-mode="light"]) .signin-wide.on-light { background: #fbf7f2; padding: 8px 14px; border-radius: 12px; }
+}
+[data-mode="dark"] .signin-wide.on-light { background: #fbf7f2; padding: 8px 14px; border-radius: 12px; }
+.signin-to { display: flex; align-items: center; gap: var(--space-2); color: var(--muted); margin: 0; flex-wrap: wrap; }
+.signin-to strong { color: var(--fg); }
+.signin-to .logo-tile { width: 28px; height: 28px; padding: 3px; border-radius: 8px; }
+button.wide { width: 100%; }
+.signin-who { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: baseline; margin: var(--space-3) 0; }
+.signin-foot { margin: 0; text-align: center; max-width: 460px; }
+.signin-foot summary { cursor: pointer; }
+.signin-apps { list-style: none; padding: 0; margin: var(--space-3) 0 var(--space-4); display: grid; gap: var(--space-2); }
+.signin-apps a { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); border-radius: 12px;
+  border: 1px solid var(--edge); background: var(--glass); color: var(--fg); text-decoration: none; }
+.signin-apps a:hover { border-color: var(--edge-strong); }
+.signin-apps .logo-tile { width: 40px; height: 40px; padding: 4px; }
+.signin-apps small { display: block; color: var(--muted); }
+
+/* People with single sign-on (SPEC.md §5.2): each person's line, groups,
+   and the sign-in page's look. */
+.person-line { display: grid; grid-template-columns: auto minmax(8rem, 1fr) minmax(10rem, 1.4fr) minmax(7rem, 1fr) minmax(6rem, 1fr); gap: var(--space-3); align-items: center; }
+.person-line .person-email { overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .person-line { grid-template-columns: auto 1fr; }
+  .person-line > :nth-child(n+3) { grid-column: 2; }
+}
+.warn-text { color: var(--warn); }
+.person-details label:not(.check) { display: block; margin-bottom: var(--space-3); }
+.person-details label:not(.check) input { display: block; width: 100%; max-width: 24rem; margin-top: var(--space-1); }
+.person-details fieldset, .group-form fieldset, .look-form fieldset, .add-person fieldset { border: 0; padding: 0; margin: 0 0 var(--space-4); }
+.person-details legend, .group-form legend, .look-form legend, .add-person legend { font-weight: var(--weight-bold); margin-bottom: var(--space-2); }
+.group-list { list-style: none; padding: 0; margin: 0 0 var(--space-4); display: grid; gap: var(--space-2); }
+.group-list > li { border: 1px solid var(--edge); border-radius: 12px; padding: var(--space-3) var(--space-4); background: var(--glass); }
+.group-line { display: flex; align-items: center; gap: var(--space-3); }
+.group-line .more { margin-left: auto; color: var(--accent); font-size: var(--text-sm); }
+/* A group's dialog: deleting it sits apart from saving it. */
+.group-delete { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--border); }
+.group-name small { display: block; }
+.group-form { margin-top: var(--space-4); }
+.group-form > label, .add-person label:not(.check) { display: block; margin-bottom: var(--space-4); }
+.group-form > label input, .add-person label:not(.check) input { display: block; width: 100%; max-width: 24rem; margin-top: var(--space-1); }
+.two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--space-4); }
+@media (max-width: 700px) { .two-col { grid-template-columns: minmax(0, 1fr); } }
+.with-logo-inline { display: inline-flex; align-items: center; gap: var(--space-2); }
+.with-logo-inline img { border-radius: 4px; }
+.add-group { display: flex; gap: var(--space-3); align-items: flex-end; flex-wrap: wrap; }
+.add-group label { margin: 0; }
+.add-group input { display: block; margin-top: var(--space-1); }
+.logo-sub { margin: 0 0 var(--space-4) 30px; display: grid; gap: var(--space-3); justify-items: start; }
+.logo-sub label { display: block; margin: 0; }
+.logo-sub input[type="file"] { display: block; margin-top: var(--space-1); max-width: 100%; }
+.logo-now { border-radius: 14px; }
+.logo-now.wide { border-radius: 0; height: 56px; width: auto; max-width: 100%; }
+.look-form:not(:has(input[name="logo"][value="mark"]:checked)) .logo-for-mark,
+.look-form:not(:has(input[name="logo"][value="wide"]:checked)) .logo-for-wide { display: none; }
+.theme-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: var(--space-2); }
+.theme-swatch { position: relative; display: flex; align-items: center; gap: var(--space-2); padding: 6px 10px; margin: 0; width: 100%; min-width: 0;
+  border: 1px solid var(--edge); border-radius: 10px; cursor: pointer; font-size: var(--text-sm); }
+.theme-swatch:has(input:checked) { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.theme-swatch:has(input:focus-visible) { box-shadow: var(--focus-ring); }
+.theme-swatch input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+.theme-swatch > span:last-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.theme-swatch-dots { display: inline-flex; }
+.theme-swatch-dots i { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgb(0 0 0 / .15); margin-right: -4px; }
+/* Each swatch shows its own theme's colours: its [data-palette] sets them. */
+.theme-swatch .s-bg { background: var(--pal-bg-l); } .theme-swatch .s-ac { background: var(--pal-accent-l); } .theme-swatch .s-hl { background: var(--pal-highlight-l); }
+
+/* A service's Single sign-on card (SPEC.md §5.2). */
+.status-off { background: var(--surface-2); color: var(--muted); }
+.sso-steps { margin: var(--space-3) 0; }
+.sso-steps li { display: flex; gap: var(--space-2); align-items: flex-start; margin-bottom: var(--space-2); }
+.sso-steps .icon { margin-top: 3px; flex: none; color: var(--accent); }
+.sso-who fieldset { border: 0; padding: 0; margin: var(--space-3) 0; }
+.sso-who legend { font-weight: var(--weight-bold); margin-bottom: var(--space-2); }
+.sso-choose .check-row { gap: 0 var(--space-5); }
+.sso-off { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--border); }
+
+/* ---------- Bringing your own data (SPEC.md §8.4) ---------- */
+/* A page of numbered steps (the import page): each step a card, its
+   number in a disc; a step done shrinks to one line with Change, a step not
+   reached yet is only its heading, muted; the result is the last step. */
+.steps { grid-template-columns: minmax(0, 1fr); }
+.step-card .card-head h2 { display: flex; align-items: center; gap: var(--space-3); }
+.step-num { display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-fg); font-size: var(--text-sm); font-family: var(--font-sans); }
+.step-num .icon { width: 16px; height: 16px; }
+.step-done .step-num, .step-result .step-num { background: var(--ok-bg); color: var(--ok); }
+.step-done, .step-todo { padding-block: var(--space-3); }
+.step-done .card-head, .step-todo .card-head { margin-bottom: 0; }
+.step-done .card-head h2, .step-todo .card-head h2 { font-size: var(--text-base); }
+.step-summary { margin: var(--space-2) 0 0 calc(28px + var(--space-3)); }
+.step-summary small { display: block; color: var(--muted); }
+.step-todo { opacity: .6; box-shadow: none; }
+.step-todo .step-num { background: var(--glass-2); color: var(--muted); }
+.step-todo p { margin: var(--space-2) 0 0 calc(28px + var(--space-3)); }
+.sub-heading { font-size: var(--text-base); margin: var(--space-5) 0 var(--space-1); }
+/* Beside the steps, what to do on the old machine and the help; below
+   1100 px, what to do on the old machine first (step 1 needs it). */
+.steps-layout { grid-template-rows: auto 1fr; }
+.steps-layout > .steps { grid-row: 1 / span 2; }
+.steps-layout > .steps-aside, .steps-layout > .steps-help { align-self: start; }
+@media (max-width: 1100px) {
+  .steps-layout { grid-template-rows: none; }
+  .steps-layout > .steps { grid-row: auto; }
+  .steps-layout > .steps-aside { order: -1; }
+}
+
+/* Pasted text: a monospace text area. */
+textarea { display: block; width: 100%; margin-top: var(--space-2); padding: 10px 12px; font: var(--text-sm)/1.45 var(--font-mono);
+  color: inherit; background: var(--surface-2); border: 1px solid var(--border-strong); border-radius: var(--radius); resize: vertical; }
+textarea:focus-visible { border-color: var(--highlight); }
+
+/* A path on the old machine and where it is now: labels on one row, the
+   input and the folder on the next, centred on each other; on phones one
+   under another. */
+.path-row { display: grid; grid-template-columns: minmax(10rem, 1fr) auto minmax(14rem, 1.4fr);
+  grid-template-areas: "old-l . now-l" "old arrow now"; gap: var(--space-2) var(--space-3); align-items: center; margin-bottom: var(--space-3); }
+.path-row > .path-old-label { grid-area: old-l; margin: 0; }
+.path-row > .path-now-label { grid-area: now-l; margin: 0; }
+.path-row > .path-old { grid-area: old; margin: 0; }
+.path-row > .path-arrow { grid-area: arrow; color: var(--muted); }
+.path-row > .path-now { grid-area: now; margin: 0; min-height: 46px; padding: 4px 4px 4px var(--space-3); }
+@media (max-width: 640px) {
+  .path-row { grid-template-columns: 1fr; grid-template-areas: "old-l" "old" "now-l" "now"; }
+  .path-row > .path-arrow { display: none; }
+}
+
+/* A table list whose cells have a second, smaller line, and whose rows
+   stack on phones (what goes where). */
+table.list.stack-phone td small { display: block; color: var(--muted); font-size: var(--text-xs); margin-top: 2px; }
+table.list.stack-phone tr.row-muted td:nth-child(2) { color: var(--muted); }
+@media (max-width: 640px) {
+  table.list.stack-phone thead { display: none; }
+  table.list.stack-phone, table.list.stack-phone tbody, table.list.stack-phone tr { display: block; width: 100%; }
+  table.list.stack-phone tr { border-top: 1px solid var(--edge); padding: var(--space-2) var(--space-4); }
+  table.list.stack-phone td { display: block; border: 0; padding: 2px 0; text-align: left; white-space: normal; }
+  table.list.stack-phone :is(td):first-child, table.list.stack-phone :is(td):last-child { padding-left: 0; padding-right: 0; }
+}
+
+/* A check's results: a mark and a sentence each; ok, warning, problem
+   (in the way: nothing goes on until it's fixed), note. */
+ul.check-list { list-style: none; padding: 0; margin: var(--space-3) 0; display: grid; gap: var(--space-3); }
+ul.check-list > li { display: flex; gap: var(--space-3); align-items: flex-start; }
+ul.check-list > li > .icon { flex: none; width: 22px; height: 22px; padding: 3px; border-radius: 50%; margin-top: 1px; }
+ul.check-list > li > div { min-width: 0; overflow-wrap: anywhere; }
+ul.check-list .check-ok > .icon, ul.check-list > .check-ok > .icon { background: var(--ok-bg); color: var(--ok); }
+ul.check-list > .check-warn > .icon { background: var(--warn-bg); color: var(--warn); }
+ul.check-list > .check-bad > .icon { background: var(--bad-bg); color: var(--bad); }
+ul.check-list > .check-info > .icon { background: var(--accent-soft); color: var(--accent); }
+ul.check-list .copy-box { margin-top: var(--space-2); }
+ul.code-list { margin: var(--space-1) 0 0; }
+
+/* Progress of a long copy: the meter at full width, the figures under it. */
+.progress { margin: var(--space-3) 0; }
+.progress .meter { max-width: none; height: 8px; }
+.progress p { margin: var(--space-2) 0 0; font-size: var(--text-sm); }
+
+/* Things to do elsewhere (on the old machine), and what Roostack will do. */
+ol.todo-list { padding-left: 1.3em; margin: var(--space-2) 0 var(--space-4); }
+ol.todo-list > li { margin-bottom: var(--space-3); }
+ol.todo-list .copy-box { margin: var(--space-2) 0 var(--space-1); }
+ol.todo-list small { display: block; }
+.will-list li { display: flex; gap: var(--space-2); align-items: flex-start; margin-bottom: var(--space-2); }
+.will-list .icon { margin-top: 3px; flex: none; color: var(--accent); }
+/* A service switching to its data, as one installing. */
+.status-switching { background: var(--accent-soft); color: var(--fg); }
+.status-switching::before { background: var(--accent); animation: status-pulse 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .status-switching::before { animation: none; } }
+/* A kept copy's actions: Put back and Delete, side by side, going
+   underneath its path when there isn't room. */
+ul.kept > li { flex-wrap: wrap; }
+ul.kept > li > span:first-child { flex: 1 1 14em; }
+.kept-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; justify-content: flex-end; align-items: center; }
+.kept-actions button { white-space: nowrap; }
+ul.kept > li > span:first-child { line-height: 1.6; }
+ul.kept .badge { margin-bottom: var(--space-1); }
+.kept-where { margin-top: var(--space-1); font-size: var(--text-sm); }
+.kept-where > summary { color: var(--muted); cursor: pointer; }
+.kept-paths { display: block; }
+.kept-where code { overflow-wrap: anywhere; }
+
+/* Migrating photos into Immich (SPEC.md §8.5, docs/mockups/immich-import). */
+
+/* A call to action at the top of a service's page: a slim card with an
+   icon, a line or two and its button; while the work runs its progress,
+   when it stopped what happened and Carry on. Stacks on phones. */
+.cta { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4); padding-block: var(--space-3); }
+.cta-icon { display: inline-grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-fg); }
+.cta-icon .icon { width: 20px; height: 20px; color: inherit; }
+.cta-warn .cta-icon { background: var(--warn-bg); color: var(--warn); }
+.cta-text { flex: 1; min-width: 0; }
+.cta-text h2 { margin: 0; font-size: var(--text-base); }
+.cta-text p { margin: 2px 0 0; color: var(--muted); font-size: var(--text-sm); }
+.cta-text .progress { margin-top: var(--space-2); }
+.cta-actions { display: flex; gap: var(--space-2); flex: none; align-items: center; }
+.cta-actions form { margin: 0; }
+@media (max-width: 640px) {
+  .cta { flex-wrap: wrap; }
+  .cta-text { flex-basis: calc(100% - 40px - var(--space-4)); }
+  .cta-actions { width: 100%; }
+}
+
+/* A key's permissions: a compact list of code names in columns. */
+.perm-list { list-style: none; padding: 0; margin: var(--space-2) 0 0; display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 2px var(--space-3); }
+.perm-list code { font-size: var(--text-sm); }
+.key-form { margin-top: var(--space-3); }
+.key-form input { flex: 1; min-width: 0; font-family: var(--font-mono); }
+
+/* The guide's numbered steps: room between them. */
+.guide-list li + li { margin-top: var(--space-2); }
+
+/* The check's figures inside a step card: four side by side, two by two
+   on phones. */
+.import-figures { margin: var(--space-3) 0; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 640px) { .import-figures { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* An empty list's note: nothing yet, and how to add one. */
+.locations { display: grid; gap: var(--space-2); margin-bottom: var(--space-3); }
+.locations-empty { padding: var(--space-3) var(--space-4); border: 1px dashed var(--border-strong); border-radius: var(--radius);
+  color: var(--muted); font-size: var(--text-sm); margin: 0 0 var(--space-3); }
+
+/* Folders in a location, each opening it. */
+.location-folders { margin: var(--space-2) 0 0; display: grid; gap: var(--space-1); }
+.location-folders a { display: inline-flex; align-items: center; gap: var(--space-2); }
+
+/* A page of its own (.Own in the layout): the lab's name and who's signed
+   in, and the page in one column. */
+.own-header { justify-content: space-between; }
+.own-brand { display: inline-flex; align-items: center; gap: var(--space-2); color: inherit; text-decoration: none; }
+.own-brand strong { font-family: var(--font-display); font-size: var(--text-lg, 1.2rem); }
+.own-brand .brand-mark { width: 32px; height: 32px; }
+.own-who { display: inline-flex; align-items: center; gap: var(--space-2); }
+.own-page { width: 100%; max-width: 760px; display: grid; gap: var(--space-4); padding-inline: var(--space-4); }
+.own-steps { display: grid; gap: var(--space-4); }
+.own-foot { text-align: center; }
+
+/* The sign-in page's link to migrating photos, below the services. */
+.signin-extra a { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); border-radius: 12px;
+  border: 1px dashed var(--edge-strong); color: inherit; text-decoration: none; margin-bottom: var(--space-4); }
+.signin-extra .icon { width: 28px; height: 28px; flex: none; color: var(--accent); }
+.signin-extra small { display: block; color: var(--muted); }
