@@ -1,0 +1,106 @@
+# PhotoPrism: one container, MariaDB run by Roostack (its docs recommend
+# SQLite only for small libraries). Image digest looked up 2026-10-19.
+schema: roostack/v1alpha1
+name: photoprism
+title: PhotoPrism
+description: Organises your photos and videos, finding people, places and things in them
+version: 261029-roostack.1      # PhotoPrism versions are release dates
+
+about:
+  maker: PhotoPrism UG and contributors
+  website: https://www.photoprism.app
+  source: https://github.com/photoprism/photoprism
+  licence: AGPL-3.0-only
+  support: https://www.photoprism.app/membership
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [photos]
+  keywords: [photos, videos, gallery, faces, places, albums]
+built_with: [go, ffmpeg, tensorflow, libvips, imagemagick, ghostscript]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator, given its password by the install hook below.
+  # PhotoPrism makes the account with no password, so nobody can sign in
+  # until the hook has set it.
+  - key: admin_username
+    title: Administrator username
+    type: string
+    default: admin
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once it's set.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+
+containers:
+  app:
+    # Runs as the container's root: Roostack's own user on the host.
+    image: docker.io/photoprism/photoprism:261029@sha256:9409cf8e5a6ebcbe3170d14537556cbc20997aaa307096d6eeedbfc5eeef6719
+    env:
+      PHOTOPRISM_SITE_URL: "{{ .Routes.web.URL }}/"
+      PHOTOPRISM_AUTH_MODE: password
+      PHOTOPRISM_DISABLE_TLS: "true"      # Roostack's web proxy does HTTPS
+      PHOTOPRISM_TRUSTED_PROXY: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,127.0.0.0/8"
+      PHOTOPRISM_DATABASE_DRIVER: mysql
+      PHOTOPRISM_DATABASE_SERVER: "{{ .Databases.main.Host }}:{{ .Databases.main.Port }}"
+      PHOTOPRISM_DATABASE_NAME: "{{ .Databases.main.Name }}"
+      PHOTOPRISM_DATABASE_USER: "{{ .Databases.main.User }}"
+    secrets:
+      PHOTOPRISM_DATABASE_PASSWORD: databases.main.password
+    mounts:
+      - { storage: originals, path: /photoprism/originals }
+      - { storage: storage,   path: /photoprism/storage }
+      - { storage: cache,     path: /photoprism/storage/cache }
+    health:
+      http: { port: 2342, path: /api/v1/status }
+    depends_on: [databases.main]
+    memory: 1 GB                 # 181 MB idle (2026-10-19); far more while it indexes and recognises faces
+
+storage:
+  originals:
+    title: Your photos and videos
+    class: critical
+    location: media              # the large data disk, if one is configured
+  storage:
+    title: Settings, sidecar files and edits
+    class: critical
+  cache:
+    title: Thumbnails
+    class: replaceable           # remade from the originals
+    location: media
+
+databases:
+  main:
+    type: mariadb                # PhotoPrism supports MariaDB, not MySQL 8
+
+hooks:
+  # The administrator's password: PhotoPrism sets PHOTOPRISM_ADMIN_PASSWORD
+  # whenever a command initialises its database and the administrator has
+  # none, so the hook runs one with it in the environment: index (quick on
+  # a new, empty library; `users ls` doesn't initialise the database). It waits until
+  # PhotoPrism answers (its own start migrates the database). Safe to
+  # re-run: a password that's set is never changed.
+  - on: install
+    container: app
+    env:
+      PHOTOPRISM_ADMIN_USER: "{{ .Settings.admin_username }}"
+    secrets:
+      PHOTOPRISM_ADMIN_PASSWORD: admin_password
+    # (Not `photoprism status`: it tries 0.0.0.0:2342, which fails here.)
+    command: [sh, -c, 'curl -fsS -o /dev/null http://127.0.0.1:2342/api/v1/status || { echo "PhotoPrism is still starting." >&2; exit 1; }; photoprism index']
+
+routes:
+  web:
+    container: app
+    port: 2342
+    subdomain: photoprism
+    exposure: private
+    max_body_size: 2GB           # photo and video uploads
+    public:
+      login_paths:
+        - /api/v1/session
