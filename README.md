@@ -21,6 +21,7 @@ packages/
     registry.yaml    tier, maintainers and any withdrawals
 web/                 the registry's page (below)
 tools/               copying Roostack's files for the page, and checking them
+updates.yaml         what the update check follows for each package (Updates)
 ```
 
 - **`<version>.yaml`** is the package itself, named by its `version`:
@@ -89,6 +90,42 @@ own everything, including every `registry.yaml`. Once community packages
 open, each one's folder also lists its maintainers. `keys/` holds the root key's statement
 naming the key CI signs with. How the keys are made and replaced is in
 Roostack's `docs/REGISTRY-KEYS.md`.
+
+## Updates
+
+Every hour the Updates workflow (`.github/workflows/updates.yml`) runs
+`roostack registry updates`, which looks at each package's newest version
+and finds what it could update to: a newer tag of the app's images (those
+whose tag carries the app's version) is a new version,
+`<version>-roostack.1`; an image whose tag now points to another digest (a
+rebuild) is the next revision of the same version. Each update is written
+from the newest version's file, keeping its comments, and opened as a pull
+request from its own branch (`update/<package>/<version>`), labelled by its
+kind as labs read it: `update:patch`, `:minor`, `:major`, `:other`, or
+`:revision` for a rebuild. A newer update closes the older one's pull
+request. For now a person merges each; testing each on a real lab first,
+and merging official patches and rebuilds by themselves, comes next.
+
+**`updates.yaml`** says what each package follows, when the default (any
+newer version, and rebuilds) isn't right:
+
+```yaml
+packages:
+  forgejo:
+    track: minor        # the same major only (patch: the same minor)
+    reason: Forgejo's long-term support line, 15
+  plex:
+    tags:
+      app: "{version}-*"  # how the app container's tag is made; * is anything but a hyphen
+  someapp:
+    hold: true          # no updates at all
+    ignore: [2.1.0]     # versions never proposed
+    rebuilds: false     # leave rebuilt images alone
+```
+
+Every rule says why (`reason`). The index's build doesn't read this file,
+so a rule never changes what labs see. More in Roostack's
+`docs/REGISTRY-UPDATES.md`.
 
 ## The registry's page
 
