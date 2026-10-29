@@ -85,12 +85,22 @@ jobs:
             title=$(jq -r .pr_title <<<"$d")
             # The draft goes on its own branch from main, not in main's state.
             mv "advisories/$id.yaml" "../$id.yaml"
-            git worktree add "../pr-$id" -b "$branch" HEAD
-            mkdir -p "../pr-$id/advisories"
-            mv "../$id.yaml" "../pr-$id/advisories/"
-            git -C "../pr-$id" add advisories
-            git -C "../pr-$id" commit -q -m "$title"
-            git -C "../pr-$id" push -q origin "$branch"
+            # A branch a run pushed before failing (without its pull
+            # request) is opened as it is; one that has had a pull request
+            # is left alone, so a draft someone closed isn't opened again.
+            if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
+              if [ -n "$(gh pr list --state all --head "$branch" --json number --jq '.[].number')" ]; then
+                echo "$branch: has had a pull request already"
+                continue
+              fi
+            else
+              git worktree add "../pr-$id" -b "$branch" HEAD
+              mkdir -p "../pr-$id/advisories"
+              mv "../$id.yaml" "../pr-$id/advisories/"
+              git -C "../pr-$id" add advisories
+              git -C "../pr-$id" commit -q -m "$title"
+              git -C "../pr-$id" push -q origin "$branch"
+            fi
             url=$(gh pr create --head "$branch" --title "$title" --body "$(jq -r .pr_body <<<"$d")")
             echo "Opened $url"
             if [ "$(jq -r .urgent <<<"$d")" = true ] && [ -n "$NTFY_URL" ]; then
