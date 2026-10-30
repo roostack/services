@@ -1,6 +1,6 @@
-# Review: file-sharing services (2026-10-30)
+# Review: file-sharing services (2026-10-30, updated 2026-10-31)
 
-A review before packaging: first ProjectSend, Chibisafe, Zipline, Palmr, and Seafile, then the alternatives the maintainer asked about, for a generic file-sharing app. For each: how it fits Roostack's package format and what it risks for roost.ac and Roostack Cloud's edges when a lab makes it public. The maintainer's decisions of 2026-10-30 are first; the plan to build them follows the assessment.
+A review before packaging: first ProjectSend, Chibisafe, Zipline, Palmr, and Seafile, then the alternatives the maintainer asked about, for a generic file-sharing app. For each: how it fits Roostack's package format and what it risks for roost.ac and Roostack Cloud's edges when a lab makes it public. The maintainer's decisions of 2026-10-30 are first, then where the work stands; the plan to build them follows the assessment.
 
 Upstream facts were checked on 2026-10-30 against each project's repository, releases, security advisories, container registry, and documentation (sources at the end, with dates). Statements marked *code-read* come from reading the source, not from running the app.
 
@@ -20,7 +20,36 @@ Upstream facts were checked on 2026-10-30 against each project's repository, rel
 - **Cloud's checks:** Cloud can't see content, but it can see public services, so the outside checker should recognise apps that host anything uploaded, and pages that shouldn't be there.
 - **The generic file-sharing app: Pingvin Share X.** Chibisafe isn't packaged.
 - **Plik and Gokapi too:** Plik at once, since it needs nothing new from Roostack (`packages/plik/1.4.3-roostack.1.yaml`), and Gokapi once config files and public-after-setup exist.
-- **Scheduled hooks** in the package format, for Seafile's garbage collection and whatever else needs a routine (build plan, item 5).
+- **Scheduled hooks** in the package format, for Seafile's garbage collection and whatever else needs a routine (build plan, item 5): `every: day | week | month`, with Roostack choosing the time.
+- **The flag** that a package needs approval for roost.ac is in `registry.yaml`, kept by the registry's maintainers: `roost_ac: {approval: <reason>}`.
+- **Approval is per account,** granted or lifted by support or the owner role from the account's page in Cloud's admin console, with why, in the audit log.
+
+## Where it stands (2026-10-31)
+
+**Built and merged into Roostack's `main`** (each on its own branch first, each checked on a dev VM):
+
+| Item | Branch | What it gives packages |
+|---|---|---|
+| 1. Config files a package declares | `claude/config-files-c0b70e` | `config_files:` (help's package reference), for Seafile's `seahub_settings.py` and Pingvin Share X's `config.yaml`. Tried with Pingvin Share X; not with Seafile |
+| 2. Extra schemas on one MySQL/MariaDB | `claude/db-extra-schemas-e6eb9c` | Several schemas for one app user, dumped together. Tried with Seafile 13 |
+| 3. Public addresses wait for setup | `claude/public-after-setup-2b5e8f` | Every package: no public address until its install hooks succeed |
+| 5. Scheduled hooks | `claude/scheduled-hooks-deaa61` | `on: schedule` with `every:` and `timeout:`; a run past its timeout restarts its container |
+| 6. The lab tells Cloud what each address is | `claude/names-policy-6a8816` | The lab reports each public address's package and the registry's flag, and keeps an address private when Cloud refuses it |
+| Found testing Plik | `claude/sso-card-no-groups-82f30c` | `sso.oidc.admins` and `sso.oidc.existing_accounts`, so the single sign-on card claims only what the app does; removing a service removes its Podman network |
+
+**Not merged:**
+
+- **Cloud's item 8** (`claude/names-policy` in roostack-cloud, 73b8f0f): the two rules, as options in `cloud.yaml` (`roost_ac: allow_own_packages` and `allow_flagged`, both false, so the rules are on), approval per account (`service_approvals`), and `PUT /v1/lab/public`. Its route test waits on the red-button branch. Until it ships, labs report their addresses but Cloud refuses nothing. When it ships is the maintainer's call, after Cloud's launch.
+- **The registry's README for the flag** (`claude/names-policy` in this repository, 3eeb9e3).
+
+**In this repository:**
+
+- **Plik 1.4.3** is merged and in the registry (below), with a placeholder logo and no `built_with`. The registry's other packages gained both on 2026-10-30, so Plik needs a second revision with `built_with: [go]`, its logo if its terms allow, and `sso.oidc.admins: false` and `existing_accounts: separate`. That revision will need the Roostack release that has those fields.
+- **Seafile and Gokapi:** a session started on 2026-10-31 is packaging them.
+- **Not started:** ProjectSend, Pingvin Share X, and Zipline (with its flag).
+- **Registry packages that map admins or link accounts** need new revisions to use the new single sign-on fields. The session that built them counted seven, but didn't name them.
+
+**Not built:** items 4 ("only shared links public"), 7 (Caddy enforcing the HTML rule), and 9 (Cloud's checker recognising upload hosts).
 
 ## Which apps show uploaded HTML (question 2)
 
@@ -174,11 +203,11 @@ Roostack (open source) first, since every package needs some of it. Each item is
 
 **The registry:**
 
-- A flag in `registry.yaml` (kept by the registry's maintainers, so a package's author can't remove it, and it can change without a new version): `roost_ac: approval`, with a reason. Zipline gets it.
+- A flag in `registry.yaml` (kept by the registry's maintainers, so a package's author can't remove it, and it can change without a new version): `roost_ac: {approval: <reason>}`. Zipline gets it.
 
 **Cloud** (private; within its launch):
 
-8. **Free roost.ac names only for registry packages, and flagged packages only for approved accounts:** two options in `admin.yaml`, on by default; an account's approval in the admin console (support role, with a note, audited); `zone_records()` and `relay_routes()` leave out what isn't allowed, and the lab's check-in says why. A changed Roostack could lie about its packages, so this is the default for honest labs, and the checker is the real check.
+8. **Free roost.ac names only for registry packages, and flagged packages only for approved accounts:** two options, on by default (as built: in `cloud.yaml`); an account's approval in the admin console (support role, with a note, audited); the zone and the edges' routes leave out what isn't allowed, and the lab's check-in says why. A changed Roostack could lie about its packages, so this is the default for honest labs, and the checker is the real check.
 9. **The outside checker recognises apps:** it already plans to check that "the expected app answers"; it would also recognise known upload hosts (Zipline, Chibisafe, and the like, by their pages), compare what answers with the package the lab declared (DESIGN §5's open question), and look for phishing pages.
 
 **Packages** (this repository), each once its Roostack pieces are released:
@@ -216,19 +245,17 @@ Roostack (open source) first, since every package needs some of it. Each item is
   - **Single sign-on:** turned on from the service page, Plik reached the lab's sign-in page but refused its test certificate, as expected on a test address. It then retried every 10 seconds, 10 times and counting, without systemd giving up. Turned off, Plik came straight back with its shares.
   - **Removal:** the container, units, and site went, and the data was kept.
 - **Still not checked:** a restore onto a fresh server (this was a restore in place), and a real sign-in through a lab's provider with a trusted certificate.
-- **Seen in Roostack, not the package:**
-  - The single sign-on card says "Admins in Plik: the lab's Owners and Admins" and that Plik "finds it by their email address", which isn't true of an app that reads no groups and links no accounts.
-  - Removing the service leaves its Podman network definition (`roostack-plik.json`).
+- **Seen in Roostack, not the package** (both fixed since on `claude/sso-card-no-groups-82f30c`, now merged):
+  - The single sign-on card said "Admins in Plik: the lab's Owners and Admins" and that Plik "finds it by their email address", which isn't true of an app that reads no groups and links no accounts.
+  - Removing the service left its Podman network definition (`roostack-plik.json`).
 
 ## Questions for the maintainer
 
-Answered on 2026-10-30: the generic app (Pingvin Share X), Seafile's garbage collection (scheduled hooks), and Chibisafe (not packaged). Still open:
+Answered on 2026-10-30 and 2026-10-31: the generic app (Pingvin Share X), Chibisafe (not packaged), Plik and Gokapi (yes), scheduled hooks (`every:` words), the flag (`registry.yaml`), approval (per account), and the build of items 1, 2, 3, 5, 6, and 8. Still open:
 
-1. **Scheduled hooks' timing:** `every: day | week | month`, with Roostack picking the time in the maintenance window (recommended), or a cron expression in the package?
-2. **Is a sandbox enough?** The rule as recommended: HTML a download or refused where the app allows, sandboxed with nosniff otherwise (Pingvin Share X, Gokapi). Or only downloads and refusals?
-3. **The flag:** in `registry.yaml`, set by the registry's maintainers (recommended), or in the package file?
-4. **Approval:** per account, granted by support from the admin console (recommended for now), or per lab or per service?
-5. **The build:** start sessions for Roostack's 1, 2, 3, 5, and 6 and Cloud's 8 now, then 4, 7, and 9?
+1. **Is a sandbox enough?** The rule as recommended: HTML a download or refused where the app allows, sandboxed with nosniff otherwise (Pingvin Share X, Gokapi). Or only downloads and refusals? This decides item 7 and whether Pingvin Share X and Gokapi pass as they are.
+2. **Cloud's item 8:** when to merge and ship it after Cloud's launch, with the registry's README for the flag beside it.
+3. **What's next:** items 4, 7, and 9, and the packages not started (ProjectSend, Pingvin Share X, Zipline), plus Plik's second revision and the single sign-on revisions of other packages. Recommended order: Plik's revision and ProjectSend (both need only what's merged), then Pingvin Share X, then item 7 with the sandbox answer, then Zipline once Cloud's item 8 has shipped, then items 4 and 9.
 
 ## Sources
 
