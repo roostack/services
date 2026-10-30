@@ -1,0 +1,149 @@
+# Plik: one container. Its uploads' details are in SQLite, the files
+# themselves in a folder of their own on the large data disk. Every
+# setting is an environment variable (PLIKD_ and the setting's name).
+# Image digest looked up 2026-10-30.
+schema: roostack/v1alpha1
+name: plik
+title: Plik
+description: Sends files to anyone with a link that expires, from your browser or the command line
+version: 1.4.3-roostack.1
+
+about:
+  maker: Charles-Antoine Mathieu, Mathieu Bodjikian and contributors
+  website: https://root-gg.github.io/plik/
+  source: https://github.com/root-gg/plik
+  licence: MIT
+  releases: https://github.com/root-gg/plik/releases/tag/{version}
+  # A placeholder, not Plik's logo: the project states no terms for
+  # using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [documents, productivity]
+  keywords: [file sharing, file transfer, send files, upload, share links, wetransfer, command line]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator, made by the install hook below. Plik's own sign-up
+  # doesn't exist: an administrator adds people, or they come from the
+  # lab's sign-in once single sign-on is on.
+  - key: admin_login
+    title: Administrator username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: max_ttl_days
+    title: Longest a share can last, in days
+    description: Plik will delete each share's files once its time is up. Someone sharing can choose less.
+    type: int
+    default: 30
+
+containers:
+  app:
+    image: docker.io/rootgg/plik:1.4.3@sha256:7b450ff320b3a3f6444ca6fa94c8fde2f5e6eb82d6b9d50bf813ad93e7858f01
+    env:
+      PLIKD_PLIK_DOMAIN: "{{ .Routes.web.URL }}"   # HTTPS, so secure cookies and HSTS too
+      PLIKD_SOURCE_IP_HEADER: X-Real-IP            # set by Roostack's proxy (client_ip_header)
+      # Uploading needs an account: nobody uploads anonymously.
+      PLIKD_FEATURE_AUTHENTICATION: forced
+      PLIKD_MAX_FILE_SIZE_STR: 10GB                # as the route's max_body_size
+      PLIKD_MAX_TTL_STR: "{{ .Settings.max_ttl_days }}d"
+      PLIKD_DEFAULT_TTL_STR: "{{ .Settings.max_ttl_days }}d"
+      # Archives of a share's files without compression, so that a visitor
+      # can't keep the server busy compressing (Plik's security guide).
+      PLIKD_ENABLE_ARCHIVE_COMPRESSION: "false"
+      PLIKD_DATA_BACKEND: file
+      PLIKD_DATA_BACKEND_CONFIG: '{"Directory": "/files"}'
+      PLIKD_METADATA_BACKEND_CONFIG: '{"Driver": "sqlite3", "ConnectionString": "/data/plik.db"}'
+    mounts:
+      - { storage: data, path: /data }
+      - { storage: files, path: /files }
+    health:
+      http: { port: 8080, path: /health }
+    memory: 50 MB                # 10 MB in use, measured 2026-10-30
+    quadlet:
+      Container:
+        # The image's user is 1000; mapped to Roostack's user, so the
+        # folders are its own.
+        UserNS: keep-id:uid=1000,gid=1000
+      Service:
+        # While single sign-on is on, Plik reads the sign-in page's
+        # configuration as it starts and stops if it can't (as at boot,
+        # before the page answers): try again every 10 seconds rather
+        # than give up after systemd's five quick tries.
+        RestartSec: "10"
+
+storage:
+  data:
+    title: Who has shared what
+    class: critical
+  files:
+    title: The files people share
+    class: critical
+    location: media              # the large data disk, if one is configured
+
+databases:
+  main:
+    type: sqlite
+    path: data/plik.db
+
+hooks:
+  # The administrator, through Plik's own command line, which reads the
+  # same settings from the environment. Safe to re-run: an account that
+  # exists is kept as it is.
+  - on: install
+    container: app
+    env:
+      ADMIN_LOGIN: "{{ .Settings.admin_login }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cd /home/plik/server
+        if ./plikd user show --login "$ADMIN_LOGIN" >/dev/null 2>&1; then
+          echo 'The administrator already exists.'
+          exit 0
+        fi
+        ./plikd user create --login "$ADMIN_LOGIN" --password "$ADMIN_PASSWORD" --admin >/dev/null || exit 1
+        echo 'The administrator is made.'
+
+routes:
+  web:
+    container: app
+    port: 8080
+    subdomain: share
+    exposure: private
+    max_body_size: 10GB          # Plik takes each file in one request
+    client_ip_header: X-Real-IP  # what Plik reads (SourceIpHeader) for its logs and limits
+    # Plik serves files only to someone with their link, never as a page:
+    # an uploaded .html comes as application/octet-stream, with nosniff
+    # and a sandbox (checked 2026-10-30).
+    public:
+      login_paths:
+        - /auth/local/login
+
+# Single sign-on (SPEC.md §5.2): Plik signs people in through OIDC with
+# the provider's configuration, making an account at their first sign-in.
+# It has no groups, so nobody from the lab is an administrator by
+# themselves: the administrator made at install keeps its password and
+# makes others administrators on Plik's admin page.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/auth/oidc/callback]
+  env:
+    app:
+      PLIKD_OIDC_CLIENT_ID: "{{ .SSO.ClientID }}"
+      PLIKD_OIDC_PROVIDER_URL: "{{ .SSO.Issuer }}"
+      PLIKD_OIDC_PROVIDER_NAME: "{{ .SSO.ProviderName }}"
+  secrets:
+    app:
+      PLIKD_OIDC_CLIENT_SECRET: sso.client_secret
+  note: The administrator made at install keeps its password and can make people from the lab administrators on Plik's admin page. The command-line client signs in with a token made in Plik.
