@@ -19,6 +19,7 @@ Upstream facts were checked on 2026-10-30 against each project's repository, rel
 - **Takeover before setup:** keep addresses private until setup has finished.
 - **Cloud's checks:** Cloud can't see content, but it can see public services, so the outside checker should recognise apps that host anything uploaded, and pages that shouldn't be there.
 - **The generic file-sharing app: Pingvin Share X.** Chibisafe isn't packaged.
+- **Plik and Gokapi too:** Plik at once, since it needs nothing new from Roostack (`packages/plik/1.4.3-roostack.1.yaml`), and Gokapi once config files and public-after-setup exist.
 - **Scheduled hooks** in the package format, for Seafile's garbage collection and whatever else needs a routine (build plan, item 5).
 
 ## Which apps show uploaded HTML (question 2)
@@ -182,10 +183,31 @@ Roostack (open source) first, since every package needs some of it. Each item is
 
 **Packages** (this repository), each once its Roostack pieces are released:
 
-- **ProjectSend:** needs 3; nothing else new. First.
+- **Plik:** needs nothing new; packaged 2026-10-30 (below).
+- **ProjectSend:** needs 3; nothing else new.
+- **Gokapi:** needs 1 (its `config.json`, salts included) and 3 (its setup page is open to anyone until it's run).
 - **Seafile:** needs 1, 2, and 5; 4 later.
 - **Pingvin Share X:** needs 1.
 - **Zipline:** needs 3 and 6, and Cloud's 8.
+
+### Plik 1.4.3: what the package does, and what was checked
+
+- **One container** (`rootgg/plik`, non-root, multi-arch), every setting from `PLIKD_` environment variables: uploads need an account (`FeatureAuthentication=forced`); files up to 10 GB, matching the route's body limit (Plik takes each file in one request); shares last at most the Owner's setting (30 days by default); archives uncompressed, as Plik's security guide suggests for public instances.
+- **Data:** the uploads' details in SQLite (`/data/plik.db`, backed up by Roostack's SQLite dump), the files on the large data disk (`/files`), both critical.
+- **The administrator** from an install hook running Plik's own `plikd user create` (safe to re-run). There's no sign-up page and no setup page.
+- **Single sign-on:** generic OIDC from the issuer, PKCE, an account made at first sign-in. Plik has no groups, so the administrator made at install keeps its password and makes others administrators in Plik.
+- **Found while testing:** with single sign-on on, Plik reads the provider's configuration as it starts and **exits if it can't** (as at boot, before the lab's sign-in page answers). The package retries every 10 seconds (`RestartSec`), so systemd doesn't give up after five quick tries.
+- **Checked on 2026-10-30,** with the pinned image in Docker, using the package's settings:
+  - it starts and reports the settings back (`/config`);
+  - the install hook makes the administrator and, run again, keeps it;
+  - an anonymous upload is refused;
+  - the administrator signs in;
+  - an uploaded `.html` comes back as `application/octet-stream` with nosniff and `Content-Security-Policy: … sandbox`, and with `?dl=1` as an attachment;
+  - the database and files land in `/data` and `/files`;
+  - with an unreachable provider it exits; with a stand-in provider it starts and sends people to sign in with the right client, PKCE, and `/auth/oidc/callback`;
+  - local sign-in still works alongside;
+  - it uses about 10 MB.
+- **Not yet checked:** a Roostack lab's install, backup, restore onto a fresh server, and removal (CONTRIBUTING.md's "try it on a lab"), rootless Podman's user mapping (as Papra's), and a real sign-in through a lab's provider.
 
 ## Questions for the maintainer
 
