@@ -207,7 +207,18 @@ Roostack (open source) first, since every package needs some of it. Each item is
   - with an unreachable provider it exits; with a stand-in provider it starts and sends people to sign in with the right client, PKCE, and `/auth/oidc/callback`;
   - local sign-in still works alongside;
   - it uses about 10 MB.
-- **Not yet checked:** a Roostack lab's install, backup, restore onto a fresh server, and removal (CONTRIBUTING.md's "try it on a lab"), rootless Podman's user mapping (as Papra's), and a real sign-in through a lab's provider.
+- **Tried on a lab, 2026-10-30:** dev VM 5 (arm64), Roostack `main` at 943763fe, a test address with Caddy's own certificates, added as a package of the Owner's own:
+  - **Install:** the summary and the install form were right, and the install hook made the administrator.
+  - **Under rootless Podman:** both folders belong to Roostack's user, so the user mapping works.
+  - **Using it through the lab's address:** an anonymous upload was refused, and the administrator signed in. A 3 MB file came back identical, and an `.html` came back as `application/octet-stream` with the sandbox and nosniff.
+  - **Backup:** `roostack backup run` covered the files, the SQLite dump, and the secrets.
+  - **Restore:** both uploads were deleted in Plik, then restored with `roostack backup restore plik`; both came back (the file identical), and the administrator still signs in.
+  - **Single sign-on:** turned on from the service page, Plik reached the lab's sign-in page but refused its test certificate, as expected on a test address. It then retried every 10 seconds, 10 times and counting, without systemd giving up. Turned off, Plik came straight back with its shares.
+  - **Removal:** the container, units, and site went, and the data was kept.
+- **Still not checked:** a restore onto a fresh server (this was a restore in place), and a real sign-in through a lab's provider with a trusted certificate.
+- **Seen in Roostack, not the package:**
+  - The single sign-on card says "Admins in Plik: the lab's Owners and Admins" and that Plik "finds it by their email address", which isn't true of an app that reads no groups and links no accounts.
+  - Removing the service leaves its Podman network definition (`roostack-plik.json`).
 
 ## Questions for the maintainer
 
