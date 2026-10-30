@@ -18,6 +18,8 @@ Upstream facts were checked on 2026-10-30 against each project's repository, rel
 - **Free roost.ac names only for registry packages:** to build, as an option, also covering registry packages flagged as not to be made public through roost.ac without approval.
 - **Takeover before setup:** keep addresses private until setup has finished.
 - **Cloud's checks:** Cloud can't see content, but it can see public services, so the outside checker should recognise apps that host anything uploaded, and pages that shouldn't be there.
+- **The generic file-sharing app: Pingvin Share X.** Chibisafe isn't packaged.
+- **Scheduled hooks** in the package format, for Seafile's garbage collection and whatever else needs a routine (build plan, item 5).
 
 ## Which apps show uploaded HTML (question 2)
 
@@ -99,9 +101,9 @@ Upstream facts were checked on 2026-10-30 against each project's repository, rel
 
 **Risk to us: high.** Flagged in the registry as needing approval for roost.ac and the relay (change 6).
 
-### Chibisafe — not now
+### Chibisafe — not packaged
 
-Every upload is a public link by design, "public mode" (uploads without an account) is a switch in its admin UI, its URL shortener takes any destination, HTML is sandboxed only by the project's own Caddyfile, it has no single sign-on and won't (issue #566, closed 2026-09-30), and the first administrator's password falls back to `admin` (`Util.ts`). One maintainer, 15 months without a release before October 2026. It's the same niche as Zipline, with less a package can enforce. **Recommendation:** Zipline covers it; Chibisafe only if someone asks, flagged like Zipline.
+Every upload is a public link by design, "public mode" (uploads without an account) is a switch in its admin UI, its URL shortener takes any destination, HTML is sandboxed only by the project's own Caddyfile, it has no single sign-on and won't (issue #566, closed 2026-09-30), and the first administrator's password falls back to `admin` (`Util.ts`). One maintainer, 15 months without a release before October 2026. It's the same niche as Zipline, with less a package can enforce. **Not packaged** (the maintainer, 2026-10-30).
 
 ### Palmr — removed
 
@@ -127,7 +129,7 @@ The maintainer wants a generic file-sharing app: someone signs in, uploads, and 
 
 **For sync, the one serious alternative to Seafile is OpenCloud** (Apache-2.0, OpenCloud GmbH, 9.0.0 rolling on 2026-10-27, 7.2.4 stable): a non-root image, no database, files kept as plain folders on disk (PosixFS), OIDC set entirely by environment variables, desktop and phone clients, downloads never shown as pages. It would need neither Roostack change Seafile needs. Against it: its clients need fixed public client IDs at the lab's sign-in provider; a consistent backup needs it stopped or a filesystem snapshot, and its metadata lives in extended attributes (restic keeps them, to verify on restore); no maximum link expiry found. ownCloud Infinite Scale is the same design under an EULA that forbids redistributing its builds, and Nextcloud is much heavier.
 
-**Recommendation:**
+**Chosen (the maintainer, 2026-10-30):**
 
 - **Pingvin Share X as the generic file-sharing app.** It's the WeTransfer-style app with file requests, safe serving, and OIDC with roles. Its settings are a YAML file (`config.yaml`, which makes its admin UI read-only), so it builds on the same config files as Seafile: sign-ups off (`allowRegistration: false`, on by default upstream), the administrator from `initUser`, a maximum expiry and size. Risk to us: medium (file requests let outsiders upload, but nothing is shown as a page). Plik is the fallback if its advisories keep coming.
 - **Stay with Seafile for sync, as decided.** OpenCloud fits Roostack's format better and keeps plain files, but Seafile's backups are consistent without stopping it, and the two Roostack changes it needs are wanted anyway. If Seafile's package stalls, OpenCloud is next.
@@ -147,7 +149,25 @@ Roostack (open source) first, since every package needs some of it. Each item is
 2. **Extra schemas on one MySQL/MariaDB** for the same app user, dumped and restored together (Seafile's three).
 3. **Public addresses wait for setup:** a service's public addresses stay private until its install hooks have succeeded, for every package. Closes takeover before setup (ProjectSend's `/setup`, Zipline's setup page).
 4. **"Only shared links public":** a third choice beside Private and Public for routes whose package lists share-link paths. The app's sign-in and pages stay private (or behind the lab's sign-in when single sign-on is on); the people a link was sent to can open it.
-5. **Scheduled hooks**, if chosen for Seafile's garbage collection (question 2 below).
+5. **Scheduled hooks** (the maintainer, 2026-10-30), for Seafile's garbage collection first. Proposed design:
+
+   ```yaml
+   hooks:
+     - on: schedule
+       name: free-space            # in URLs and the service's history
+       title: Free up space
+       description: Removes blocks that no file or version uses any more.
+       container: app
+       every: week                 # day, week, or month
+       timeout: 2h                 # optional; 1 hour when not given
+       command: [/scripts/gc.sh]
+   ```
+
+   - **Roostack picks the time:** within the lab's maintenance window, after the nightly backup (SPEC §3.2's coordinator runs it, so it never overlaps a backup's prepare step, a restore, or an update of the same service), spread so that services' routines don't all start at once. Considered: a cron expression in the package (every package would pick 03:00, and the coordinator couldn't place it).
+   - **A missed run happens at the next window** (the server was off); never two at once for one hook.
+   - **Only while the service runs:** skipped while it's stopped, stopped by the registry, or waiting for its install hooks.
+   - **Seen:** each run in the service's history (started, finished, how long, its log); on the service page, "Free up space: weekly, last ran Sunday 02:14", with **Run now**; two failures in a row go under "Needs attention", with **Try again**.
+   - **Like other hooks:** a command in one of the service's containers, values only as environment variables and secrets, no inputs; checked by the same policy. Packages using it need the Roostack release that has it (`requires.roostack`).
 6. **The lab tells Cloud what each public address is** (with Cloud's change 8): the package, whether it's from the registry or the Owner's own, and the registry's flag; and, when Cloud says an address needs approval, it stays private with the reason and how to ask, on the service's page and in the attention list. A package of the Owner's own on their own domain, without the relay, is untouched.
 7. **Caddy enforcing the HTML rule:** routes may list the paths that serve uploads, and Caddy adds `Content-Security-Policy: sandbox` and nosniff there, whatever the app does (and serves HTML and SVG as downloads, if Caddy can match on the response's type: to check).
 
@@ -163,19 +183,19 @@ Roostack (open source) first, since every package needs some of it. Each item is
 **Packages** (this repository), each once its Roostack pieces are released:
 
 - **ProjectSend:** needs 3; nothing else new. First.
-- **Seafile:** needs 1 and 2; 4 and 5 later.
+- **Seafile:** needs 1, 2, and 5; 4 later.
 - **Pingvin Share X:** needs 1.
 - **Zipline:** needs 3 and 6, and Cloud's 8.
 
 ## Questions for the maintainer
 
-1. **The generic app:** Pingvin Share X (recommended), or Plik (easier to package, no file requests)?
-2. **Seafile's garbage collection:** scheduled hooks in Roostack (recommended: `on: schedule`, weekly at night, not during a backup; other apps will want them), or a "Free up space" button the Owner presses?
-3. **Is a sandbox enough?** The rule as recommended: HTML a download or refused where the app allows, sandboxed with nosniff otherwise (Pingvin Share X, Gokapi). Or only downloads and refusals?
-4. **Zipline and Chibisafe:** Zipline with the approval flag, and Chibisafe only if asked (recommended)?
-5. **The flag:** in `registry.yaml`, set by the registry's maintainers (recommended), or in the package file?
-6. **Approval:** per account, granted by support from the admin console (recommended for now), or per lab or per service?
-7. **The build:** start sessions for Roostack's 1, 2, 3, and 6 and Cloud's 8 now, then 4, 7, and 9?
+Answered on 2026-10-30: the generic app (Pingvin Share X), Seafile's garbage collection (scheduled hooks), and Chibisafe (not packaged). Still open:
+
+1. **Scheduled hooks' timing:** `every: day | week | month`, with Roostack picking the time in the maintenance window (recommended), or a cron expression in the package?
+2. **Is a sandbox enough?** The rule as recommended: HTML a download or refused where the app allows, sandboxed with nosniff otherwise (Pingvin Share X, Gokapi). Or only downloads and refusals?
+3. **The flag:** in `registry.yaml`, set by the registry's maintainers (recommended), or in the package file?
+4. **Approval:** per account, granted by support from the admin console (recommended for now), or per lab or per service?
+5. **The build:** start sessions for Roostack's 1, 2, 3, 5, and 6 and Cloud's 8 now, then 4, 7, and 9?
 
 ## Sources
 
