@@ -1,0 +1,173 @@
+# Paperless-ngx: one container, with Postgres and Valkey run by Roostack.
+# Image digest looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: paperless-ngx
+title: Paperless-ngx
+description: Scans, reads and files your paper documents, so you can search them and throw the paper away
+version: 3.4.0-roostack.1
+
+about:
+  maker: the Paperless-ngx community, volunteers
+  website: https://docs.paperless-ngx.com
+  source: https://github.com/paperless-ngx/paperless-ngx
+  licence: GPL-3.0-only          # its LICENSE, with no "or later"
+  support: https://github.com/sponsors/shamoon
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [documents]
+  keywords: [documents, scans, ocr, paperless, archive, receipts, search, tags]
+built_with: [python, django, tesseract, ghostscript, imagemagick]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator account, created by the install hook below.
+  - key: admin_username
+    title: Administrator username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_email
+    title: Administrator email
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: ocr_language
+    title: Language of your documents
+    description: >-
+      For reading the text in scans: eng (English), deu (German), fra (French),
+      ita (Italian) or spa (Spanish), or several joined with +, e.g. eng+deu
+      (slower).
+    type: string
+    default: eng
+    required: true
+  - key: secret_key
+    title: Signing key
+    type: secret
+    generate: true               # signs sessions; kept across restarts
+
+containers:
+  app:
+    image: ghcr.io/paperless-ngx/paperless-ngx:3.4.0@sha256:7c1d98afd200def9e2bad3a377d30829e8d486554b3c818995af5860114ea17f
+    env:
+      PAPERLESS_URL: "{{ .Routes.web.URL }}"
+      PAPERLESS_TIME_ZONE: "{{ .Lab.TimeZone }}"   # Paperless ignores the container's
+      PAPERLESS_OCR_LANGUAGE: "{{ .Settings.ocr_language }}"
+      PAPERLESS_REDIS: "redis://{{ .Databases.cache.Host }}:6379"
+      PAPERLESS_DBENGINE: postgresql
+      PAPERLESS_DBHOST: "{{ .Databases.main.Host }}"
+      PAPERLESS_DBNAME: "{{ .Databases.main.Name }}"
+      PAPERLESS_DBUSER: "{{ .Databases.main.User }}"
+    secrets:
+      PAPERLESS_SECRET_KEY: secret_key
+      PAPERLESS_DBPASS: databases.main.password
+    mounts:
+      - { storage: data,  path: /usr/src/paperless/data }
+      - { storage: media, path: /usr/src/paperless/media }
+    health:
+      http: { port: 8000, path: / }
+    depends_on: [databases.main, databases.cache]
+    memory: 750 MB               # 747 MB in use with one document, measured 2026-10-18
+    quadlet:
+      Container:
+        # Run rootless as the image's paperless user (1000), mapped to
+        # Roostack's user, so the data folders are its own. The image
+        # then can't install extra OCR languages, hence the five above.
+        User: "1000:1000"
+        UserNS: keep-id:uid=1000,gid=1000
+
+storage:
+  media:
+    title: Your documents
+    class: critical              # originals, searchable PDFs and thumbnails
+    location: media              # the large data disk, if one is configured
+  data:
+    title: Search index and settings
+    class: critical              # small; the index and classifier could be rebuilt, but slowly
+
+databases:
+  main:
+    type: postgres
+  cache:
+    type: redis                  # the task queue
+    backup: false                # safe to lose: a document still being read would need uploading again
+
+hooks:
+  # The administrator. Values arrive as environment variables, never in
+  # the command itself. Safe to re-run: an existing account is kept.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      DJANGO_SUPERUSER_PASSWORD: admin_password
+    command:
+      - sh
+      - -c
+      - |
+        # manage.py itself, not the image's createsuperuser wrapper: that
+        # replaces the environment with the container's, dropping the
+        # password, and the account would have none.
+        cd /usr/src/paperless/src
+        if out=$(python3 manage.py createsuperuser --noinput --username "$ADMIN_USERNAME" --email "$ADMIN_EMAIL" 2>&1); then
+          echo "The administrator $ADMIN_USERNAME is made."
+        elif echo "$out" | grep -q "already taken"; then
+          echo "The administrator $ADMIN_USERNAME already exists."
+        else
+          echo "$out" >&2
+          exit 1
+        fi
+
+routes:
+  web:
+    container: app
+    port: 8000
+    subdomain: paperless
+    exposure: private
+    max_body_size: 100MB         # scans and PDFs
+    public:
+      private_paths:
+        - path: /admin
+          reason: Paperless-ngx's Django administration, which changes every account and document. Anyone who gets an administrator's password could use it.
+      login_paths:
+        - /accounts/login
+        - /api/token
+
+links:
+  - title: Settings
+    description: Users, mail accounts and how documents are read and filed (log in as the administrator)
+    route: web
+    path: /settings
+
+# Single sign-on (SPEC.md §5.2): Paperless-ngx takes its OIDC provider as
+# a JSON value holding the client secret, so that value is made as a
+# Podman secret (secret_env), never written into a file. Accounts are made
+# at first sign-in; the lab's Owners and Admins are its superusers.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/accounts/oidc/roostack/login/callback/]
+  env:
+    app:
+      PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+      PAPERLESS_SOCIAL_AUTO_SIGNUP: "true"
+      PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS: "true"
+      PAPERLESS_SOCIAL_ACCOUNT_SYNC_SUPERUSER_GROUP: "{{ .SSO.AdminGroup }}"
+  secret_env:
+    app:
+      PAPERLESS_SOCIALACCOUNT_PROVIDERS: >-
+        {"openid_connect": {"SCOPE": ["openid", "profile", "email", "groups"],
+        "APPS": [{"provider_id": "roostack", "name": {{ json .SSO.ProviderName }},
+        "client_id": {{ json .SSO.ClientID }}, "secret": {{ json .SSO.ClientSecret }},
+        "settings": {"server_url": {{ json .SSO.DiscoveryURL }}}}]}}
+  # Paperless-ngx doesn't find an existing account by its email (its
+  # administrator, made at install): it's connected from that account's
+  # own profile page, once signed in with its password.
+  note: Phone apps and API tokens still use Paperless-ngx's own sign-in. An account already in Paperless-ngx, such as its administrator, isn't found by email; sign in to it with its password once, then connect it under My profile.
