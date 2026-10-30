@@ -186,7 +186,7 @@ Roostack (open source) first, since every package needs some of it. Each item is
 - **Plik:** needs nothing new; packaged 2026-10-30 (below).
 - **ProjectSend:** needs 3; nothing else new.
 - **Gokapi:** needs 1 (its `config.json`, salts included) and 3 (its setup page is open to anyone until it's run); packaged 2026-10-31 (below), for the Roostack release after 0.1.1.
-- **Seafile:** needs 1, 2, and 5; 4 later.
+- **Seafile:** needs 1, 2, and 5; 4 later. Packaged 2026-10-31 (below), for the Roostack release after 0.1.1.
 - **Pingvin Share X:** needs 1.
 - **Zipline:** needs 3 and 6, and Cloud's 8.
 
@@ -242,6 +242,35 @@ Roostack (open source) first, since every package needs some of it. Each item is
 - **Seen in Roostack, not the package:**
   - **Hooks' `${…}` is expanded by systemd:** Roostack runs hooks through `systemd-run` (`systemd.UserCommand`) without `--expand-environment=no`, and since systemd 254 that expands `${NAME}` anywhere in the command, and `$NAME` as a word of its own, before the container sees it. The first install's hook used `${#made}`, which became empty, so the hook failed after Gokapi had made the account. The package now avoids `${`; Roostack should pass `--expand-environment=no` (every command it runs through `systemd-run`, not only hooks), or the package format should warn about it.
   - The summary before installing says a `replaceable` storage is "not backed up, as Gokapi makes them again", which isn't true of a folder holding a config file Roostack writes; and it lowercases the storage's title, so "Gokapi's settings" read "gokapi's settings" (the package now says "its settings file, which Roostack writes").
+
+### Seafile CE 13.0.28: what the package does, and what was checked
+
+- **Seafile's own image** (`seafileltd/seafile-mc:13.0.28`, multi-arch, root inside, nginx on port 80 mapping `/`, `/seafhttp`, and `/seafdav`), MariaDB (Roostack's 11.8), and Valkey as its cache (`backup: false`). SeaDoc and the notification server are left out. 14.0.9 has been tagged `14.0-latest` on Docker Hub since 2026-10-13; the package stays on 13.0, as reviewed.
+- **Databases:** Roostack's MariaDB database is Seafile's `seafile` database, and its `schemas: [ccnet, seahub]` the other two (`seafile_ccnet`, `seafile_seahub`), as in Roostack's own example, rather than three schemas beside an unused database. Seafile's setup uses them as they are (`USE_EXISTING_DB=1`), never asking for MariaDB's root.
+- **Settings:** Seafile makes `seahub_settings.py` on its first start, with its own `SECRET_KEY`; Roostack adds its block at the end (config files, `block: true`) and restarts it: settings only from the file (`ENABLE_SETTINGS_VIA_WEB = False`), no sign-ups, `CSRF_TRUSTED_ORIGINS`, and the link policy as six settings on the service's Settings page (share links 7 days by default and 90 at most, upload links 7 and 30, passwords optional, Report abuse on). Its address, databases, cache, and `JWT_PRIVATE_KEY` (generated) come from the environment.
+- **The administrator:** Seafile's image makes one on its first start from `INIT_SEAFILE_ADMIN_EMAIL` and `INIT_SEAFILE_ADMIN_PASSWORD`, falling back to `me@example.com` and `asecret`. Roostack keeps install-only secrets out of containers, so the container gets a password Roostack generates, and the install hook replaces it with the one typed at install, through Seafile's API.
+- **Data:** `/shared` on the large data disk (critical): `conf/` (with `SECRET_KEY`), `seafile-data/` (the libraries, as blocks), and `seahub-data/`. Seafile moves these there on its first start, so none can be storage of its own (thumbnails are backed up with the rest); only the logs are (`replaceable`).
+- **Garbage collection:** `/scripts/gc.sh` as a weekly scheduled task (`free-space`, up to 2 hours), online. A deleted library stays in Seafile's trash, where its owner can restore it, and old versions are kept as long as each library's history setting says, so space comes back once those go.
+- **Check the libraries:** an action running `seaf-fsck.sh`, which only reads.
+- **Single sign-on:** Community Edition's OAuth2 with the lab's authorise, token, and userinfo addresses (it doesn't read OIDC discovery), in the block while it's on: accounts made at first sign-in, an existing one found by email, the provider named `roostack` so people stay linked if the lab's address changes, and the desktop apps signing in through the browser. No groups in CE, so nobody from the lab is an administrator by themselves.
+- **Uploaded HTML** is never shown as a page: downloads come as `application/octet-stream` with nosniff, SVG with a sandbox, and a share link's page shows an HTML file's source in Seafile's text viewer.
+- `built_with` doesn't name nginx: it isn't in `built-with.yaml` yet, and adding it means checking every image that has it.
+- **Tried on a lab, 2026-10-31:** dev VM 5 as for Gokapi:
+  - **Install:** the summary and form were right. Seafile set itself up on Roostack's databases, made its administrator, and was restarted once Roostack had added its block; the install hook then set the typed password on its first attempt, and Roostack deleted it.
+  - **Using it through the lab's address (Seafile's API):** the administrator signed in, and a wrong password was refused. In a new library, a 3 MB file, an `.html`, and an `.svg` uploaded through `/seafhttp` came back identical, with the headers above. A share link and an upload link each expired 7 days later.
+  - **Memory:** Seafile 644 MB, MariaDB 150 MB, Valkey 9 MB.
+  - **Backup:** `roostack backup run` covered `/shared`, one dump holding all three databases, and the secrets.
+  - **Run now** on Free up space: the run showed in the history with Seafile's log (online GC, finished). The library deleted just before was in the trash, so nothing was freed, as above.
+  - **Check the libraries:** ran and showed its output on the service page.
+  - **Restore:** the test library was deleted, then restored with `roostack backup restore seafile`; it came back with its three files identical, and the library check found nothing wrong.
+  - **A setting changed** (share links 7 → 5 days): Roostack rewrote its block (still one) and restarted Seafile; a new share link expired 5 days later.
+  - **Single sign-on:** turned on, Roostack added the OAuth lines to the block and restarted Seafile; its sign-in page showed Single Sign-On, and `/oauth/login/` sent people to the lab's sign-in page with the client, scopes, and callback, which it accepted. Finishing a sign-in needs Seafile to trust the lab's test certificate, so it wasn't tried. Turned off, the OAuth lines and client secret left the file, and the password and library still worked.
+  - **Removal:** the three containers, the site, and the network went, the address answered 404, and the data was kept.
+- **Still not checked:** a restore onto a fresh server, a real sign-in through a lab's provider, the desktop and phone apps, WebDAV, and making the address public.
+- **Seen in Roostack, not the package:**
+  - MariaDB's health check (`mariadb-admin ping -h 127.0.0.1`) connects as root without a password, so the database's log gets "Access denied for user 'root'" every 10 seconds; it passes anyway.
+  - After `roostack backup run` from the command line, Seafile's page still said "Not backed up yet", though `roostack backup snapshots` listed it; the service page seems to show only the nightly run's backups.
+  - The maker's full stop doubles in "Made by Seafile Ltd.." (the package now leaves it out).
 
 ## Questions for the maintainer
 
