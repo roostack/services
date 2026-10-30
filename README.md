@@ -18,7 +18,7 @@ packages/
   <name>/
     <version>.yaml   one file per version; never edited once published
     icon.png         the project's logo (about.icon)
-    registry.yaml    tier, maintainers and any withdrawals
+    registry.yaml    tier, maintainers, any withdrawals, and roost_ac
 web/                 the registry's page (below)
 tools/               copying Roostack's files for the page, and checking them
 updates.yaml         what the update check follows for each package (Updates)
@@ -42,7 +42,20 @@ updates.yaml         what the update check follows for each package (Updates)
     - version: 1.34.2-roostack.1
       level: warning      # notice, warning or stop
       reason: A security fix is in 1.34.3; update.
+  roost_ac:               # only when needed
+    approval: Anything uploaded to it can have a public link, and its short links can lead anywhere.
   ```
+
+  `roost_ac` flags a package as needing Roostack Cloud's approval for
+  roost.ac: its services are public through a roost.ac name or Roostack
+  Cloud's relay only for accounts Roostack Cloud has approved, and the
+  reason (one line) is shown to Owners on the service's page. It's for
+  packages that are a risk to Roostack Cloud as a service provider, such as
+  public hosting of anything uploaded, never for an app that's merely
+  risky: on an Owner's own domain without the relay, nothing is limited.
+  It's here rather than in the package file so that an author can't remove
+  it, and so it can change without a new version (Roostack's SPEC §6.11,
+  "Roostack Cloud's names and relay").
 
 ## Tiers
 
