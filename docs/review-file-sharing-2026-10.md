@@ -1,220 +1,218 @@
-# Review: five file-sharing services (2026-10-30)
+# Review: file-sharing services (2026-10-30)
 
-A review before any packaging: ProjectSend, Chibisafe, Zipline, Palmr, and Seafile. For each, how it would fit Roostack's package format and, above all, what it would risk for roost.ac and Roostack Cloud's edges when a lab makes it public. Nothing is packaged yet: the maintainer decides which to do, and how, from the questions at the end.
+A review before packaging: first ProjectSend, Chibisafe, Zipline, Palmr, and Seafile, then the alternatives the maintainer asked about, for a generic file-sharing app. For each: how it fits Roostack's package format and what it risks for roost.ac and Roostack Cloud's edges when a lab makes it public. The maintainer's decisions of 2026-10-30 are first; the plan to build them follows the assessment.
 
 Upstream facts were checked on 2026-10-30 against each project's repository, releases, security advisories, container registry, and documentation (sources at the end, with dates). Statements marked *code-read* come from reading the source, not from running the app.
 
-## Summary
+## Decisions (the maintainer, 2026-10-30)
 
-| | Seafile CE | ProjectSend v2 | Palmr | Zipline v4 | Chibisafe |
-|---|---|---|---|---|---|
-| **What it is** | File sync and share (a Dropbox replacement), with desktop and phone clients | A client portal: staff send files to client accounts, with share links | WeTransfer-style transfers with "reverse shares" for outsiders to upload | A ShareX upload target: image and file host, with a URL shortener | A pomf-style file host (lolisafe's successor) |
-| **Licence** | Server core AGPL-3.0 (with an OpenSSL exception), web UI Apache-2.0; Pro proprietary (free to 3 users) | GPL-2.0-or-later (also sold under a commercial licence) | v3 Apache-2.0; v4 AGPL-3.0-only | MIT | MIT |
-| **Health** | A company; 13.0.28 on 2026-09-18, about monthly | One main maintainer; v2 is a rebuild from 2026-08-14, 12 releases since (2.8.0 on 2026-10-29) | **Archived** 2026-02-27; v4 an unreleased rewrite | One maintainer; 4.8.2 on 2026-10-25 | One maintainer; 6.7.0 on 2026-10-22, after 15 months without a release |
-| **Advisories (2 years)** | 6 CVEs, mostly stored XSS; fixed before publication | 15 GHSAs in Sept–Oct 2026 (pre-auth account takeover through OIDC among them); v1 exploited in the wild (CISA KEV, 2024) | None filed | 25 GHSAs (unauthenticated account takeover, path traversal, an open redirect) | 1 (stored XSS through uploaded HTML/SVG, CVSS 8.6, fixed 2026-10-18) |
-| **Image** | `seafileltd/seafile-mc`, amd64 and arm64 (arm64 lags; SeaDoc 2.0.10 amd64 only); root inside, runit and nginx on :80 | `projectsend/projectsend`, amd64 and arm64; root inside, nginx on :80 | `kyantech/palmr`, amd64 and arm64; root, with MinIO inside | `ghcr.io/diced/zipline`, amd64 and arm64; root | Two images (amd64 and arm64) plus the project's own Caddy |
-| **Needs** | MariaDB (**three databases**), Redis | MySQL 8.4 (Roostack's pin), Redis optional | SQLite, bundled MinIO (browsers reach it directly: a second public address) | PostgreSQL (or embedded PGlite) | SQLite |
-| **Single sign-on** | OAuth2 in CE (no discovery), or Remote-User; set in `seahub_settings.py`, not env | Generic OIDC with discovery, set in its admin UI only; no groups | Generic OIDC, admin UI only; links accounts by email without checking it's verified (*code-read*) | OIDC by explicit endpoints; password sign-in can't really be turned off | **None**, and upstream won't add it (2026-09-30) |
-| **Backups** | Dumps first, then `conf` and `seafile-data` (Roostack's order already); `seaf-fsck` after a restore; garbage collection needed | MySQL dump plus the whole `storage/` folder (holds `APP_KEY`) | SQLite plus MinIO's own format | PostgreSQL plus uploads | SQLite (holds every setting and the signing secret) plus uploads |
-| **Anonymous uploads** | Upload links (into the owner's quota) | None | Reverse shares, which skip quotas (*code-read*) | Folders with "Allow anonymous uploads" | "Public mode", off by default, one switch in its admin UI |
-| **Serves uploads inline** | HTML as a download, SVG sandboxed | Only a list of safe types; the rest as downloads | **HTML and SVG inline on its own address, no CSP** (*code-read*) | Inline with the uploader's type, sandboxed since 2026-07 | Inline; safe only behind its own Caddyfile's headers |
-| **Abuse risk when public** | **Medium** | **Medium** | **High** | **High** | **High** |
-| **Recommendation** | **Package first**, with locked-down defaults; two Roostack questions first | **Package later** (early 2027), once v2 has settled | **Don't package**; review v4 once it's released | **Don't package** | **Don't package** |
+- **No app is too risky to offer: it's the Owner's lab.** What we limit is what reaches roost.ac and our edges. Apps that are a risk to us as a service provider are offered, but their addresses stay private while they'd use a roost.ac name or the relay, unless the account has been approved (by asking support, or another measure later).
+- **The hard rule: uploads must never be shown as a web page on the app's address.** Uploading is one thing, a phishing page another. An app that lets anyone upload must serve HTML (and SVG, which can carry scripts) as a download, refuse it, or sandbox it.
+- **Copyright and big files aren't a reason to refuse an app:** anyone can host a film on Immich already. The abuse page handles it.
+- **Packages: Seafile and ProjectSend.** Palmr is out (unmaintained). ProjectSend is maintained (2.8.0, 2026-10-29), and its September advisories were part of the wave that hit PHP apps, so they aren't held against it.
+- **Seafile's three databases:** a Roostack change, extra schemas for the same app user on one MariaDB.
+- **Seafile's settings file:** the strategic route, Roostack's "config files a package declares" (SPEC §8.1, layer 3), not a hook. `ENABLE_SETTINGS_VIA_WEB` off for now.
+- **Seafile's link defaults:** share links expiring after 7 days by default and 90 at most, upload links 7 and 30, passwords optional, "Report abuse" on. Each is a setting the Owner can change.
+- **Seafile's licence:** read conservatively, as AGPL-3.0-only.
+- **"Only shared links public":** to build.
+- **Free roost.ac names only for registry packages:** to build, as an option, also covering registry packages flagged as not to be made public through roost.ac without approval.
+- **Takeover before setup:** keep addresses private until setup has finished.
+- **Cloud's checks:** Cloud can't see content, but it can see public services, so the outside checker should recognise apps that host anything uploaded, and pages that shouldn't be there.
 
-In short: Seafile is the one worth having now. It fills a real gap (the registry has no file sync), is maintained by a company, signs nobody up by default, and lets an administrator force expiry and passwords on share links. ProjectSend is a reasonable second, but its v2 is eleven weeks old and has just had fifteen advisories. Zipline and Chibisafe exist to make uploads public on a short address, which is exactly what harms roost.ac, and Palmr is archived.
+## Which apps show uploaded HTML (question 2)
 
-## How Roostack and Cloud shape the risk
+"Shown" means an uploaded `.html` (or script-capable `.svg`) opens as a page on the app's own address. A **sandbox** (`Content-Security-Policy: sandbox`) still shows the page, but without scripts and with forms that can't be sent, so it can't collect a password; it can still show a lure with a link out. **nosniff** stops browsers guessing that a download is a page.
 
-What a file-sharing app puts at risk, from Cloud's design (DESIGN §3d, §5; RUNBOOK-ABUSE):
+| App | As shipped | Can the package stop it? |
+|---|---|---|
+| **Seafile CE** | No: HTML is a download (`application/octet-stream`, nosniff); SVG sandboxed | Already safe |
+| **ProjectSend v2** | No: an allow-list of extensions leaves out HTML and SVG; only safe types shown | Already safe |
+| **Zipline v4** | **Yes, sandboxed**: served with the uploader's own type, sandbox and nosniff since 4.6.4 (2026-07-06) | **Yes, enforced:** `FILES_DISABLED_TYPES` and `FILES_ASSUME_MIMETYPES` from the environment override its dashboard and lock it there (`src/lib/config/read`). HTML is then refused |
+| **Chibisafe** | **Yes, sandboxed only by its own Caddyfile** (6.6.0, 2026-10-18); `.html` and `.svg` allowed | Partly: its blocklist is a database setting a hook can set, but its administrator can undo it |
+| Palmr v3 | **Yes, unsandboxed**, no nosniff (*code-read*) | No; out anyway |
+| Pingvin Share X | Sandboxed, with nosniff, for everything but audio, video, plain images, and text | Already acceptable |
+| Plik | Sandboxed with a strict CSP, nosniff, `form-action 'none'` | Already safe |
+| Gokapi | Sandboxed, no nosniff | Acceptable; nosniff to add in Caddy |
+| SFTPGo | No: always a download (since 2.7.3) | Already safe |
+| OpenCloud | No: download, nosniff, strict CSP | Already safe |
+| Sharry | **Yes, unsandboxed** (inline, its detected type, no CSP) | Only by Caddy headers |
+| FileBrowser Quantum | **Yes**, with scripts off (`script-src 'none'`) but not sandboxed: forms work | Only by Caddy headers |
+| copyparty | **Yes** by default | Yes: `--no-html` |
+| Filestash | **Yes** (its CSP allows scripts from its own address) | No |
 
-- **roost.ac's reputation is shared.** A phishing kit or malware on `files.smiths.roost.ac` gets listed by Google's Web Risk and the like; enough of those and mail filters and browsers start distrusting roost.ac as a whole. roost.ac on the Public Suffix List keeps cookies apart, and blocklists usually list a lab's name rather than roost.ac, but neither stops the damage to the name's standing.
-- **Cloud can't see content.** The edges never decrypt, so Cloud acts on hostnames: Web Risk, reports, certificate logs, and traffic volume ("sustained heavy downloads suggest file hosting", §5). File sharing makes that volume signal noisier: a family's legitimate 4 GB share looks like a malware mirror.
-- **What reaches us within hours:** phishing, malware, and child sexual abuse material, and eSafety's 24-hour removal notices. A file drop is the most likely place for all of them: someone's account or upload link is used by somebody else.
-- **The registry is the gate, but a soft one.** DESIGN §5 says free roost.ac names are "only for verified services: catalog packages, not custom ones". As far as I can see (2026-10-30), nothing enforces that yet: the lab sends Cloud only hostnames (`cloudapi.RelayRequest`), and `manager.publicHostsOf` includes services from the Owner's own packages. So not packaging Zipline keeps it out of the catalog and the one-click path, not off roost.ac. That's a Cloud-side gap, listed under the questions.
-
-What each app risks, in order of how much it matters:
-
-1. **Anyone uploading without an account** (public mode, anonymous folders, reverse shares, upload links). The worst case: a stranger hosts malware or a phishing page under the lab's name, and the Owner never notices.
-2. **Uploads served inline on the app's own address.** An uploaded HTML or SVG file renders as a page of the lab's own site: a phishing page with a valid certificate under roost.ac. Sandboxing (`Content-Security-Policy: sandbox`) or serving as a download stops it.
-3. **Short links and open redirects.** A roost.ac link that redirects anywhere is a spammer's favourite way to hide a phishing address (Zipline, Chibisafe).
-4. **Takeover before setup, default passwords, open sign-ups.** An app that's public before its administrator exists belongs to whoever gets there first (ProjectSend's `/setup`, Zipline's setup page, Palmr's first registrant, Chibisafe's `admin`/`admin`). Roostack's install hooks normally close this; it's listed per app below.
-5. **Share links handed on.** Every app here makes download links; links without expiry outlive their purpose and spread. Admin-enforced expiry is what limits it.
-6. **Copyright** (films and music shared from a lab): slower, but the same hostname suspension.
-
-Roostack's own protections help with the attacks on the app (CrowdSec, rate limits, the WAF, nothing public until the Owner says so), not with misuse by people who are allowed in.
+**Recommendation:** a package passes when uploaded HTML is a download or refused, or, where the app gives no way to do that, sandboxed with nosniff. Where the app can refuse HTML from the environment (Zipline), the package does. And Roostack's Caddy should be able to enforce it, whatever the app's settings: change 7 in the build plan.
 
 ## Each service
 
-### Seafile Community Edition — medium; package first
+### Seafile Community Edition — package
 
-**What it is:** file sync and share with libraries, desktop sync clients (Windows, macOS, Linux) and phone apps, WebDAV, share links, and upload links. The closest thing to Nextcloud's file part, faster and narrower. Seafile Ltd develops it; 13.0 is current (13.0.28, 2026-09-18) and 14.0 is in beta (14.0.9, 2026-10-14).
+**What it is:** file sync and share with libraries, desktop sync clients (Windows, macOS, Linux), phone apps, WebDAV, share links, and upload links. Seafile Ltd develops it; 13.0 is current (13.0.28, 2026-09-18) and 14.0 is in beta (14.0.9, 2026-10-14).
 
-**Licence:** the server core (`seafile-server`) is AGPL-3.0 with an OpenSSL exception, the web UI (`seahub`) Apache-2.0, the sync library GPL-2.0 with the same exception. Whether the AGPL is "-only" or "-or-later" isn't stated (Roostack's `about.licence` needs one: an open question). Pro is proprietary, free for up to three users; S3 storage, virus scanning, SAML, and an administrator browsing users' files are Pro only. We'd package Community Edition.
-
-**Packaging:**
-
-- **Image:** `seafileltd/seafile-mc:13.0.x`, multi-arch (amd64 and arm64), built on Ubuntu 24.04 with runit, cron, and nginx inside on port 80, which maps `/`, `/seafhttp`, and `/seafdav` itself, so one Roostack route is enough. It starts as root inside the container (as most registry images do; under rootless Podman that's the `roostack` user). `NON_ROOT=true` runs Seafile as uid 8000 but still starts as root; not needed with Roostack. arm64 tags arrive after amd64 ones, so a version is ready to package once its multi-arch digest exists.
-- **Left out:** the official Compose file's Caddy (`caddy-docker-proxy`, which mounts the Docker socket: Roostack's Caddy replaces it). **SeaDoc** (`sdoc-server`, collaborative documents) is a separate container, and its current 2.0.10 is amd64 only: an optional part (`when:`), off at first. The notification server (WebSocket, live updates) is optional too.
-- **Databases: the hard part.** Seafile needs three MariaDB databases (`ccnet_db`, `seafile_db`, `seahub_db`); SQLite went in 11.0 and PostgreSQL was never supported. Its first run creates them with the root password (`INIT_SEAFILE_MYSQL_ROOT_PASSWORD`), which Roostack never keeps, and Roostack's app user may only use its own database. Options (question 3): three `databases:` entries (three MariaDB containers, about 300 MB of memory more, as Roostack expects 150 MB each, and three dumps not taken at one moment), or a Roostack change letting one MySQL/MariaDB database give the app user more schemas of the same server. Seafile can use databases made for it (`USE_EXISTING_DB=1` in its setup script; undocumented for Docker, *code-read*), so either way needs a test.
-- **Redis** as a cache (`CACHE_PROVIDER=redis`), `backup: false`.
-- **Data:** `/shared` holds `seafile/conf` (configuration and `SECRET_KEY`: critical), `seafile/seafile-data` (libraries as content-addressed blocks, not plain files: critical), `seafile/seahub-data` (avatars critical, thumbnails replaceable), and logs (replaceable). Its storage goes on the `media` location (large).
-- **Backups:** Seafile's guide says to dump the databases first and copy the data after, which is what Roostack does already (dumps, then restic). After a restore, `seaf-fsck` checks the libraries: an action hook ("Check the libraries"). Deleted files' blocks stay until garbage collection (`seaf-gc.sh`, online in CE since 12.0) runs; whether the image's cron runs it by itself needs checking, or storage only grows (question 7).
-- **First administrator:** `INIT_SEAFILE_ADMIN_EMAIL` and `INIT_SEAFILE_ADMIN_PASSWORD`, read on the first start only, as `install_only` settings. The Compose file's defaults (`me@example.com` / `asecret`) must never be used, so the package requires them.
-- **Its address:** `SEAFILE_SERVER_HOSTNAME`, `SEAFILE_SERVER_PROTOCOL`, a generated `JWT_PRIVATE_KEY`, and `CSRF_TRUSTED_ORIGINS`. Large uploads: no body-size limit for `/seafhttp` (the clients upload in blocks), long timeouts.
-- **What fights the format:** most of Seafile's behaviour (share-link policy, sign-ups, OAuth) is in `seahub_settings.py`, a Python file in `conf`, not environment variables, and administrators can override much of it from the web UI (stored in the database) unless `ENABLE_SETTINGS_VIA_WEB = False`. Roostack's "config files a package declares" (SPEC §8.1, layer 3) isn't built. Until it is, an install hook would write a block of Roostack's settings into that file (marked as Roostack's, rewritten when settings change): it works but is a pattern no package uses yet (question 4). The image also edits files in its own code folder at start (`chown`, `sed`), so its root filesystem can't be read-only; nothing else in Roostack needs that.
-
-**Single sign-on:** Community Edition has OAuth2 (`ENABLE_OAUTH`, explicit authorisation, token, and userinfo addresses, not OIDC discovery; Roostack's provider gives those addresses) and Remote-User. Both are set in `seahub_settings.py`. Unknown users are created at first sign-in (`OAUTH_CREATE_UNKNOWN_USER`); password sign-in can be refused for SSO users (`DISABLE_ADFS_USER_PWD_LOGIN`, which applies to OAuth too, *code-read*), though administrators keep theirs. No group mapping in CE. The desktop and phone clients sign in through the browser (`CLIENT_SSO_VIA_LOCAL_BROWSER`); WebDAV needs a token per person. So SSO uses an `on: sso` hook writing the OAuth block, like the other hook-configured apps.
-
-**Abuse when public:**
-
-- Nobody signs up by default (`ENABLE_SIGNUP = False`); the package keeps it off and doesn't offer it as a setting.
-- **Upload links** let anyone with the link upload into a folder (into the owner's quota). **Share links** have optional passwords, expiry, and a download limit.
-- An administrator can **enforce** link policy: a maximum and default expiry for share and upload links (`SHARE_LINK_EXPIRE_DAYS_MAX`, `UPLOAD_LINK_EXPIRE_DAYS_MAX` and their defaults), required passwords (`SHARE_LINK_FORCE_USE_PASSWORD`), and a "Report abuse" button on shared pages (`ENABLE_SHARE_LINK_REPORT_ABUSE`, in CE). The admin pages list and delete every share and upload link.
-- Files are served safely: HTML as `application/octet-stream` with `nosniff`, SVG with a sandbox CSP (since CVE-2025-65516, fixed in 13.0.12). Previews stay in the web UI.
-- No virus scanning in CE, and no file-type blocklist.
-- No Seafile-specific abuse campaigns found. Its CVEs are mostly stored XSS, and fixes ship before publication.
-- **Risk: medium.** The danger is a member's account or an upload link used by someone else, limited by expiry and the admin's view of links.
-
-**Recommendation: package it, with locked-down defaults** (question 5 has the values): sign-ups off; share links expiring by default after 7 days and at most 90; upload links by default after 7 days and at most 30; "Report abuse" on; passwords on share links optional (the Owner's setting, off by default, since families share with family). Its address starts private, like every service. On a lab with Cloud, its page could say that share links are public through the lab's address.
-
-### ProjectSend v2 — medium; package later
-
-**What it is:** a client portal. Staff upload files for client accounts or groups, clients sign in to fetch them (and may upload back), and files can have share links. Useful to a small business (an accountant, a photographer), less to a family. Version 2 is a Laravel rebuild released 2026-08-14; the old app moved to `projectsend/legacy`, which linuxserver.io's image still ships.
-
-**Licence:** GPL-2.0-or-later; also sold under a commercial licence (contributors sign a CLA), and a paid hosted edition exists. The image's label says MIT, which contradicts the project (to mention upstream).
-
-**Health:** one main maintainer (501 of about 600 commits in the last year). Twelve releases in eleven weeks, and fifteen advisories published in September and October 2026, among them pre-auth account takeover through OIDC email matching, a trusted Entra `email` claim, a first-run setup race making several administrators, and uploads into public folders without permission. All were fixed the day they were published. In 2024, v1's CVE-2024-11680 was exploited in the wild (attackers turned sign-ups on, uploaded web shells; CISA KEV), which is the scenario that hurts a shared domain.
+**Licence:** the server core (`seafile-server`) is AGPL-3.0 with an OpenSSL exception (read as `AGPL-3.0-only`, the maintainer's choice), the web UI (`seahub`) Apache-2.0, and the sync library GPL-2.0 with the same exception. Pro is proprietary, free for up to three users; S3 storage, virus scanning, SAML, and an administrator browsing users' files are Pro only. We'd package Community Edition.
 
 **Packaging:**
 
-- **Image:** `projectsend/projectsend` (the project's own, Docker Hub), amd64 and arm64; nginx, PHP-FPM, three queue workers, and a scheduler under supervisord, as root inside, on port 80.
-- **Database:** MySQL 8.0 or newer, tested on 8.4: Roostack's MySQL pin, as Ghost uses. Redis for sessions, cache, and queues (optional; `backup: false`).
-- **Data:** the whole `storage/` folder is critical: uploads in `storage/app/files/`, and `storage/.env` with the generated `APP_KEY` that decrypts the SMTP, LDAP, and OAuth secrets in the database. Better: `APP_KEY` as a Roostack-generated secret in its environment. Thumbnails, previews, and zips are replaceable (a per-directory class).
-- **Administrator:** `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_NAME` create it headless, ignored once a user exists: `install_only` settings, and `/setup` as a private path.
+- **Image:** `seafileltd/seafile-mc:13.0.x`, multi-arch, built on Ubuntu 24.04 with runit, cron, and nginx inside on port 80, which maps `/`, `/seafhttp`, and `/seafdav` itself, so one Roostack route is enough. It starts as root inside the container, as most registry images do (under rootless Podman that's the `roostack` user). arm64 tags arrive after amd64 ones, so a version is ready to package once its multi-arch digest exists.
+- **Left out:** the official Compose file's Caddy (`caddy-docker-proxy`, which mounts the Docker socket: Roostack's Caddy replaces it). **SeaDoc** (`sdoc-server`, collaborative documents) is a separate container whose current 2.0.10 is amd64 only: an optional part (`when:`), off at first. The notification server (live updates over WebSocket) is optional too.
+- **Databases:** three MariaDB databases (`ccnet_db`, `seafile_db`, `seahub_db`) for one user, on one server: build plan, change 2. Seafile can use databases made for it (`USE_EXISTING_DB=1` in its setup script, undocumented for Docker, *code-read*), to test.
+- **Redis** as its cache (`CACHE_PROVIDER=redis`), `backup: false`.
+- **Data:** `/shared` holds `seafile/conf` (configuration and `SECRET_KEY`: critical), `seafile/seafile-data` (libraries as content-addressed blocks, not plain files: critical), `seafile/seahub-data` (avatars critical, thumbnails replaceable), and logs (replaceable), on the `media` location.
+- **Backups:** Seafile's guide says to dump the databases first and copy the data after, which is Roostack's order already. After a restore, `seaf-fsck` checks the libraries: an action hook ("Check the libraries").
+- **Garbage collection (question 7):** Seafile keeps files as blocks shared between versions. Deleting a file, or its old versions expiring, doesn't free the disk until garbage collection runs (`seaf-gc.sh`, online since 12.0). The image's cron runs only log rotation (`scripts_13.0/enterpoint.sh`); garbage collection is a script someone runs (`/scripts/gc.sh`). Without it, Seafile's storage only grows. Options in the questions.
+- **First administrator:** `INIT_SEAFILE_ADMIN_EMAIL` and `INIT_SEAFILE_ADMIN_PASSWORD`, read on the first start only, as `install_only` settings. The Compose file's defaults (`me@example.com` / `asecret`) are never used: the package requires them.
+- **Its address:** `SEAFILE_SERVER_HOSTNAME`, `SEAFILE_SERVER_PROTOCOL`, a generated `JWT_PRIVATE_KEY`, and `CSRF_TRUSTED_ORIGINS`. No body-size limit for `/seafhttp` (the clients upload in blocks), long timeouts.
+- **Settings:** `seahub_settings.py` (Python, in `conf`) through Roostack's config files (change 1), with `ENABLE_SETTINGS_VIA_WEB = False` so the web UI can't override them. The image edits its own code folder at start (`chown`, `sed`), so its root filesystem can't be read-only.
+
+**Single sign-on:** Community Edition has OAuth2 (`ENABLE_OAUTH`, with explicit authorisation, token, and userinfo addresses rather than OIDC discovery) and Remote-User, both set in `seahub_settings.py`, so through the config file too. Unknown users are created at first sign-in; password sign-in can be refused for SSO users (`DISABLE_ADFS_USER_PWD_LOGIN`, which applies to OAuth too, *code-read*), though administrators keep theirs. No group mapping in CE. The clients sign in through the browser (`CLIENT_SSO_VIA_LOCAL_BROWSER`); WebDAV needs a token per person.
+
+**Abuse when public:** nobody signs up (`ENABLE_SIGNUP = False`, kept off). Upload links let anyone with the link upload into a folder, within the owner's quota; share links have optional passwords, expiry, and a download limit. The package enforces the link policy above (`SHARE_LINK_EXPIRE_DAYS_DEFAULT` and `_MAX`, `UPLOAD_LINK_EXPIRE_DAYS_DEFAULT` and `_MAX`, `ENABLE_SHARE_LINK_REPORT_ABUSE`), and the admin pages list and delete every link. Uploaded HTML is never shown (above). No virus scanning in CE. **Risk to us: medium.** No approval needed.
+
+**Its settings (question 5):** the four numbers are the days: share links 7 by default and 90 at most, upload links 7 and 30. Each is a Roostack setting (`type: int`) on the service's Settings page, with "Require passwords on share links" (off) and "Show a Report abuse button" (on); saving rewrites the config file and restarts Seafile.
+
+### ProjectSend v2 — package
+
+**What it is:** a client portal: staff upload files for client accounts or groups, clients sign in to fetch them and may upload back, and files can have share links. Version 2 is a Laravel rebuild released 2026-08-14 (2.8.0 on 2026-10-29); the old app moved to `projectsend/legacy`, which linuxserver.io's image still ships.
+
+**Licence:** GPL-2.0-or-later, also sold under a commercial licence (contributors sign a CLA). The image's label says MIT, which contradicts the project (to mention upstream).
+
+**Packaging:**
+
+- **Image:** `projectsend/projectsend` (the project's own), amd64 and arm64; nginx, PHP-FPM, three queue workers, and a scheduler under supervisord, as root inside, on port 80.
+- **Database:** MySQL 8.0 or newer, tested on 8.4: Roostack's MySQL pin, as Ghost uses. Redis for sessions, cache, and queues (`backup: false`).
+- **Data:** the whole `storage/` folder is critical: uploads in `storage/app/files/` and `storage/.env`, whose `APP_KEY` decrypts the SMTP, LDAP, and OAuth secrets in the database. Better: `APP_KEY` as a generated Roostack secret. Thumbnails, previews, and zips are replaceable.
+- **Administrator:** `ADMIN_EMAIL`, `ADMIN_PASSWORD`, and `ADMIN_NAME` create it headless, ignored once a user exists: `install_only` settings, and `/setup` as a private path.
 - **Its address:** `APP_URL`, and `TRUSTED_PROXIES` (without it, 419 errors and rate limits keyed on Caddy's address). Migrations run on every start.
-- **Fights the format:** single sign-on is configured only in its admin UI (database rows, with an encrypted client secret), so it needs an `on: sso` hook through `artisan` or its API, still to find. An "AI assistant" (MCP) connector is on by default since 2.8.0; the package should turn it off, if it can from outside the UI.
+- **Single sign-on:** generic OIDC with discovery, but configured only in its admin UI (database rows, the client secret encrypted with `APP_KEY`), so an `on: sso` hook through `artisan` or its API, still to find. No group mapping: people it creates are always clients, never staff; since 2.8.0 staff can be made to sign in through one provider.
+- An "AI assistant" (MCP) connector is on by default since 2.8.0: off in the package, if it can be from outside the UI.
 
-**Single sign-on:** generic OIDC with discovery (good), but no group or role mapping: people it creates are always clients, never staff. Since 2.8.0 staff can be made to sign in through one provider; clients keep passwords.
+**Abuse when public:** no anonymous uploads; sign-ups and auto-approval off by default; share links (`/s/<token>`) with expiry and a download limit but no password, rate-limited; uploaded HTML never shown (above); full activity and download logs; optional ClamAV (another container of about 1–1.5 GB). Sign-ups and public groups are settings in its database that an administrator can turn on. **Risk to us: medium.** No approval needed.
 
-**Abuse when public:** no anonymous uploads; sign-ups and auto-approval off by default; share links (`/s/<token>`) with expiry and a download limit but no password, rate-limited; an extension allow-list for every uploader that leaves out HTML and SVG; only a list of safe types served inline, the rest as downloads, from outside the web root; full activity and download logs; optional ClamAV (another container of about 1–1.5 GB; it lets files through unscanned when it's down). Sign-ups and public groups are settings in its database, which an administrator can turn on; Roostack can't hold them off.
+### Zipline v4 — package, with approval for roost.ac
 
-**Risk: medium.** The design is right for public use; its youth and recent advisories are the worry.
+**What it is:** a ShareX/Flameshot upload target: screenshots and files get short public addresses (`/u/<name>`), plus a URL shortener, Discord embeds, and pastes. MIT; one maintainer; 4.8.2 on 2026-10-25.
 
-**Recommendation: package later.** Look again in early 2027 (say February), after a quiet stretch with no high-severity advisories, packaged like Seafile: sign-ups off, the AI connector off, `/setup` private.
+**Why it's a risk to us:** its purpose is public, hot-linkable hosting. A folder can "Allow anonymous uploads" (counted against its owner's quota), and short links redirect to any http(s) address, a spammer's favourite way to hide a phishing address behind roost.ac. It has had 25 advisories in two years, including unauthenticated account takeover (2026-01) and path traversal (three times), all fixed the day they were published.
 
-### Palmr — high; don't package
+**What the package can enforce,** since its environment overrides and locks the dashboard's settings: HTML and SVG refused (`FILES_DISABLED_TYPES`, `FILES_ASSUME_MIMETYPES=true`), no sign-ups (`FEATURES_USER_REGISTRATION=false`), and SSO by explicit OIDC addresses. The shortener's links (`/go`, `URLS_ROUTE`) can be a private path the Owner opens if they want it public. The first administrator: an install hook posting to `/api/setup`, as Papra's hook signs up, with the address private until it has (change 3). Password sign-in can't really be turned off (the SSO redirect is client-side only).
 
-**What it is:** a WeTransfer-style service: uploads with share links, and "reverse shares" letting outsiders upload to you.
+**Packaging:** `ghcr.io/diced/zipline`, multi-arch, root inside, port 3000; PostgreSQL; uploads in `/zipline/uploads` (thumbnails among them, replaceable in principle but in the same folder).
 
-**Why not:**
+**Risk to us: high.** Flagged in the registry as needing approval for roost.ac and the relay (change 6).
 
-- **Archived:** its README says so since 2026-02-27 (a solo developer without enough sponsors); the last release is 3.3.2-beta (2025-12-10), and every release was a beta.
-- **v4** is a Rust rewrite on a branch (since 2026-09-24), not released, "not yet ready for production use", with no migration from v3.
-- **v3 serves uploads inline on its own address:** HTML as `text/html` and SVG with `inline`, no CSP or `nosniff`, and a public `/e/<id>` embed address with a year's cache (*code-read*). That's a phishing page under the lab's name for anyone with a reverse-share link.
-- **Reverse shares skip the owner's quota and size limits** until a file is copied into the owner's files, and trust the size the uploader declares (*code-read*). Files from an expired share without a password may still download by their direct address (*code-read*, not tried).
-- The first person to register becomes its administrator; SSO links an account by email without checking it's verified (*code-read*).
-- **Packaging:** root, supervisord, a MinIO inside the image that browsers must reach at a second public address (`STORAGE_URL`), and the schema synced with `prisma db push` on every start, without migrations.
+### Chibisafe — not now
 
-**Recommendation: don't package v3.** v4 looks like a good fit on paper (AGPL-3.0-only, a non-root distroless image, SQLite, local or S3 storage, a documented backup with `VACUUM INTO`): review it once it's released, as a candidate for "transfers" if Seafile's links aren't enough.
+Every upload is a public link by design, "public mode" (uploads without an account) is a switch in its admin UI, its URL shortener takes any destination, HTML is sandboxed only by the project's own Caddyfile, it has no single sign-on and won't (issue #566, closed 2026-09-30), and the first administrator's password falls back to `admin` (`Util.ts`). One maintainer, 15 months without a release before October 2026. It's the same niche as Zipline, with less a package can enforce. **Recommendation:** Zipline covers it; Chibisafe only if someone asks, flagged like Zipline.
 
-### Zipline v4 — high; don't package
+### Palmr — removed
 
-**What it is:** a ShareX/Flameshot upload target: screenshots and files get short public addresses (`/u/<name>`, or from the root), plus a URL shortener, embeds for Discord, and pastes.
+Archived on 2026-02-27; v4 is an unreleased rewrite. Out, as the maintainer decided.
 
-**Why not:**
+## A generic file-sharing app: the alternatives
 
-- **Its purpose is public hot-linkable hosting:** every upload is meant to be posted somewhere. Kept private it's pointless; public, it's an image and file host under roost.ac.
-- **The URL shortener redirects to any http(s) address** (an open-redirect advisory was fixed in 4.5.0 by checking the scheme only). Short links on roost.ac redirecting to phishing are what Web Risk lists.
-- **Anonymous uploads:** a folder can "Allow anonymous uploads", counted against its owner's quota.
-- **Files are served inline with the uploader's MIME type** unless `FILES_ASSUME_MIMETYPES=true`; sandboxed since 2026-07, and the extension blocklist didn't work at all before 4.8.0.
-- **25 advisories in two years** from one maintainer, including unauthenticated account takeover (2026-01), path traversal reading and writing files (three times), and stored XSS (twice).
-- **Setup is open to whoever reaches it first,** with no environment variable to create the administrator; local password sign-in can't really be turned off (the SSO redirect is client-side only, `?local=true` brings the form back).
+The maintainer wants a generic file-sharing app: someone signs in, uploads, and sends a link; ideally also a "file request" link for someone else to upload to them. Seafile does this inside a sync product, and ProjectSend inside a client portal; neither is the simple WeTransfer-style app. Surveyed 2026-10-30:
 
-**Recommendation: don't package.** If it's ever wanted, only as private (home network), which Roostack has no way to enforce for a registry package (question 1).
+| App | Licence | Health | Image | Data | SSO | Uploaded HTML | Fit |
+|---|---|---|---|---|---|---|---|
+| **Pingvin Share X** | BSD-2-Clause | 2.1.0 (2026-10-25); one main maintainer; 9 advisories in 2026, fixed quickly | Multi-arch; root, drops to a user | SQLite, files on disk | Generic OIDC with discovery, admin role from a claim | Sandboxed, nosniff | **Best fit**: shares with expiry, password, visitor limit; reverse shares; admin maximum expiry and size |
+| **Plik** | MIT | 1.4.3 (2026-10-21); two maintainers; no advisories | Multi-arch, non-root | PostgreSQL, MySQL, or SQLite; files on disk | Generic OIDC with discovery | Strict sandbox | Easiest to package (every setting an env var), but **no file requests** |
+| **SFTPGo** | AGPL-3.0 (Enterprise edition apart) | 2.7.6 (2026-09-19); one maintainer, monthly | Multi-arch, non-root | PostgreSQL, MySQL, or SQLite; files on disk | OIDC by env, but users must exist first | Always a download | A file server: share and upload-only links, admin-enforced maximum expiry; less friendly for a family |
+| **Gokapi** | AGPL-3.0 | 2.2.4 (2026-03-10), active | Multi-arch; root | SQLite; files on disk | OIDC with discovery, set in its setup wizard | Sandboxed, no nosniff | Good, but its setup page is open to anyone until configured, and its config is written by the wizard |
+| Erugo | MIT | Stalled since 2026-01, after a critical RCE | | | | Download | No |
+| Pingvin Share | | **Archived** 2025-06-29 (Pingvin Share X is the fork) | | | | | No |
+| PsiTransfer, PicoShare, Send, Enclosed, Jirafeau, Lufi | | | | | **No accounts or OIDC** | | No: a shared password at most |
+| Sharry, FileBrowser Quantum, Filestash | | | | | | **Shown as pages** | No, unless Roostack's Caddy sandboxes them |
+| File Browser | | **Archived** 2026-09-01 | | | | | No |
+| Cloudreve | GPL-3.0, OIDC Pro only | | | | | | No |
+| DumbDrop, transfer.sh | | Stale, or critical advisories | | | | | No |
 
-### Chibisafe — high; don't package
+**For sync, the one serious alternative to Seafile is OpenCloud** (Apache-2.0, OpenCloud GmbH, 9.0.0 rolling on 2026-10-27, 7.2.4 stable): a non-root image, no database, files kept as plain folders on disk (PosixFS), OIDC set entirely by environment variables, desktop and phone clients, downloads never shown as pages. It would need neither Roostack change Seafile needs. Against it: its clients need fixed public client IDs at the lab's sign-in provider; a consistent backup needs it stopped or a filesystem snapshot, and its metadata lives in extended attributes (restic keeps them, to verify on restore); no maximum link expiry found. ownCloud Infinite Scale is the same design under an EULA that forbids redistributing its builds, and Nextcloud is much heavier.
 
-**What it is:** lolisafe's successor, a pomf-style file host: every upload gets a public direct link, with albums, snippets, and a URL shortener.
+**Recommendation:**
 
-**Why not:**
-
-- **Every upload is a public link by design,** and **public mode** (uploads without an account) is one switch in its admin UI, stored in its database, beyond Roostack's reach.
-- **The URL shortener takes any destination** (an unchecked string, *code-read*).
-- **HTML and SVG uploads are allowed;** they're safe only behind the project's own Caddyfile, which adds a sandbox CSP since 6.6.0 (2026-10-18, after a CVSS 8.6 stored XSS). Packaging it means running a second Caddy inside the service, or copying those headers into Roostack's.
-- **No single sign-on, and none coming** (issue #566, closed as not planned on 2026-09-30).
-- **The first administrator's password falls back to `admin`** when none is given (`Util.ts`).
-- One maintainer, 15 months without a release before October 2026, a backend that runs as root, and an unverified claim of malware in the repository (issue #566, 2026-10-12) that would need looking into first.
-- No virus scanning, though it has good moderation tools (quarantine, IP bans, the uploader's address on each file).
-
-**Recommendation: don't package.**
+- **Pingvin Share X as the generic file-sharing app.** It's the WeTransfer-style app with file requests, safe serving, and OIDC with roles. Its settings are a YAML file (`config.yaml`, which makes its admin UI read-only), so it builds on the same config files as Seafile: sign-ups off (`allowRegistration: false`, on by default upstream), the administrator from `initUser`, a maximum expiry and size. Risk to us: medium (file requests let outsiders upload, but nothing is shown as a page). Plik is the fallback if its advisories keep coming.
+- **Stay with Seafile for sync, as decided.** OpenCloud fits Roostack's format better and keeps plain files, but Seafile's backups are consistent without stopping it, and the two Roostack changes it needs are wanted anyway. If Seafile's package stalls, OpenCloud is next.
 
 ## Overlap
 
-- **With each other:** Seafile's share and upload links cover most of what ProjectSend, Palmr, and Zipline's folders do for a lab: send a file, receive a file. ProjectSend's client accounts are the one thing Seafile doesn't do well (clients without a library of their own), and it matters to businesses, not families. Zipline and Chibisafe are the same niche (screenshot hosting), the riskiest one.
-- **With the registry:** nothing does file sync today. Immich (shared albums and links) and Lychee (public albums) already share photos publicly; Papra and Paperless-ngx keep documents and don't share them publicly. Nextcloud isn't in the registry; Seafile would be the lighter choice, and Nextcloud's files (if it ever comes) would overlap it entirely.
+- **Seafile** (sync), **Pingvin Share X** (send and receive files), and **ProjectSend** (a portal for clients) each have one job. Zipline is screenshot hosting.
+- **With the registry:** nothing else does file sync or transfers. Immich and Lychee already share photos publicly; Papra and Paperless-ngx keep documents and don't share them.
 
-**Order:** Seafile CE first; ProjectSend v2 in early 2027 if anyone asks for client portals; Palmr v4 when it's released, in place of ProjectSend if it's the better transfer service by then. Not Zipline or Chibisafe.
+## The build plan
 
-## Roostack and Cloud changes
+Roostack (open source) first, since every package needs some of it. Each item is one session with its own branch, apart from the others unless it says so.
 
-**Needed for the recommended packages:**
+**Roostack:**
 
-1. **Seafile's three databases** (question 3): either nothing (three MariaDB containers) or a small change to the `mariadb`/`mysql` types: extra schemas for the same app user on the same server, dumped together. I'd recommend the change: one container instead of three, one consistent dump, and other PHP and Python apps need it too.
-2. **A settings file written by a hook** (question 4) until "config files a package declares" exists: a package convention, not a Roostack change, but a first.
+1. **Config files a package declares** (SPEC §8.1, layer 3, agreed 2026-10-18; strategic, the maintainer's choice): a package names files inside its own storage that Roostack writes from templates of its settings, and rewrites when they change, with a restart. For Seafile's `seahub_settings.py` and Pingvin Share X's `config.yaml`. Editing in the browser (Home Assistant, Frigate) can follow; for these two, Roostack writes the whole file.
+2. **Extra schemas on one MySQL/MariaDB** for the same app user, dumped and restored together (Seafile's three).
+3. **Public addresses wait for setup:** a service's public addresses stay private until its install hooks have succeeded, for every package. Closes takeover before setup (ProjectSend's `/setup`, Zipline's setup page).
+4. **"Only shared links public":** a third choice beside Private and Public for routes whose package lists share-link paths. The app's sign-in and pages stay private (or behind the lab's sign-in when single sign-on is on); the people a link was sent to can open it.
+5. **Scheduled hooks**, if chosen for Seafile's garbage collection (question 2 below).
+6. **The lab tells Cloud what each public address is** (with Cloud's change 8): the package, whether it's from the registry or the Owner's own, and the registry's flag; and, when Cloud says an address needs approval, it stays private with the reason and how to ask, on the service's page and in the attention list. A package of the Owner's own on their own domain, without the relay, is untouched.
+7. **Caddy enforcing the HTML rule:** routes may list the paths that serve uploads, and Caddy adds `Content-Security-Policy: sandbox` and nosniff there, whatever the app does (and serves HTML and SVG as downloads, if Caddy can match on the response's type: to check).
 
-**Worth doing, not blocking Seafile:**
+**The registry:**
 
-3. **"Only shared links public"** (question 2): a third choice besides Private and Public for routes whose package lists share-link paths (Seafile's `/d/`, `/f/`, `/u/`, and the `/seafhttp` paths they use). The app's sign-in and UI stay private (or behind the lab's sign-in, through the `forward_auth` wall that already exists when single sign-on is on), while the people a link was sent to can open it. It removes the sign-in page and every pre-auth bug from the internet, which for a family is all they want public. I'd make it the recommended choice for file-sharing packages, once Seafile's package shows which paths it needs.
-4. **Enforcing "free roost.ac names only for verified services"** (DESIGN §5, Cloud): the lab could tell Cloud which hostnames are registry packages (name and tier) in its relay request and name claims, so the rule applies: a service from the Owner's own package goes only on the Owner's domain. A changed Roostack could lie, so it's a default for honest labs, not a guarantee; the outside checker and Web Risk remain the real checks. Without it, the registry's choices here don't keep Zipline off roost.ac.
+- A flag in `registry.yaml` (kept by the registry's maintainers, so a package's author can't remove it, and it can change without a new version): `roost_ac: approval`, with a reason. Zipline gets it.
 
-**Not needed now:** a package flag that refuses public access or the relay (needed only if we packaged Zipline or Chibisafe, which I'd rather not), and Caddy adding sandbox headers to "user content" paths (Seafile and ProjectSend already serve safely).
+**Cloud** (private; within its launch):
+
+8. **Free roost.ac names only for registry packages, and flagged packages only for approved accounts:** two options in `admin.yaml`, on by default; an account's approval in the admin console (support role, with a note, audited); `zone_records()` and `relay_routes()` leave out what isn't allowed, and the lab's check-in says why. A changed Roostack could lie about its packages, so this is the default for honest labs, and the checker is the real check.
+9. **The outside checker recognises apps:** it already plans to check that "the expected app answers"; it would also recognise known upload hosts (Zipline, Chibisafe, and the like, by their pages), compare what answers with the package the lab declared (DESIGN §5's open question), and look for phishing pages.
+
+**Packages** (this repository), each once its Roostack pieces are released:
+
+- **ProjectSend:** needs 3; nothing else new. First.
+- **Seafile:** needs 1 and 2; 4 and 5 later.
+- **Pingvin Share X:** needs 1.
+- **Zipline:** needs 3 and 6, and Cloud's 8.
 
 ## Questions for the maintainer
 
-1. **Which to do:** Seafile CE now, ProjectSend v2 in early 2027, Palmr v4 when released, and not Zipline or Chibisafe? (Recommended.) Or package Zipline as private only, which needs a new package flag first?
-2. **"Only shared links public"** for Seafile: build it in Roostack (my recommendation, after Seafile's first package), or leave Seafile with Private and Public only?
-3. **Seafile's databases:** extra schemas on one MariaDB (recommended, a Roostack change), or three MariaDB containers (no change, about 300 MB more, dumps not taken together)?
-4. **Seafile's settings file:** an install hook writing Roostack's block into `seahub_settings.py` (recommended for now), or wait for "config files a package declares"? And should administrators keep changing settings from Seafile's web UI (`ENABLE_SETTINGS_VIA_WEB`), which can undo the package's link policy? I'd turn it off, so that the policy follows Roostack's settings.
-5. **Seafile's link policy defaults:** share links expire after 7 days by default and 90 at most, upload links 7 and 30, passwords optional, "Report abuse" on. Different numbers, or passwords required?
-6. **Seafile's licence:** AGPL-3.0 "-only" or "-or-later" isn't stated, and Roostack needs one. Ask upstream, or read it as "-only" (the conservative reading) with the reason in a comment?
-7. **Seafile's garbage collection:** if the image doesn't run it by itself, a weekly action hook the Owner presses, or a scheduled hook (which Roostack doesn't have yet)?
-8. **Cloud:** enforce "verified services only" for free roost.ac names (item 4 above), and count bytes per hostname at the edges so that a file share's heavy use can be told from a lab hosting files for others?
+1. **The generic app:** Pingvin Share X (recommended), or Plik (easier to package, no file requests)?
+2. **Seafile's garbage collection:** scheduled hooks in Roostack (recommended: `on: schedule`, weekly at night, not during a backup; other apps will want them), or a "Free up space" button the Owner presses?
+3. **Is a sandbox enough?** The rule as recommended: HTML a download or refused where the app allows, sandboxed with nosniff otherwise (Pingvin Share X, Gokapi). Or only downloads and refusals?
+4. **Zipline and Chibisafe:** Zipline with the approval flag, and Chibisafe only if asked (recommended)?
+5. **The flag:** in `registry.yaml`, set by the registry's maintainers (recommended), or in the package file?
+6. **Approval:** per account, granted by support from the admin console (recommended for now), or per lab or per service?
+7. **The build:** start sessions for Roostack's 1, 2, 3, and 6 and Cloud's 8 now, then 4, 7, and 9?
 
 ## Sources
 
 All read 2026-10-30 unless a date is given.
 
-**Roostack and Cloud:** Roostack's SPEC.md §5.2, §6.8, §6.11, §8.1, §8.3.4; `cloudapi/cloudapi.go` (`RelayRequest`); `internal/manager/edge.go` (`publicHostsOf`); Roostack Cloud's docs/DESIGN.md §3d, §3f ("abuse intake", 2026-10-19), §5; docs/RUNBOOK-ABUSE.md (2026-10-19).
+**Roostack and Cloud:** Roostack's SPEC.md §5.2, §6.8, §6.11, §8.1, §8.3.4; `cloudapi/cloudapi.go` (`RelayRequest`); `internal/manager/edge.go` (`publicHostsOf`); `internal/pkgspec/about.go` (memory defaults); Roostack Cloud's docs/DESIGN.md §3d, §3f ("abuse intake", 2026-10-19), §5; docs/RUNBOOK-ABUSE.md (2026-10-19).
 
 **Seafile:**
 - Licences: https://github.com/haiwen/seafile-server, https://github.com/haiwen/seahub, https://github.com/haiwen/seafile (LICENSE files)
 - Releases: https://plus.seafile.com/wiki/publish/seafile-wiki/5L80/ (13.0.28, 2026-09-18; 14.0.9 beta, 2026-10-14)
 - Images: https://hub.docker.com/r/seafileltd/seafile-mc, https://hub.docker.com/r/seafileltd/sdoc-server (2.0.10, 2026-10-24, amd64 only)
-- Image build: https://github.com/haiwen/seafile-docker (`image/seafile_13.0/Dockerfile`, `scripts/scripts_13.0/enterpoint.sh`)
-- Manual: https://github.com/haiwen/seafile-admin-docs — `manual/setup/setup_pro_by_docker.md` (Pro free to 3 users), `manual/upgrade/upgrade_notes_for_11.0.x.md` (SQLite dropped), `manual/administration/backup_recovery.md` (commit of 2025-10-20), `manual/config/oauth.md` (2024-11-12), `manual/config/seahub_settings_py.md`, `manual/config/csp_configuration.md` (2026-04-25), `manual/setup/use_other_reverse_proxy.md`
+- Image build: https://github.com/haiwen/seafile-docker (`image/seafile_13.0/Dockerfile`, `scripts/scripts_13.0/enterpoint.sh` (cron: log rotation only), `scripts/scripts_13.0/gc.sh`)
+- Manual: https://github.com/haiwen/seafile-admin-docs — `manual/setup/setup_pro_by_docker.md`, `manual/upgrade/upgrade_notes_for_11.0.x.md`, `manual/administration/backup_recovery.md` (2025-10-20), `manual/config/oauth.md` (2024-11-12), `manual/config/seahub_settings_py.md`, `manual/config/csp_configuration.md` (2026-04-25), `manual/setup/use_other_reverse_proxy.md`
 - Code: seahub 13.0 `seahub/settings.py`, `seahub/oauth/views.py`, `seahub/utils/auth.py`; seafile-server `fileserver/fileop.go`
-- CVEs: NVD, CVE-2025-45091 (2025-09-15), CVE-2025-41079 and CVE-2025-41080 (2025-12-04), CVE-2025-65516 (2025-12-04; fixed in 13.0.12, 2025-10-24), CVE-2026-30587 (2026-03-25; fixed in 13.0.17), CVE-2026-56768 (2026-06-25)
+- CVEs (NVD): CVE-2025-45091 (2025-09-15), CVE-2025-41079 and CVE-2025-41080 (2025-12-04), CVE-2025-65516 (2025-12-04; fixed in 13.0.12, 2025-10-24), CVE-2026-30587 (2026-03-25), CVE-2026-56768 (2026-06-25)
 
-**ProjectSend:**
-- https://github.com/projectsend/projectsend: releases (2.0.0 on 2026-08-14 to 2.8.0 on 2026-10-29), `LICENSING.md`, `INSTALL.md`, `DOCKER.md`, `docker/production/Dockerfile`, `compose.example.yaml`, `app/Modules/Platform/Settings/Setting.php`
-- Advisories: https://github.com/projectsend/projectsend/security/advisories (11 on 2026-09-11, 4 on 2026-10-07)
-- Legacy: https://github.com/projectsend/legacy; https://github.com/linuxserver/docker-projectsend (switched to legacy, 2026-08-10)
-- Image: https://hub.docker.com/r/projectsend/projectsend (2.8.0, 2026-10-29)
-- v1 exploitation: https://www.vulncheck.com/blog/projectsend-exploited-itw, https://censys.com/cve-2024-11680/ (CVE-2024-11680, CISA KEV, December 2024)
+**ProjectSend:** https://github.com/projectsend/projectsend (releases 2.0.0, 2026-08-14, to 2.8.0, 2026-10-29; `LICENSING.md`, `INSTALL.md`, `DOCKER.md`, `docker/production/Dockerfile`, `compose.example.yaml`, `app/Modules/Platform/Settings/Setting.php`); advisories at https://github.com/projectsend/projectsend/security/advisories; https://hub.docker.com/r/projectsend/projectsend; https://github.com/linuxserver/docker-projectsend (legacy since 2026-08-10).
 
-**Palmr:**
-- https://github.com/kyantech/Palmr: README on `main` (archived 2026-02-27), releases (3.3.2-beta, 2025-12-10), the `v4` branch (2026-09-24 to 2026-10-16)
-- Code on `main`: `apps/server/src/modules/file/controller.ts`, `apps/server/src/utils/mime-types.ts`, `apps/web/src/app/e/[id]/route.ts`, `infra/supervisord.conf`, `docker-compose.yaml`
-- Image: https://hub.docker.com/r/kyantech/palmr (3.3.2-beta, 2025-12-10)
+**Zipline:** https://github.com/diced/zipline (4.8.2, 2026-10-25; `src/server/routes/api/upload/index.ts`, `src/server/routes/api/setup.ts`, `src/lib/config/read/index.ts` and `env.ts` (the environment overrides the database), `src/lib/api/contentSecurity.ts`); advisories at https://github.com/diced/zipline/security/advisories; docs from https://github.com/diced/zipline-docs (branch `v4.1`, 2026-10-26: `guides/hardening.mdx`, `guides/oauth/index.mdx`, `config/core.mdx`).
 
-**Zipline:**
-- https://github.com/diced/zipline: releases (4.8.2, 2026-10-25), `src/server/routes/api/upload/index.ts` (anonymous folder uploads), `src/lib/api/contentSecurity.ts`
-- Advisories: https://github.com/diced/zipline/security/advisories (25 since 2024-10)
-- Docs, read from https://github.com/diced/zipline-docs (branch `v4.1`, 2026-10-26; the docs site refuses automated readers): `guides/hardening.mdx`, `guides/oauth/index.mdx`, `config/core.mdx`, `guides/releases.mdx`
-- Image: `ghcr.io/diced/zipline`
+**Chibisafe:** https://github.com/chibisafe/chibisafe (6.7.0, 2026-10-22; `packages/backend/src/structures/settings.ts`, `packages/backend/src/utils/Util.ts`, `packages/backend/src/routes/admin/service/Settings.ts`, `packages/backend/src/routes/links/CreateLink.ts`); GHSA-7hmq-gf2f-c9c9 (2026-10-18); issue #566 (closed 2026-09-30).
 
-**Chibisafe:**
-- https://github.com/chibisafe/chibisafe: releases (6.7.0, 2026-10-22; 6.5.5, 2025-07-05), `packages/backend/src/structures/settings.ts`, `packages/backend/src/utils/Util.ts` (the `admin` fallback), `packages/backend/src/routes/links/CreateLink.ts`, `docker-compose.example.yml`, `docker/DockerfileServer`
-- Advisory: https://github.com/chibisafe/chibisafe/security/advisories/GHSA-7hmq-gf2f-c9c9 (2026-10-18)
-- No SSO: https://github.com/chibisafe/chibisafe/issues/566 (closed 2026-09-30; the malware claim, 2026-10-12)
-- lolisafe's history: https://wiki.archiveteam.org/index.php/Safe.moe
+**Palmr:** https://github.com/kyantech/Palmr (README archived 2026-02-27; 3.3.2-beta, 2025-12-10).
+
+**Alternatives:**
+- Pingvin Share X: https://github.com/smp46/pingvin-share-x (2.1.0, 2026-10-25; `backend/src/file/file.controller.ts` (sandbox and nosniff), `config.example.yaml`, `docs/docs/setup/configuration.md`); advisories at https://github.com/smp46/pingvin-share-x/security/advisories
+- Pingvin Share: https://github.com/stonith404/pingvin-share (archived; 1.13.0, 2025-05-25)
+- Plik: https://github.com/root-gg/plik (1.4.3, 2026-10-21; `server/handlers/get_file.go`, `server/plikd.cfg`, `docs/features/authentication.md`)
+- SFTPGo: https://github.com/drakkan/sftpgo (2.7.6, 2026-09-19; `internal/httpd/api_utils.go`, `internal/dataprovider/share.go`); https://docs.sftpgo.com/latest/oidc
+- Gokapi: https://github.com/Forceu/Gokapi (2.2.4, 2026-03-10; `internal/webserver/headers/Headers.go`, `internal/configuration/setup/Setup.go`)
+- Erugo: https://github.com/ErugoOSS/Erugo (0.2.15, 2026-01-28; CVE-2026-24897)
+- OpenCloud: https://github.com/opencloud-eu/opencloud (9.0.0, 2026-10-27); its docs `requirements.md`, `storage/posixfs.md`, `external-idp.md`, `maintenance/backup.md`
+- ownCloud Infinite Scale: https://github.com/owncloud/ocis (8.2.2, 2026-10-21); https://owncloud.com/license-owncloud-infinite-scale
+- File Browser: https://github.com/filebrowser/filebrowser (archived; 2.63.23, 2026-07-27)
+- FileBrowser Quantum: https://github.com/gtsteffaniak/filebrowser (2.0.2-stable, 2026-10-23; `backend/internal/web/http.go`)
+- copyparty: https://github.com/9001/copyparty (1.20.26, 2026-10-14; README "security")
+- Sharry: https://github.com/eikek/sharry (1.17.0, 2026-10-05; `ByteResponse.scala`)
+- Filestash: https://github.com/mickael-kerjean/filestash (`server/pkg/files/handler_cat.go`)
+- Cloudreve: https://github.com/cloudreve/cloudreve (4.19.1, 2026-09-18); its docs `en/usage/oidc.md`
+- PsiTransfer https://github.com/psi-4ward/psitransfer (2.4.5, 2026-10-24); PicoShare https://github.com/mtlynch/picoshare (1.5.4, 2026-05-26); Send https://github.com/timvisee/send (3.5.0, 2026-10-24); Enclosed https://github.com/CorentinTh/enclosed (1.16.1, 2026-10-23); Jirafeau https://gitlab.com/jirafeau/Jirafeau (4.7.2, 2026-06-27); Lufi https://framagit.org/fiat-tux/hat-softwares/lufi (0.07.4, 2026-09-14); DumbDrop https://github.com/DumbWareio/DumbDrop; transfer.sh https://github.com/dutchcoders/transfer.sh (1.6.1, 2023-12-04)
