@@ -1,0 +1,101 @@
+# ntfy: one container, SQLite. Image digest looked up 2026-10-18.
+schema: roostack/v1alpha1
+name: ntfy
+title: ntfy
+description: Sends notifications to your phone and computer from scripts, apps and your other services
+version: 2.35.0-roostack.1
+
+about:
+  maker: Philipp C. Heckel and contributors
+  website: https://ntfy.sh
+  source: https://github.com/binwiederhier/ntfy
+  licence: Apache-2.0 OR GPL-2.0-only   # dual licensed, per its README
+  support: https://github.com/sponsors/binwiederhier
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [productivity]
+  keywords: [notifications, push, alerts, phone, scripts]
+built_with: [go]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The administrator account, created by the install hook below. Nobody
+  # else can read or send notifications until the administrator allows
+  # them (ntfy's "deny-all" default access).
+  - key: admin_username
+    title: Administrator username
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: ios_push
+    title: Instant notifications on iPhones
+    description: >-
+      iPhones get notifications from a self-hosted ntfy only through ntfy.sh's
+      relay: each message's ID (not its text) goes to ntfy.sh, which wakes the
+      phone to fetch it from here. Otherwise iPhones may get them hours late.
+      Android doesn't need it.
+    type: bool
+    default: false
+
+containers:
+  app:
+    image: docker.io/binwiederhier/ntfy:v2.35.0@sha256:6f0c9abab7b99a978d816611cc90dabb4849b81f60c53114e91cd07931085dc0
+    command: [serve]
+    env:
+      NTFY_BASE_URL: "{{ .Routes.web.URL }}"
+      NTFY_BEHIND_PROXY: "true"
+      NTFY_CACHE_FILE: /var/lib/ntfy/cache.db
+      NTFY_AUTH_FILE: /var/lib/ntfy/auth.db
+      NTFY_AUTH_DEFAULT_ACCESS: deny-all
+      NTFY_ATTACHMENT_CACHE_DIR: /var/lib/ntfy/attachments
+      NTFY_ENABLE_LOGIN: "true"
+      NTFY_REQUIRE_LOGIN: "true"
+      NTFY_UPSTREAM_BASE_URL: "{{ if .Settings.ios_push }}https://ntfy.sh{{ end }}"
+    mounts:
+      - { storage: data, path: /var/lib/ntfy }
+    health:
+      http: { port: 80, path: /v1/health }
+    memory: 50 MB                # 18 MB in use, measured 2026-10-18
+
+storage:
+  data:
+    title: Accounts, recent notifications and attachments
+    class: critical
+
+databases:
+  auth:
+    type: sqlite
+    path: data/auth.db           # accounts, access and tokens
+  cache:
+    type: sqlite
+    path: data/cache.db          # notifications kept for phones that were offline
+
+hooks:
+  # The administrator, its password from the environment (NTFY_PASSWORD).
+  # Safe to re-run: --ignore-exists keeps an account that exists.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+      NTFY_AUTH_FILE: /var/lib/ntfy/auth.db
+    secrets:
+      NTFY_PASSWORD: admin_password
+    command: [sh, -c, 'ntfy user add --role=admin --ignore-exists "$ADMIN_USERNAME"']
+
+routes:
+  web:
+    container: app
+    port: 80
+    subdomain: ntfy
+    exposure: private
+    max_body_size: 20MB          # attachments
+    public:
+      login_paths:
+        - /v1/account/token
