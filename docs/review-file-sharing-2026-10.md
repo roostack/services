@@ -35,7 +35,7 @@ Upstream facts were checked on 2026-10-30 against each project's repository, rel
 | Palmr v3 | **Yes, unsandboxed**, no nosniff (*code-read*) | No; out anyway |
 | Pingvin Share X | Sandboxed, with nosniff, for everything but audio, video, plain images, and text | Already acceptable |
 | Plik | Sandboxed with a strict CSP, nosniff, `form-action 'none'` | Already safe |
-| Gokapi | Sandboxed, no nosniff | Acceptable; nosniff to add in Caddy |
+| Gokapi | No: downloads are attachments; only image hotlinks are shown, sandboxed, without nosniff (checked 2026-10-31) | Already acceptable; nosniff to add in Caddy |
 | SFTPGo | No: always a download (since 2.7.3) | Already safe |
 | OpenCloud | No: download, nosniff, strict CSP | Already safe |
 | Sharry | **Yes, unsandboxed** (inline, its detected type, no CSP) | Only by Caddy headers |
@@ -185,7 +185,7 @@ Roostack (open source) first, since every package needs some of it. Each item is
 
 - **Plik:** needs nothing new; packaged 2026-10-30 (below).
 - **ProjectSend:** needs 3; nothing else new.
-- **Gokapi:** needs 1 (its `config.json`, salts included) and 3 (its setup page is open to anyone until it's run).
+- **Gokapi:** needs 1 (its `config.json`, salts included) and 3 (its setup page is open to anyone until it's run); packaged 2026-10-31 (below), for the Roostack release after 0.1.1.
 - **Seafile:** needs 1, 2, and 5; 4 later.
 - **Pingvin Share X:** needs 1.
 - **Zipline:** needs 3 and 6, and Cloud's 8.
@@ -219,6 +219,29 @@ Roostack (open source) first, since every package needs some of it. Each item is
 - **Seen in Roostack, not the package:**
   - The single sign-on card says "Admins in Plik: the lab's Owners and Admins" and that Plik "finds it by their email address", which isn't true of an app that reads no groups and links no accounts.
   - Removing the service leaves its Podman network definition (`roostack-plik.json`).
+
+### Gokapi 2.2.4: what the package does, and what was checked
+
+- **One container** (`f0rc3/gokapi`, multi-arch, root inside). Its settings are `config.json`, which Roostack writes (config files); nothing else is set in Gokapi's pages that Roostack would overwrite, since Gokapi keeps people, files, and API keys in its database. Files up to 10 GB, sent in 45 MB pieces; uploads aren't encrypted by Gokapi (the lab's backups are, and Gokapi's own encryption would need a password at each start).
+- **No setup page, ever:** Gokapi runs its open setup page only while it has no `config.json`, and Roostack writes one before Gokapi first starts. Until the install hook has made the administrator, the container waits without listening (Gokapi stops at once without an account), so its address answers nothing; with public addresses waiting for setup, it stays private until then anyway.
+- **The administrator** from an install hook running Gokapi's own `--deployment-password` on a copy of the settings. Gokapi always makes a new admin salt when it does this (and in its setup page), and hashes every account's password with it, so that salt can't be one Roostack makes: the hook keeps it in Gokapi's folder (`state/salt-admin`, backed up), and the container puts it into Roostack's file as it starts. The salt for files' passwords is a secret Roostack generates. (A secret a hook hands Roostack, `from_hook`, would be the cleaner way, but Roostack doesn't allow those in config files.)
+- **Data:** accounts and shares in SQLite (`state/`, Roostack's SQLite dump), the files on the large data disk (`files/`), both critical.
+- **Single sign-on:** OIDC from the issuer, people found by their email address and made at first sign-in, limited to the lab's `users` group. Gokapi takes one way of signing in at a time, so while it's on, the administrator signs in through the lab too, with the email address given at install; the note beside the switch says so. Like Plik, it reads the provider's configuration as it starts and exits if it can't, so it retries every 10 seconds.
+- **Uploaded HTML** is never shown as a page (better than the table above says): downloads are always attachments, and only images (an `image/*` type and an image's extension, never SVG) get a hotlink shown in the browser, with `Content-Security-Policy: sandbox`. Gokapi sends no nosniff, and the package format has no way to add a header: that waits for build plan item 7.
+- **Tried on a lab, 2026-10-31:** dev VM 5 (arm64), Roostack `main` at f9a49dc9 built as 0.1.2~main (so it accepts `requires.roostack: "0.1.2"`), a test address with Caddy's own certificates, added as a package of the Owner's own:
+  - **Install:** the summary and form were right. The first try found a Roostack bug (below); with the hook rewritten, the hook made the administrator on its first attempt.
+  - **No setup page:** polled every half-second from before the install to after it: the address answered 404 (no site), then 502 for about a second while Gokapi waited for its administrator, then Gokapi's sign-in page; `/setup/start` was never served (404 throughout). Gokapi's log has no setup line.
+  - **Using it through the lab's address:** the administrator signed in with the typed password, and a wrong one was refused. A 3 MB file came back identical; `.html` and `.svg` came back as attachments; an image's hotlink came inline with the sandbox, an `.html` sent as `image/png` came back as `image/png`, and one sent as `text/html` got no hotlink.
+  - **Memory:** 25 MB.
+  - **Backup:** `roostack backup run` covered the files, the SQLite dump, `state/` (with the admin salt), and the secrets.
+  - **Restore:** all six uploads were deleted in Gokapi, then restored with `roostack backup restore gokapi`; all came back (the 3 MB file identical), and the administrator still signs in.
+  - **Single sign-on:** turned on from the service page, Roostack rewrote `config.json` (OAuth, the lab's issuer, client, and group) and restarted Gokapi, which refused the lab's test certificate and retried every 10 seconds, as expected on a test address. Turned off, Gokapi came straight back on passwords, the administrator's still working (the admin salt survives Roostack rewriting the file), with its uploads.
+  - **Removal:** the container, unit, site, and network went, the address answered 404, and the data was kept.
+  - **Reinstalled over its kept data,** with the install form's fields left empty: no setup ran, and Gokapi started with its administrator, password, and uploads.
+- **Still not checked:** a restore onto a fresh server, a real sign-in through a lab's provider with a trusted certificate, and making the address public (every visitor to a dev VM comes through QEMU's NAT, from a home address).
+- **Seen in Roostack, not the package:**
+  - **Hooks' `${…}` is expanded by systemd:** Roostack runs hooks through `systemd-run` (`systemd.UserCommand`) without `--expand-environment=no`, and since systemd 254 that expands `${NAME}` anywhere in the command, and `$NAME` as a word of its own, before the container sees it. The first install's hook used `${#made}`, which became empty, so the hook failed after Gokapi had made the account. The package now avoids `${`; Roostack should pass `--expand-environment=no` (every command it runs through `systemd-run`, not only hooks), or the package format should warn about it.
+  - The summary before installing says a `replaceable` storage is "not backed up, as Gokapi makes them again", which isn't true of a folder holding a config file Roostack writes; and it lowercases the storage's title, so "Gokapi's settings" read "gokapi's settings" (the package now says "its settings file, which Roostack writes").
 
 ## Questions for the maintainer
 
