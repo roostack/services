@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-10-30T21:00:08.814604201Z",
+  "last_run": "2026-10-31T01:00:00.473653106Z",
   "seen": {
     "BIT-golang-2022-1705": "digest",
     "BIT-golang-2022-1962": "digest",
@@ -555,14 +555,34 @@
     "CVE-2026-116585": "digest",
     "CVE-2026-116586": "digest",
     "CVE-2026-116587": "digest",
+    "CVE-2026-116672": "digest",
     "CVE-2026-116673": "digest",
     "CVE-2026-116674": "drafted 2026-0018",
     "CVE-2026-116678": "digest",
+    "CVE-2026-116689": "drafted 2026-0046",
     "CVE-2026-116802": "digest",
     "CVE-2026-116803": "digest",
     "CVE-2026-116804": "digest",
     "CVE-2026-118663": "digest",
     "CVE-2026-118664": "digest",
+    "CVE-2026-118669": "digest",
+    "CVE-2026-118764": "digest",
+    "CVE-2026-118773": "digest",
+    "CVE-2026-118775": "digest",
+    "CVE-2026-118777": "digest",
+    "CVE-2026-118778": "digest",
+    "CVE-2026-118779": "digest",
+    "CVE-2026-118780": "digest",
+    "CVE-2026-118781": "digest",
+    "CVE-2026-118782": "drafted 2026-0052",
+    "CVE-2026-119186": "drafted 2026-0050",
+    "CVE-2026-119187": "digest",
+    "CVE-2026-119188": "digest",
+    "CVE-2026-119190": "drafted 2026-0048",
+    "CVE-2026-119194": "digest",
+    "CVE-2026-119195": "digest",
+    "CVE-2026-119196": "digest",
+    "CVE-2026-119197": "digest",
     "CVE-2026-119284": "digest",
     "CVE-2026-12143": "digest",
     "CVE-2026-12151": "digest",
@@ -968,6 +988,7 @@
     "GHSA-2p3c-p3qw-69r4": "digest",
     "GHSA-2p57-rm9w-gvfp": "digest",
     "GHSA-2pr8-phx7-x9h3": "digest",
+    "GHSA-2qm8-x737-gmw5": "digest",
     "GHSA-2v35-w6hq-6mfw": "digest",
     "GHSA-2v37-7h3g-55p8": "digest",
     "GHSA-2v4p-qf9q-27wj": "digest",
@@ -994,6 +1015,7 @@
     "GHSA-3f6p-5ww8-9rcr": "digest",
     "GHSA-3f7j-7jwc-fxfj": "digest",
     "GHSA-3fxj-6jh8-hvhx": "digest",
+    "GHSA-3g3m-2fjr-6pw4": "digest",
     "GHSA-3g43-6gmg-66jw": "digest",
     "GHSA-3h5v-q93c-6h6q": "digest",
     "GHSA-3j72-p6qg-6xp7": "digest",
@@ -1016,12 +1038,14 @@
     "GHSA-4374-p667-p6c8": "digest",
     "GHSA-43fc-jf86-j433": "digest",
     "GHSA-43fp-rhv2-5gv8": "digest",
+    "GHSA-4487-j8r4-4g2f": "digest",
     "GHSA-44fp-w29j-9vj5": "digest",
     "GHSA-44g4-m2mj-wpvx": "digest",
     "GHSA-4558-3h8r-v8xp": "digest",
     "GHSA-455c-vgg9-jxw8": "digest",
     "GHSA-45gg-vh54-h5m9": "digest",
     "GHSA-462x-pgg6-55fp": "digest",
+    "GHSA-4642-5mcj-2rqw": "digest",
     "GHSA-467c-4w7p-8427": "doesn't affect the registry's versions",
     "GHSA-469m-x4mw-38r3": "doesn't affect the registry's versions",
     "GHSA-48c2-rrv3-qjmp": "digest",
@@ -1053,6 +1077,7 @@
     "GHSA-4x5r-pxfx-6jf8": "digest",
     "GHSA-4xrf-jv44-h6hh": "digest",
     "GHSA-5239-wwwm-4pmq": "digest",
+    "GHSA-525v-9gp9-w22h": "digest",
     "GHSA-528h-pc64-c93x": "digest",
     "GHSA-52cp-r559-cp3m": "digest",
     "GHSA-52f5-9888-hmc6": "digest",
@@ -1073,6 +1098,7 @@
     "GHSA-5c9x-8gcm-mpgx": "digest",
     "GHSA-5cgq-3rg8-m6cv": "digest",
     "GHSA-5cpq-8wj7-hf2v": "digest",
+    "GHSA-5cwg-6vw7-rj6p": "drafted 2026-0050",
     "GHSA-5fg8-2547-mr8q": "digest",
     "GHSA-5j98-mcp5-4vw2": "digest",
     "GHSA-5jgf-p345-68v8": "digest",
@@ -1084,6 +1110,7 @@
     "GHSA-5wmx-573v-2qwq": "digest",
     "GHSA-5wr8-gcqf-gqf3": "digest",
     "GHSA-5wrp-cwcj-q835": "digest",
+    "GHSA-5x38-2vff-x55p": "drafted 2026-0048",
     "GHSA-5x8w-8jj5-q52h": "drafted 2026-0009",
     "GHSA-5xm2-6676-qcp9": "digest",
     "GHSA-62hf-57xw-28j9": "digest",
@@ -1127,6 +1154,7 @@
     "GHSA-6vfc-qv3f-vr6c": "digest",
     "GHSA-6vj9-mwq6-2f5v": "digest",
     "GHSA-6vqw-3v5j-54x4": "digest",
+    "GHSA-6wvx-3r32-xmcg": "digest",
     "GHSA-727h-3vm5-qwq6": "digest",
     "GHSA-72gw-mp4g-v24j": "digest",
     "GHSA-72rm-x7xr-v679": "digest",
@@ -1147,6 +1175,7 @@
     "GHSA-78mq-xcr3-xm33": "digest",
     "GHSA-78xj-cgh5-2h22": "digest",
     "GHSA-793v-988c-3v53": "doesn't affect the registry's versions",
+    "GHSA-7984-qgvg-3j9c": "digest",
     "GHSA-7ccc-c43j-4p36": "digest",
     "GHSA-7cq7-4v93-8wjm": "doesn't affect the registry's versions",
     "GHSA-7gcm-g887-7qv7": "digest",
@@ -1163,6 +1192,7 @@
     "GHSA-7rv5-mrxv-xcr9": "digest",
     "GHSA-7v5j-mph8-9w6g": "doesn't affect the registry's versions",
     "GHSA-7vr2-2fgp-9w7p": "drafted 2026-0030",
+    "GHSA-7wch-p9px-956x": "digest",
     "GHSA-7wwv-vh3v-89cq": "digest",
     "GHSA-8225-6cvr-8pqp": "digest",
     "GHSA-82r6-8w77-94w6": "digest",
@@ -1191,6 +1221,7 @@
     "GHSA-8g5g-8vmr-9782": "digest",
     "GHSA-8gc5-j5rx-235r": "digest",
     "GHSA-8hhh-mqpg-jpxc": "doesn't affect the registry's versions",
+    "GHSA-8hrf-8g6f-7xwp": "digest",
     "GHSA-8j56-f865-gqq2": "digest",
     "GHSA-8m3c-c648-2xjj": "digest",
     "GHSA-8m4g-j4wp-wgcg": "digest",
@@ -1237,6 +1268,7 @@
     "GHSA-9jrq-w75r-8gcw": "digest",
     "GHSA-9m4w-fmjw-fvjq": "doesn't affect the registry's versions",
     "GHSA-9m57-25v3-79x9": "digest",
+    "GHSA-9m75-vc3g-4x39": "digest",
     "GHSA-9pg5-8c7x-5hfx": "digest",
     "GHSA-9ppj-qmqm-q256": "digest",
     "GHSA-9q82-xgwf-vj6h": "digest",
@@ -1256,6 +1288,7 @@
     "GHSA-c5mf-xmp2-59rc": "digest",
     "GHSA-c6gr-qvv4-5v3f": "digest",
     "GHSA-c6hw-5grf-ff96": "digest",
+    "GHSA-c73q-w75p-j82v": "digest",
     "GHSA-c7q8-3ch8-vqpv": "digest",
     "GHSA-c7w3-x93f-qmm8": "digest",
     "GHSA-c83g-rgw3-j3cx": "digest",
@@ -1308,6 +1341,7 @@
     "GHSA-fj95-fr6c-h845": "digest",
     "GHSA-fjgf-rc76-4x9p": "digest",
     "GHSA-fjxv-7rqg-78g4": "digest",
+    "GHSA-fm9c-5rcf-2q5p": "digest",
     "GHSA-fph4-wmhf-6fwf": "digest",
     "GHSA-fq56-3cx3-fjxp": "digest",
     "GHSA-fqjr-23c8-gg9m": "doesn't affect the registry's versions",
@@ -1319,6 +1353,7 @@
     "GHSA-fxq4-gr55-7x5g": "digest",
     "GHSA-fxqj-rqcc-2cmp": "digest",
     "GHSA-g357-x5c3-c72p": "digest",
+    "GHSA-g3hv-75wg-m249": "digest",
     "GHSA-g4hw-fg4c-89mq": "doesn't affect the registry's versions",
     "GHSA-g4mx-q9vg-27p4": "digest",
     "GHSA-g4qv-2jxx-769h": "digest",
@@ -1356,6 +1391,7 @@
     "GHSA-h452-7996-h45h": "digest",
     "GHSA-h4gh-qq45-vh27": "digest",
     "GHSA-h67p-54hq-rp68": "digest",
+    "GHSA-h6cr-wjv9-3cpp": "digest",
     "GHSA-h6q6-9hqw-rwfv": "digest",
     "GHSA-h7mw-gpvr-xq4m": "digest",
     "GHSA-h8r8-wccr-v5f2": "digest",
@@ -1370,6 +1406,7 @@
     "GHSA-hmw2-7cc7-3qxx": "digest",
     "GHSA-hpcv-96wg-7vj8": "digest",
     "GHSA-hqq2-xqr2-fmx2": "doesn't affect the registry's versions",
+    "GHSA-hqq3-7jhf-c5jx": "digest",
     "GHSA-hqr4-qq8f-hg3x": "digest",
     "GHSA-hrmx-8jjv-g758": "digest",
     "GHSA-hrpp-h998-j3pp": "digest",
@@ -1389,6 +1426,7 @@
     "GHSA-j8r2-6x86-q33q": "digest",
     "GHSA-j8rh-479h-cp32": "digest",
     "GHSA-j965-2qgj-vjmq": "digest",
+    "GHSA-jc66-7q78-782g": "drafted 2026-0052",
     "GHSA-jcxm-m3jx-f287": "digest",
     "GHSA-jfc7-64v2-mr8c": "digest",
     "GHSA-jfhm-5ghh-2f97": "digest",
@@ -1437,6 +1475,7 @@
     "GHSA-mhxj-85r3-2x55": "digest",
     "GHSA-mjcv-p78q-w5fw": "digest",
     "GHSA-mjw6-4jj6-33hc": "digest",
+    "GHSA-mm57-4v3p-rchx": "digest",
     "GHSA-mm7p-fcc7-pg87": "digest",
     "GHSA-mmx7-hfxf-jppx": "digest",
     "GHSA-mp6q-xf9x-fwf7": "digest",
@@ -1446,6 +1485,7 @@
     "GHSA-mrhx-c7xc-m3w5": "digest",
     "GHSA-mrr8-934j-4g8m": "doesn't affect the registry's versions",
     "GHSA-mrv2-3pqr-j5jr": "digest",
+    "GHSA-mrwp-f3q8-3g9p": "drafted 2026-0046",
     "GHSA-mw6q-qj47-9g5q": "doesn't affect the registry's versions",
     "GHSA-mwcw-c2x4-8c55": "digest",
     "GHSA-mwp4-54f8-5fhr": "digest",
@@ -82947,6 +82987,1294 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-10-30T16:12:28.744926811Z"
+    },
+    {
+      "id": "GHSA-7wch-p9px-956x",
+      "aliases": [
+        "CVE-2026-118779"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Papra: Forge: Regular expression denial of service in PEM decoding (pem.decode) (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-7wch-p9px-956x",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00556,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.343857487Z"
+    },
+    {
+      "id": "GHSA-7wch-p9px-956x",
+      "aliases": [
+        "CVE-2026-118779"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Wiki.js: Forge: Regular expression denial of service in PEM decoding (pem.decode) (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-7wch-p9px-956x",
+      "package": "wiki-js",
+      "affected": [
+        "2.5.316-roostack.3",
+        "2.5.317-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00556,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.343860693Z"
+    },
+    {
+      "id": "GHSA-9m75-vc3g-4x39",
+      "aliases": [
+        "CVE-2026-119195"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.6.4 in its image",
+      "title": "Mealie: pyasn1 has quadratic-time denial of service in constructed string and indefinite-length ANY decoding (in pyasn1 0.6.4)",
+      "link": "https://osv.dev/vulnerability/GHSA-9m75-vc3g-4x39",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3"
+      ],
+      "fixed_upstream": "pyasn1 0.6.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00527,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.471743799Z"
+    },
+    {
+      "id": "GHSA-9m75-vc3g-4x39",
+      "aliases": [
+        "CVE-2026-119195"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.6.4 in its image",
+      "title": "Radicale: pyasn1 has quadratic-time denial of service in constructed string and indefinite-length ANY decoding (in pyasn1 0.6.4)",
+      "link": "https://osv.dev/vulnerability/GHSA-9m75-vc3g-4x39",
+      "package": "radicale",
+      "affected": [
+        "3.8.3-roostack.2"
+      ],
+      "fixed_upstream": "pyasn1 0.6.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00527,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.471746895Z"
+    },
+    {
+      "id": "GHSA-2qm8-x737-gmw5",
+      "aliases": [
+        "CVE-2026-119196"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.6.4 in its image",
+      "title": "Mealie: pyasn1 has quadratic CPU consumption in constructed BIT STRING decoding (in pyasn1 0.6.4)",
+      "link": "https://osv.dev/vulnerability/GHSA-2qm8-x737-gmw5",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3"
+      ],
+      "fixed_upstream": "pyasn1 0.6.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00425,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.79613253Z"
+    },
+    {
+      "id": "GHSA-2qm8-x737-gmw5",
+      "aliases": [
+        "CVE-2026-119196"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.6.4 in its image",
+      "title": "Radicale: pyasn1 has quadratic CPU consumption in constructed BIT STRING decoding (in pyasn1 0.6.4)",
+      "link": "https://osv.dev/vulnerability/GHSA-2qm8-x737-gmw5",
+      "package": "radicale",
+      "affected": [
+        "3.8.3-roostack.2"
+      ],
+      "fixed_upstream": "pyasn1 0.6.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00425,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.796135776Z"
+    },
+    {
+      "id": "GHSA-fm9c-5rcf-2q5p",
+      "aliases": [
+        "CVE-2026-119194"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.6.4 in its image",
+      "title": "Mealie: pyasn1 has quadratic CPU use in schemaless BER/CER/DER container decoding (in pyasn1 0.6.4)",
+      "link": "https://osv.dev/vulnerability/GHSA-fm9c-5rcf-2q5p",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3"
+      ],
+      "fixed_upstream": "pyasn1 0.6.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00425,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.595990892Z"
+    },
+    {
+      "id": "GHSA-fm9c-5rcf-2q5p",
+      "aliases": [
+        "CVE-2026-119194"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.6.4 in its image",
+      "title": "Radicale: pyasn1 has quadratic CPU use in schemaless BER/CER/DER container decoding (in pyasn1 0.6.4)",
+      "link": "https://osv.dev/vulnerability/GHSA-fm9c-5rcf-2q5p",
+      "package": "radicale",
+      "affected": [
+        "3.8.3-roostack.2"
+      ],
+      "fixed_upstream": "pyasn1 0.6.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00425,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.596024915Z"
+    },
+    {
+      "id": "GHSA-mm57-4v3p-rchx",
+      "aliases": [
+        "CVE-2026-119197"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.6.4 in its image",
+      "title": "Mealie: pyasn1 has quadratic-complexity denial of service in binary REAL decoding (in pyasn1 0.6.4)",
+      "link": "https://osv.dev/vulnerability/GHSA-mm57-4v3p-rchx",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3"
+      ],
+      "fixed_upstream": "pyasn1 0.6.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00425,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:30.295780809Z"
+    },
+    {
+      "id": "GHSA-mm57-4v3p-rchx",
+      "aliases": [
+        "CVE-2026-119197"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.6.4 in its image",
+      "title": "Radicale: pyasn1 has quadratic-complexity denial of service in binary REAL decoding (in pyasn1 0.6.4)",
+      "link": "https://osv.dev/vulnerability/GHSA-mm57-4v3p-rchx",
+      "package": "radicale",
+      "affected": [
+        "3.8.3-roostack.2"
+      ],
+      "fixed_upstream": "pyasn1 0.6.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00425,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:30.295783815Z"
+    },
+    {
+      "id": "GHSA-8hrf-8g6f-7xwp",
+      "aliases": [
+        "CVE-2026-119188"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Papra: Forge: Denial of service in TLS record processing via a record interleaved with a fragmented handshake message (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-8hrf-8g6f-7xwp",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00411,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.40534004Z"
+    },
+    {
+      "id": "GHSA-8hrf-8g6f-7xwp",
+      "aliases": [
+        "CVE-2026-119188"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Wiki.js: Forge: Denial of service in TLS record processing via a record interleaved with a fragmented handshake message (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-8hrf-8g6f-7xwp",
+      "package": "wiki-js",
+      "affected": [
+        "2.5.316-roostack.3",
+        "2.5.317-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00411,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.405345169Z"
+    },
+    {
+      "id": "GHSA-hqq3-7jhf-c5jx",
+      "aliases": [
+        "CVE-2026-119187"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Papra: Forge: Denial of service in TLS record processing via call stack exhaustion (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-hqq3-7jhf-c5jx",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00411,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.769640637Z"
+    },
+    {
+      "id": "GHSA-hqq3-7jhf-c5jx",
+      "aliases": [
+        "CVE-2026-119187"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Wiki.js: Forge: Denial of service in TLS record processing via call stack exhaustion (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-hqq3-7jhf-c5jx",
+      "package": "wiki-js",
+      "affected": [
+        "2.5.316-roostack.3",
+        "2.5.317-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00411,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.769644134Z"
+    },
+    {
+      "id": "GHSA-3g3m-2fjr-6pw4",
+      "aliases": [
+        "CVE-2026-118773"
+      ],
+      "source": "OSV, for pkg:npm/glob@13.0.6 in its image",
+      "title": "Actual Budget: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal (in glob 13.0.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4",
+      "package": "actual-budget",
+      "affected": [
+        "26.10.0-roostack.3"
+      ],
+      "fixed_upstream": "glob 14.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0035,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.8511036Z"
+    },
+    {
+      "id": "GHSA-3g3m-2fjr-6pw4",
+      "aliases": [
+        "CVE-2026-118773"
+      ],
+      "source": "OSV, for pkg:npm/glob@13.0.6 in its image",
+      "title": "Audiobookshelf: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal (in glob 13.0.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4",
+      "package": "audiobookshelf",
+      "affected": [
+        "2.37.1-roostack.3",
+        "2.37.2-roostack.1"
+      ],
+      "fixed_upstream": "glob 14.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0035,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.851108238Z"
+    },
+    {
+      "id": "GHSA-3g3m-2fjr-6pw4",
+      "aliases": [
+        "CVE-2026-118773"
+      ],
+      "source": "OSV, for pkg:npm/glob@13.0.6 in its image",
+      "title": "Ghost: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal (in glob 13.0.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.2"
+      ],
+      "fixed_upstream": "glob 14.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0035,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.851109901Z"
+    },
+    {
+      "id": "GHSA-3g3m-2fjr-6pw4",
+      "aliases": [
+        "CVE-2026-118773"
+      ],
+      "source": "OSV, for pkg:npm/glob@13.0.6 in its image",
+      "title": "HedgeDoc: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal (in glob 13.0.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4",
+      "package": "hedgedoc",
+      "affected": [
+        "1.12.0-roostack.4"
+      ],
+      "fixed_upstream": "glob 14.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0035,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.851112787Z"
+    },
+    {
+      "id": "GHSA-3g3m-2fjr-6pw4",
+      "aliases": [
+        "CVE-2026-118773"
+      ],
+      "source": "OSV, for pkg:npm/glob@13.0.6 in its image",
+      "title": "Immich: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal (in glob 13.0.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4",
+      "package": "immich",
+      "affected": [
+        "3.3.3-roostack.3",
+        "3.3.5-roostack.1"
+      ],
+      "fixed_upstream": "glob 14.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0035,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.851114019Z"
+    },
+    {
+      "id": "GHSA-3g3m-2fjr-6pw4",
+      "aliases": [
+        "CVE-2026-118773"
+      ],
+      "source": "OSV, for pkg:npm/glob@13.0.6 in its image",
+      "title": "Linkwarden: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal (in glob 13.0.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4",
+      "package": "linkwarden",
+      "affected": [
+        "2.16.3-roostack.3"
+      ],
+      "fixed_upstream": "glob 14.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0035,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.851117636Z"
+    },
+    {
+      "id": "GHSA-3g3m-2fjr-6pw4",
+      "aliases": [
+        "CVE-2026-118773"
+      ],
+      "source": "OSV, for pkg:npm/glob@13.0.6 in its image",
+      "title": "Papra: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal (in glob 13.0.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "glob 14.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0035,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.851118908Z"
+    },
+    {
+      "id": "GHSA-3g3m-2fjr-6pw4",
+      "aliases": [
+        "CVE-2026-118773"
+      ],
+      "source": "OSV, for pkg:npm/glob@13.0.6 in its image",
+      "title": "Uptime Kuma: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal (in glob 13.0.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4",
+      "package": "uptime-kuma",
+      "affected": [
+        "2.5.6-roostack.2",
+        "2.5.8-roostack.1"
+      ],
+      "fixed_upstream": "glob 14.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0035,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.851121293Z"
+    },
+    {
+      "id": "GHSA-3g3m-2fjr-6pw4",
+      "aliases": [
+        "CVE-2026-118773"
+      ],
+      "source": "OSV, for pkg:npm/glob@13.0.6 in its image",
+      "title": "Wiki.js: Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal (in glob 13.0.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-3g3m-2fjr-6pw4",
+      "package": "wiki-js",
+      "affected": [
+        "2.5.316-roostack.3",
+        "2.5.317-roostack.1"
+      ],
+      "fixed_upstream": "glob 14.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0035,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.851124078Z"
+    },
+    {
+      "id": "GHSA-4642-5mcj-2rqw",
+      "aliases": [
+        "CVE-2026-118775"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Papra: Forge: ASN.1 OID first arc truncation in asn1.oidToDer (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-4642-5mcj-2rqw",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00313,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.966177605Z"
+    },
+    {
+      "id": "GHSA-4642-5mcj-2rqw",
+      "aliases": [
+        "CVE-2026-118775"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Wiki.js: Forge: ASN.1 OID first arc truncation in asn1.oidToDer (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-4642-5mcj-2rqw",
+      "package": "wiki-js",
+      "affected": [
+        "2.5.316-roostack.3",
+        "2.5.317-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00313,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.966181623Z"
+    },
+    {
+      "id": "GHSA-7984-qgvg-3j9c",
+      "aliases": [
+        "CVE-2026-118669"
+      ],
+      "source": "OSV, for pkg:pypi/oauthlib@3.3.1 in its image",
+      "title": "Paperless-ngx: OAuthLib: Token grants can use attacker-supplied client_id for authorization after authenticating a different client (in oauthlib 3.3.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-7984-qgvg-3j9c",
+      "package": "paperless-ngx",
+      "affected": [
+        "3.3.2-roostack.3",
+        "3.3.4-roostack.1"
+      ],
+      "fixed_upstream": "oauthlib 4.0.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00312,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.287440081Z"
+    },
+    {
+      "id": "GHSA-7984-qgvg-3j9c",
+      "aliases": [
+        "CVE-2026-118669"
+      ],
+      "source": "OSV, for pkg:pypi/oauthlib@3.3.1 in its image",
+      "title": "Uptime Kuma: OAuthLib: Token grants can use attacker-supplied client_id for authorization after authenticating a different client (in oauthlib 3.3.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-7984-qgvg-3j9c",
+      "package": "uptime-kuma",
+      "affected": [
+        "2.5.6-roostack.2",
+        "2.5.8-roostack.1"
+      ],
+      "fixed_upstream": "oauthlib 4.0.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00312,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.287443296Z"
+    },
+    {
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [
+        "CVE-2026-118764"
+      ],
+      "source": "OSV, for pkg:npm/minimatch@3.1.5 in its image",
+      "title": "Actual Budget: minimatch has potential denial of service via globparts amplification (in minimatch 3.1.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249",
+      "package": "actual-budget",
+      "affected": [
+        "26.10.0-roostack.3"
+      ],
+      "fixed_upstream": "minimatch 11.0.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00291,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.654534273Z"
+    },
+    {
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [
+        "CVE-2026-118764"
+      ],
+      "source": "OSV, for pkg:npm/minimatch@3.1.5 in its image",
+      "title": "Audiobookshelf: minimatch has potential denial of service via globparts amplification (in minimatch 3.1.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249",
+      "package": "audiobookshelf",
+      "affected": [
+        "2.37.1-roostack.3",
+        "2.37.2-roostack.1"
+      ],
+      "fixed_upstream": "minimatch 11.0.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00291,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.654538251Z"
+    },
+    {
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [
+        "CVE-2026-118764"
+      ],
+      "source": "OSV, for pkg:npm/minimatch@3.1.5 in its image",
+      "title": "Ghost: minimatch has potential denial of service via globparts amplification (in minimatch 3.1.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.2"
+      ],
+      "fixed_upstream": "minimatch 11.0.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00291,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.654541467Z"
+    },
+    {
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [
+        "CVE-2026-118764"
+      ],
+      "source": "OSV, for pkg:npm/minimatch@3.1.5 in its image",
+      "title": "HedgeDoc: minimatch has potential denial of service via globparts amplification (in minimatch 3.1.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249",
+      "package": "hedgedoc",
+      "affected": [
+        "1.12.0-roostack.4"
+      ],
+      "fixed_upstream": "minimatch 11.0.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00291,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.654547758Z"
+    },
+    {
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [
+        "CVE-2026-118764"
+      ],
+      "source": "OSV, for pkg:npm/minimatch@3.1.5 in its image",
+      "title": "Immich: minimatch has potential denial of service via globparts amplification (in minimatch 3.1.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249",
+      "package": "immich",
+      "affected": [
+        "3.3.3-roostack.3",
+        "3.3.5-roostack.1"
+      ],
+      "fixed_upstream": "minimatch 11.0.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00291,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.654549672Z"
+    },
+    {
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [
+        "CVE-2026-118764"
+      ],
+      "source": "OSV, for pkg:npm/minimatch@3.1.5 in its image",
+      "title": "Linkwarden: minimatch has potential denial of service via globparts amplification (in minimatch 3.1.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249",
+      "package": "linkwarden",
+      "affected": [
+        "2.16.3-roostack.3"
+      ],
+      "fixed_upstream": "minimatch 11.0.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00291,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.654556775Z"
+    },
+    {
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [
+        "CVE-2026-118764"
+      ],
+      "source": "OSV, for pkg:npm/minimatch@3.1.5 in its image",
+      "title": "Papra: minimatch has potential denial of service via globparts amplification (in minimatch 3.1.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "minimatch 11.0.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00291,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.654558628Z"
+    },
+    {
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [
+        "CVE-2026-118764"
+      ],
+      "source": "OSV, for pkg:npm/minimatch@3.1.5 in its image",
+      "title": "Uptime Kuma: minimatch has potential denial of service via globparts amplification (in minimatch 3.1.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249",
+      "package": "uptime-kuma",
+      "affected": [
+        "2.5.6-roostack.2",
+        "2.5.8-roostack.1"
+      ],
+      "fixed_upstream": "minimatch 11.0.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00291,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.654563898Z"
+    },
+    {
+      "id": "GHSA-g3hv-75wg-m249",
+      "aliases": [
+        "CVE-2026-118764"
+      ],
+      "source": "OSV, for pkg:npm/minimatch@3.1.5 in its image",
+      "title": "Wiki.js: minimatch has potential denial of service via globparts amplification (in minimatch 3.1.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-g3hv-75wg-m249",
+      "package": "wiki-js",
+      "affected": [
+        "2.5.316-roostack.3",
+        "2.5.317-roostack.1"
+      ],
+      "fixed_upstream": "minimatch 11.0.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00291,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.654567625Z"
+    },
+    {
+      "id": "GHSA-c73q-w75p-j82v",
+      "aliases": [
+        "CVE-2026-116672"
+      ],
+      "source": "OSV, for pkg:pypi/authlib@1.8.0 in its image",
+      "title": "Mealie: Authlib RFC 7592 examples omit registration-access-token client binding (in authlib 1.8.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-c73q-w75p-j82v",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3"
+      ],
+      "fixed_upstream": "authlib 1.9.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00274,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.538266148Z"
+    },
+    {
+      "id": "GHSA-6wvx-3r32-xmcg",
+      "aliases": [
+        "CVE-2026-118777"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Papra: Forge: Prototype Pollution in forge.http cookie handling via a malicious Set-Cookie (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-6wvx-3r32-xmcg",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00255,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.226586423Z"
+    },
+    {
+      "id": "GHSA-6wvx-3r32-xmcg",
+      "aliases": [
+        "CVE-2026-118777"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Wiki.js: Forge: Prototype Pollution in forge.http cookie handling via a malicious Set-Cookie (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-6wvx-3r32-xmcg",
+      "package": "wiki-js",
+      "affected": [
+        "2.5.316-roostack.3",
+        "2.5.317-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00255,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.22659013Z"
+    },
+    {
+      "id": "GHSA-525v-9gp9-w22h",
+      "aliases": [
+        "CVE-2026-118778"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Papra: Forge: TLS client crash when the server sends no certificate (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-525v-9gp9-w22h",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00204,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.051294556Z"
+    },
+    {
+      "id": "GHSA-525v-9gp9-w22h",
+      "aliases": [
+        "CVE-2026-118778"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Wiki.js: Forge: TLS client crash when the server sends no certificate (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-525v-9gp9-w22h",
+      "package": "wiki-js",
+      "affected": [
+        "2.5.316-roostack.3",
+        "2.5.317-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00204,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.051297782Z"
+    },
+    {
+      "id": "GHSA-4487-j8r4-4g2f",
+      "aliases": [
+        "CVE-2026-118780"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Papra: Forge: verifyCertificateChain() removes trusted CA certificates with the same subject from the CA store (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-4487-j8r4-4g2f",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00172,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.911405832Z"
+    },
+    {
+      "id": "GHSA-4487-j8r4-4g2f",
+      "aliases": [
+        "CVE-2026-118780"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Wiki.js: Forge: verifyCertificateChain() removes trusted CA certificates with the same subject from the CA store (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-4487-j8r4-4g2f",
+      "package": "wiki-js",
+      "affected": [
+        "2.5.316-roostack.3",
+        "2.5.317-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00172,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:27.911412925Z"
+    },
+    {
+      "id": "GHSA-h6cr-wjv9-3cpp",
+      "aliases": [
+        "CVE-2026-118781"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Papra: Forge: Denial of Service via infinite loop in BigInteger.modInverse() with negative input (incomplete fix of CVE-2026-33891) (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-h6cr-wjv9-3cpp",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00119,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.716184047Z"
+    },
+    {
+      "id": "GHSA-h6cr-wjv9-3cpp",
+      "aliases": [
+        "CVE-2026-118781"
+      ],
+      "source": "OSV, for pkg:npm/node-forge@1.4.0 in its image",
+      "title": "Wiki.js: Forge: Denial of Service via infinite loop in BigInteger.modInverse() with negative input (incomplete fix of CVE-2026-33891) (in node-forge 1.4.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-h6cr-wjv9-3cpp",
+      "package": "wiki-js",
+      "affected": [
+        "2.5.316-roostack.3",
+        "2.5.317-roostack.1"
+      ],
+      "fixed_upstream": "node-forge 1.4.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00119,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-10-31T01:00:28.716188134Z"
     }
   ]
 }
