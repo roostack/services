@@ -1,0 +1,12 @@
+# Drafted by roostack registry watch on 2026-10-31 from OSV, for pkg:npm/follow-redirects@1.16.1 in its image.
+# Check every line before merging: the title (what it lets someone do), the
+# severity in Roostack's meaning, and the versions (docs/RED-BUTTON-PLAN.md §10.1.3).
+title: 'Ghost: follow-redirects: Cross-realm sensitiveHeaders arrays are discarded and custom credentials can follow redirect…'
+cves: [CVE-2026-116689]
+severity: critical
+exploited: false
+published: "2026-10-31"
+link: https://osv.dev/vulnerability/GHSA-mrwp-f3q8-3g9p
+affects:
+    ghost:
+        versions: [6.71.0-roostack.2]
