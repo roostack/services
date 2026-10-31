@@ -1,0 +1,12 @@
+# Drafted by roostack registry watch on 2026-10-31 from OSV, for pkg:npm/node-forge@1.4.0 in its image.
+# Check every line before merging: the title (what it lets someone do), the
+# severity in Roostack's meaning, and the versions (docs/RED-BUTTON-PLAN.md §10.1.3).
+title: 'Wiki.js: Forge: X.509 basicConstraints bypass in verifyCertificateChain() via deprecated extension OIDs 2.5.29.10 and…'
+cves: [CVE-2026-119190]
+severity: critical
+exploited: false
+published: "2026-10-31"
+link: https://osv.dev/vulnerability/GHSA-5x38-2vff-x55p
+affects:
+    wiki-js:
+        versions: [2.5.316-roostack.3, 2.5.317-roostack.1]
