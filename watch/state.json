@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-02T08:12:57.135101361Z",
+  "last_run": "2026-11-02T18:47:40.611900671Z",
   "seen": {
     "BIT-golang-2022-1705": "digest",
     "BIT-golang-2022-1962": "digest",
@@ -737,6 +737,7 @@
     "CVE-2026-42505": "digest",
     "CVE-2026-42507": "digest",
     "CVE-2026-42508": "digest",
+    "CVE-2026-42890": "digest",
     "CVE-2026-42931": "digest",
     "CVE-2026-44288": "digest",
     "CVE-2026-44289": "digest",
@@ -1548,6 +1549,7 @@
     "GHSA-p6pp-m3f8-5c89": "digest",
     "GHSA-p6vx-979v-rg4c": "digest",
     "GHSA-p77j-4mvh-x3m3": "digest",
+    "GHSA-p7p2-pm6f-rg6x": "digest",
     "GHSA-p88m-4jfj-68fv": "digest",
     "GHSA-p8hx-v2p6-rp84": "digest",
     "GHSA-p8p7-x288-28g6": "digest",
@@ -85099,6 +85101,36 @@
       "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 8.7).",
       "weak": "it isn't critical, and nothing says it's being used in attacks",
       "found": "2026-11-02T08:13:06.635699272Z"
+    },
+    {
+      "id": "GHSA-p7p2-pm6f-rg6x",
+      "aliases": [
+        "CVE-2026-42890"
+      ],
+      "source": "GitHub's advisories for actualbudget/actual",
+      "title": "Actual Budget: Electron enableNodeOptionsEnvironmentVariable fuse re-enabled allows NODE_OPTIONS code injection",
+      "link": "https://github.com/actualbudget/actual/security/advisories/GHSA-p7p2-pm6f-rg6x",
+      "package": "actual-budget",
+      "affected": [
+        "26.10.0-roostack.1",
+        "26.10.0-roostack.2",
+        "26.10.0-roostack.3"
+      ],
+      "fixed_upstream": "\u003e= 26.11.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 6.8
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0.00126,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 6.8).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-02T18:47:41.742315903Z"
     }
   ]
 }
