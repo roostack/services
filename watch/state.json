@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-03T23:37:51.038473345Z",
+  "last_run": "2026-11-04T03:12:36.529663467Z",
   "seen": {
     "BIT-golang-2022-1705": "digest",
     "BIT-golang-2022-1962": "digest",
@@ -1005,6 +1005,7 @@
     "GHSA-253c-mchw-3w2r": "digest",
     "GHSA-254f-3936-288h": "digest",
     "GHSA-259r-337f-4rfw": "digest",
+    "GHSA-25cw-38mq-q7m6": "digest",
     "GHSA-265q-28rp-chq5": "digest",
     "GHSA-268h-hp4c-crq3": "digest",
     "GHSA-27h8-gf7j-v5hc": "digest",
@@ -1165,6 +1166,7 @@
     "GHSA-6627-m3xw-93mp": "digest",
     "GHSA-6688-9rhm-gjv2": "digest",
     "GHSA-66ff-xgx4-vchm": "digest",
+    "GHSA-66m4-5jjr-2rg5": "doesn't affect the registry's versions",
     "GHSA-677m-j7p3-52f9": "digest",
     "GHSA-67hx-6x53-jw92": "digest",
     "GHSA-67mh-4wv8-2f99": "digest",
@@ -1173,6 +1175,7 @@
     "GHSA-698v-4r3x-3vcv": "digest",
     "GHSA-69cg-p879-7622": "digest",
     "GHSA-69hj-f68j-2879": "digest",
+    "GHSA-69hv-5jfc-mvmv": "digest",
     "GHSA-69q9-v8p6-xvx3": "digest",
     "GHSA-69qc-f5m6-889c": "doesn't affect the registry's versions",
     "GHSA-6chq-wfr3-2hj9": "digest",
@@ -1364,6 +1367,7 @@
     "GHSA-cxjh-pqwp-8mfp": "digest",
     "GHSA-cxp5-3px4-pw24": "digest",
     "GHSA-f23m-r3pf-42rh": "digest",
+    "GHSA-f278-mgc7-46j3": "digest",
     "GHSA-f2g6-542v-9j58": "digest",
     "GHSA-f38q-mgvj-vph7": "digest",
     "GHSA-f3qw-qg77-hmm4": "doesn't affect the registry's versions",
@@ -1475,6 +1479,7 @@
     "GHSA-j965-2qgj-vjmq": "digest",
     "GHSA-jc66-7q78-782g": "drafted 2026-0052",
     "GHSA-jcxm-m3jx-f287": "digest",
+    "GHSA-jf74-f69g-hcj9": "digest",
     "GHSA-jfc7-64v2-mr8c": "digest",
     "GHSA-jfhm-5ghh-2f97": "digest",
     "GHSA-jg86-v3jv-hrpm": "digest",
@@ -1635,6 +1640,7 @@
     "GHSA-r6mh-qg79-rqj2": "digest",
     "GHSA-r6ph-v2qm-q3c2": "digest",
     "GHSA-r6q2-hw4h-h46w": "digest",
+    "GHSA-r766-rf9f-588h": "digest",
     "GHSA-r7f2-6fj8-6fg2": "doesn't affect the registry's versions",
     "GHSA-r7fv-28h4-cvq7": "digest",
     "GHSA-r7g4-qg5f-qqm2": "digest",
@@ -85132,6 +85138,111 @@
       "why": "the source rates it medium (CVSS 6.8).",
       "weak": "it isn't critical, and nothing says it's being used in attacks",
       "found": "2026-11-02T18:47:41.742315903Z"
+    },
+    {
+      "id": "GHSA-f278-mgc7-46j3",
+      "source": "GitHub's advisories",
+      "title": "php_fastcgi authorization bypass via dot-segments in the request path",
+      "link": "https://github.com/caddyserver/caddy/security/advisories/GHSA-f278-mgc7-46j3",
+      "concerns": "Caddy, one of Roostack's own parts",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 5.9
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system (CVSS 5.9).",
+      "weak": "it's about Caddy: if a Roostack release is affected, write the advisory with affects: roostack",
+      "found": "2026-11-04T03:12:45.260267659Z"
+    },
+    {
+      "id": "GHSA-r766-rf9f-588h",
+      "source": "GitHub's advisories",
+      "title": "Host and :authority values with dot segments or slashes escape a {host}-based root",
+      "link": "https://github.com/caddyserver/caddy/security/advisories/GHSA-r766-rf9f-588h",
+      "concerns": "Caddy, one of Roostack's own parts",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it's about Caddy: if a Roostack release is affected, write the advisory with affects: roostack",
+      "found": "2026-11-04T03:12:45.260281736Z"
+    },
+    {
+      "id": "GHSA-25cw-38mq-q7m6",
+      "source": "GitHub's advisories",
+      "title": "file matcher resolves /file/./ to a regular file, bypassing suffix path rules",
+      "link": "https://github.com/caddyserver/caddy/security/advisories/GHSA-25cw-38mq-q7m6",
+      "concerns": "Caddy, one of Roostack's own parts",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium.",
+      "weak": "it's about Caddy: if a Roostack release is affected, write the advisory with affects: roostack",
+      "found": "2026-11-04T03:12:45.26028394Z"
+    },
+    {
+      "id": "GHSA-69hv-5jfc-mvmv",
+      "source": "GitHub's advisories",
+      "title": "rewrite re-decodes {http.matchers.file.remainder}, bypassing path-based deny rules",
+      "link": "https://github.com/caddyserver/caddy/security/advisories/GHSA-69hv-5jfc-mvmv",
+      "concerns": "Caddy, one of Roostack's own parts",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium.",
+      "weak": "it's about Caddy: if a Roostack release is affected, write the advisory with affects: roostack",
+      "found": "2026-11-04T03:12:45.260286525Z"
+    },
+    {
+      "id": "GHSA-jf74-f69g-hcj9",
+      "source": "GitHub's advisories",
+      "title": "file_server exposes private keys when the data directory falls back to ./caddy",
+      "link": "https://github.com/caddyserver/caddy/security/advisories/GHSA-jf74-f69g-hcj9",
+      "concerns": "Caddy, one of Roostack's own parts",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium.",
+      "weak": "it's about Caddy: if a Roostack release is affected, write the advisory with affects: roostack",
+      "found": "2026-11-04T03:12:45.260288799Z"
     }
   ]
 }
