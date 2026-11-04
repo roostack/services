@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-04T11:29:54.349817249Z",
+  "last_run": "2026-11-04T18:50:32.624324692Z",
   "seen": {
     "BIT-golang-2022-1705": "digest",
     "BIT-golang-2022-1962": "digest",
@@ -538,6 +538,7 @@
     "CVE-2026-114199": "digest",
     "CVE-2026-114437": "digest",
     "CVE-2026-114501": "digest",
+    "CVE-2026-114509": "digest",
     "CVE-2026-114603": "digest",
     "CVE-2026-114607": "digest",
     "CVE-2026-114613": "digest",
@@ -2662,7 +2663,8 @@
     "USN-8944-1": "digest",
     "USN-8945-1": "digest",
     "USN-8949-1": "digest",
-    "X41-2026-002": "digest"
+    "X41-2026-002": "digest",
+    "crowdsecurity/vpatch-CVE-2026-114509": "digest"
   },
   "kev": [
     "CVE-2002-0367",
@@ -4620,10 +4622,14 @@
     "crowdsecurity/vpatch-CVE-2025-9316",
     "crowdsecurity/vpatch-CVE-2026-0768",
     "crowdsecurity/vpatch-CVE-2026-0926",
+    "crowdsecurity/vpatch-CVE-2026-104736",
     "crowdsecurity/vpatch-CVE-2026-104935",
     "crowdsecurity/vpatch-CVE-2026-109618",
     "crowdsecurity/vpatch-CVE-2026-109619",
     "crowdsecurity/vpatch-CVE-2026-111497",
+    "crowdsecurity/vpatch-CVE-2026-114509",
+    "crowdsecurity/vpatch-CVE-2026-115886",
+    "crowdsecurity/vpatch-CVE-2026-116690",
     "crowdsecurity/vpatch-CVE-2026-1207",
     "crowdsecurity/vpatch-CVE-2026-1281",
     "crowdsecurity/vpatch-CVE-2026-1557",
@@ -4635,6 +4641,7 @@
     "crowdsecurity/vpatch-CVE-2026-26217",
     "crowdsecurity/vpatch-CVE-2026-26980",
     "crowdsecurity/vpatch-CVE-2026-27483",
+    "crowdsecurity/vpatch-CVE-2026-34151",
     "crowdsecurity/vpatch-CVE-2026-34910",
     "crowdsecurity/vpatch-CVE-2026-41940",
     "crowdsecurity/vpatch-CVE-2026-46725",
@@ -4642,12 +4649,14 @@
     "crowdsecurity/vpatch-CVE-2026-63030",
     "crowdsecurity/vpatch-CVE-2026-72898",
     "crowdsecurity/vpatch-CVE-2026-75650",
+    "crowdsecurity/vpatch-CVE-2026-7873",
     "crowdsecurity/vpatch-CVE-2026-85706",
     "crowdsecurity/vpatch-CVE-2026-87902",
     "crowdsecurity/vpatch-CVE-2026-9082",
     "crowdsecurity/vpatch-CVE-2026-96652",
     "crowdsecurity/vpatch-CVE-2026-96655",
     "crowdsecurity/vpatch-CVE-2026-96656",
+    "crowdsecurity/vpatch-CVE-2026-97229",
     "crowdsecurity/vpatch-WT-2026-0001",
     "crowdsecurity/vpatch-connectwise-auth-bypass",
     "crowdsecurity/vpatch-env-access",
@@ -85798,6 +85807,30 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-04T11:30:23.918952224Z"
+    },
+    {
+      "id": "crowdsecurity/vpatch-CVE-2026-114509",
+      "aliases": [
+        "CVE-2026-114509"
+      ],
+      "source": "CrowdSec's virtual-patch rules",
+      "title": "Laravel - Authentication Bypass: Detects Laravel TokenGuard authentication bypass attempts sending api_token as an array.",
+      "link": "https://app.crowdsec.net/hub/author/crowdsecurity/appsec-rules/vpatch-CVE-2026-114509",
+      "concerns": "packages built with Laravel",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": true,
+      "EPSS": 0.00777,
+      "severity": "high",
+      "why": "it's being used in attacks, but nothing says anyone on the internet can use it without signing in. CrowdSec has a virtual-patch rule for CVE-2026-114509 (crowdsecurity/vpatch-CVE-2026-114509), so an exploit is public.",
+      "weak": "CrowdSec wrote a rule for it, so an exploit is likely public: check which packages it affects",
+      "found": "2026-11-04T18:51:01.521801817Z"
     }
   ]
 }
