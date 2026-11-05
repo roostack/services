@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-05T00:31:06.75575606Z",
+  "last_run": "2026-11-05T07:18:59.130422247Z",
   "seen": {
     "BIT-golang-2022-1705": "digest",
     "BIT-golang-2022-1962": "digest",
@@ -92,6 +92,7 @@
     "BIT-golang-2026-32283": "digest",
     "BIT-golang-2026-32288": "digest",
     "BIT-golang-2026-32289": "digest",
+    "BIT-golang-2026-33810": "digest",
     "BIT-golang-2026-33811": "digest",
     "BIT-golang-2026-33814": "digest",
     "BIT-golang-2026-33818": "digest",
@@ -165,9 +166,28 @@
     "BIT-pillow-2026-112898": "digest",
     "BIT-pillow-2026-112900": "digest",
     "BIT-pillow-2026-112901": "digest",
+    "BIT-pillow-2026-25990": "digest",
+    "BIT-pillow-2026-40192": "digest",
+    "BIT-pillow-2026-42308": "digest",
+    "BIT-pillow-2026-42309": "digest",
+    "BIT-pillow-2026-42310": "digest",
+    "BIT-pillow-2026-42311": "digest",
+    "BIT-pillow-2026-54058": "digest",
+    "BIT-pillow-2026-54059": "digest",
+    "BIT-pillow-2026-54060": "digest",
+    "BIT-pillow-2026-55379": "digest",
+    "BIT-pillow-2026-55380": "digest",
+    "BIT-pillow-2026-55798": "digest",
+    "BIT-pillow-2026-59197": "digest",
+    "BIT-pillow-2026-59198": "digest",
+    "BIT-pillow-2026-59199": "digest",
+    "BIT-pillow-2026-59200": "digest",
+    "BIT-pillow-2026-59204": "digest",
+    "BIT-pillow-2026-59205": "digest",
     "BIT-pillow-2026-96636": "digest",
     "BIT-pillow-2026-96639": "digest",
     "BIT-pillow-2026-96640": "digest",
+    "BIT-setuptools-2026-59890": "digest",
     "CVE-2015-8851": "digest",
     "CVE-2016-20018": "digest",
     "CVE-2017-1000048": "digest",
@@ -175,8 +195,12 @@
     "CVE-2017-16137": "digest",
     "CVE-2017-16138": "digest",
     "CVE-2018-16492": "digest",
+    "CVE-2019-15795": "digest",
+    "CVE-2019-15796": "digest",
     "CVE-2020-26308": "digest",
     "CVE-2020-28459": "digest",
+    "CVE-2020-8911": "digest",
+    "CVE-2020-8912": "digest",
     "CVE-2021-21366": "digest",
     "CVE-2021-23358": "digest",
     "CVE-2021-32050": "digest",
@@ -265,6 +289,7 @@
     "CVE-2023-50782": "digest",
     "CVE-2023-54404": "digest",
     "CVE-2024-0727": "digest",
+    "CVE-2024-12797": "digest",
     "CVE-2024-12905": "digest",
     "CVE-2024-21538": "digest",
     "CVE-2024-24783": "digest",
@@ -329,6 +354,8 @@
     "CVE-2025-47935": "digest",
     "CVE-2025-47944": "digest",
     "CVE-2025-48387": "digest",
+    "CVE-2025-48494": "digest",
+    "CVE-2025-48495": "digest",
     "CVE-2025-48997": "digest",
     "CVE-2025-50181": "digest",
     "CVE-2025-54419": "digest",
@@ -350,6 +377,8 @@
     "CVE-2025-61728": "digest",
     "CVE-2025-61729": "digest",
     "CVE-2025-61730": "digest",
+    "CVE-2025-61911": "digest",
+    "CVE-2025-61912": "digest",
     "CVE-2025-62718": "digest",
     "CVE-2025-64718": "digest",
     "CVE-2025-64756": "digest",
@@ -364,6 +393,7 @@
     "CVE-2025-7338": "digest",
     "CVE-2025-7339": "digest",
     "CVE-2025-7783": "digest",
+    "CVE-2025-8869": "digest",
     "CVE-2026-0540": "digest",
     "CVE-2026-0994": "digest",
     "CVE-2026-100699": "digest",
@@ -395,12 +425,14 @@
     "CVE-2026-102269": "digest",
     "CVE-2026-102270": "digest",
     "CVE-2026-102271": "digest",
+    "CVE-2026-102274": "digest",
     "CVE-2026-102275": "digest",
     "CVE-2026-102276": "digest",
     "CVE-2026-102277": "digest",
     "CVE-2026-102278": "digest",
     "CVE-2026-102422": "digest",
     "CVE-2026-102554": "digest",
+    "CVE-2026-102598": "digest",
     "CVE-2026-102599": "digest",
     "CVE-2026-102826": "digest",
     "CVE-2026-102827": "drafted 2026-0010",
@@ -422,6 +454,7 @@
     "CVE-2026-106444": "digest",
     "CVE-2026-106445": "digest",
     "CVE-2026-106446": "digest",
+    "CVE-2026-107378": "digest",
     "CVE-2026-107382": "digest",
     "CVE-2026-107383": "drafted 2026-0015",
     "CVE-2026-107384": "digest",
@@ -540,6 +573,7 @@
     "CVE-2026-114501": "digest",
     "CVE-2026-114509": "digest",
     "CVE-2026-114603": "digest",
+    "CVE-2026-114605": "digest",
     "CVE-2026-114607": "digest",
     "CVE-2026-114613": "digest",
     "CVE-2026-114615": "drafted 2026-0030",
@@ -608,6 +642,7 @@
     "CVE-2026-12151": "digest",
     "CVE-2026-12590": "digest",
     "CVE-2026-13149": "digest",
+    "CVE-2026-13346": "digest",
     "CVE-2026-13697": "digest",
     "CVE-2026-14257": "digest",
     "CVE-2026-14643": "digest",
@@ -615,6 +650,7 @@
     "CVE-2026-15603": "digest",
     "CVE-2026-16728": "digest",
     "CVE-2026-16729": "digest",
+    "CVE-2026-1703": "digest",
     "CVE-2026-17495": "drafted 2026-0013",
     "CVE-2026-18149": "digest",
     "CVE-2026-18446": "digest",
@@ -631,6 +667,7 @@
     "CVE-2026-2391": "digest",
     "CVE-2026-23950": "digest",
     "CVE-2026-24001": "digest",
+    "CVE-2026-24049": "digest",
     "CVE-2026-24791": "digest",
     "CVE-2026-24842": "digest",
     "CVE-2026-25038": "digest",
@@ -640,6 +677,7 @@
     "CVE-2026-25679": "digest",
     "CVE-2026-25714": "digest",
     "CVE-2026-25896": "digest",
+    "CVE-2026-25990": "digest",
     "CVE-2026-26007": "digest",
     "CVE-2026-26278": "digest",
     "CVE-2026-26960": "digest",
@@ -647,23 +685,37 @@
     "CVE-2026-27139": "digest",
     "CVE-2026-27142": "digest",
     "CVE-2026-27145": "digest",
+    "CVE-2026-27448": "digest",
+    "CVE-2026-27459": "digest",
     "CVE-2026-27601": "digest",
     "CVE-2026-27761": "digest",
     "CVE-2026-27837": "digest",
     "CVE-2026-27903": "digest",
     "CVE-2026-27904": "digest",
     "CVE-2026-27942": "digest",
+    "CVE-2026-28231": "digest",
     "CVE-2026-28291": "digest",
     "CVE-2026-28292": "digest",
+    "CVE-2026-28682": "digest",
+    "CVE-2026-28683": "digest",
     "CVE-2026-28684": "digest",
     "CVE-2026-28699": "digest",
     "CVE-2026-28744": "digest",
+    "CVE-2026-29060": "digest",
+    "CVE-2026-29061": "digest",
     "CVE-2026-29063": "digest",
+    "CVE-2026-29084": "digest",
     "CVE-2026-2950": "digest",
     "CVE-2026-29786": "digest",
+    "CVE-2026-30922": "digest",
+    "CVE-2026-30943": "digest",
     "CVE-2026-30951": "digest",
+    "CVE-2026-30955": "digest",
+    "CVE-2026-30961": "digest",
     "CVE-2026-31802": "digest",
     "CVE-2026-31808": "digest",
+    "CVE-2026-31899": "digest",
+    "CVE-2026-3219": "digest",
     "CVE-2026-32280": "digest",
     "CVE-2026-32281": "digest",
     "CVE-2026-32282": "digest",
@@ -681,13 +733,18 @@
     "CVE-2026-33671": "digest",
     "CVE-2026-33672": "digest",
     "CVE-2026-33750": "digest",
+    "CVE-2026-33809": "digest",
+    "CVE-2026-33810": "digest",
     "CVE-2026-33811": "digest",
+    "CVE-2026-33812": "digest",
+    "CVE-2026-33813": "digest",
     "CVE-2026-33814": "digest",
     "CVE-2026-33818": "digest",
     "CVE-2026-33894": "digest",
     "CVE-2026-34073": "digest",
     "CVE-2026-3449": "digest",
     "CVE-2026-34601": "digest",
+    "CVE-2026-34986": "digest",
     "CVE-2026-3520": "digest",
     "CVE-2026-35209": "digest",
     "CVE-2026-39820": "digest",
@@ -708,6 +765,7 @@
     "CVE-2026-39835": "digest",
     "CVE-2026-39836": "digest",
     "CVE-2026-40175": "digest",
+    "CVE-2026-40192": "digest",
     "CVE-2026-40895": "digest",
     "CVE-2026-41178": "digest",
     "CVE-2026-41238": "digest",
@@ -732,8 +790,13 @@
     "CVE-2026-42041": "digest",
     "CVE-2026-42042": "digest",
     "CVE-2026-42043": "digest",
+    "CVE-2026-42308": "digest",
+    "CVE-2026-42309": "digest",
+    "CVE-2026-42310": "digest",
+    "CVE-2026-42311": "digest",
     "CVE-2026-42338": "digest",
     "CVE-2026-42499": "digest",
+    "CVE-2026-42500": "digest",
     "CVE-2026-42504": "digest",
     "CVE-2026-42505": "digest",
     "CVE-2026-42507": "digest",
@@ -766,14 +829,20 @@
     "CVE-2026-46595": "digest",
     "CVE-2026-46597": "digest",
     "CVE-2026-46598": "digest",
+    "CVE-2026-46599": "digest",
     "CVE-2026-46600": "digest",
+    "CVE-2026-46601": "digest",
+    "CVE-2026-46602": "digest",
     "CVE-2026-46603": "digest",
+    "CVE-2026-46604": "digest",
     "CVE-2026-47160": "digest",
     "CVE-2026-4800": "digest",
     "CVE-2026-48068": "digest",
     "CVE-2026-48069": "digest",
     "CVE-2026-48522": "digest",
+    "CVE-2026-48523": "digest",
     "CVE-2026-48524": "digest",
+    "CVE-2026-48525": "digest",
     "CVE-2026-48526": "digest",
     "CVE-2026-4867": "digest",
     "CVE-2026-48710": "digest",
@@ -796,12 +865,18 @@
     "CVE-2026-5079": "digest",
     "CVE-2026-53550": "digest",
     "CVE-2026-53655": "digest",
+    "CVE-2026-54058": "digest",
+    "CVE-2026-54059": "digest",
+    "CVE-2026-54060": "digest",
     "CVE-2026-54269": "digest",
     "CVE-2026-54272": "digest",
     "CVE-2026-54282": "digest",
     "CVE-2026-54283": "digest",
+    "CVE-2026-55379": "digest",
+    "CVE-2026-55380": "digest",
     "CVE-2026-55458": "digest",
     "CVE-2026-55575": "digest",
+    "CVE-2026-55798": "digest",
     "CVE-2026-55982": "digest",
     "CVE-2026-56443": "digest",
     "CVE-2026-56654": "digest",
@@ -825,6 +900,12 @@
     "CVE-2026-58445": "digest",
     "CVE-2026-58487": "digest",
     "CVE-2026-59180": "digest",
+    "CVE-2026-59197": "digest",
+    "CVE-2026-59198": "digest",
+    "CVE-2026-59199": "digest",
+    "CVE-2026-59200": "digest",
+    "CVE-2026-59204": "digest",
+    "CVE-2026-59205": "digest",
     "CVE-2026-59724": "digest",
     "CVE-2026-59725": "digest",
     "CVE-2026-59869": "digest",
@@ -834,13 +915,19 @@
     "CVE-2026-59875": "digest",
     "CVE-2026-59879": "digest",
     "CVE-2026-59880": "digest",
+    "CVE-2026-59884": "digest",
+    "CVE-2026-59885": "digest",
+    "CVE-2026-59886": "digest",
     "CVE-2026-59887": "digest",
+    "CVE-2026-59890": "digest",
+    "CVE-2026-59939": "digest",
     "CVE-2026-60018": "digest",
     "CVE-2026-60021": "digest",
     "CVE-2026-61556": "digest",
     "CVE-2026-61801": "digest",
     "CVE-2026-63209": "digest",
     "CVE-2026-63374": "digest",
+    "CVE-2026-6357": "digest",
     "CVE-2026-63627": "digest",
     "CVE-2026-63628": "digest",
     "CVE-2026-64847": "digest",
@@ -887,6 +974,8 @@
     "CVE-2026-73086": "digest",
     "CVE-2026-73088": "digest",
     "CVE-2026-73089": "digest",
+    "CVE-2026-73228": "digest",
+    "CVE-2026-73229": "digest",
     "CVE-2026-73418": "digest",
     "CVE-2026-73419": "digest",
     "CVE-2026-73420": "digest",
@@ -946,6 +1035,7 @@
     "CVE-2026-85024": "digest",
     "CVE-2026-85152": "digest",
     "CVE-2026-85393": "digest",
+    "CVE-2026-8643": "digest",
     "CVE-2026-86472": "digest",
     "CVE-2026-87018": "digest",
     "CVE-2026-87029": "digest",
@@ -1024,6 +1114,7 @@
     "GHSA-2jcg-qqmg-46q6": "digest",
     "GHSA-2jfj-6hjv-fm6j": "drafted 2026-0017",
     "GHSA-2m5v-pch6-74hx": "drafted 2026-0026",
+    "GHSA-2m8g-3cmr-wg3w": "digest",
     "GHSA-2m8v-j782-fhvr": "digest",
     "GHSA-2p3c-p3qw-69r4": "digest",
     "GHSA-2p57-rm9w-gvfp": "digest",
@@ -1054,6 +1145,7 @@
     "GHSA-38jv-5279-wg99": "digest",
     "GHSA-39m8-27wv-hr27": "digest",
     "GHSA-39q2-94rc-95cp": "digest",
+    "GHSA-3c22-5j5m-4jq7": "digest",
     "GHSA-3f6p-5ww8-9rcr": "digest",
     "GHSA-3f7j-7jwc-fxfj": "digest",
     "GHSA-3fv3-hhmm-4x2q": "digest",
@@ -1085,9 +1177,13 @@
     "GHSA-4487-j8r4-4g2f": "digest",
     "GHSA-44fp-w29j-9vj5": "digest",
     "GHSA-44g4-m2mj-wpvx": "digest",
+    "GHSA-44p7-9xx4-hf2g": "digest",
     "GHSA-4558-3h8r-v8xp": "digest",
     "GHSA-455c-vgg9-jxw8": "digest",
+    "GHSA-45c3-73f7-pv4m": "digest",
     "GHSA-45gg-vh54-h5m9": "digest",
+    "GHSA-45hq-cxwh-f6vc": "digest",
+    "GHSA-45vh-rpc8-hxpp": "digest",
     "GHSA-462x-pgg6-55fp": "digest",
     "GHSA-4642-5mcj-2rqw": "digest",
     "GHSA-467c-4w7p-8427": "doesn't affect the registry's versions",
@@ -1118,7 +1214,10 @@
     "GHSA-4w3g-jfj2-cw2q": "digest",
     "GHSA-4w3w-2rp5-g8jm": "digest",
     "GHSA-4w7w-5xrc-9h26": "drafted 2026-0029",
+    "GHSA-4x4j-2g7c-83w6": "digest",
     "GHSA-4x5r-pxfx-6jf8": "digest",
+    "GHSA-4xg4-54hm-9j77": "digest",
+    "GHSA-4xh5-x5gv-qwph": "digest",
     "GHSA-4xrf-jv44-h6hh": "digest",
     "GHSA-5239-wwwm-4pmq": "digest",
     "GHSA-525v-9gp9-w22h": "digest",
@@ -1137,6 +1236,7 @@
     "GHSA-55wc-3pg8-jfw6": "digest",
     "GHSA-567q-5qvw-pf92": "digest",
     "GHSA-587h-7wmj-h5pm": "digest",
+    "GHSA-58qw-9mgm-455v": "digest",
     "GHSA-58qx-3vcg-4xpx": "digest",
     "GHSA-58r4-6rv3-gfh8": "digest",
     "GHSA-5c9x-8gcm-mpgx": "digest",
@@ -1144,12 +1244,14 @@
     "GHSA-5cpq-8wj7-hf2v": "digest",
     "GHSA-5cwg-6vw7-rj6p": "drafted 2026-0050",
     "GHSA-5fg8-2547-mr8q": "digest",
+    "GHSA-5gjj-6r7v-ph3x": "digest",
     "GHSA-5j4v-rwqr-vpq7": "digest",
     "GHSA-5j98-mcp5-4vw2": "digest",
     "GHSA-5jgf-p345-68v8": "digest",
     "GHSA-5p2g-fcmc-qvqq": "digest",
     "GHSA-5p39-cfhj-2xmp": "digest",
     "GHSA-5p4m-2wfm-xmqj": "digest",
+    "GHSA-5pwr-322w-8jr4": "digest",
     "GHSA-5r4p-p66f-jhc7": "digest",
     "GHSA-5v7r-6r5c-r473": "digest",
     "GHSA-5wmx-573v-2qwq": "digest",
@@ -1157,8 +1259,11 @@
     "GHSA-5wrp-cwcj-q835": "digest",
     "GHSA-5x38-2vff-x55p": "drafted 2026-0048",
     "GHSA-5x8w-8jj5-q52h": "drafted 2026-0009",
+    "GHSA-5x94-69rx-g8h2": "digest",
     "GHSA-5xm2-6676-qcp9": "digest",
+    "GHSA-5xmw-vc9v-4wf2": "digest",
     "GHSA-62hf-57xw-28j9": "digest",
+    "GHSA-62p4-gmf7-7g93": "digest",
     "GHSA-6457-6jrx-69cr": "digest",
     "GHSA-6475-r3vj-m8vf": "digest",
     "GHSA-64fm-8hw2-v72w": "digest",
@@ -1196,10 +1301,12 @@
     "GHSA-6pv5-8rp7-8c75": "doesn't affect the registry's versions",
     "GHSA-6q48-6c7w-9gw2": "drafted 2026-0036",
     "GHSA-6q6j-f24j-p477": "doesn't affect the registry's versions",
+    "GHSA-6r8x-57c9-28j4": "digest",
     "GHSA-6rw7-vpxm-498p": "digest",
     "GHSA-6v38-4h7w-rj9h": "drafted 2026-0014",
     "GHSA-6v5v-wf23-fmfq": "digest",
     "GHSA-6vfc-qv3f-vr6c": "digest",
+    "GHSA-6vgw-5pg2-w6jp": "digest",
     "GHSA-6vj9-mwq6-2f5v": "digest",
     "GHSA-6vqw-3v5j-54x4": "digest",
     "GHSA-6wvx-3r32-xmcg": "digest",
@@ -1220,12 +1327,15 @@
     "GHSA-776f-qx25-q3cc": "digest",
     "GHSA-788w-68h3-cvxp": "doesn't affect the registry's versions",
     "GHSA-78g4-xqwv-q3g8": "drafted 2026-0040",
+    "GHSA-78h2-9frx-2jm8": "digest",
     "GHSA-78mq-xcr3-xm33": "digest",
     "GHSA-78xj-cgh5-2h22": "digest",
     "GHSA-793v-988c-3v53": "doesn't affect the registry's versions",
     "GHSA-7984-qgvg-3j9c": "digest",
+    "GHSA-79v4-65xg-pq4g": "digest",
     "GHSA-7ccc-c43j-4p36": "digest",
     "GHSA-7cq7-4v93-8wjm": "doesn't affect the registry's versions",
+    "GHSA-7f33-f4f5-xwgw": "digest",
     "GHSA-7gcm-g887-7qv7": "digest",
     "GHSA-7h2j-956f-4vf2": "digest",
     "GHSA-7hhh-6rmp-j9qf": "digest",
@@ -1279,12 +1389,16 @@
     "GHSA-8mgp-746c-j5xp": "digest",
     "GHSA-8mx5-7m5m-r77g": "digest",
     "GHSA-8p3x-w464-4g6v": "digest",
+    "GHSA-8ppf-4f7h-5ppj": "digest",
     "GHSA-8pwg-hcgm-54cp": "doesn't affect the registry's versions",
     "GHSA-8qq5-rm4j-mr97": "digest",
     "GHSA-8qx7-j2v2-x6q5": "digest",
     "GHSA-8r36-6j2c-3gmv": "digest",
     "GHSA-8r5x-fm3f-whwj": "digest",
     "GHSA-8r9p-f939-6h3c": "digest",
+    "GHSA-8rfp-98v4-mmr6": "digest",
+    "GHSA-8rrh-rw8j-w5fx": "digest",
+    "GHSA-8v84-f9pq-wr9x": "digest",
     "GHSA-8vvx-rff5-p5rq": "digest",
     "GHSA-8wmf-6v46-5gfg": "digest",
     "GHSA-8x88-c5mf-7j5w": "digest",
@@ -1294,6 +1408,7 @@
     "GHSA-93w7-49m2-cqwg": "doesn't affect the registry's versions",
     "GHSA-94rx-fqm6-q23v": "doesn't affect the registry's versions",
     "GHSA-952p-6rrq-rcjv": "digest",
+    "GHSA-95rc-wc32-gm53": "digest",
     "GHSA-965c-763c-88jm": "digest",
     "GHSA-965w-775f-mr7g": "digest",
     "GHSA-96f7-78q5-j345": "digest",
@@ -1317,6 +1432,7 @@
     "GHSA-9h6g-pr28-7cqp": "digest",
     "GHSA-9h7g-h754-c8x2": "doesn't affect the registry's versions",
     "GHSA-9hjg-9r4m-mvj7": "digest",
+    "GHSA-9hw9-ch79-4vh6": "digest",
     "GHSA-9j6q-wvj5-jgjg": "digest",
     "GHSA-9jrq-w75r-8gcw": "digest",
     "GHSA-9m4w-fmjw-fvjq": "doesn't affect the registry's versions",
@@ -1337,8 +1453,10 @@
     "GHSA-c29m-xwm3-cm6r": "digest",
     "GHSA-c2c7-rcm5-vvqj": "digest",
     "GHSA-c2j3-45gr-mqc4": "digest",
+    "GHSA-c36c-7pc2-f2ph": "digest",
     "GHSA-c38w-74pg-36hr": "digest",
     "GHSA-c3cr-qq9g-666c": "digest",
+    "GHSA-c3jg-qh8m-j3h2": "digest",
     "GHSA-c45m-jm46-mwxg": "digest",
     "GHSA-c5mf-xmp2-59rc": "digest",
     "GHSA-c6gr-qvv4-5v3f": "digest",
@@ -1352,6 +1470,7 @@
     "GHSA-c9mf-h82r-8p4j": "digest",
     "GHSA-cc9r-2j5m-2m83": "digest",
     "GHSA-cf4h-3jhx-xvhq": "digest",
+    "GHSA-cfh3-3jmp-rvhc": "digest",
     "GHSA-cfqx-5gg4-25m2": "digest",
     "GHSA-cg2g-xh64-v4q7": "digest",
     "GHSA-cg87-wmx4-v546": "digest",
@@ -1375,11 +1494,13 @@
     "GHSA-f23m-r3pf-42rh": "digest",
     "GHSA-f278-mgc7-46j3": "digest",
     "GHSA-f2g6-542v-9j58": "digest",
+    "GHSA-f38f-5xpm-9r7c": "digest",
     "GHSA-f38q-mgvj-vph7": "digest",
     "GHSA-f3qw-qg77-hmm4": "doesn't affect the registry's versions",
     "GHSA-f4gw-2p7v-4548": "digest",
     "GHSA-f596-whhp-79r4": "digest",
     "GHSA-f598-mfpv-gmfx": "digest",
+    "GHSA-f5pg-7wfw-84q9": "digest",
     "GHSA-f5wc-c3c7-36mc": "digest",
     "GHSA-f5x3-32g6-xq36": "digest",
     "GHSA-f65p-4m7j-42xc": "digest",
@@ -1395,6 +1516,7 @@
     "GHSA-ffc3-869f-jxw9": "digest",
     "GHSA-fhv5-28vv-h8m8": "digest",
     "GHSA-fj3w-jwp8-x2g3": "digest",
+    "GHSA-fj7v-r99m-22gq": "digest",
     "GHSA-fj95-fr6c-h845": "digest",
     "GHSA-fjgf-rc76-4x9p": "digest",
     "GHSA-fjxv-7rqg-78g4": "digest",
@@ -1411,6 +1533,7 @@
     "GHSA-fxqj-rqcc-2cmp": "digest",
     "GHSA-g357-x5c3-c72p": "digest",
     "GHSA-g3hv-75wg-m249": "digest",
+    "GHSA-g47c-3xmw-q6m2": "digest",
     "GHSA-g4hw-fg4c-89mq": "doesn't affect the registry's versions",
     "GHSA-g4mx-q9vg-27p4": "digest",
     "GHSA-g4qv-2jxx-769h": "digest",
@@ -1419,6 +1542,7 @@
     "GHSA-g57g-f23g-4646": "digest",
     "GHSA-g5g7-gfr5-f89m": "digest",
     "GHSA-g5hg-p3ph-g8qg": "digest",
+    "GHSA-g6x2-hccm-hh4m": "digest",
     "GHSA-g73g-hqqh-jr95": "digest",
     "GHSA-g7cr-3p24-7wf7": "digest",
     "GHSA-g7r4-m6w7-qqqr": "digest",
@@ -1435,6 +1559,7 @@
     "GHSA-gg2r-wvfm-q9rx": "digest",
     "GHSA-gh4c-6fx4-qh6g": "digest",
     "GHSA-gh4j-gqv2-49f6": "digest",
+    "GHSA-gj48-438w-jh9v": "digest",
     "GHSA-gm62-xv2j-4w53": "digest",
     "GHSA-gqgv-6jq5-jjj9": "digest",
     "GHSA-gr94-w7qr-f4j3": "digest",
@@ -1445,6 +1570,7 @@
     "GHSA-gx83-3vf8-gh7j": "digest",
     "GHSA-gxpj-cx7g-858c": "digest",
     "GHSA-h2v8-394m-p7vv": "digest",
+    "GHSA-h35f-9h28-mq5c": "digest",
     "GHSA-h3mg-xc3c-68pw": "digest",
     "GHSA-h452-7996-h45h": "digest",
     "GHSA-h4gh-qq45-vh27": "digest",
@@ -1453,6 +1579,7 @@
     "GHSA-h6q6-9hqw-rwfv": "digest",
     "GHSA-h7mw-gpvr-xq4m": "digest",
     "GHSA-h8r8-wccr-v5f2": "digest",
+    "GHSA-hcff-qv74-7hr4": "digest",
     "GHSA-hcgw-r9gf-8mph": "doesn't affect the registry's versions",
     "GHSA-hcpx-6fm6-wx23": "digest",
     "GHSA-hf55-9cwq-2x64": "doesn't affect the registry's versions",
@@ -1461,6 +1588,7 @@
     "GHSA-hhhv-q57g-882q": "digest",
     "GHSA-hj66-6f7g-4r5v": "digest",
     "GHSA-hjrf-2m68-5959": "digest",
+    "GHSA-hm4w-wwcw-mr6r": "digest",
     "GHSA-hmw2-7cc7-3qxx": "digest",
     "GHSA-hpcv-96wg-7vj8": "digest",
     "GHSA-hqq2-xqr2-fmx2": "doesn't affect the registry's versions",
@@ -1478,6 +1606,8 @@
     "GHSA-j4m9-6w36-pw47": "digest",
     "GHSA-j586-36cw-2gc2": "digest",
     "GHSA-j5f8-grm9-p9fc": "digest",
+    "GHSA-j5g9-f88f-gfj3": "digest",
+    "GHSA-j6jp-78w8-34x6": "digest",
     "GHSA-j6qf-3m9c-vwj3": "digest",
     "GHSA-j6r3-76f7-8jcv": "digest",
     "GHSA-j759-j44w-7fr8": "digest",
@@ -1495,16 +1625,20 @@
     "GHSA-jj5r-9rpc-8h6h": "doesn't affect the registry's versions",
     "GHSA-jj74-hc2q-xrvm": "doesn't affect the registry's versions",
     "GHSA-jjg7-2v4v-x38h": "digest",
+    "GHSA-jjj6-mw9f-p565": "digest",
     "GHSA-jm77-qphf-c4w8": "digest",
     "GHSA-jmr7-xgp7-cmfj": "digest",
     "GHSA-jmr9-qjv8-65gv": "digest",
     "GHSA-jp2q-39xq-3w4g": "digest",
+    "GHSA-jp4c-xjxw-mgf9": "digest",
     "GHSA-jp82-f5mq-hwhp": "digest",
     "GHSA-jp82-jpqv-5vv3": "digest",
     "GHSA-jppx-rxg9-jmrx": "digest",
     "GHSA-jq2g-h4xr-4mcr": "doesn't affect the registry's versions",
+    "GHSA-jq35-7prp-9v3f": "digest",
     "GHSA-jqcg-44mw-7w3h": "digest",
     "GHSA-jqff-g426-hqxp": "digest",
+    "GHSA-jr27-m4p2-rc6r": "digest",
     "GHSA-jr45-8vmc-qm54": "digest",
     "GHSA-jr5f-v2jv-69x6": "digest",
     "GHSA-jr76-w9m3-3p68": "digest",
@@ -1514,8 +1648,10 @@
     "GHSA-jxfw-x594-9x9m": "digest",
     "GHSA-jxrf-wfc5-w77h": "digest",
     "GHSA-m2h6-j472-rp4c": "digest",
+    "GHSA-m2hx-wjxc-9fp4": "digest",
     "GHSA-m382-6jw4-fmp6": "doesn't affect the registry's versions",
     "GHSA-m462-7rxw-wvpg": "digest",
+    "GHSA-m4p7-r5rc-7g4j": "digest",
     "GHSA-m5hp-x2xc-7jqq": "doesn't affect the registry's versions",
     "GHSA-m6fv-jmcg-4jfg": "digest",
     "GHSA-m7fp-h3p4-hr49": "digest",
@@ -1553,6 +1689,7 @@
     "GHSA-mwcw-c2x4-8c55": "digest",
     "GHSA-mwp4-54f8-5fhr": "digest",
     "GHSA-p293-qw3h-jr36": "digest",
+    "GHSA-p34h-wq7j-h5v6": "digest",
     "GHSA-p3m5-59mp-jv5r": "digest",
     "GHSA-p3pc-g8m5-hrrr": "doesn't affect the registry's versions",
     "GHSA-p3rv-cr5f-9gjh": "doesn't affect the registry's versions",
@@ -1574,6 +1711,8 @@
     "GHSA-pf86-5x62-jrwf": "digest",
     "GHSA-pg9f-39pc-qf8g": "digest",
     "GHSA-ph9p-34f9-6g65": "digest",
+    "GHSA-phj9-mv4w-65pm": "digest",
+    "GHSA-pj65-3pf6-c5q4": "digest",
     "GHSA-pjwm-pj3p-43mv": "digest",
     "GHSA-pmhh-3w7g-xqp8": "digest",
     "GHSA-pmjh-fq2x-6v4x": "digest",
@@ -1589,6 +1728,7 @@
     "GHSA-prgh-xp8r-p3m5": "digest",
     "GHSA-pvjf-7jrm-6w9g": "doesn't affect the registry's versions",
     "GHSA-pw9p-v7r6-gx4p": "digest",
+    "GHSA-pwv6-vv43-88gr": "digest",
     "GHSA-pxg6-pf52-xh8x": "digest",
     "GHSA-pxh4-856f-4h89": "digest",
     "GHSA-q2hr-2g5m-vwhr": "digest",
@@ -1597,6 +1737,8 @@
     "GHSA-q4h4-gmj2-qvw2": "digest",
     "GHSA-q4xh-88c3-wmh7": "digest",
     "GHSA-q5x6-grh5-fqgc": "digest",
+    "GHSA-q658-hfpg-35qc": "digest",
+    "GHSA-q675-qj96-32m9": "digest",
     "GHSA-q686-2qmg-hqc7": "digest",
     "GHSA-q6x5-8v7m-xcrf": "digest",
     "GHSA-q7qp-rjg7-q26m": "digest",
@@ -1625,8 +1767,10 @@
     "GHSA-qvfw-j98x-7q72": "digest",
     "GHSA-qw65-cvwx-89v3": "digest",
     "GHSA-qw6h-vgh9-j6wx": "digest",
+    "GHSA-qwc6-vc2v-2ggj": "digest",
     "GHSA-qwcr-r2fm-qrc7": "digest",
     "GHSA-qwgh-2vcv-g2f7": "digest",
+    "GHSA-qwm4-qh6w-59xr": "digest",
     "GHSA-qwph-4952-7xr6": "digest",
     "GHSA-qwx4-wcv4-mpcv": "digest",
     "GHSA-qx2v-qp2m-jg93": "digest",
@@ -1649,10 +1793,12 @@
     "GHSA-r6mh-qg79-rqj2": "digest",
     "GHSA-r6ph-v2qm-q3c2": "digest",
     "GHSA-r6q2-hw4h-h46w": "digest",
+    "GHSA-r73j-pqj5-w3x7": "digest",
     "GHSA-r766-rf9f-588h": "digest",
     "GHSA-r7f2-6fj8-6fg2": "doesn't affect the registry's versions",
     "GHSA-r7fv-28h4-cvq7": "digest",
     "GHSA-r7g4-qg5f-qqm2": "digest",
+    "GHSA-r7r6-cc7p-4v5m": "digest",
     "GHSA-r825-w8mm-5pxw": "digest",
     "GHSA-rcmh-qjqh-p98v": "digest",
     "GHSA-rcr6-4jqh-j84m": "doesn't affect the registry's versions",
@@ -1668,6 +1814,7 @@
     "GHSA-rjr7-jggh-pgcp": "digest",
     "GHSA-rm3j-f69w-wqmq": "digest",
     "GHSA-rmxm-3fg6-px4f": "digest",
+    "GHSA-rp8m-h266-53jh": "digest",
     "GHSA-rp9w-3fw7-7cwq": "digest",
     "GHSA-rpw4-54j3-4h4q": "digest",
     "GHSA-rq7h-c2jc-7f22": "digest",
@@ -1709,11 +1856,13 @@
     "GHSA-vh5m-fc9v-m84g": "digest",
     "GHSA-vh66-26gq-q6x8": "digest",
     "GHSA-vj76-c3g6-qr5v": "digest",
+    "GHSA-vjc4-5qp5-m44j": "digest",
     "GHSA-vmf3-w455-68vh": "digest",
     "GHSA-vmrc-8q2x-573x": "digest",
     "GHSA-vp52-pcj8-j9qc": "digest",
     "GHSA-vp88-798v-h67f": "digest",
     "GHSA-vp8m-p9jh-q5pm": "digest",
+    "GHSA-vp96-hxj8-p424": "digest",
     "GHSA-vpq2-c234-7xj6": "digest",
     "GHSA-vqfx-gj96-3w95": "digest",
     "GHSA-vvjj-xcjg-gr5g": "digest",
@@ -1733,9 +1882,11 @@
     "GHSA-w5hq-g745-h8pq": "digest",
     "GHSA-w5vr-8v7q-w6rv": "digest",
     "GHSA-w67g-5rqw-f597": "digest",
+    "GHSA-w6j9-cwv2-h6wq": "digest",
     "GHSA-w74x-v6f9-j3xg": "digest",
     "GHSA-w7fw-mjwx-w883": "digest",
     "GHSA-w7pp-m8wf-vj6r": "digest",
+    "GHSA-w7vc-732c-9m39": "digest",
     "GHSA-w879-237q-wc7r": "digest",
     "GHSA-w889-685w-c8fh": "digest",
     "GHSA-w8wr-v893-vjvp": "digest",
@@ -1747,9 +1898,12 @@
     "GHSA-wf2j-5mc7-5c4w": "doesn't affect the registry's versions",
     "GHSA-wf5p-g6vw-rhxx": "digest",
     "GHSA-wf6x-7x77-mvgw": "digest",
+    "GHSA-wf93-45jw-7689": "digest",
     "GHSA-wh4c-j3r5-mjhp": "digest",
+    "GHSA-whj4-6x5x-4v2j": "digest",
     "GHSA-wjgm-6hv5-3cvf": "digest",
     "GHSA-wjr9-j795-jxcr": "digest",
+    "GHSA-wjx4-4jcj-g98j": "digest",
     "GHSA-wm7h-9275-46v2": "digest",
     "GHSA-wmmp-3585-3rmp": "digest",
     "GHSA-wp97-x4hv-qvhp": "digest",
@@ -1788,6 +1942,7 @@
     "GHSA-xh39-mxw9-34pp": "doesn't affect the registry's versions",
     "GHSA-xhjh-pmcv-23jw": "digest",
     "GHSA-xhq7-xmqj-769h": "digest",
+    "GHSA-xj96-63gp-2gmr": "digest",
     "GHSA-xjj6-f33q-929c": "digest",
     "GHSA-xmf8-cvqr-rfgj": "digest",
     "GHSA-xmfc-hqq8-33wh": "doesn't affect the registry's versions",
@@ -1821,6 +1976,8 @@
     "GO-2022-0532": "digest",
     "GO-2022-0533": "digest",
     "GO-2022-0537": "digest",
+    "GO-2022-0635": "digest",
+    "GO-2022-0646": "digest",
     "GO-2022-0969": "digest",
     "GO-2022-1037": "digest",
     "GO-2022-1038": "digest",
@@ -1868,6 +2025,8 @@
     "GO-2025-3447": "digest",
     "GO-2025-3503": "digest",
     "GO-2025-3563": "digest",
+    "GO-2025-3736": "digest",
+    "GO-2025-3737": "digest",
     "GO-2025-3750": "digest",
     "GO-2025-3751": "digest",
     "GO-2025-3849": "digest",
@@ -1893,14 +2052,27 @@
     "GO-2026-4601": "digest",
     "GO-2026-4602": "digest",
     "GO-2026-4603": "digest",
+    "GO-2026-4612": "digest",
+    "GO-2026-4613": "digest",
+    "GO-2026-4615": "digest",
+    "GO-2026-4624": "digest",
+    "GO-2026-4626": "digest",
+    "GO-2026-4695": "digest",
+    "GO-2026-4696": "digest",
+    "GO-2026-4698": "digest",
     "GO-2026-4762": "digest",
+    "GO-2026-4815": "digest",
     "GO-2026-4864": "digest",
     "GO-2026-4865": "digest",
+    "GO-2026-4866": "digest",
     "GO-2026-4869": "digest",
     "GO-2026-4870": "digest",
     "GO-2026-4918": "digest",
+    "GO-2026-4945": "digest",
     "GO-2026-4946": "digest",
     "GO-2026-4947": "digest",
+    "GO-2026-4961": "digest",
+    "GO-2026-4962": "digest",
     "GO-2026-4970": "digest",
     "GO-2026-4971": "digest",
     "GO-2026-4976": "digest",
@@ -1923,10 +2095,15 @@
     "GO-2026-5023": "digest",
     "GO-2026-5024": "digest",
     "GO-2026-5026": "digest",
+    "GO-2026-5031": "digest",
+    "GO-2026-5032": "digest",
     "GO-2026-5033": "digest",
     "GO-2026-5037": "digest",
     "GO-2026-5038": "digest",
     "GO-2026-5039": "digest",
+    "GO-2026-5061": "digest",
+    "GO-2026-5062": "digest",
+    "GO-2026-5066": "digest",
     "GO-2026-5158": "digest",
     "GO-2026-5774": "digest",
     "GO-2026-5775": "digest",
@@ -1985,35 +2162,78 @@
     "PYSEC-2025-183": "digest",
     "PYSEC-2026-120": "digest",
     "PYSEC-2026-1283": "digest",
+    "PYSEC-2026-1284": "digest",
     "PYSEC-2026-1285": "digest",
     "PYSEC-2026-1374": "digest",
     "PYSEC-2026-141": "digest",
     "PYSEC-2026-142": "digest",
     "PYSEC-2026-161": "digest",
+    "PYSEC-2026-165": "digest",
     "PYSEC-2026-175": "digest",
+    "PYSEC-2026-176": "digest",
     "PYSEC-2026-177": "digest",
+    "PYSEC-2026-178": "digest",
     "PYSEC-2026-179": "digest",
+    "PYSEC-2026-1795": "digest",
+    "PYSEC-2026-1796": "digest",
     "PYSEC-2026-1805": "digest",
+    "PYSEC-2026-1846": "digest",
+    "PYSEC-2026-1847": "digest",
     "PYSEC-2026-1872": "digest",
     "PYSEC-2026-1873": "digest",
+    "PYSEC-2026-196": "digest",
     "PYSEC-2026-1994": "digest",
     "PYSEC-2026-1995": "digest",
     "PYSEC-2026-1996": "digest",
     "PYSEC-2026-1998": "digest",
     "PYSEC-2026-1999": "digest",
+    "PYSEC-2026-2047": "digest",
+    "PYSEC-2026-2122": "digest",
     "PYSEC-2026-2141": "digest",
     "PYSEC-2026-215": "digest",
+    "PYSEC-2026-2248": "digest",
+    "PYSEC-2026-2249": "digest",
+    "PYSEC-2026-2250": "digest",
+    "PYSEC-2026-2251": "digest",
+    "PYSEC-2026-2252": "digest",
+    "PYSEC-2026-2253": "digest",
+    "PYSEC-2026-2254": "digest",
+    "PYSEC-2026-2255": "digest",
+    "PYSEC-2026-2256": "digest",
+    "PYSEC-2026-2257": "digest",
+    "PYSEC-2026-2258": "digest",
+    "PYSEC-2026-2263": "digest",
+    "PYSEC-2026-2268": "digest",
+    "PYSEC-2026-2269": "digest",
     "PYSEC-2026-2270": "digest",
     "PYSEC-2026-2275": "digest",
     "PYSEC-2026-2280": "digest",
     "PYSEC-2026-2281": "digest",
     "PYSEC-2026-248": "digest",
     "PYSEC-2026-249": "digest",
+    "PYSEC-2026-2874": "digest",
+    "PYSEC-2026-2875": "digest",
+    "PYSEC-2026-2876": "digest",
     "PYSEC-2026-2987": "digest",
+    "PYSEC-2026-3444": "digest",
+    "PYSEC-2026-3447": "digest",
+    "PYSEC-2026-3451": "digest",
+    "PYSEC-2026-3453": "digest",
+    "PYSEC-2026-3454": "digest",
+    "PYSEC-2026-3455": "digest",
+    "PYSEC-2026-3456": "digest",
+    "PYSEC-2026-3457": "digest",
+    "PYSEC-2026-3493": "digest",
+    "PYSEC-2026-3494": "digest",
+    "PYSEC-2026-3495": "digest",
+    "PYSEC-2026-3496": "digest",
     "PYSEC-2026-35": "digest",
     "PYSEC-2026-3553": "digest",
     "PYSEC-2026-3554": "digest",
+    "PYSEC-2026-3721": "digest",
     "PYSEC-2026-3740": "digest",
+    "PYSEC-2026-3827": "digest",
+    "PYSEC-2026-3828": "digest",
     "PYSEC-2026-4024": "digest",
     "PYSEC-2026-4025": "digest",
     "PYSEC-2026-4113": "digest",
@@ -2025,12 +2245,15 @@
     "PYSEC-2026-4147": "digest",
     "PYSEC-2026-4148": "digest",
     "PYSEC-2026-4149": "digest",
+    "PYSEC-2026-4152": "digest",
     "PYSEC-2026-4175": "digest",
     "PYSEC-2026-4176": "digest",
     "PYSEC-2026-4177": "digest",
     "PYSEC-2026-4183": "digest",
     "PYSEC-2026-4200": "digest",
+    "PYSEC-2026-4204": "digest",
     "PYSEC-2026-4217": "digest",
+    "PYSEC-2026-4312": "digest",
     "PYSEC-2026-4320": "drafted 2026-0036",
     "PYSEC-2026-4322": "digest",
     "PYSEC-2026-4323": "digest",
@@ -2111,6 +2334,7 @@
     "UBUNTU-CVE-2017-17521": "digest",
     "UBUNTU-CVE-2017-6886": "digest",
     "UBUNTU-CVE-2017-6887": "digest",
+    "UBUNTU-CVE-2018-1000021": "digest",
     "UBUNTU-CVE-2018-10528": "digest",
     "UBUNTU-CVE-2018-10529": "digest",
     "UBUNTU-CVE-2018-20337": "digest",
@@ -2135,6 +2359,8 @@
     "UBUNTU-CVE-2018-5817": "digest",
     "UBUNTU-CVE-2018-5818": "digest",
     "UBUNTU-CVE-2018-5819": "digest",
+    "UBUNTU-CVE-2018-6952": "digest",
+    "UBUNTU-CVE-2019-20633": "digest",
     "UBUNTU-CVE-2020-15365": "digest",
     "UBUNTU-CVE-2020-15503": "digest",
     "UBUNTU-CVE-2020-22628": "digest",
@@ -2147,20 +2373,29 @@
     "UBUNTU-CVE-2020-35533": "digest",
     "UBUNTU-CVE-2020-35534": "digest",
     "UBUNTU-CVE-2020-35535": "digest",
+    "UBUNTU-CVE-2020-36846": "digest",
     "UBUNTU-CVE-2021-31879": "digest",
     "UBUNTU-CVE-2021-32142": "digest",
     "UBUNTU-CVE-2021-43519": "digest",
+    "UBUNTU-CVE-2021-45261": "digest",
     "UBUNTU-CVE-2021-45985": "digest",
+    "UBUNTU-CVE-2022-0987": "digest",
     "UBUNTU-CVE-2023-1729": "digest",
     "UBUNTU-CVE-2023-6601": "digest",
     "UBUNTU-CVE-2023-6602": "digest",
     "UBUNTU-CVE-2023-6603": "digest",
     "UBUNTU-CVE-2023-6604": "digest",
     "UBUNTU-CVE-2023-6605": "digest",
+    "UBUNTU-CVE-2024-0217": "digest",
+    "UBUNTU-CVE-2024-10524": "digest",
     "UBUNTU-CVE-2024-2236": "digest",
+    "UBUNTU-CVE-2024-52005": "digest",
     "UBUNTU-CVE-2025-10256": "digest",
+    "UBUNTU-CVE-2025-1149": "digest",
+    "UBUNTU-CVE-2025-11495": "digest",
     "UBUNTU-CVE-2025-1150": "digest",
     "UBUNTU-CVE-2025-1151": "digest",
+    "UBUNTU-CVE-2025-1152": "digest",
     "UBUNTU-CVE-2025-12343": "digest",
     "UBUNTU-CVE-2025-12781": "digest",
     "UBUNTU-CVE-2025-15269": "digest",
@@ -2195,14 +2430,23 @@
     "UBUNTU-CVE-2025-66865": "digest",
     "UBUNTU-CVE-2025-66866": "digest",
     "UBUNTU-CVE-2025-68469": "digest",
+    "UBUNTU-CVE-2025-69644": "digest",
+    "UBUNTU-CVE-2025-69645": "digest",
+    "UBUNTU-CVE-2025-69646": "digest",
+    "UBUNTU-CVE-2025-69647": "digest",
+    "UBUNTU-CVE-2025-69648": "digest",
+    "UBUNTU-CVE-2025-69651": "digest",
+    "UBUNTU-CVE-2025-69652": "digest",
     "UBUNTU-CVE-2025-9403": "digest",
     "UBUNTU-CVE-2025-9951": "digest",
     "UBUNTU-CVE-2026-0864": "digest",
     "UBUNTU-CVE-2026-10028": "digest",
     "UBUNTU-CVE-2026-101258": "digest",
+    "UBUNTU-CVE-2026-102010": "digest",
     "UBUNTU-CVE-2026-102473": "digest",
     "UBUNTU-CVE-2026-102474": "digest",
     "UBUNTU-CVE-2026-102635": "digest",
+    "UBUNTU-CVE-2026-10294": "digest",
     "UBUNTU-CVE-2026-103226": "digest",
     "UBUNTU-CVE-2026-103963": "digest",
     "UBUNTU-CVE-2026-103995": "digest",
@@ -2270,8 +2514,14 @@
     "UBUNTU-CVE-2026-111272": "digest",
     "UBUNTU-CVE-2026-112922": "digest",
     "UBUNTU-CVE-2026-114583": "digest",
+    "UBUNTU-CVE-2026-114690": "digest",
+    "UBUNTU-CVE-2026-114691": "digest",
     "UBUNTU-CVE-2026-114723": "digest",
+    "UBUNTU-CVE-2026-115207": "digest",
+    "UBUNTU-CVE-2026-115455": "digest",
+    "UBUNTU-CVE-2026-115456": "digest",
     "UBUNTU-CVE-2026-115557": "digest",
+    "UBUNTU-CVE-2026-115936": "digest",
     "UBUNTU-CVE-2026-116140": "digest",
     "UBUNTU-CVE-2026-116141": "digest",
     "UBUNTU-CVE-2026-116142": "digest",
@@ -2486,6 +2736,8 @@
     "UBUNTU-CVE-2026-55595": "digest",
     "UBUNTU-CVE-2026-55597": "digest",
     "UBUNTU-CVE-2026-55628": "digest",
+    "UBUNTU-CVE-2026-56288": "digest",
+    "UBUNTU-CVE-2026-56289": "digest",
     "UBUNTU-CVE-2026-56361": "digest",
     "UBUNTU-CVE-2026-56362": "digest",
     "UBUNTU-CVE-2026-56363": "digest",
@@ -2595,6 +2847,7 @@
     "UBUNTU-CVE-2026-84366": "digest",
     "UBUNTU-CVE-2026-8461": "digest",
     "UBUNTU-CVE-2026-84782": "digest",
+    "UBUNTU-CVE-2026-8594": "digest",
     "UBUNTU-CVE-2026-86138": "digest",
     "UBUNTU-CVE-2026-86140": "digest",
     "UBUNTU-CVE-2026-86142": "digest",
@@ -86113,6 +86366,4450 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-05T00:31:35.334241516Z"
+    },
+    {
+      "id": "GHSA-79v4-65xg-pq4g",
+      "aliases": [
+        "CVE-2024-12797",
+        "PYSEC-2026-1284"
+      ],
+      "source": "OSV, for pkg:pypi/cryptography@43.0.3 in its image",
+      "title": "Seafile: Vulnerable OpenSSL included in cryptography wheels (in cryptography 43.0.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-79v4-65xg-pq4g",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "cryptography 44.0.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.02531,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.5507229Z"
+    },
+    {
+      "id": "PYSEC-2026-1284",
+      "aliases": [
+        "CVE-2024-12797",
+        "GHSA-79v4-65xg-pq4g"
+      ],
+      "source": "OSV, for pkg:pypi/cryptography@43.0.3 in its image",
+      "title": "Seafile: Vulnerable OpenSSL included in cryptography wheels (in cryptography 43.0.3)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-1284",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "cryptography 44.0.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.02531,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.13691511Z"
+    },
+    {
+      "id": "GHSA-jr27-m4p2-rc6r",
+      "aliases": [
+        "CVE-2026-30922",
+        "PYSEC-2026-2263"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.4.8 in its image",
+      "title": "Seafile: Denial of Service in pyasn1 via Unbounded Recursion (in pyasn1 0.4.8)",
+      "link": "https://osv.dev/vulnerability/GHSA-jr27-m4p2-rc6r",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyasn1 0.6.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00835,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.147326108Z"
+    },
+    {
+      "id": "PYSEC-2026-2263",
+      "aliases": [
+        "CVE-2026-30922",
+        "GHSA-jr27-m4p2-rc6r"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.4.8 in its image",
+      "title": "Seafile: PYSEC-2026-2263 (in pyasn1 0.4.8)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2263",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyasn1 0.6.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00835,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.652228065Z"
+    },
+    {
+      "id": "GHSA-5pwr-322w-8jr4",
+      "aliases": [
+        "CVE-2026-27459",
+        "PYSEC-2026-2269"
+      ],
+      "source": "OSV, for pkg:pypi/pyopenssl@24.2.1 in its image",
+      "title": "Seafile: pyOpenSSL DTLS cookie callback buffer overflow (in pyopenssl 24.2.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-5pwr-322w-8jr4",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyopenssl 26.0.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00748,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.07790413Z"
+    },
+    {
+      "id": "PYSEC-2026-2269",
+      "aliases": [
+        "CVE-2026-27459",
+        "GHSA-5pwr-322w-8jr4"
+      ],
+      "source": "OSV, for pkg:pypi/pyopenssl@24.2.1 in its image",
+      "title": "Seafile: PYSEC-2026-2269 (in pyopenssl 24.2.1)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2269",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyopenssl 26.0.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00748,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.776158211Z"
+    },
+    {
+      "id": "GHSA-5gjj-6r7v-ph3x",
+      "aliases": [
+        "CVE-2026-28231",
+        "PYSEC-2026-2248",
+        "PYSEC-2026-2258"
+      ],
+      "source": "OSV, for pkg:pypi/pillow-heif@1.0.0 in its image",
+      "title": "Seafile: pillow-heif: Integer Overflow in Encode Path Buffer Validation Leads to Heap Out-of-Bounds Read (in pillow-heif 1.0.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-5gjj-6r7v-ph3x",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow-heif 1.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00703,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.012787432Z"
+    },
+    {
+      "id": "PYSEC-2026-2258",
+      "aliases": [
+        "CVE-2026-28231",
+        "GHSA-5gjj-6r7v-ph3x",
+        "PYSEC-2026-2248"
+      ],
+      "source": "OSV, for pkg:pypi/pillow-heif@1.0.0 in its image",
+      "title": "Seafile: PYSEC-2026-2258 (in pillow-heif 1.0.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2258",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow-heif 1.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00703,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.55979231Z"
+    },
+    {
+      "id": "GHSA-whj4-6x5x-4v2j",
+      "aliases": [
+        "BIT-pillow-2026-40192",
+        "CVE-2026-40192",
+        "PYSEC-2026-2250"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: FITS GZIP decompression bomb in Pillow (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-whj4-6x5x-4v2j",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.2.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00671,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.590372376Z"
+    },
+    {
+      "id": "PYSEC-2026-2250",
+      "aliases": [
+        "BIT-pillow-2026-40192",
+        "CVE-2026-40192",
+        "GHSA-whj4-6x5x-4v2j"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-2250 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2250",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.2.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00671,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.99918086Z"
+    },
+    {
+      "id": "GHSA-j5g9-f88f-gfj3",
+      "aliases": [
+        "CVE-2026-59939",
+        "PYSEC-2026-3444"
+      ],
+      "source": "OSV, for pkg:pypi/httplib2@0.20.4 in its image",
+      "title": "Seafile: httplib2: Decompression Bomb Denial of Service via Unbounded gzip/deflate Response Handling (in httplib2 0.20.4)",
+      "link": "https://osv.dev/vulnerability/GHSA-j5g9-f88f-gfj3",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "httplib2 0.32.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00665,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.776236198Z"
+    },
+    {
+      "id": "PYSEC-2026-3444",
+      "aliases": [
+        "CVE-2026-59939",
+        "GHSA-j5g9-f88f-gfj3"
+      ],
+      "source": "OSV, for pkg:pypi/httplib2@0.20.4 in its image",
+      "title": "Seafile: PYSEC-2026-3444 (in httplib2 0.20.4)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3444",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "httplib2 0.32.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00665,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.024427588Z"
+    },
+    {
+      "id": "GHSA-78h2-9frx-2jm8",
+      "aliases": [
+        "CVE-2026-34986",
+        "GO-2026-4945"
+      ],
+      "source": "OSV, for pkg:golang/github.com/go-jose/go-jose/v4@v4.1.3 in its image",
+      "title": "Gokapi: Go JOSE Panics in JWE decryption (in v4 v4.1.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-78h2-9frx-2jm8",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "v4 3.0.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00663,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.487249031Z"
+    },
+    {
+      "id": "GO-2026-4945",
+      "aliases": [
+        "CVE-2026-34986",
+        "GHSA-78h2-9frx-2jm8"
+      ],
+      "source": "OSV, for pkg:golang/github.com/go-jose/go-jose/v4@v4.1.3 in its image",
+      "title": "Gokapi: Go JOSE Panics in JWE decryption in github.com/go-jose/go-jose (in v4 v4.1.3)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4945",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "v4 4.1.4",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00663,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.553160582Z"
+    },
+    {
+      "id": "GHSA-8ppf-4f7h-5ppj",
+      "aliases": [
+        "CVE-2026-59885",
+        "PYSEC-2026-3456"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.4.8 in its image",
+      "title": "Seafile: pyasn1: Quadratic complexity in OBJECT IDENTIFIER and RELATIVE-OID processing allows denial of service (in pyasn1 0.4.8)",
+      "link": "https://osv.dev/vulnerability/GHSA-8ppf-4f7h-5ppj",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyasn1 0.6.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00616,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.641513972Z"
+    },
+    {
+      "id": "GHSA-m4p7-r5rc-7g4j",
+      "aliases": [
+        "CVE-2026-59884",
+        "PYSEC-2026-3455"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.4.8 in its image",
+      "title": "Seafile: pyasn1 BER/CER/DER decoder denial of service via unbounded long-form tag IDs (in pyasn1 0.4.8)",
+      "link": "https://osv.dev/vulnerability/GHSA-m4p7-r5rc-7g4j",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyasn1 0.6.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00616,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.309167727Z"
+    },
+    {
+      "id": "PYSEC-2026-3455",
+      "aliases": [
+        "CVE-2026-59884",
+        "GHSA-m4p7-r5rc-7g4j"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.4.8 in its image",
+      "title": "Seafile: PYSEC-2026-3455 (in pyasn1 0.4.8)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3455",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyasn1 0.6.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00616,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.47658526Z"
+    },
+    {
+      "id": "PYSEC-2026-3456",
+      "aliases": [
+        "CVE-2026-59885",
+        "GHSA-8ppf-4f7h-5ppj"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.4.8 in its image",
+      "title": "Seafile: PYSEC-2026-3456 (in pyasn1 0.4.8)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3456",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyasn1 0.6.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00616,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.540780919Z"
+    },
+    {
+      "id": "GO-2026-5061",
+      "aliases": [
+        "CVE-2026-46601"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/image@v0.36.0 in its image",
+      "title": "Gokapi: Panic on VP8 alpha channel size mismatch in x/image/webp in golang.org/x/image (in image v0.36.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5061",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "image 0.43.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00609,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.923128437Z"
+    },
+    {
+      "id": "GO-2026-5062",
+      "aliases": [
+        "CVE-2026-46602"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/image@v0.36.0 in its image",
+      "title": "Gokapi: Lack of limit on tile sizes in x/image/tiff in golang.org/x/image (in image v0.36.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5062",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "image 0.43.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00609,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.986148126Z"
+    },
+    {
+      "id": "GO-2026-5066",
+      "aliases": [
+        "CVE-2026-46604"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/image@v0.36.0 in its image",
+      "title": "Gokapi: Panic decoding image with out-of-bounds strip offset in x/image/tiff in golang.org/x/image (in image v0.36.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5066",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "image 0.43.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00609,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.070306999Z"
+    },
+    {
+      "id": "GHSA-2m8g-3cmr-wg3w",
+      "aliases": [
+        "CVE-2026-73228",
+        "PYSEC-2026-3827"
+      ],
+      "source": "OSV, for pkg:pypi/djangorestframework@3.16.1 in its image",
+      "title": "Seafile: Django REST framework: Potential bypass of Django `DATA_UPLOAD_MAX_MEMORY_SIZE` when parsing oversized JSON and urlencoded request bodies via DRF `request.data` (in djangorestframework 3.16.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-2m8g-3cmr-wg3w",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "djangorestframework 3.17.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00557,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:28.35038983Z"
+    },
+    {
+      "id": "PYSEC-2026-3827",
+      "aliases": [
+        "CVE-2026-73228",
+        "GHSA-2m8g-3cmr-wg3w"
+      ],
+      "source": "OSV, for pkg:pypi/djangorestframework@3.16.1 in its image",
+      "title": "Seafile: Django REST framework: Potential bypass of Django `DATA_UPLOAD_MAX_MEMORY_SIZE` when parsing oversized JSON and urlencoded request bodies via DRF `request.data` (in djangorestframework 3.16.1)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3827",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "djangorestframework 3.17.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00557,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:38.071930211Z"
+    },
+    {
+      "id": "GHSA-w6j9-cwv2-h6wq",
+      "aliases": [
+        "CVE-2026-102274",
+        "PYSEC-2026-4152"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.10.1 in its image",
+      "title": "Seafile: PyJWT: Malformed RSA JWK aborts parsing of an entire JWK Set (in pyjwt 2.10.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-w6j9-cwv2-h6wq",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.14.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00549,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.366805169Z"
+    },
+    {
+      "id": "PYSEC-2026-4152",
+      "aliases": [
+        "CVE-2026-102274",
+        "GHSA-w6j9-cwv2-h6wq"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.10.1 in its image",
+      "title": "Seafile: PyJWT: Malformed RSA JWK aborts parsing of an entire JWK Set (in pyjwt 2.10.1)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-4152",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.14.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00549,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:38.487877845Z"
+    },
+    {
+      "id": "GHSA-45hq-cxwh-f6vc",
+      "aliases": [
+        "BIT-pillow-2026-55379",
+        "CVE-2026-55379",
+        "PYSEC-2026-2255"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow `BdfFontFile`: `Image.new()` called without `_decompression_bomb_check()` — bomb protection bypass via font loading (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-45hq-cxwh-f6vc",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00522,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:28.61821846Z"
+    },
+    {
+      "id": "PYSEC-2026-2255",
+      "aliases": [
+        "BIT-pillow-2026-55379",
+        "CVE-2026-55379",
+        "GHSA-45hq-cxwh-f6vc"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-2255 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2255",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00522,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.370070824Z"
+    },
+    {
+      "id": "GHSA-62p4-gmf7-7g93",
+      "aliases": [
+        "BIT-pillow-2026-54058",
+        "CVE-2026-54058",
+        "PYSEC-2026-3493"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow: Out-of-bounds read via attacker-controlled row stride on Pillow's mmap path (McIdas AREA files) (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-62p4-gmf7-7g93",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00521,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.277186147Z"
+    },
+    {
+      "id": "PYSEC-2026-3493",
+      "aliases": [
+        "BIT-pillow-2026-54058",
+        "CVE-2026-54058",
+        "GHSA-62p4-gmf7-7g93"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow: Out-of-bounds read via attacker-controlled row stride on Pillow's mmap path (McIdas AREA files) (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3493",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00521,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.679015997Z"
+    },
+    {
+      "id": "GHSA-f38f-5xpm-9r7c",
+      "aliases": [
+        "CVE-2026-31899",
+        "PYSEC-2026-2122"
+      ],
+      "source": "OSV, for pkg:pypi/cairosvg@2.8.2 in its image",
+      "title": "Seafile: CairoSVG vulnerable to Exponential DoS via recursive \u003cuse\u003e element amplification (in cairosvg 2.8.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-f38f-5xpm-9r7c",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "cairosvg 2.9.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.0052,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.235498582Z"
+    },
+    {
+      "id": "PYSEC-2026-2122",
+      "aliases": [
+        "CVE-2026-31899",
+        "GHSA-f38f-5xpm-9r7c"
+      ],
+      "source": "OSV, for pkg:pypi/cairosvg@2.8.2 in its image",
+      "title": "Seafile: PYSEC-2026-2122 (in cairosvg 2.8.2)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2122",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "cairosvg 2.9.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.0052,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.861292808Z"
+    },
+    {
+      "id": "GHSA-phj9-mv4w-65pm",
+      "aliases": [
+        "BIT-pillow-2026-55380",
+        "CVE-2026-55380",
+        "PYSEC-2026-2256"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow `GdImageFile._open()`: image dimensions accepted without `_decompression_bomb_check()` (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-phj9-mv4w-65pm",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00518,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.433368873Z"
+    },
+    {
+      "id": "PYSEC-2026-2256",
+      "aliases": [
+        "BIT-pillow-2026-55380",
+        "CVE-2026-55380",
+        "GHSA-phj9-mv4w-65pm"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-2256 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2256",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00518,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.433447837Z"
+    },
+    {
+      "id": "GHSA-pj65-3pf6-c5q4",
+      "aliases": [
+        "CVE-2019-15796"
+      ],
+      "source": "OSV, for pkg:pypi/python-apt@2.7.7%2Bubuntu5.3 in its image",
+      "title": "Seafile: python-apt Does Not Check Hash Signature (in python-apt 2.7.7%2Bubuntu5.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-pj65-3pf6-c5q4",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "python-apt 1.9.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00509,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.502322296Z"
+    },
+    {
+      "id": "GHSA-4xh5-x5gv-qwph",
+      "aliases": [
+        "CVE-2025-8869",
+        "PYSEC-2026-1795"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: pip's fallback tar extraction doesn't check symbolic links point to extraction directory (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-4xh5-x5gv-qwph",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 25.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00493,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:28.876147078Z"
+    },
+    {
+      "id": "PYSEC-2026-1795",
+      "aliases": [
+        "CVE-2025-8869",
+        "GHSA-4xh5-x5gv-qwph"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: pip's fallback tar extraction doesn't check symbolic links point to extraction directory (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-1795",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 25.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00493,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.458313162Z"
+    },
+    {
+      "id": "GHSA-45c3-73f7-pv4m",
+      "aliases": [
+        "CVE-2026-114605"
+      ],
+      "source": "OSV, for pkg:pypi/dnspython@2.7.0 in its image",
+      "title": "Seafile: dnspython dns.name.from_wire_parser() excessive CPU use (in dnspython 2.7.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-45c3-73f7-pv4m",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "dnspython 2.9.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00466,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:28.557489276Z"
+    },
+    {
+      "id": "GHSA-p34h-wq7j-h5v6",
+      "aliases": [
+        "CVE-2025-61912",
+        "PYSEC-2026-1846"
+      ],
+      "source": "OSV, for pkg:pypi/python-ldap@3.4.4 in its image",
+      "title": "Seafile: python-ldap is Vulnerable to Improper Encoding or Escaping of Output and Improper Null Termination (in python-ldap 3.4.4)",
+      "link": "https://osv.dev/vulnerability/GHSA-p34h-wq7j-h5v6",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "python-ldap 3.4.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00458,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.372644577Z"
+    },
+    {
+      "id": "PYSEC-2026-1846",
+      "aliases": [
+        "CVE-2025-61912",
+        "GHSA-p34h-wq7j-h5v6"
+      ],
+      "source": "OSV, for pkg:pypi/python-ldap@3.4.4 in its image",
+      "title": "Seafile: python-ldap is Vulnerable to Improper Encoding or Escaping of Output and Improper Null Termination (in python-ldap 3.4.4)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-1846",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "python-ldap 3.4.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00458,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.581801427Z"
+    },
+    {
+      "id": "GHSA-rp8m-h266-53jh",
+      "aliases": [
+        "CVE-2019-15795"
+      ],
+      "source": "OSV, for pkg:pypi/python-apt@2.7.7%2Bubuntu5.3 in its image",
+      "title": "Seafile: python-apt Flawed Package Integrity Check (in python-apt 2.7.7%2Bubuntu5.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-rp8m-h266-53jh",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "python-apt 1.9.0ubuntu1.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00451,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.158320806Z"
+    },
+    {
+      "id": "GHSA-xj96-63gp-2gmr",
+      "aliases": [
+        "BIT-pillow-2026-59197",
+        "CVE-2026-59197",
+        "PYSEC-2026-3454"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow: Heap out-of-bounds write in `ImageFilter.RankFilter` via integer overflow in `ImagingExpand` (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-xj96-63gp-2gmr",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00445,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.715224679Z"
+    },
+    {
+      "id": "PYSEC-2026-3454",
+      "aliases": [
+        "BIT-pillow-2026-59197",
+        "CVE-2026-59197",
+        "GHSA-xj96-63gp-2gmr"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-3454 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3454",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00445,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.413931049Z"
+    },
+    {
+      "id": "GHSA-hm4w-wwcw-mr6r",
+      "aliases": [
+        "CVE-2026-59886",
+        "PYSEC-2026-3457"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.4.8 in its image",
+      "title": "Seafile: pyasn1: Uncontrolled resource consumption when converting decoded REAL values (in pyasn1 0.4.8)",
+      "link": "https://osv.dev/vulnerability/GHSA-hm4w-wwcw-mr6r",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyasn1 0.6.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.0044,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.705199534Z"
+    },
+    {
+      "id": "PYSEC-2026-3457",
+      "aliases": [
+        "CVE-2026-59886",
+        "GHSA-hm4w-wwcw-mr6r"
+      ],
+      "source": "OSV, for pkg:pypi/pyasn1@0.4.8 in its image",
+      "title": "Seafile: PYSEC-2026-3457 (in pyasn1 0.4.8)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3457",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyasn1 0.6.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.0044,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.606748419Z"
+    },
+    {
+      "id": "GHSA-6vgw-5pg2-w6jp",
+      "aliases": [
+        "CVE-2026-1703",
+        "PYSEC-2026-1796"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: pip Path Traversal vulnerability (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-6vgw-5pg2-w6jp",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 26.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00436,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.423627206Z"
+    },
+    {
+      "id": "PYSEC-2026-1796",
+      "aliases": [
+        "CVE-2026-1703",
+        "GHSA-6vgw-5pg2-w6jp"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: pip Path Traversal vulnerability (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-1796",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 26.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00436,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.518010794Z"
+    },
+    {
+      "id": "GHSA-5x94-69rx-g8h2",
+      "aliases": [
+        "BIT-pillow-2026-54060",
+        "CVE-2026-54060",
+        "PYSEC-2026-2254"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow: `FontFile.compile()`: `Image.new()` called without `_decompression_bomb_check()` (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-5x94-69rx-g8h2",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00418,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.152734463Z"
+    },
+    {
+      "id": "PYSEC-2026-2254",
+      "aliases": [
+        "BIT-pillow-2026-54060",
+        "CVE-2026-54060",
+        "GHSA-5x94-69rx-g8h2"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-2254 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2254",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00418,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.308440983Z"
+    },
+    {
+      "id": "GHSA-8v84-f9pq-wr9x",
+      "aliases": [
+        "BIT-pillow-2026-54059",
+        "CVE-2026-54059",
+        "PYSEC-2026-2253"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow `PcfFontFile._load_bitmaps()`: `Image.frombytes()` called without `_decompression_bomb_check()` — bomb protection bypass via PCF font loading (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-8v84-f9pq-wr9x",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.0041,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.838690373Z"
+    },
+    {
+      "id": "PYSEC-2026-2253",
+      "aliases": [
+        "BIT-pillow-2026-54059",
+        "CVE-2026-54059",
+        "GHSA-8v84-f9pq-wr9x"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-2253 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2253",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.0041,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.231432847Z"
+    },
+    {
+      "id": "GHSA-cfh3-3jmp-rvhc",
+      "aliases": [
+        "BIT-pillow-2026-25990",
+        "CVE-2026-25990",
+        "PYSEC-2026-2249"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow affected by out-of-bounds write when loading PSD images (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-cfh3-3jmp-rvhc",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.1.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00409,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.151999227Z"
+    },
+    {
+      "id": "PYSEC-2026-2249",
+      "aliases": [
+        "BIT-pillow-2026-25990",
+        "CVE-2026-25990",
+        "GHSA-cfh3-3jmp-rvhc"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-2249 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2249",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.1.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00409,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.934387169Z"
+    },
+    {
+      "id": "GHSA-h35f-9h28-mq5c",
+      "aliases": [
+        "BIT-setuptools-2026-59890",
+        "CVE-2026-59890",
+        "PYSEC-2026-3447"
+      ],
+      "source": "OSV, for pkg:pypi/setuptools@82.0.1 in its image",
+      "title": "ProjectSend: setuptools: MANIFEST.in exclusion bypass in sdist via Unicode normalization collision (NFC/NFD) on macOS APFS/HFS+ (in setuptools 82.0.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-h35f-9h28-mq5c",
+      "package": "projectsend",
+      "affected": [
+        "2.8.0-roostack.1"
+      ],
+      "fixed_upstream": "setuptools 83.0.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00405,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.568033725Z"
+    },
+    {
+      "id": "PYSEC-2026-3447",
+      "aliases": [
+        "BIT-setuptools-2026-59890",
+        "CVE-2026-59890",
+        "GHSA-h35f-9h28-mq5c"
+      ],
+      "source": "OSV, for pkg:pypi/setuptools@82.0.1 in its image",
+      "title": "ProjectSend: PYSEC-2026-3447 (in setuptools 82.0.1)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3447",
+      "package": "projectsend",
+      "affected": [
+        "2.8.0-roostack.1"
+      ],
+      "fixed_upstream": "setuptools 83.0.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00405,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.092012043Z"
+    },
+    {
+      "id": "GHSA-6r8x-57c9-28j4",
+      "aliases": [
+        "BIT-pillow-2026-59199",
+        "CVE-2026-59199",
+        "PYSEC-2026-3451"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow: Heap out-of-bounds write `Image.paste()` / `Image.crop()` via signed coordinate overflow (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-6r8x-57c9-28j4",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00385,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.337232305Z"
+    },
+    {
+      "id": "GHSA-9hw9-ch79-4vh6",
+      "aliases": [
+        "BIT-pillow-2026-59205",
+        "CVE-2026-59205",
+        "PYSEC-2026-3453"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow: Controlled heap out-of-bounds write in Pillow `ImageCmsTransform.apply()` via output mode mismatch (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-9hw9-ch79-4vh6",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00385,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.900369342Z"
+    },
+    {
+      "id": "GHSA-jjj6-mw9f-p565",
+      "aliases": [
+        "BIT-pillow-2026-59200",
+        "CVE-2026-59200",
+        "PYSEC-2026-3495"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow: Decompression Bomb DoS via PdfParser.PdfStream.decode() (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-jjj6-mw9f-p565",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00385,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.955697732Z"
+    },
+    {
+      "id": "GHSA-vjc4-5qp5-m44j",
+      "aliases": [
+        "BIT-pillow-2026-59204",
+        "CVE-2026-59204",
+        "PYSEC-2026-3496"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow JPEG2000 tiled decode retains a growing scratch buffer and can be used for denial of service (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-vjc4-5qp5-m44j",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00385,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.224133592Z"
+    },
+    {
+      "id": "PYSEC-2026-3451",
+      "aliases": [
+        "BIT-pillow-2026-59199",
+        "CVE-2026-59199",
+        "GHSA-6r8x-57c9-28j4"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-3451 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3451",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00385,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.185750688Z"
+    },
+    {
+      "id": "PYSEC-2026-3453",
+      "aliases": [
+        "BIT-pillow-2026-59205",
+        "CVE-2026-59205",
+        "GHSA-9hw9-ch79-4vh6"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-3453 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3453",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00385,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.344163862Z"
+    },
+    {
+      "id": "PYSEC-2026-3495",
+      "aliases": [
+        "BIT-pillow-2026-59200",
+        "CVE-2026-59200",
+        "GHSA-jjj6-mw9f-p565"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow: Decompression Bomb DoS via PdfParser.PdfStream.decode() (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3495",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00385,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.877102211Z"
+    },
+    {
+      "id": "PYSEC-2026-3496",
+      "aliases": [
+        "BIT-pillow-2026-59204",
+        "CVE-2026-59204",
+        "GHSA-vjc4-5qp5-m44j"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow JPEG2000 tiled decode retains a growing scratch buffer and can be used for denial of service (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3496",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00385,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.93676212Z"
+    },
+    {
+      "id": "GO-2026-5031",
+      "aliases": [
+        "CVE-2026-42500"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/image@v0.36.0 in its image",
+      "title": "Gokapi: Panic when reading out of bound palette index in golang.org/x/image/bmp (in image v0.36.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5031",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "image 0.41.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00384,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.752526412Z"
+    },
+    {
+      "id": "GHSA-c3jg-qh8m-j3h2",
+      "aliases": [
+        "CVE-2026-107378",
+        "PYSEC-2026-4204"
+      ],
+      "source": "OSV, for pkg:pypi/cairosvg@2.8.2 in its image",
+      "title": "Seafile: CairoSVG: Quadratic-time DoS parsing a crafted SVG \u003cpath\u003e (in cairosvg 2.8.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-c3jg-qh8m-j3h2",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "cairosvg 2.9.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00383,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.083532142Z"
+    },
+    {
+      "id": "PYSEC-2026-4204",
+      "aliases": [
+        "CVE-2026-107378",
+        "GHSA-c3jg-qh8m-j3h2"
+      ],
+      "source": "OSV, for pkg:pypi/cairosvg@2.8.2 in its image",
+      "title": "Seafile: CairoSVG: Quadratic-time DoS parsing a crafted SVG \u003cpath\u003e (in cairosvg 2.8.2)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-4204",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "cairosvg 2.9.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00383,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:38.568503492Z"
+    },
+    {
+      "id": "GHSA-g47c-3xmw-q6m2",
+      "aliases": [
+        "CVE-2026-73229",
+        "PYSEC-2026-3828"
+      ],
+      "source": "OSV, for pkg:pypi/djangorestframework@3.16.1 in its image",
+      "title": "Seafile: Django REST framework: AdminRenderer may disclose GET-protected data when rendering invalid write requests (in djangorestframework 3.16.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-g47c-3xmw-q6m2",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "djangorestframework 3.17.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00373,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.35797849Z"
+    },
+    {
+      "id": "PYSEC-2026-3828",
+      "aliases": [
+        "CVE-2026-73229",
+        "GHSA-g47c-3xmw-q6m2"
+      ],
+      "source": "OSV, for pkg:pypi/djangorestframework@3.16.1 in its image",
+      "title": "Seafile: Django REST framework: AdminRenderer may disclose GET-protected data when rendering invalid write requests (in djangorestframework 3.16.1)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3828",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "djangorestframework 3.17.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00373,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:38.199343502Z"
+    },
+    {
+      "id": "GHSA-g6x2-hccm-hh4m",
+      "aliases": [
+        "CVE-2026-102598",
+        "PYSEC-2026-4312"
+      ],
+      "source": "OSV, for pkg:pypi/werkzeug@3.1.8 in its image",
+      "title": "Seafile: Werkzeug safe_join() allows Windows special device names (in werkzeug 3.1.8)",
+      "link": "https://osv.dev/vulnerability/GHSA-g6x2-hccm-hh4m",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "werkzeug 3.1.9",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0037,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.422287457Z"
+    },
+    {
+      "id": "GHSA-w7vc-732c-9m39",
+      "aliases": [
+        "CVE-2026-48525",
+        "PYSEC-2026-178"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.10.1 in its image",
+      "title": "Seafile: PyJWT: Unauthenticated DoS via unbounded Base64URL decoding of unused payload segment in b64=false detached JWS (in pyjwt 2.10.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-w7vc-732c-9m39",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.13.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0037,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.457344637Z"
+    },
+    {
+      "id": "PYSEC-2026-178",
+      "aliases": [
+        "CVE-2026-48525",
+        "GHSA-w7vc-732c-9m39"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.10.1 in its image",
+      "title": "Seafile: PYSEC-2026-178 (in pyjwt 2.10.1)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-178",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.13.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.0037,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.393887071Z"
+    },
+    {
+      "id": "PYSEC-2026-4312",
+      "aliases": [
+        "CVE-2026-102598",
+        "GHSA-g6x2-hccm-hh4m"
+      ],
+      "source": "OSV, for pkg:pypi/werkzeug@3.1.8 in its image",
+      "title": "Seafile: Werkzeug safe_join() allows Windows special device names (in werkzeug 3.1.8)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-4312",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "werkzeug 3.1.9",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.0037,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:38.641314308Z"
+    },
+    {
+      "id": "GHSA-q675-qj96-32m9",
+      "aliases": [
+        "CVE-2026-46599",
+        "GO-2026-5032"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/image@v0.36.0 in its image",
+      "title": "Gokapi: golang.org/x/image/tiff has excessive resource consumption in PackBits decompression (in image v0.36.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-q675-qj96-32m9",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "image 0.41.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00353,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.788595612Z"
+    },
+    {
+      "id": "GO-2026-5032",
+      "aliases": [
+        "CVE-2026-46599",
+        "GHSA-q675-qj96-32m9"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/image@v0.36.0 in its image",
+      "title": "Gokapi: Excessive resource consumption in PackBits decompression in golang.org/x/image/tiff (in image v0.36.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5032",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "image 0.41.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00353,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.819055717Z"
+    },
+    {
+      "id": "GHSA-8rrh-rw8j-w5fx",
+      "aliases": [
+        "CVE-2026-24049",
+        "PYSEC-2026-2047"
+      ],
+      "source": "OSV, for pkg:pypi/wheel@0.42.0 in its image",
+      "title": "Seafile: Wheel Affected by Arbitrary File Permission Modification via Path Traversal in wheel unpack (in wheel 0.42.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-8rrh-rw8j-w5fx",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "wheel 0.46.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.0035,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.776531685Z"
+    },
+    {
+      "id": "PYSEC-2026-2047",
+      "aliases": [
+        "CVE-2026-24049",
+        "GHSA-8rrh-rw8j-w5fx"
+      ],
+      "source": "OSV, for pkg:pypi/wheel@0.42.0 in its image",
+      "title": "Seafile: Wheel Affected by Arbitrary File Permission Modification via Path Traversal in wheel unpack (in wheel 0.42.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2047",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "wheel 0.46.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.0035,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.795505169Z"
+    },
+    {
+      "id": "GO-2022-0646",
+      "aliases": [
+        "CVE-2020-8911",
+        "GHSA-f5pg-7wfw-84q9"
+      ],
+      "source": "OSV, for pkg:golang/github.com/aws/aws-sdk-go@v1.55.8 in its image",
+      "title": "Gokapi: CBC padding oracle issue in AWS S3 Crypto SDK for golang in github.com/aws/aws-sdk-go (in aws-sdk-go v1.55.8)",
+      "link": "https://osv.dev/vulnerability/GO-2022-0646",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00346,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.884895759Z"
+    },
+    {
+      "id": "GO-2026-4866",
+      "aliases": [
+        "BIT-golang-2026-33810",
+        "CVE-2026-33810"
+      ],
+      "source": "OSV, for pkg:golang/stdlib@1.26.1 in its image",
+      "title": "Gokapi: Case-sensitive excludedSubtrees name constraints cause Auth Bypass in crypto/x509 (in stdlib 1.26.1)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4866",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "stdlib 1.26.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.0034,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.490674195Z"
+    },
+    {
+      "id": "GO-2026-4961",
+      "aliases": [
+        "CVE-2026-33813"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/image@v0.36.0 in its image",
+      "title": "Gokapi: Panic when decoding large WEBP image on 32-bit platforms in golang.org/x/image (in image v0.36.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4961",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "image 0.42.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.0034,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.617080647Z"
+    },
+    {
+      "id": "GHSA-44p7-9xx4-hf2g",
+      "aliases": [
+        "CVE-2026-33809",
+        "GO-2026-4815"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/image@v0.36.0 in its image",
+      "title": "Gokapi: Go Images vulnerable to an out-of-memory error via a crafted TIFF file (in image v0.36.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-44p7-9xx4-hf2g",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "image 0.38.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00334,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:28.493170477Z"
+    },
+    {
+      "id": "GO-2026-4815",
+      "aliases": [
+        "CVE-2026-33809",
+        "GHSA-44p7-9xx4-hf2g"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/image@v0.36.0 in its image",
+      "title": "Gokapi: OOM from malicious IFD offset in golang.org/x/image/tiff (in image v0.36.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4815",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "image 0.38.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00334,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.425481016Z"
+    },
+    {
+      "id": "GHSA-r7r6-cc7p-4v5m",
+      "aliases": [
+        "CVE-2025-61911",
+        "PYSEC-2026-1847"
+      ],
+      "source": "OSV, for pkg:pypi/python-ldap@3.4.4 in its image",
+      "title": "Seafile: python-ldap has sanitization bypass in ldap.filter.escape_filter_chars (in python-ldap 3.4.4)",
+      "link": "https://osv.dev/vulnerability/GHSA-r7r6-cc7p-4v5m",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "python-ldap 3.4.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0032,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.087043167Z"
+    },
+    {
+      "id": "GHSA-wf93-45jw-7689",
+      "aliases": [
+        "CVE-2026-8643",
+        "PYSEC-2026-196"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: pip: Path traversal in console_scripts/gui_scripts entry point names allows installing scripts outside of target directory (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-wf93-45jw-7689",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 26.1.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0032,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.52736664Z"
+    },
+    {
+      "id": "PYSEC-2026-1847",
+      "aliases": [
+        "CVE-2025-61911",
+        "GHSA-r7r6-cc7p-4v5m"
+      ],
+      "source": "OSV, for pkg:pypi/python-ldap@3.4.4 in its image",
+      "title": "Seafile: python-ldap has sanitization bypass in ldap.filter.escape_filter_chars (in python-ldap 3.4.4)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-1847",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "python-ldap 3.4.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.0032,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.664940287Z"
+    },
+    {
+      "id": "PYSEC-2026-196",
+      "aliases": [
+        "CVE-2026-8643",
+        "GHSA-wf93-45jw-7689"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: PYSEC-2026-196 (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-196",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 26.1.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.0032,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.730116506Z"
+    },
+    {
+      "id": "GHSA-fj7v-r99m-22gq",
+      "aliases": [
+        "BIT-pillow-2026-59198",
+        "CVE-2026-59198",
+        "PYSEC-2026-3494"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow TGA RLE encoder can serialize up to ~57 KB of adjacent heap data into generated images (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-fj7v-r99m-22gq",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00313,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.302070276Z"
+    },
+    {
+      "id": "PYSEC-2026-3494",
+      "aliases": [
+        "BIT-pillow-2026-59198",
+        "CVE-2026-59198",
+        "GHSA-fj7v-r99m-22gq"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow TGA RLE encoder can serialize up to ~57 KB of adjacent heap data into generated images (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3494",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00313,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.746439032Z"
+    },
+    {
+      "id": "GHSA-qwm4-qh6w-59xr",
+      "aliases": [
+        "CVE-2026-13346",
+        "PYSEC-2026-3721"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: pip would incorrectly handle doubly-encoded package URLs from indexes (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-qwm4-qh6w-59xr",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 26.2.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00292,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.947598524Z"
+    },
+    {
+      "id": "PYSEC-2026-3721",
+      "aliases": [
+        "CVE-2026-13346",
+        "GHSA-qwm4-qh6w-59xr"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: PYSEC-2026-3721 (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3721",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 26.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00292,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:37.998302262Z"
+    },
+    {
+      "id": "GHSA-45vh-rpc8-hxpp",
+      "aliases": [
+        "CVE-2026-30961",
+        "GO-2026-4695"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi's File Request MaxSize Limit Bypassed via Multi-Chunk Upload (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GHSA-45vh-rpc8-hxpp",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "gokapi 2.2.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00263,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:28.750368316Z"
+    },
+    {
+      "id": "GO-2026-4695",
+      "aliases": [
+        "CVE-2026-30961",
+        "GHSA-45vh-rpc8-hxpp"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi's File Request MaxSize Limit Bypassed via Multi-Chunk Upload in github.com/forceu/gokapi (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4695",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00263,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.082296266Z"
+    },
+    {
+      "id": "GHSA-qwc6-vc2v-2ggj",
+      "aliases": [
+        "CVE-2026-30955",
+        "GO-2026-4698"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi vulnerable to DoS in E2E Metadata Parser (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GHSA-qwc6-vc2v-2ggj",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "gokapi 2.2.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00257,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.874979881Z"
+    },
+    {
+      "id": "GO-2026-4698",
+      "aliases": [
+        "CVE-2026-30955",
+        "GHSA-qwc6-vc2v-2ggj"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi vulnerable to DoS in E2E Metadata Parser in github.com/forceu/gokapi (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4698",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00257,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.363094533Z"
+    },
+    {
+      "id": "GHSA-vp96-hxj8-p424",
+      "aliases": [
+        "CVE-2026-27448",
+        "PYSEC-2026-2268"
+      ],
+      "source": "OSV, for pkg:pypi/pyopenssl@24.2.1 in its image",
+      "title": "Seafile: pyOpenSSL allows TLS connection bypass via unhandled callback exception in set_tlsext_servername_callback (in pyopenssl 24.2.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-vp96-hxj8-p424",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyopenssl 26.0.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00256,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.298268826Z"
+    },
+    {
+      "id": "PYSEC-2026-2268",
+      "aliases": [
+        "CVE-2026-27448",
+        "GHSA-vp96-hxj8-p424"
+      ],
+      "source": "OSV, for pkg:pypi/pyopenssl@24.2.1 in its image",
+      "title": "Seafile: PYSEC-2026-2268 (in pyopenssl 24.2.1)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2268",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyopenssl 26.0.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00256,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.714381765Z"
+    },
+    {
+      "id": "GO-2022-0635",
+      "aliases": [
+        "CVE-2020-8912",
+        "GHSA-7f33-f4f5-xwgw"
+      ],
+      "source": "OSV, for pkg:golang/github.com/aws/aws-sdk-go@v1.55.8 in its image",
+      "title": "Gokapi: In-band key negotiation issue in AWS S3 Crypto SDK for golang in github.com/aws/aws-sdk-go (in aws-sdk-go v1.55.8)",
+      "link": "https://osv.dev/vulnerability/GO-2022-0635",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00231,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.797435716Z"
+    },
+    {
+      "id": "GHSA-3c22-5j5m-4jq7",
+      "aliases": [
+        "CVE-2026-28683",
+        "GO-2026-4612"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi has Stored XSS in SVG Hotlinks (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GHSA-3c22-5j5m-4jq7",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "gokapi 2.2.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00205,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:28.429810753Z"
+    },
+    {
+      "id": "GO-2026-4612",
+      "aliases": [
+        "CVE-2026-28683",
+        "GHSA-3c22-5j5m-4jq7"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi has Stored XSS in SVG Hotlinks in github.com/forceu/gokapi (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4612",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00205,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:33.302350958Z"
+    },
+    {
+      "id": "GHSA-j6jp-78w8-34x6",
+      "aliases": [
+        "CVE-2026-30943",
+        "GO-2026-4696"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi vulnerable to Privilege Escalation in File Replace (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GHSA-j6jp-78w8-34x6",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "gokapi 2.2.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00186,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.889857786Z"
+    },
+    {
+      "id": "GO-2026-4696",
+      "aliases": [
+        "CVE-2026-30943",
+        "GHSA-j6jp-78w8-34x6"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi vulnerable to Privilege Escalation in File Replace in github.com/forceu/gokapi (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4696",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00186,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.25636064Z"
+    },
+    {
+      "id": "GHSA-4x4j-2g7c-83w6",
+      "aliases": [
+        "BIT-pillow-2026-55798",
+        "CVE-2026-55798",
+        "PYSEC-2026-2257"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow: WindowsViewer.get_command() OS command injection via unescaped shell path (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-4x4j-2g7c-83w6",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00179,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:28.809704752Z"
+    },
+    {
+      "id": "PYSEC-2026-2257",
+      "aliases": [
+        "BIT-pillow-2026-55798",
+        "CVE-2026-55798",
+        "GHSA-4x4j-2g7c-83w6"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-2257 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2257",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00179,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.49440144Z"
+    },
+    {
+      "id": "GO-2025-3737",
+      "aliases": [
+        "CVE-2025-48494",
+        "GHSA-95rc-wc32-gm53"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi vulnerable to stored XSS via uploading file with malicious file name in github.com/forceu/gokapi (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GO-2025-3737",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00177,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:33.151537501Z"
+    },
+    {
+      "id": "GHSA-r73j-pqj5-w3x7",
+      "aliases": [
+        "BIT-pillow-2026-42310",
+        "CVE-2026-42310",
+        "PYSEC-2026-2874"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow has a PDF Parsing Trailer Infinite Loop (DoS) (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-r73j-pqj5-w3x7",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.2.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00171,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.020861066Z"
+    },
+    {
+      "id": "PYSEC-2026-2874",
+      "aliases": [
+        "BIT-pillow-2026-42310",
+        "CVE-2026-42310",
+        "GHSA-r73j-pqj5-w3x7"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow has a PDF Parsing Trailer Infinite Loop (DoS) (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2874",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.2.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00171,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.834718794Z"
+    },
+    {
+      "id": "GHSA-pwv6-vv43-88gr",
+      "aliases": [
+        "BIT-pillow-2026-42311",
+        "CVE-2026-42311",
+        "PYSEC-2026-2252"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow has an OOB Write with Invalid PSD Tile Extents (Integer Overflow) (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-pwv6-vv43-88gr",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.2.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.0015,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.563738758Z"
+    },
+    {
+      "id": "PYSEC-2026-2252",
+      "aliases": [
+        "BIT-pillow-2026-42311",
+        "CVE-2026-42311",
+        "GHSA-pwv6-vv43-88gr"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-2252 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2252",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.2.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.0015,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.155101462Z"
+    },
+    {
+      "id": "GHSA-m2hx-wjxc-9fp4",
+      "aliases": [
+        "CVE-2026-29060",
+        "GO-2026-4615"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi has privilege escalation with auth token (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GHSA-m2hx-wjxc-9fp4",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "gokapi 2.2.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00148,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.243160337Z"
+    },
+    {
+      "id": "GO-2026-4615",
+      "aliases": [
+        "CVE-2026-29060",
+        "GHSA-m2hx-wjxc-9fp4"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi has privilege escalation with auth token in github.com/forceu/gokapi (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4615",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00148,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:33.67971105Z"
+    },
+    {
+      "id": "GHSA-58qw-9mgm-455v",
+      "aliases": [
+        "CVE-2026-3219",
+        "PYSEC-2026-2875"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: pip has an interpretation conflict due to handling both concatenated tar and ZIP files as ZIP files (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-58qw-9mgm-455v",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 26.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00144,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:28.942110192Z"
+    },
+    {
+      "id": "PYSEC-2026-2875",
+      "aliases": [
+        "CVE-2026-3219",
+        "GHSA-58qw-9mgm-455v"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: pip has an interpretation conflict due to handling both concatenated tar and ZIP files as ZIP files (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2875",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 26.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00144,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.894159183Z"
+    },
+    {
+      "id": "GHSA-c36c-7pc2-f2ph",
+      "aliases": [
+        "CVE-2026-28682",
+        "GO-2026-4613"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi has Data Leak in Upload Status Stream (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GHSA-c36c-7pc2-f2ph",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "gokapi 2.2.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00143,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.98590754Z"
+    },
+    {
+      "id": "GO-2026-4613",
+      "aliases": [
+        "CVE-2026-28682",
+        "GHSA-c36c-7pc2-f2ph"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi has Data Leak in Upload Status Stream in github.com/forceu/gokapi (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4613",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00143,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:33.405663689Z"
+    },
+    {
+      "id": "GO-2025-3736",
+      "aliases": [
+        "CVE-2025-48495",
+        "GHSA-4xg4-54hm-9j77"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi has stored XSS vulnerability in friendly name for API keys in github.com/forceu/gokapi (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GO-2025-3736",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00142,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:33.031250198Z"
+    },
+    {
+      "id": "GHSA-jp4c-xjxw-mgf9",
+      "aliases": [
+        "CVE-2026-6357",
+        "PYSEC-2026-2876"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: pip Vulnerable to Inclusion of Functionality from Untrusted Control Sphere (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-jp4c-xjxw-mgf9",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 26.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00138,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.016439366Z"
+    },
+    {
+      "id": "PYSEC-2026-2876",
+      "aliases": [
+        "CVE-2026-6357",
+        "GHSA-jp4c-xjxw-mgf9"
+      ],
+      "source": "OSV, for pkg:pypi/pip@24.0 in its image",
+      "title": "Seafile: pip Vulnerable to Inclusion of Functionality from Untrusted Control Sphere (in pip 24.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2876",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pip 26.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00138,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.961971369Z"
+    },
+    {
+      "id": "GHSA-5xmw-vc9v-4wf2",
+      "aliases": [
+        "BIT-pillow-2026-42309",
+        "CVE-2026-42309",
+        "PYSEC-2026-2251"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow has a heap buffer overflow with nested list coordinates (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-5xmw-vc9v-4wf2",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.2.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00133,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.216964926Z"
+    },
+    {
+      "id": "PYSEC-2026-2251",
+      "aliases": [
+        "BIT-pillow-2026-42309",
+        "CVE-2026-42309",
+        "GHSA-5xmw-vc9v-4wf2"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-2251 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-2251",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.2.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00133,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:36.071323383Z"
+    },
+    {
+      "id": "GHSA-q658-hfpg-35qc",
+      "aliases": [
+        "CVE-2026-29061",
+        "GO-2026-4626"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi has privilege escalation via incomplete API-key permission revocation on user rank demotion (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GHSA-q658-hfpg-35qc",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "gokapi 2.2.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00129,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.720661344Z"
+    },
+    {
+      "id": "GO-2026-4626",
+      "aliases": [
+        "CVE-2026-29061",
+        "GHSA-q658-hfpg-35qc"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi has privilege escalation via incomplete API-key permission revocation on user rank demotion in github.com/forceu/gokapi (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4626",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00129,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:33.939527024Z"
+    },
+    {
+      "id": "GHSA-jq35-7prp-9v3f",
+      "aliases": [
+        "CVE-2026-48523",
+        "PYSEC-2026-176"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.10.1 in its image",
+      "title": "Seafile: PyJWT: Algorithm allow-list bypass when decoding with `PyJWK` / `PyJWKClient` keys (in pyjwt 2.10.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-jq35-7prp-9v3f",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.13.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00127,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:31.083588838Z"
+    },
+    {
+      "id": "PYSEC-2026-176",
+      "aliases": [
+        "CVE-2026-48523",
+        "GHSA-jq35-7prp-9v3f"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.10.1 in its image",
+      "title": "Seafile: PYSEC-2026-176 (in pyjwt 2.10.1)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-176",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.12.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00127,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.295144902Z"
+    },
+    {
+      "id": "GHSA-wjx4-4jcj-g98j",
+      "aliases": [
+        "BIT-pillow-2026-42308",
+        "CVE-2026-42308",
+        "PYSEC-2026-165"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: Pillow has an integer overflow when processing fonts (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-wjx4-4jcj-g98j",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.2.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00114,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:32.653175901Z"
+    },
+    {
+      "id": "PYSEC-2026-165",
+      "aliases": [
+        "BIT-pillow-2026-42308",
+        "CVE-2026-42308",
+        "GHSA-wjx4-4jcj-g98j"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@11.3.0 in its image",
+      "title": "Seafile: PYSEC-2026-165 (in pillow 11.3.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-165",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.2.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00114,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:35.232131148Z"
+    },
+    {
+      "id": "GO-2026-4962",
+      "aliases": [
+        "CVE-2026-33812"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/image@v0.36.0 in its image",
+      "title": "Gokapi: Excessive memory allocation when decoding malicious SFNT in golang.org/x/image (in image v0.36.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4962",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "image 0.39.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00112,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:34.683752008Z"
+    },
+    {
+      "id": "GHSA-hcff-qv74-7hr4",
+      "aliases": [
+        "CVE-2026-29084",
+        "GO-2026-4624"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi has CSRF in Login Endpoint (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GHSA-hcff-qv74-7hr4",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "fixed_upstream": "gokapi 2.2.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00085,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.636126962Z"
+    },
+    {
+      "id": "GO-2026-4624",
+      "aliases": [
+        "CVE-2026-29084",
+        "GHSA-hcff-qv74-7hr4"
+      ],
+      "source": "OSV, for pkg:golang/github.com/forceu/gokapi@v1.9.7-0.20260310153350-9a4b289c6041 in its image",
+      "title": "Gokapi: Gokapi has CSRF in Login Endpoint in github.com/forceu/gokapi (in gokapi v1.9.7-0.20260310153350-9a4b289c6041)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4624",
+      "package": "gokapi",
+      "affected": [
+        "2.2.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00085,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:33.806022805Z"
+    },
+    {
+      "id": "GHSA-8rfp-98v4-mmr6",
+      "source": "OSV, for pkg:pypi/bleach@5.0.1 in its image",
+      "title": "Seafile: Bleach: URI sanitization allows disallowed URI schemes with Unicode \u003e U+00A0 in output (in bleach 5.0.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-8rfp-98v4-mmr6",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "bleach 6.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:29.71335849Z"
+    },
+    {
+      "id": "GHSA-gj48-438w-jh9v",
+      "source": "OSV, for pkg:pypi/bleach@5.0.1 in its image",
+      "title": "Seafile: Bleach clean() / Cleaner() fails to sanitize dangerous URI schemes in allowed formaction attributes (in bleach 5.0.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-gj48-438w-jh9v",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "bleach 6.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:30.500599141Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2018-1000021",
+      "source": "OSV, for pkg:deb/ubuntu/git@1%3A2.43.0-1ubuntu7.3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2018-1000021 (in git 1%3A2.43.0-1ubuntu7.3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2018-1000021",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:39.164382985Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2018-6952",
+      "source": "OSV, for pkg:deb/ubuntu/patch@2.7.6-7build3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2018-6952 (in patch 2.7.6-7build3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2018-6952",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:39.228482552Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2019-20633",
+      "source": "OSV, for pkg:deb/ubuntu/patch@2.7.6-7build3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2019-20633 (in patch 2.7.6-7build3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2019-20633",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:39.288372778Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2020-36846",
+      "source": "OSV, for pkg:deb/ubuntu/libio-compress-brotli-perl@0.004001-2build3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2020-36846 (in libio-compress-brotli-perl 0.004001-2build3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2020-36846",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:39.360947003Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2021-45261",
+      "source": "OSV, for pkg:deb/ubuntu/patch@2.7.6-7build3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2021-45261 (in patch 2.7.6-7build3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2021-45261",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:39.434361126Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2022-0987",
+      "source": "OSV, for pkg:deb/ubuntu/packagekit@1.2.8-2ubuntu1.5?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2022-0987 (in packagekit 1.2.8-2ubuntu1.5)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2022-0987",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:39.504366899Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2024-0217",
+      "source": "OSV, for pkg:deb/ubuntu/packagekit@1.2.8-2ubuntu1.5?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2024-0217 (in packagekit 1.2.8-2ubuntu1.5)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2024-0217",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:39.571488798Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2024-10524",
+      "source": "OSV, for pkg:deb/ubuntu/wget@1.21.4-1ubuntu4.5?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2024-10524 (in wget 1.21.4-1ubuntu4.5)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2024-10524",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:39.640350416Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2024-52005",
+      "source": "OSV, for pkg:deb/ubuntu/git@1%3A2.43.0-1ubuntu7.3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2024-52005 (in git 1%3A2.43.0-1ubuntu7.3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2024-52005",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:39.884067001Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2025-1149",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2025-1149 (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2025-1149",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:39.988773999Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2025-11495",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2025-11495 (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2025-11495",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "binutils 2.45-7ubuntu1.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:40.085949288Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2025-1152",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2025-1152 (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2025-1152",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:40.189125644Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2025-69644",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2025-69644 (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2025-69644",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:40.293864159Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2025-69645",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2025-69645 (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2025-69645",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:40.38532575Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2025-69646",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2025-69646 (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2025-69646",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:40.472043994Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2025-69647",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2025-69647 (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2025-69647",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:40.556045808Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2025-69648",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2025-69648 (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2025-69648",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:40.630571541Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2025-69651",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2025-69651 (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2025-69651",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:40.698274985Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2025-69652",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2025-69652 (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2025-69652",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:40.819494423Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-102010",
+      "source": "OSV, for pkg:deb/ubuntu/gcc-13@13.3.0-6ubuntu2~24.04.1?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-102010 (in gcc-13 13.3.0-6ubuntu2~24.04.1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-102010",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:41.367731942Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-10294",
+      "source": "OSV, for pkg:deb/ubuntu/packagekit@1.2.8-2ubuntu1.5?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-10294 (in packagekit 1.2.8-2ubuntu1.5)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-10294",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:41.437297348Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-114690",
+      "source": "OSV, for pkg:deb/ubuntu/gcc-13@13.3.0-6ubuntu2~24.04.1?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-114690 (in gcc-13 13.3.0-6ubuntu2~24.04.1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-114690",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:41.961063681Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-114691",
+      "source": "OSV, for pkg:deb/ubuntu/gcc-13@13.3.0-6ubuntu2~24.04.1?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-114691 (in gcc-13 13.3.0-6ubuntu2~24.04.1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-114691",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:42.461571523Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-115207",
+      "source": "OSV, for pkg:deb/ubuntu/patch@2.7.6-7build3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-115207 (in patch 2.7.6-7build3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-115207",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:42.525628454Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-115455",
+      "source": "OSV, for pkg:deb/ubuntu/gcc-13@13.3.0-6ubuntu2~24.04.1?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-115455 (in gcc-13 13.3.0-6ubuntu2~24.04.1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-115455",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:43.067910684Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-115456",
+      "source": "OSV, for pkg:deb/ubuntu/gcc-13@13.3.0-6ubuntu2~24.04.1?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-115456 (in gcc-13 13.3.0-6ubuntu2~24.04.1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-115456",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:43.624966764Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-115936",
+      "source": "OSV, for pkg:deb/ubuntu/libio-compress-brotli-perl@0.004001-2build3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-115936 (in libio-compress-brotli-perl 0.004001-2build3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-115936",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:43.699182356Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-56288",
+      "source": "OSV, for pkg:deb/ubuntu/patch@2.7.6-7build3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-56288 (in patch 2.7.6-7build3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-56288",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:43.764136348Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-56289",
+      "source": "OSV, for pkg:deb/ubuntu/patch@2.7.6-7build3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-56289 (in patch 2.7.6-7build3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-56289",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:43.825338501Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-8594",
+      "source": "OSV, for pkg:deb/ubuntu/libunicode-linebreak-perl@0.0.20190101-1build7?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-8594 (in libunicode-linebreak-perl 0.0.20190101-1build7)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-8594",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T07:19:44.090812942Z"
     }
   ]
 }
