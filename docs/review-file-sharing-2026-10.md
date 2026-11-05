@@ -33,7 +33,7 @@ Upstream facts were checked on 2026-10-30 against each project's repository, rel
 
 | Item | Branch | What it gives packages |
 |---|---|---|
-| 1. Config files a package declares | `claude/config-files-c0b70e` | `config_files:` (help's package reference), for Seafile's `seahub_settings.py` and Pingvin Share X's `config.yaml`. Tried with Pingvin Share X; not with Seafile |
+| 1. Config files a package declares | `claude/config-files-c0b70e` | `config_files:` (help's package reference), for Seafile's `seahub_settings.py` and Pingvin Share X's `config.yaml`. Tried with Pingvin Share X, then with Seafile's block and Gokapi's whole file (2026-10-31) |
 | 2. Extra schemas on one MySQL/MariaDB | `claude/db-extra-schemas-e6eb9c` | Several schemas for one app user, dumped together. Tried with Seafile 13 |
 | 3. Public addresses wait for setup | `claude/public-after-setup-2b5e8f` | Every package: no public address until its install hooks succeed |
 | 5. Scheduled hooks | `claude/scheduled-hooks-deaa61` | `on: schedule` with `every:` and `timeout:`; a run past its timeout restarts its container |
@@ -46,7 +46,7 @@ Upstream facts were checked on 2026-10-30 against each project's repository, rel
 
 - **Plik 1.4.3-roostack.2** (2026-10-31): `built_with: [go]` and `sso.oidc.existing_accounts: separate`, needing Roostack 0.1.2. The first revision missed both because `built_with` reached the registry's `main` after this branch was cut, and the single sign-on fields were built after Plik's lab test found the card's wrong claims. The logo stays a placeholder: Plik has none larger than its 16-pixel favicon. Tried on VM 5 (Roostack `main` built as 0.1.2): the card says, before and after turning single sign-on on, that accounts already in Plik stay separate, and it no longer claims admins.
 - **ProjectSend 2.8.0-roostack.1** (2026-10-31), below.
-- **Seafile and Gokapi:** packaged on `claude/gokapi-seafile-6c5c7d`, not merged yet. That branch also edits this review's Gokapi and Seafile sections, so expect to merge the two by hand.
+- **Seafile 13.0.28-roostack.1 and Gokapi 2.2.4-roostack.1** (2026-10-31, merged 2026-11-05), below, needing Roostack 0.1.2. Trying them found four Roostack issues, fixed on Roostack's `claude/package-try-fixes` (2026-11-05): hooks' `${…}` expanded by `systemd-run`, MariaDB's health check logging "Access denied", command-line backups missing from the pages, and the install summary's wording for storage.
 - **Not started:** Pingvin Share X (waits for change 7: see "downloads only") and Zipline (with its flag).
 - **Registry packages that map admins or link accounts** need new revisions to use the new single sign-on fields. The session that built them counted seven, but didn't name them.
 
