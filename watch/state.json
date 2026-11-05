@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-04T18:50:32.624324692Z",
+  "last_run": "2026-11-05T00:31:06.75575606Z",
   "seen": {
     "BIT-golang-2022-1705": "digest",
     "BIT-golang-2022-1962": "digest",
@@ -823,6 +823,7 @@
     "CVE-2026-58443": "digest",
     "CVE-2026-58444": "digest",
     "CVE-2026-58445": "digest",
+    "CVE-2026-58487": "digest",
     "CVE-2026-59180": "digest",
     "CVE-2026-59724": "digest",
     "CVE-2026-59725": "digest",
@@ -1015,6 +1016,7 @@
     "GHSA-27vj-qcqg-25rc": "digest",
     "GHSA-2883-xcg3-v3hh": "digest",
     "GHSA-28wg-ghj8-5hjv": "digest",
+    "GHSA-2c27-4x43-jrm6": "digest",
     "GHSA-2g87-pp6c-29x5": "digest",
     "GHSA-2gc4-cqfq-p2gv": "digest",
     "GHSA-2gqq-gqf2-x968": "digest",
@@ -1055,6 +1057,7 @@
     "GHSA-3f6p-5ww8-9rcr": "digest",
     "GHSA-3f7j-7jwc-fxfj": "digest",
     "GHSA-3fv3-hhmm-4x2q": "digest",
+    "GHSA-3fwm-h59w-j268": "digest",
     "GHSA-3fxj-6jh8-hvhx": "digest",
     "GHSA-3g3m-2fjr-6pw4": "digest",
     "GHSA-3g43-6gmg-66jw": "digest",
@@ -1229,6 +1232,7 @@
     "GHSA-7jg8-8m5x-6j9r": "digest",
     "GHSA-7mwm-ghpf-9vrm": "digest",
     "GHSA-7mx3-vvmw-hjmv": "digest",
+    "GHSA-7p6g-mhrh-286p": "digest",
     "GHSA-7p8r-x3mc-p8w7": "digest",
     "GHSA-7pqw-9j4j-h8q3": "digest",
     "GHSA-7q8q-rj6j-mhjq": "digest",
@@ -1358,6 +1362,7 @@
     "GHSA-cp8g-96ch-wmqv": "drafted 2026-0001",
     "GHSA-cp9v-662q-vvx9": "digest",
     "GHSA-cq8v-f236-94qc": "digest",
+    "GHSA-cqg6-86p6-77jm": "digest",
     "GHSA-cr6m-qrr6-q3j8": "doesn't affect the registry's versions",
     "GHSA-crh6-fp67-6883": "digest",
     "GHSA-crv5-9vww-q3g8": "digest",
@@ -1412,6 +1417,7 @@
     "GHSA-g4w3-c888-cr93": "digest",
     "GHSA-g4wm-2vf7-vfgr": "digest",
     "GHSA-g57g-f23g-4646": "digest",
+    "GHSA-g5g7-gfr5-f89m": "digest",
     "GHSA-g5hg-p3ph-g8qg": "digest",
     "GHSA-g73g-hqqh-jr95": "digest",
     "GHSA-g7cr-3p24-7wf7": "digest",
@@ -1506,6 +1512,7 @@
     "GHSA-jwrc-g2q2-pq5p": "digest",
     "GHSA-jwv3-5hgf-82ww": "digest",
     "GHSA-jxfw-x594-9x9m": "digest",
+    "GHSA-jxrf-wfc5-w77h": "digest",
     "GHSA-m2h6-j472-rp4c": "digest",
     "GHSA-m382-6jw4-fmp6": "doesn't affect the registry's versions",
     "GHSA-m462-7rxw-wvpg": "digest",
@@ -1599,6 +1606,7 @@
     "GHSA-q8mj-m7cp-5q26": "digest",
     "GHSA-q8pj-2vqx-8ggc": "digest",
     "GHSA-q9gm-9c7q-c5hq": "digest",
+    "GHSA-q9v8-vwgh-x2mc": "digest",
     "GHSA-qc2q-p7wx-3px3": "digest",
     "GHSA-qccp-gfcp-xxvc": "digest",
     "GHSA-qcgm-ggp8-22qc": "digest",
@@ -2256,6 +2264,7 @@
     "UBUNTU-CVE-2026-109280": "digest",
     "UBUNTU-CVE-2026-109281": "digest",
     "UBUNTU-CVE-2026-109282": "digest",
+    "UBUNTU-CVE-2026-109518": "digest",
     "UBUNTU-CVE-2026-109964": "digest",
     "UBUNTU-CVE-2026-110133": "digest",
     "UBUNTU-CVE-2026-111272": "digest",
@@ -3931,6 +3940,7 @@
     "CVE-2024-27199",
     "CVE-2024-27348",
     "CVE-2024-27443",
+    "CVE-2024-27834",
     "CVE-2024-28986",
     "CVE-2024-28987",
     "CVE-2024-28995",
@@ -85831,6 +85841,278 @@
       "why": "it's being used in attacks, but nothing says anyone on the internet can use it without signing in. CrowdSec has a virtual-patch rule for CVE-2026-114509 (crowdsecurity/vpatch-CVE-2026-114509), so an exploit is public.",
       "weak": "CrowdSec wrote a rule for it, so an exploit is likely public: check which packages it affects",
       "found": "2026-11-04T18:51:01.521801817Z"
+    },
+    {
+      "id": "GHSA-jxrf-wfc5-w77h",
+      "aliases": [
+        "CVE-2026-58487"
+      ],
+      "source": "GitHub's advisories for hedgedoc/hedgedoc",
+      "title": "HedgeDoc: Stored HTML injection through profile names, avatar URLs, GraphViz and note titles",
+      "link": "https://github.com/hedgedoc/hedgedoc/security/advisories/GHSA-jxrf-wfc5-w77h",
+      "package": "hedgedoc",
+      "affected": [
+        "1.12.0-roostack.1",
+        "1.12.0-roostack.2",
+        "1.12.0-roostack.3",
+        "1.12.0-roostack.4"
+      ],
+      "fixed_upstream": "\u003e= 1.12.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 5.1
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0.00492,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.1).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-05T00:31:10.86292806Z"
+    },
+    {
+      "id": "GHSA-2c27-4x43-jrm6",
+      "source": "GitHub's advisories for hedgedoc/hedgedoc",
+      "title": "HedgeDoc: Cross-provider account takeover by shared profile IDs",
+      "link": "https://github.com/hedgedoc/hedgedoc/security/advisories/GHSA-2c27-4x43-jrm6",
+      "package": "hedgedoc",
+      "affected": [
+        "1.12.0-roostack.1",
+        "1.12.0-roostack.2",
+        "1.12.0-roostack.3",
+        "1.12.0-roostack.4"
+      ],
+      "fixed_upstream": "\u003e= 1.12.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 8.8
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 8.8).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-05T00:31:10.862876202Z"
+    },
+    {
+      "id": "GHSA-g5g7-gfr5-f89m",
+      "source": "GitHub's advisories for hedgedoc/hedgedoc",
+      "title": "HedgeDoc: Remote process crash via malformed selection event on WebSocket",
+      "link": "https://github.com/hedgedoc/hedgedoc/security/advisories/GHSA-g5g7-gfr5-f89m",
+      "package": "hedgedoc",
+      "affected": [
+        "1.12.0-roostack.1",
+        "1.12.0-roostack.2",
+        "1.12.0-roostack.3",
+        "1.12.0-roostack.4"
+      ],
+      "fixed_upstream": "\u003e= 1.12.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 7.1
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 7.1).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-05T00:31:10.862905907Z"
+    },
+    {
+      "id": "GHSA-7p6g-mhrh-286p",
+      "source": "GitHub's advisories for hedgedoc/hedgedoc",
+      "title": "HedgeDoc: Unsandboxed iframe injection in slide mode",
+      "link": "https://github.com/hedgedoc/hedgedoc/security/advisories/GHSA-7p6g-mhrh-286p",
+      "package": "hedgedoc",
+      "affected": [
+        "1.12.0-roostack.1",
+        "1.12.0-roostack.2",
+        "1.12.0-roostack.3",
+        "1.12.0-roostack.4"
+      ],
+      "fixed_upstream": "\u003e= 1.12.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 5.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-05T00:31:10.862912667Z"
+    },
+    {
+      "id": "GHSA-cqg6-86p6-77jm",
+      "source": "GitHub's advisories for hedgedoc/hedgedoc",
+      "title": "HedgeDoc: Timing attack reveals whether an email address is registered",
+      "link": "https://github.com/hedgedoc/hedgedoc/security/advisories/GHSA-cqg6-86p6-77jm",
+      "package": "hedgedoc",
+      "affected": [
+        "1.12.0-roostack.1",
+        "1.12.0-roostack.2",
+        "1.12.0-roostack.3",
+        "1.12.0-roostack.4"
+      ],
+      "fixed_upstream": "\u003e= 1.12.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 6.9
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 6.9).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-05T00:31:10.862917584Z"
+    },
+    {
+      "id": "GHSA-q9v8-vwgh-x2mc",
+      "source": "GitHub's advisories for hedgedoc/hedgedoc",
+      "title": "HedgeDoc: Unknown note permission values make a note readable using HTTP endpoints on SQLite",
+      "link": "https://github.com/hedgedoc/hedgedoc/security/advisories/GHSA-q9v8-vwgh-x2mc",
+      "package": "hedgedoc",
+      "affected": [
+        "1.12.0-roostack.1",
+        "1.12.0-roostack.2",
+        "1.12.0-roostack.3",
+        "1.12.0-roostack.4"
+      ],
+      "fixed_upstream": "\u003e= 1.12.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 2.3
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low (CVSS 2.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-05T00:31:10.862922962Z"
+    },
+    {
+      "id": "GHSA-3fwm-h59w-j268",
+      "source": "GitHub's advisories for hedgedoc/hedgedoc",
+      "title": "HedgeDoc: DoS through object prototype pollution on history API endpoint",
+      "link": "https://github.com/hedgedoc/hedgedoc/security/advisories/GHSA-3fwm-h59w-j268",
+      "package": "hedgedoc",
+      "affected": [
+        "1.12.0-roostack.1",
+        "1.12.0-roostack.2",
+        "1.12.0-roostack.3",
+        "1.12.0-roostack.4"
+      ],
+      "fixed_upstream": "\u003e= 1.12.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 7
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 7.0).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-05T00:31:10.862935761Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-109518",
+      "source": "OSV, for pkg:deb/ubuntu/apt@2.8.3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-109518 (in apt 2.8.3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-109518",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T00:31:35.33423782Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-109518",
+      "source": "OSV, for pkg:deb/ubuntu/apt@2.8.3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-109518 (in apt 2.8.3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-109518",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T00:31:35.334240274Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-109518",
+      "source": "OSV, for pkg:deb/ubuntu/apt@2.8.3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-109518 (in apt 2.8.3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-109518",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-05T00:31:35.334241516Z"
     }
   ]
 }
