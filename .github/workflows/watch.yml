@@ -108,11 +108,16 @@ jobs:
                 -H "Click: $url" -d "$(jq -r .title <<<"$d")" "$NTFY_URL"
             fi
           done
+      # Cut to fit in an issue (tools/fit-digest.sh), linking the state as
+      # it was before the digest, which has every match.
       - name: Open the digest
         if: hashFiles('digest.md') != ''
         env:
           GH_TOKEN: ${{ secrets.WATCH_TOKEN || github.token }}
-        run: gh issue create -R "$GITHUB_REPOSITORY" --title "Security digest, $(date +%F)" --body-file digest.md
+        run: |
+          state="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/blob/$(git -C services rev-parse HEAD)/watch/state.json"
+          services/tools/fit-digest.sh digest.md "$state" > issue.md
+          gh issue create -R "$GITHUB_REPOSITORY" --title "Security digest, $(date +%F)" --body-file issue.md
       - name: Keep the watcher's state
         working-directory: services
         run: |
