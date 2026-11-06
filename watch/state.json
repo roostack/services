@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-05T15:46:46.122439148Z",
+  "last_run": "2026-11-06T02:47:09.359219389Z",
   "seen": {
     "BIT-golang-2022-1705": "digest",
     "BIT-golang-2022-1962": "digest",
@@ -596,6 +596,7 @@
     "CVE-2026-116585": "digest",
     "CVE-2026-116586": "digest",
     "CVE-2026-116587": "digest",
+    "CVE-2026-116591": "digest",
     "CVE-2026-116672": "digest",
     "CVE-2026-116673": "digest",
     "CVE-2026-116674": "drafted 2026-0018",
@@ -1522,6 +1523,7 @@
     "GHSA-fjxv-7rqg-78g4": "digest",
     "GHSA-fm9c-5rcf-2q5p": "digest",
     "GHSA-fph4-wmhf-6fwf": "digest",
+    "GHSA-fpmh-frq8-7rj8": "digest",
     "GHSA-fq56-3cx3-fjxp": "digest",
     "GHSA-fqjr-23c8-gg9m": "doesn't affect the registry's versions",
     "GHSA-fvcv-3m26-pcqx": "digest",
@@ -2146,7 +2148,9 @@
     "GO-2026-6686": "digest",
     "GO-2026-6809": "digest",
     "GO-2026-6860": "digest",
+    "GO-2026-6865": "digest",
     "GO-2026-6866": "digest",
+    "GO-2026-6905": "digest",
     "MAL-2022-4691": "digest",
     "MAL-2022-5772": "digest",
     "PYSEC-2022-42986": "digest",
@@ -2930,6 +2934,7 @@
     "USN-8945-1": "digest",
     "USN-8949-1": "digest",
     "USN-8996-1": "digest",
+    "USN-9001-1": "digest",
     "X41-2026-002": "digest",
     "crowdsecurity/vpatch-CVE-2026-114509": "digest"
   },
@@ -91013,6 +91018,333 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-05T15:47:16.772461684Z"
+    },
+    {
+      "id": "GO-2026-6865",
+      "aliases": [
+        "CVE-2026-116591",
+        "GHSA-fpmh-frq8-7rj8"
+      ],
+      "source": "OSV, for pkg:golang/github.com/klauspost/compress@v1.18.0 in its image",
+      "title": "Forgejo: Panic on two-block frames in github.com/klauspost/compress (in compress v1.18.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6865",
+      "package": "forgejo",
+      "affected": [
+        "15.0.10-roostack.3",
+        "15.0.11-roostack.1"
+      ],
+      "fixed_upstream": "compress 1.20.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00333,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-06T02:47:37.547276327Z"
+    },
+    {
+      "id": "GO-2026-6865",
+      "aliases": [
+        "CVE-2026-116591",
+        "GHSA-fpmh-frq8-7rj8"
+      ],
+      "source": "OSV, for pkg:golang/github.com/klauspost/compress@v1.18.0 in its image",
+      "title": "Gitea: Panic on two-block frames in github.com/klauspost/compress (in compress v1.18.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6865",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.3"
+      ],
+      "fixed_upstream": "compress 1.20.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00333,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-06T02:47:37.547280904Z"
+    },
+    {
+      "id": "GO-2026-6865",
+      "aliases": [
+        "CVE-2026-116591",
+        "GHSA-fpmh-frq8-7rj8"
+      ],
+      "source": "OSV, for pkg:golang/github.com/klauspost/compress@v1.18.0 in its image",
+      "title": "Lychee: Panic on two-block frames in github.com/klauspost/compress (in compress v1.18.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6865",
+      "package": "lychee",
+      "affected": [
+        "7.11.1-roostack.2"
+      ],
+      "fixed_upstream": "compress 1.20.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00333,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-06T02:47:37.547282397Z"
+    },
+    {
+      "id": "GO-2026-6865",
+      "aliases": [
+        "CVE-2026-116591",
+        "GHSA-fpmh-frq8-7rj8"
+      ],
+      "source": "OSV, for pkg:golang/github.com/klauspost/compress@v1.18.0 in its image",
+      "title": "PhotoPrism: Panic on two-block frames in github.com/klauspost/compress (in compress v1.18.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6865",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2"
+      ],
+      "fixed_upstream": "compress 1.20.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00333,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-06T02:47:37.54728466Z"
+    },
+    {
+      "id": "GO-2026-6865",
+      "aliases": [
+        "CVE-2026-116591",
+        "GHSA-fpmh-frq8-7rj8"
+      ],
+      "source": "OSV, for pkg:golang/github.com/klauspost/compress@v1.18.0 in its image",
+      "title": "Plik: Panic on two-block frames in github.com/klauspost/compress (in compress v1.18.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6865",
+      "package": "plik",
+      "affected": [
+        "1.4.3-roostack.1",
+        "1.4.3-roostack.2"
+      ],
+      "fixed_upstream": "compress 1.20.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00333,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-06T02:47:37.547286242Z"
+    },
+    {
+      "id": "GO-2026-6865",
+      "aliases": [
+        "CVE-2026-116591",
+        "GHSA-fpmh-frq8-7rj8"
+      ],
+      "source": "OSV, for pkg:golang/github.com/klauspost/compress@v1.18.0 in its image",
+      "title": "Uptime Kuma: Panic on two-block frames in github.com/klauspost/compress (in compress v1.18.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6865",
+      "package": "uptime-kuma",
+      "affected": [
+        "2.5.6-roostack.2",
+        "2.5.8-roostack.1"
+      ],
+      "fixed_upstream": "compress 1.20.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00333,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-06T02:47:37.547289056Z"
+    },
+    {
+      "id": "GO-2026-6905",
+      "source": "OSV, for pkg:golang/github.com/blakesmith/ar@v0.0.0-20190502131153-809d4375e1fb in its image",
+      "title": "Forgejo: Panic on negative member size in Reader.Read in github.com/blakesmith/ar (in ar v0.0.0-20190502131153-809d4375e1fb)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6905",
+      "package": "forgejo",
+      "affected": [
+        "15.0.10-roostack.3",
+        "15.0.11-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-06T02:47:37.713198622Z"
+    },
+    {
+      "id": "GO-2026-6905",
+      "source": "OSV, for pkg:golang/github.com/blakesmith/ar@v0.0.0-20190502131153-809d4375e1fb in its image",
+      "title": "Gitea: Panic on negative member size in Reader.Read in github.com/blakesmith/ar (in ar v0.0.0-20190502131153-809d4375e1fb)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6905",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.3"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-06T02:47:37.713202748Z"
+    },
+    {
+      "id": "USN-9001-1",
+      "source": "OSV, for pkg:deb/ubuntu/ca-certificates@20260601~24.04.1?arch=all\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: ca-certificates update (in ca-certificates 20260601~24.04.1)",
+      "link": "https://osv.dev/vulnerability/USN-9001-1",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2"
+      ],
+      "fixed_upstream": "ca-certificates 20260311ubuntu0.26.04.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-06T02:47:38.373071468Z"
+    },
+    {
+      "id": "USN-9001-1",
+      "source": "OSV, for pkg:deb/ubuntu/ca-certificates@20260601~24.04.1?arch=all\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: ca-certificates update (in ca-certificates 20260601~24.04.1)",
+      "link": "https://osv.dev/vulnerability/USN-9001-1",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2"
+      ],
+      "fixed_upstream": "ca-certificates 20260311ubuntu0.26.04.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-06T02:47:38.373075474Z"
+    },
+    {
+      "id": "USN-9001-1",
+      "source": "OSV, for pkg:deb/ubuntu/ca-certificates@20260601~24.04.1?arch=all\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: ca-certificates update (in ca-certificates 20260601~24.04.1)",
+      "link": "https://osv.dev/vulnerability/USN-9001-1",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1"
+      ],
+      "fixed_upstream": "ca-certificates 20260311ubuntu0.26.04.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-06T02:47:38.373078418Z"
+    },
+    {
+      "id": "USN-9001-1",
+      "source": "OSV, for pkg:deb/ubuntu/ca-certificates@20260601~24.04.1?arch=all\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: ca-certificates update (in ca-certificates 20260601~24.04.1)",
+      "link": "https://osv.dev/vulnerability/USN-9001-1",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1"
+      ],
+      "fixed_upstream": "ca-certificates 20260311ubuntu0.26.04.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-06T02:47:38.373080641Z"
     }
   ]
 }
