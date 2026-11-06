@@ -1,0 +1,111 @@
+# Tests each update the Updates workflow proposes on a real lab (Roostack's
+# docs/REGISTRY-UPDATES.md): a throwaway Debian 13 VM on the runner installs
+# the released Roostack and the version labs have now, backs it up, updates
+# it through the service's page, and restores the backup, checking at each
+# step that every container is healthy and its address answers
+# (.github/update-test/). The steps are in the run's summary.
+#
+# If it passes, an official package's patch or rebuild merges by itself once
+# Publish's check has passed too, and only if the repository variable
+# UPDATES_AUTO_MERGE is "true" (.github/update-merge.sh). Everything else
+# waits for a person.
+#
+# Set up, as for the Updates workflow: the binary variables, naming Roostack
+# 0.1.5 or newer, and the secret WATCH_TOKEN (contents and pull requests
+# write), so that a merge starts Publish.
+name: Update test
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: The update's pull request number
+        required: true
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: update-test-${{ github.event.pull_request.number || inputs.pr }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    # Only the bot's branches, from this repository.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (startsWith(github.head_ref, 'update/') && github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    outputs:
+      pr: ${{ steps.what.outputs.pr }}
+      package: ${{ steps.what.outputs.package }}
+      to: ${{ steps.what.outputs.to }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Find what to test
+        id: what
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number || inputs.pr }}
+        run: |
+          branch=$(gh pr view "$PR" --json headRefName --jq .headRefName)
+          case $branch in update/*/*) ;; *) echo "::error::$branch isn't an update's branch"; exit 1 ;; esac
+          git fetch -q origin "$branch"
+          git checkout -q FETCH_HEAD
+          package=${branch#update/}; package=${package%%/*}
+          to=${branch##*/}
+          from=$(.github/update-test/from.sh "$package" "$to")
+          {
+            echo "pr=$PR"
+            echo "package=$package"
+            echo "to=$to"
+            echo "from=$from"
+          } >> "$GITHUB_OUTPUT"
+      - name: Allow KVM and install QEMU
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends qemu-system-x86 qemu-utils
+      - name: Install, back up, update and restore on a new lab
+        env:
+          PACKAGE: ${{ steps.what.outputs.package }}
+          FROM: ${{ steps.what.outputs.from }}
+          TO: ${{ steps.what.outputs.to }}
+        run: .github/update-test/run.sh "$PACKAGE" "$FROM" "$TO"
+
+  merge:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: vars.UPDATES_AUTO_MERGE == 'true'
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: services
+          fetch-depth: 0
+      - name: Get roostack (a release, checked by its SHA-256)
+        env:
+          URL: ${{ vars.ROOSTACK_BINARY_URL }}
+          SHA256: ${{ vars.ROOSTACK_BINARY_SHA256 }}
+        run: |
+          curl -fsSL --retry 3 -o roostack-bin "$URL"
+          echo "$SHA256  roostack-bin" | sha256sum -c -
+          chmod +x roostack-bin
+      - name: Merge it if it's an official package's patch or rebuild
+        working-directory: services
+        env:
+          GH_TOKEN: ${{ secrets.WATCH_TOKEN }}
+          PR: ${{ needs.test.outputs.pr }}
+          PACKAGE: ${{ needs.test.outputs.package }}
+          TO: ${{ needs.test.outputs.to }}
+        run: .github/update-merge.sh "$GITHUB_WORKSPACE/roostack-bin" "$PR" "$PACKAGE" "$TO"

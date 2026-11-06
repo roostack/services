@@ -47,7 +47,7 @@ jq -c '.updates[]' "$report" | while read -r u; do
 		(if .releases then "What'\''s new: \(.releases)\n\n" else "" end) +
 		"| Image | From | To |\n|---|---|---|\n" +
 		([.images[] | "| \(.container) | `\(.from | sub("@sha256:(?<d>.{12}).*"; "@sha256:\(.d)…"))` | `\(.to | sub("@sha256:(?<d>.{12}).*"; "@sha256:\(.d)…"))`\(if .rebuilt then " (rebuilt)" else "" end) |"] | join("\n")) +
-		"\n\nWritten by `roostack registry updates` from the newest version, \(.from): only the version and these images changed. Publish checks it like any package; nothing merges this until a person (or, later, the update test) says so."
+		"\n\nWritten by `roostack registry updates` from the newest version, \(.from): only the version and these images changed. Publish checks it like any package, and the Update test tries it on a lab."
 	' <<<"$u")
 	if [ "$pushed" = false ]; then
 		tree="../update-$pkg"
