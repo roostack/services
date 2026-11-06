@@ -4,7 +4,8 @@
 #
 # Pull requests: every package is checked (roostack registry index -check:
 # each package validated, the package policy applied, the image registries
-# asked for each image's processors), and what each added or changed
+# asked for each image's processors; an image gone fails the check only on
+# a version the pull request adds), and what each added or changed
 # package generates is shown in the run's summary, with the difference
 # from its previous version (.github/render-changes.sh); and each new
 # version's images are scanned with Syft and compared with its built_with
@@ -15,7 +16,10 @@
 # Nothing is signed, published or committed: the Bills of materials
 # workflow keeps the bills once merged.
 # main, and every day: the same, signed with the signing key, and published
-# with the page at the site's root.
+# with the page at the site's root. An image gone doesn't stop it, since
+# that's a project's doing and shouldn't hold up every other package: labs
+# won't be offered that version, and if it was the one they would have
+# been, an issue says so (.github/report-gone.sh).
 # Not for a push that changes only watch/ or boms/ (the Watch and Bills of
 # materials workflows' own commits), which the index doesn't use: with
 # WATCH_TOKEN, the watcher's hourly commit would otherwise publish a new
@@ -54,6 +58,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write   # .github/report-gone.sh, on main
     # The signing key is only in this environment, which only main can use.
     environment: ${{ github.event_name == 'pull_request' && 'check' || 'publish' }}
     steps:
@@ -79,7 +86,12 @@ jobs:
           tools/check-roostack.sh
       - name: Check the packages
         if: github.event_name == 'pull_request'
-        run: ./roostack-bin registry index -check -repo services
+        env:
+          BASE: origin/${{ github.base_ref }}
+        run: |
+          added=$(git -C services diff --name-only --diff-filter=A "$BASE...HEAD" -- 'packages/*/*.yaml' |
+            sed -nE '/registry\.yaml$/!s|^packages/([^/]+)/(.*)\.yaml$|\1@\2|p' | paste -sd, -)
+          ./roostack-bin registry index -check -repo services -new "$added"
       - name: Show what the changed packages generate
         if: github.event_name == 'pull_request'
         working-directory: services
@@ -101,7 +113,15 @@ jobs:
         if: github.event_name != 'pull_request'
         env:
           REGISTRY_SIGNING_KEY: ${{ secrets.REGISTRY_SIGNING_KEY }}
-        run: ./roostack-bin registry index -repo services -out site/v1 -commit "$GITHUB_SHA"
+        run: |
+          set -o pipefail
+          ./roostack-bin registry index -repo services -out site/v1 -commit "$GITHUB_SHA" | tee index.log
+      - name: Say which packages have lost their newest image
+        if: github.event_name != 'pull_request'
+        working-directory: services
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: .github/report-gone.sh ../index.log
       - name: Prepare the site
         if: github.event_name != 'pull_request'
         run: |
