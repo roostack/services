@@ -8,9 +8,9 @@
 # update is written from the newest version's file, on its own branch
 # (update/<package>/<version>), and opened as a pull request, labelled by
 # its kind as labs read it (update:patch, :minor, :major, :other, or
-# :revision for a rebuild); Publish checks it like any package. Nothing
-# merges itself yet: testing each update on a lab and merging official
-# patches and rebuilds is the next step (TASKS).
+# :revision for a rebuild); Publish checks it like any package, and the
+# Update test workflow tries it on a lab, then merges official patches and
+# rebuilds if UPDATES_AUTO_MERGE is on.
 #
 # Set up, as for the Watch workflow:
 # - the variables ROOSTACK_BINARY_URL and ROOSTACK_BINARY_SHA256 naming a
