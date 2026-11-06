@@ -1,0 +1,127 @@
+# Docmost: one container, Postgres, and Redis for its queues and live
+# editing. Uploads go to a folder. Single sign-on is in its paid editions,
+# not this free one, so people have Docmost's own accounts: this package
+# has no sso part. Image digest looked up 2026-11-06.
+schema: roostack/v1alpha1
+name: docmost
+title: Docmost
+description: A team wiki with live editing, spaces, comments and diagrams, an open alternative to Confluence and Notion
+version: 0.97.0-roostack.1
+
+about:
+  maker: Docmost
+  website: https://docmost.com
+  source: https://github.com/docmost/docmost
+  licence: AGPL-3.0-only
+  releases: https://github.com/docmost/docmost/releases/tag/v{version}
+  icon: icon.png
+  categories: [documents]
+  keywords: [wiki, documentation, knowledge base, notion alternative, confluence alternative, team]
+built_with: [node, postgres, redis]
+requires:
+  roostack: "0.1"
+
+settings:
+  # The workspace and its first administrator, made by the install hook
+  # below, so Docmost's setup page isn't left open for anyone.
+  - key: workspace_name
+    title: Name of your workspace
+    type: string
+    default: Our wiki
+    required: true
+    install_only: true
+  - key: admin_name
+    title: Your name
+    type: string
+    required: true
+    install_only: true
+  - key: admin_email
+    title: Your email address
+    description: For signing in to Docmost as its administrator
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack will forget it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: app_secret
+    title: Signing key
+    type: secret
+    generate: true               # signs sessions; kept across restarts
+
+containers:
+  app:
+    image: docker.io/docmost/docmost:0.97.0@sha256:40c454d74ffdd9ecb15833e4d96f3a630d59aad862a1869381ae6ee086454419
+    quadlet:
+      Container:
+        # Run as the image's node user, mapped to Roostack's user, so the
+        # data folder is its own.
+        User: "1000:1000"
+        UserNS: keep-id:uid=1000,gid=1000
+    env:
+      APP_URL: "{{ .Routes.web.URL }}"
+      REDIS_URL: "redis://{{ .Databases.cache.Host }}:6379"
+      STORAGE_DRIVER: local
+      DISABLE_TELEMETRY: "true"
+    secrets:
+      APP_SECRET: app_secret
+      DATABASE_URL: databases.main.url
+    mounts:
+      - { storage: data, path: /app/data/storage }
+    health:
+      http: { port: 3000, path: /api/health/live }
+    depends_on: [databases.main, databases.cache]
+    memory: 600 MB
+
+storage:
+  data:
+    title: Images and files in your pages
+    class: critical
+
+databases:
+  main:
+    type: postgres               # pages, history, accounts, settings
+  cache:
+    type: redis                  # queues and live editing
+    backup: false                # safe to lose: pages are saved to the database
+
+hooks:
+  # The workspace and administrator, as Docmost's setup page would send
+  # them. Safe to re-run: once a workspace exists it answers 403.
+  - on: install
+    container: app
+    env:
+      WORKSPACE_NAME: "{{ .Settings.workspace_name }}"
+      ADMIN_NAME: "{{ .Settings.admin_name }}"
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - node
+      - -e
+      - |
+        const body = JSON.stringify({ workspaceName: process.env.WORKSPACE_NAME, name: process.env.ADMIN_NAME,
+          email: process.env.ADMIN_EMAIL, password: process.env.ADMIN_PASSWORD })
+        fetch('http://localhost:3000/api/auth/setup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body })
+          .then(async (r) => {
+            if (r.status === 403) { console.log('Docmost is already set up.'); return }
+            if (!r.ok) { console.error('Setup failed:', r.status, await r.text()); process.exit(1) }
+            console.log('Docmost is set up.')
+          })
+          .catch((e) => { console.error('Docmost is not answering yet:', e.message); process.exit(1) })
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: docmost
+    exposure: private
+    max_body_size: 50MB          # its own limit for an upload
+    public:
+      login_paths:
+        - /api/auth/login
+        - /api/auth/forgot-password
+        - /api/auth/password-reset

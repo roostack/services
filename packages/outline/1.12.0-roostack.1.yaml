@@ -1,0 +1,114 @@
+# Outline: one container, Postgres, and Redis for its queues. It has no
+# sign-in of its own: people sign in through the lab's sign-in page, so
+# single sign-on is required, and Outline makes each person's account the
+# first time they sign in, the first of them its administrator. Uploads go
+# to a folder (FILE_STORAGE=local), so no S3 store is needed.
+# Image digest looked up 2026-11-06.
+schema: roostack/v1alpha1
+name: outline
+title: Outline
+description: A fast, polished team wiki with live editing, for documents people write together
+version: 1.12.0-roostack.1
+
+about:
+  maker: General Outline, Inc.
+  website: https://www.getoutline.com
+  source: https://github.com/outline/outline
+  # Not open source: free to run for yourself, but not to sell as a service
+  # to others; each release becomes Apache-2.0 after four years.
+  licence: BUSL-1.1
+  releases: https://github.com/outline/outline/releases/tag/v{version}
+  icon: icon.png
+  categories: [documents]
+  keywords: [wiki, documentation, knowledge base, notion alternative, markdown, team]
+built_with: [node, postgres, redis]
+requires:
+  roostack: "0.1.4"              # sso.required
+
+settings:
+  - key: secret_key
+    title: Encryption key
+    type: secret
+    generate: true               # encrypts secrets in its database; kept across restarts
+  - key: utils_secret
+    title: Internal signing key
+    type: secret
+    generate: true               # signs its scheduled jobs; kept across restarts
+
+containers:
+  app:
+    image: docker.io/outlinewiki/outline:1.12.0@sha256:25d6a2ced2f1f0cf03c09abd776d87ba31941ed96d3a99992aa84b3bd0afc074
+    quadlet:
+      Container:
+        # Run as the image's nodejs user, mapped to Roostack's user, so the
+        # data folder is its own. Outline wants SECRET_KEY as 32 bytes in
+        # hex; Roostack's generated secret is 32 bytes in URL-safe base64.
+        # The shell converts it, then starts the image's own command.
+        User: "1001:1001"
+        UserNS: keep-id:uid=1001,gid=1001
+        Entrypoint: /bin/sh
+    command:                     # one line: Quadlet's Exec takes no line breaks
+      - -c
+      - export SECRET_KEY="$(node -p "Buffer.from(process.env.GENERATED_KEY,'base64url').toString('hex')")"; unset GENERATED_KEY; exec node build/server/index.js
+    env:
+      URL: "{{ .Routes.web.URL }}"
+      PORT: "3000"
+      REDIS_URL: "redis://{{ .Databases.cache.Host }}:6379"
+      PGSSLMODE: disable         # the database is on the service's own network
+      FORCE_HTTPS: "false"       # Caddy serves HTTPS and redirects
+      FILE_STORAGE: local
+      ENABLE_UPDATES: "false"    # don't report to Outline's servers
+    secrets:
+      GENERATED_KEY: secret_key
+      UTILS_SECRET: utils_secret
+      DATABASE_URL: databases.main.url
+    mounts:
+      - { storage: data, path: /var/lib/outline/data }
+    health:
+      http: { port: 3000, path: /_health }
+    depends_on: [databases.main, databases.cache]
+    memory: 500 MB
+
+storage:
+  data:
+    title: Images and files in your documents
+    class: critical
+
+databases:
+  main:
+    type: postgres               # documents, history, accounts, settings
+  cache:
+    type: redis                  # its queues
+    backup: false                # safe to lose: at most a pending notification
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: outline
+    exposure: private
+    max_body_size: 250MB         # its own limit for an upload
+    public:
+      login_paths:
+        - /auth/oidc
+        - /auth/oidc.callback
+
+sso:
+  required: true
+  oidc:
+    route: web
+    redirect_paths: [/auth/oidc.callback]
+    start_path: /auth/oidc
+    existing_accounts: email
+  env:
+    app:
+      OIDC_CLIENT_ID: "{{ .SSO.ClientID }}"
+      OIDC_AUTH_URI: "{{ .SSO.AuthorizeURL }}"
+      OIDC_TOKEN_URI: "{{ .SSO.TokenURL }}"
+      OIDC_USERINFO_URI: "{{ .SSO.UserinfoURL }}"
+      OIDC_DISPLAY_NAME: "{{ .SSO.ProviderName }}"
+      OIDC_DISABLE_REDIRECT: "true"  # signing out stays signed out, rather than straight back in
+  secrets:
+    app:
+      OIDC_CLIENT_SECRET: sso.client_secret
+  note: Outline makes the first person who signs in its administrator, so sign in yourself first. Everyone else you allow on this page will get an ordinary account when they first sign in.
