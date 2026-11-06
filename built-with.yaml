@@ -62,6 +62,11 @@
   about: A PHP web framework.
   purls: ["pkg:composer/laravel/framework"]
   cpes: ["cpe:2.3:a:laravel:framework:*:*:*:*:*:*:*:*"]
+- name: nginx
+  title: nginx
+  about: A web server, in front of the app inside its container.
+  purls: []
+  cpes: ["cpe:2.3:a:f5:nginx:*:*:*:*:*:*:*:*", "cpe:2.3:a:nginx:nginx:*:*:*:*:*:*:*:*"]
 - name: nextjs
   title: Next.js
   about: A React framework for Node.js.
