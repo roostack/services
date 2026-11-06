@@ -19,7 +19,7 @@ about:
   keywords: [wiki, documentation, knowledge base, notion alternative, confluence alternative, team]
 built_with: [node, postgres, redis]
 requires:
-  roostack: "0.1"
+  roostack: "0.1.5"              # sso.forward_auth.own_sign_in
 
 settings:
   # The workspace and its first administrator, made by the install hook
@@ -125,3 +125,11 @@ routes:
         - /api/auth/login
         - /api/auth/forgot-password
         - /api/auth/password-reset
+
+# Docmost's single sign-on is in its paid tier, so this is a wall in front of
+# its own sign-in (SPEC.md §5.2): only the people you choose can reach it.
+sso:
+  forward_auth:
+    route: web
+    own_sign_in: true
+  note: Links to pages shared publicly from Docmost, and anything using its API, won't work without signing in here while this is on.
