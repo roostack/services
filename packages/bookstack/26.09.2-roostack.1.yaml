@@ -1,0 +1,164 @@
+# BookStack: one container (LinuxServer.io's image: nginx and PHP-FPM under
+# s6) and MariaDB. Pages live in the database, uploads in a folder. It's
+# organised as shelves, books, chapters and pages. The image's first start
+# makes a default administrator with a well-known password; the install
+# hook replaces those details before anyone can use them.
+# Image digest looked up 2026-11-06.
+schema: roostack/v1alpha1
+name: bookstack
+title: BookStack
+description: A simple wiki organised like a library, with shelves, books, chapters and pages
+version: 26.09.2-roostack.1
+
+about:
+  maker: Dan Brown and contributors
+  website: https://www.bookstackapp.com
+  source: https://github.com/BookStackApp/BookStack
+  licence: MIT
+  releases: https://www.bookstackapp.com/blog/bookstack-release-v{version}/
+  support: https://www.bookstackapp.com/donate/
+  icon: icon.png
+  categories: [documents]
+  keywords: [wiki, documentation, knowledge base, books, confluence alternative, markdown]
+built_with: [php, laravel, nginx]
+requires:
+  roostack: "0.1.3"              # sso.oidc.start_path
+
+settings:
+  # The administrator, set by the install hook below.
+  - key: admin_name
+    title: Your name
+    type: string
+    required: true
+    install_only: true
+  - key: admin_email
+    title: Your email address
+    description: For signing in to BookStack as its administrator
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack will forget it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: app_key
+    title: Encryption key
+    type: secret
+    generate: true               # Laravel's APP_KEY; kept across restarts
+
+containers:
+  app:
+    image: ghcr.io/linuxserver/bookstack:v26.09.2-ls295@sha256:33f61a72d9aaa021f7e687987b9fcb992673d9ca3fc08f63f5ddaddf59e94efc
+    quadlet:
+      Container:
+        # No UserNS=keep-id: the image's init (s6) must start as the
+        # container's root and switch to its abc user. Its files belong to
+        # one of Roostack's sub-UIDs; backups read them inside the user
+        # namespace. BookStack wants APP_KEY as Laravel writes it, "base64:"
+        # and 32 bytes in standard base64; Roostack's generated secret is
+        # 32 bytes in URL-safe base64 without padding. The shell converts
+        # it, then starts the image's own init.
+        Entrypoint: /bin/sh
+    command:                     # one line: Quadlet's Exec takes no line breaks
+      - -c
+      - export APP_KEY="base64:$(printf %s "$GENERATED_KEY" | tr '_-' '/+')="; unset GENERATED_KEY; exec /init
+    env:
+      PUID: "1000"
+      PGID: "1000"
+      APP_URL: "{{ .Routes.web.URL }}"
+      APP_TIMEZONE: "{{ .Lab.TimeZone }}"
+      # Only Roostack's proxy reaches the container's port, and it sets
+      # X-Forwarded-For to the visitor's address, for BookStack's logs.
+      APP_PROXIES: "*"
+      DB_HOST: "{{ .Databases.main.Host }}"
+      DB_PORT: "{{ .Databases.main.Port }}"
+      DB_DATABASE: "{{ .Databases.main.Name }}"
+      DB_USERNAME: "{{ .Databases.main.User }}"
+    secrets:
+      GENERATED_KEY: app_key
+      DB_PASSWORD: databases.main.password
+    mounts:
+      - { storage: config, path: /config }
+    health:
+      http: { port: 80, path: /status }
+    depends_on: [databases.main]
+    memory: 250 MB
+
+storage:
+  config:
+    title: Images and files in your pages, and BookStack's settings
+    class: critical
+
+databases:
+  main:
+    type: mariadb                # pages, revisions, accounts, settings
+
+hooks:
+  # Replaces the default administrator's details, through BookStack's own
+  # command, run as the user BookStack runs as, with the container's
+  # settings. Those are what with-contenv loads, and it clears everything
+  # else, so this hook's values go in as arguments, read before it runs.
+  # The account's external ID is the email address, so someone signing in
+  # through the lab with that address reaches this account. Safe to re-run:
+  # --initial does nothing once the default administrator's details have
+  # changed. Its first try can come while the first start is still making
+  # the database; Roostack tries again.
+  - on: install
+    container: app
+    env:
+      ADMIN_NAME: "{{ .Settings.admin_name }}"
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cd /app/www
+        exec /command/with-contenv s6-setuidgid abc php artisan bookstack:create-admin --initial --no-interaction \
+          --name="$ADMIN_NAME" --email="$ADMIN_EMAIL" --password="$ADMIN_PASSWORD" --external-auth-id="$ADMIN_EMAIL"
+
+routes:
+  web:
+    container: app
+    port: 80
+    subdomain: bookstack
+    exposure: private
+    max_body_size: 100MB         # the image's limit for an upload
+    public:
+      login_paths:
+        - /login
+        - /oidc/login
+        - /oidc/callback
+        - /password/email
+        - /mfa/verify
+
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/oidc/callback]
+    groups:
+      users: editor              # BookStack's roles, by name
+      admins: admin
+    admins: true
+    existing_accounts: email
+  env:
+    app:
+      AUTH_METHOD: oidc
+      AUTH_AUTO_INITIATE: "true"      # no button of its own to press first
+      OIDC_NAME: "{{ .SSO.ProviderName }}"
+      OIDC_ISSUER: "{{ .SSO.Issuer }}"
+      OIDC_ISSUER_DISCOVER: "true"
+      OIDC_CLIENT_ID: "{{ .SSO.ClientID }}"
+      OIDC_DISPLAY_NAME_CLAIMS: name
+      OIDC_EXTERNAL_ID_CLAIM: email   # as the install hook's account has
+      OIDC_USER_TO_GROUPS: "true"
+      OIDC_GROUPS_CLAIM: groups
+      OIDC_ADDITIONAL_SCOPES: groups
+      OIDC_REMOVE_FROM_GROUPS: "true"
+  secrets:
+    app:
+      OIDC_CLIENT_SECRET: sso.client_secret
+  note: While it's on, BookStack's own passwords don't work. API tokens still do.

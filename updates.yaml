@@ -4,6 +4,10 @@
 # docs/REGISTRY-UPDATES.md says what each rule does. The index's build
 # doesn't read this file, so a rule never changes what labs see.
 packages:
+  bookstack:
+    tags:
+      app: "v{version}-ls*"
+    reason: LinuxServer.io's tags end in their own build number (v26.09.2-ls295).
   forgejo:
     track: minor
     reason: >-
@@ -17,3 +21,8 @@ packages:
     tags:
       app: "{version}-*"
     reason: Plex's tags end in a build hash (1.43.4.10903-e5521bd8c).
+  wiki-js:
+    track: minor
+    reason: >-
+      The package is the 2.x line. 3.x is its own package, wiki-js-3, as
+      there's no upgrade between them, only Wiki.js's own export and import.
