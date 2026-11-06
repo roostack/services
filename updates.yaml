@@ -10,6 +10,9 @@ packages:
       The package follows Forgejo's long-term support line, 15, until 19
       (April 2027); 17 had an upstream "don't upgrade" warning (Roostack's
       TASKS).
+  hedgedoc:
+    ignore: [1.12.1, 1.12.2]
+    reason: The project took these back on 2026-11-05 and returned to 1.12.0.
   plex:
     tags:
       app: "{version}-*"
