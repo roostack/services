@@ -259,11 +259,28 @@ def has_backup():
         return re.search(r"^(storage|databases):", f.read(), re.M) is not None
 
 
+def wait_job(job, since, deadline_minutes):
+    """Waits for one of Roostack's jobs to end, and says whether it failed."""
+    deadline = time.time() + float(os.environ.get("UPDATE_TEST_MINUTES", deadline_minutes)) * 60
+    while time.time() < deadline:
+        log = vm(f"sudo journalctl -u roostack --since {shlex.quote(since)} --no-pager -o cat | grep -F 'job=\"{job}\"' || true")
+        if 'msg="job failed"' in log:
+            raise Failed(f"{job}: {log.strip()[-500:]}")
+        if 'msg="job finished"' in log:
+            return
+        time.sleep(5)
+    raise Failed(f"{job} didn't finish in time")
+
+
 def update(b):
     add_package(a.to)
+    with open(os.path.join(a.repo, "packages", a.package, f"{a.to}.yaml")) as f:
+        title = re.search(r"^title: *(.+?) *$", f.read(), re.M).group(1).strip("\"'")
+    since = vm("date '+%Y-%m-%d %H:%M:%S'").strip()
     where, page, status = b.go(f"/services/{a.package}/update", {"to": a.to, "accept_risks": "on"})
     if status >= 400 or "UpdateError" in page:
         raise Failed(f"the update page said: {status} {error_of(page)}")
+    wait_job(f"Updating {title}", since, 25)
     wait_healthy(25, a.to)
 
 
