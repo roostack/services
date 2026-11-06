@@ -1,0 +1,236 @@
+# Gokapi: one container. Its settings are a JSON file that Roostack
+# writes; its uploads' details are in SQLite, the files themselves on the
+# large data disk.
+#
+# Gokapi's own setup page runs only while it has no config.json. Roostack
+# writes one before Gokapi first starts, so that page never runs: the
+# administrator comes from the install hook instead, and the address stays
+# private until that hook has succeeded.
+#
+# Gokapi hashes passwords with its admin salt, and always makes a new one
+# when it makes an account from outside its web pages (--deployment-password),
+# so that salt is Gokapi's own: the install hook keeps it in Gokapi's
+# folder, and the container puts it into Roostack's file as it starts.
+# The salt for files' passwords is Roostack's.
+# Image digest looked up 2026-10-31.
+schema: roostack/v1alpha1
+name: gokapi
+title: Gokapi
+description: Shares files with links that expire after a number of downloads or days, and asks people to send you files
+version: 2.2.4-roostack.2
+
+about:
+  maker: Marc Bulling (Forceu) and contributors
+  website: https://gokapi.readthedocs.io/
+  source: https://github.com/Forceu/Gokapi
+  # Its README says "AGPL3" and gives no "or later": read as -only.
+  licence: AGPL-3.0-only
+  releases: https://github.com/Forceu/Gokapi/releases/tag/v{version}
+  # A placeholder, not Gokapi's logo: the project states no terms for
+  # using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [documents, productivity]
+  keywords: [file sharing, file transfer, send files, file requests, upload, share links, expiring links, wetransfer]
+built_with: [go]
+requires:
+  roostack: "0.1.3"              # sso.oidc.start_path
+
+settings:
+  # The administrator, made by the install hook below. Gokapi has no
+  # sign-up page: the administrator adds people, or they come from the
+  # lab's sign-in once single sign-on is on.
+  - key: admin_email
+    title: Administrator's email address
+    description: Also how they're known when single sign-on is on, so use the one they have in the lab.
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: salt_files
+    title: Salt for files' passwords
+    type: secret
+    generate: true
+
+containers:
+  app:
+    image: docker.io/f0rc3/gokapi:v2.2.4@sha256:43cd93b9e1f02d760923f67f6e74e1c4d4a9cccb9b08fa42ad60770333f231eb
+    # Waits for the install hook to have made the administrator (Gokapi
+    # stops at once without one), then starts Gokapi with Roostack's
+    # settings and its own admin salt. Gokapi reads its config from
+    # /app/config, inside the container, so nothing it writes there
+    # changes Roostack's file.
+    # (One line: Quadlet's Exec= takes no line breaks.)
+    command:
+      - /bin/sh
+      - -c
+      - >-
+        s=/app/state/salt-admin;
+        [ -s $s ] || echo 'Waiting for Roostack to make the administrator.';
+        until [ -s $s ]; do sleep 2; done;
+        mkdir -p /app/config &&
+        sed "s/@gokapi-salt-admin@/$(cat $s)/" /roostack/config.json > /app/config/config.json &&
+        exec /app/gokapi
+    env:
+      GOKAPI_DATA_DIR: /app/data
+      GOKAPI_CONFIG_DIR: /app/config
+    mounts:
+      - { storage: settings, path: /roostack, readonly: true }
+      - { storage: state, path: /app/state }
+      - { storage: files, path: /app/data }
+    health:
+      http: { port: 53842, path: /login }
+    memory: 50 MB                # 25 MB in use, measured 2026-10-31
+    quadlet:
+      Service:
+        # While single sign-on is on, Gokapi reads the sign-in page's
+        # configuration as it starts and stops if it can't (as at boot,
+        # before the page answers): try again every 10 seconds rather
+        # than give up after systemd's five quick tries.
+        RestartSec: "10"
+
+storage:
+  settings:
+    title: Its settings file, which Roostack writes
+    class: replaceable
+  state:
+    title: Accounts, and who has shared what
+    class: critical
+  files:
+    title: The files people share
+    class: critical
+    location: media              # the large data disk, if one is configured
+
+databases:
+  main:
+    type: sqlite
+    path: state/gokapi.sqlite
+
+config_files:
+  config:
+    title: Gokapi's settings
+    storage: settings
+    path: config.json
+    format: json
+    # Gokapi's own fields (models.Configuration in 2.2.4), at ConfigVersion
+    # 22 so it has nothing to upgrade. Uploads are kept as they are: the
+    # lab's backups are encrypted already, and Gokapi's own encryption
+    # would need a password typed at each start.
+    content: |
+      {
+        "Authentication": {
+          {{- if .SSO.Enabled }}
+          "Method": 1,
+          {{- else }}
+          "Method": 0,
+          {{- end }}
+          "SaltAdmin": "@gokapi-salt-admin@",
+          "SaltFiles": {{ .Secrets.salt_files }},
+          {{- /* Read only by the install hook's --deployment-password; Gokapi
+          just checks it has 3 letters, so a reinstall over kept data, which
+          isn't asked for the email again, still starts. */}}
+          "Username": {{ json (or .Settings.admin_email "administrator") }},
+          "HeaderKey": "",
+          {{- if .SSO.Enabled }}
+          "OauthProvider": {{ json .SSO.Issuer }},
+          "OAuthClientId": {{ json .SSO.ClientID }},
+          "OAuthClientSecret": {{ .SSO.ClientSecret }},
+          "OauthGroupScope": "groups",
+          "OAuthRecheckInterval": 12,
+          "OAuthGroups": [{{ json .SSO.UserGroup }}],
+          {{- else }}
+          "OauthProvider": "",
+          "OAuthClientId": "",
+          "OAuthClientSecret": "",
+          "OauthGroupScope": "",
+          "OAuthRecheckInterval": 12,
+          "OAuthGroups": [],
+          {{- end }}
+          "OnlyRegisteredUsers": false
+        },
+        "Port": ":53842",
+        "ServerUrl": {{ json (printf "%s/" .Routes.web.URL) }},
+        "RedirectUrl": {{ json (printf "%s/admin" .Routes.web.URL) }},
+        "PublicName": "Gokapi",
+        "DataDir": "/app/data",
+        "DatabaseUrl": "sqlite:///app/state/gokapi.sqlite",
+        "ConfigVersion": 22,
+        "MaxFileSizeMB": 10240,
+        "MaxMemory": 50,
+        "ChunkSize": 45,
+        "MaxParallelUploads": 3,
+        "Encryption": { "Level": 0, "Cipher": null, "Salt": "", "Checksum": "", "ChecksumSalt": "" },
+        "UseSsl": false,
+        "PicturesAlwaysLocal": false,
+        "SaveIp": false,
+        "IncludeFilename": false
+      }
+
+hooks:
+  # The administrator, through Gokapi's own --deployment-password on a
+  # copy of the settings: Gokapi makes the account, with a new admin salt
+  # it writes into the copy, which is kept in Gokapi's folder for the
+  # container to use. Safe to re-run: once the salt is kept, the
+  # administrator exists.
+  - on: install
+    title: Make the administrator
+    container: app
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - /bin/sh
+      - -c
+      - |
+        salt=/app/state/salt-admin
+        if [ -s "$salt" ]; then
+          echo 'The administrator already exists.'
+          exit 0
+        fi
+        set -e
+        umask 077
+        tmp=$(mktemp -d)
+        trap 'rm -rf "$tmp"' EXIT
+        sed 's/@gokapi-salt-admin@//' /roostack/config.json > "$tmp/config.json"
+        /app/gokapi --config "$tmp/config.json" --deployment-password "$ADMIN_PASSWORD" >/dev/null
+        made=$(sed -n 's/.*"SaltAdmin": *"\([A-Za-z0-9]*\)".*/\1/p' "$tmp/config.json")
+        # (No ${…} here: systemd-run, which runs hooks, would expand it.)
+        printf '%s' "$made" | grep -Eq '^[A-Za-z0-9]{20,}$' || { echo "Gokapi didn't make its admin salt." >&2; exit 1; }
+        printf '%s' "$made" > "$salt.new"
+        mv "$salt.new" "$salt"
+        echo 'The administrator is made.'
+
+routes:
+  web:
+    container: app
+    port: 53842
+    subdomain: files
+    exposure: private
+    max_body_size: 100MB         # uploads come in 45 MB chunks
+    # Gokapi shows files only to someone with their link, and never as a
+    # page: downloads are attachments, and only images (image/* with an
+    # image's extension, never SVG) have a hotlink shown in the browser,
+    # with Content-Security-Policy: sandbox. An .html sent as image/png
+    # comes back as image/png (checked 2026-10-31). It sends no nosniff,
+    # which the package format can't add yet.
+    public:
+      login_paths:
+        - /login
+
+# Single sign-on (SPEC.md §5.2): Gokapi signs people in through OIDC with
+# the provider's configuration, by their email address, making an account
+# at their first sign-in. It takes one way of signing in at a time, so
+# while single sign-on is on, the administrator signs in through the lab
+# too, with the email address given at install. Gokapi has no groups for
+# its administrators: the administrator makes others administrators in
+# Gokapi.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/oauth-callback]
+    start_path: /oauth-login
+    existing_accounts: email
+  note: While it's on, everyone signs in through the lab, the administrator too, with the email address given at install. Passwords made in Gokapi stop working until it's off. The command-line uploader keeps using API keys made in Gokapi.
