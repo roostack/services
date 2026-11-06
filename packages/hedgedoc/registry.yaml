@@ -3,3 +3,10 @@
 tier: official
 maintainers:
   - roostack
+withdrawals:
+  - version: 1.12.1-roostack.1
+    level: warning
+    reason: HedgeDoc's project took 1.12.1 and 1.12.2 back and returned to 1.12.0. Its image is gone, so this version can't be installed again.
+  - version: 1.12.1-roostack.2
+    level: warning
+    reason: HedgeDoc's project took 1.12.1 and 1.12.2 back and returned to 1.12.0. Its image is gone, so this version can't be installed again.
