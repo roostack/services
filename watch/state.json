@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-06T02:47:09.359219389Z",
+  "last_run": "2026-11-06T18:22:54.090770882Z",
   "seen": {
     "BIT-golang-2022-1705": "digest",
     "BIT-golang-2022-1962": "digest",
@@ -2320,6 +2320,7 @@
     "RUSTSEC-2026-0406": "digest",
     "RUSTSEC-2026-0410": "digest",
     "RUSTSEC-2026-0440": "digest",
+    "RUSTSEC-2026-0444": "digest",
     "SNYK-JS-PASSPORT-2840631": "digest",
     "TROVE-2025-013": "digest",
     "UBUNTU-CVE-2013-1438": "digest",
@@ -91345,6 +91346,30 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-06T02:47:38.373080641Z"
+    },
+    {
+      "id": "RUSTSEC-2026-0444",
+      "source": "OSV, for pkg:cargo/astral-tl@0.8.0 in its image",
+      "title": "Paperless-ngx: `astral-tl` is unmaintained (in astral-tl 0.8.0)",
+      "link": "https://osv.dev/vulnerability/RUSTSEC-2026-0444",
+      "package": "paperless-ngx",
+      "affected": [
+        "3.3.2-roostack.3"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-06T18:23:23.003078861Z"
     }
   ]
 }
