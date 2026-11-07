@@ -133,4 +133,13 @@ jobs:
             exit 0
           fi
           git add watch/state.json
-          git diff --cached --quiet || { git commit -q -m "Watcher: what it has seen" && git push -q origin HEAD:main; }
+          git diff --cached --quiet && exit 0
+          git commit -q -m "Watcher: what it has seen"
+          # A merge can land on main while the watcher runs: only this file
+          # is new here, so it goes on top of what's there.
+          for _ in 1 2 3; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0
+            sleep 15
+          done
+          echo "::error::Couldn't push the watcher's state to main"
+          exit 1
