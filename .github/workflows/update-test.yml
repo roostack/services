@@ -61,8 +61,9 @@ jobs:
           to=${branch##*/}
           # The scripts stay main's, as a branch can be older than they are
           # and shouldn't get to change them: only its package is taken.
-          git fetch -q origin main "$branch"
+          git fetch -q origin main
           git checkout -q origin/main
+          git fetch -q origin "$branch"
           git checkout -q FETCH_HEAD -- "packages/$package"
           from=$(.github/update-test/from.sh "$package" "$to")
           {
