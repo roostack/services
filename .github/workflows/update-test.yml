@@ -47,6 +47,8 @@ jobs:
       to: ${{ steps.what.outputs.to }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
       - name: Find what to test
         id: what
         env:
@@ -55,10 +57,13 @@ jobs:
         run: |
           branch=$(gh pr view "$PR" --json headRefName --jq .headRefName)
           case $branch in update/*/*) ;; *) echo "::error::$branch isn't an update's branch"; exit 1 ;; esac
-          git fetch -q origin "$branch"
-          git checkout -q FETCH_HEAD
           package=${branch#update/}; package=${package%%/*}
           to=${branch##*/}
+          # The scripts stay main's, as a branch can be older than they are
+          # and shouldn't get to change them: only its package is taken.
+          git fetch -q origin main "$branch"
+          git checkout -q origin/main
+          git checkout -q FETCH_HEAD -- "packages/$package"
           from=$(.github/update-test/from.sh "$package" "$to")
           {
             echo "pr=$PR"
