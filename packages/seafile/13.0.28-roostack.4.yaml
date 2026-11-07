@@ -1,0 +1,305 @@
+# Seafile Community Edition: one container (Seafile's own image, with
+# nginx inside mapping /, /seafhttp, and /seafdav), MariaDB with the three
+# databases it wants for one user, and Redis as its cache. Left out: the
+# official Compose file's Caddy (Roostack's replaces it), SeaDoc (its own
+# container, amd64 only), and the notification server.
+#
+# Its address and databases come from the environment; everything else
+# from seahub_settings.py, which Seafile makes on its first start with its
+# own SECRET_KEY: Roostack adds its lines at the end, and keeps them up to
+# date, leaving Seafile's alone.
+# Image digest looked up 2026-10-31.
+schema: roostack/v1alpha1
+name: seafile
+title: Seafile
+description: Keeps your files in sync across computers and phones, with share links and upload links
+version: 13.0.28-roostack.4
+
+about:
+  maker: Seafile Ltd
+  website: https://www.seafile.com/en/home/
+  source: https://github.com/haiwen/seafile-server
+  # The server is AGPL-3.0 with an OpenSSL exception, the web pages
+  # (seahub) Apache-2.0: read as AGPL-3.0-only (the maintainer,
+  # 2026-10-30).
+  licence: AGPL-3.0-only
+  releases: https://manual.seafile.com/13.0/changelog/server-changelog/
+  # A placeholder, not Seafile's logo: the project states no terms for
+  # using it. Replace before go-live (Roostack's TASKS).
+  icon: icon.png
+  categories: [documents, productivity]
+  keywords: [file sync, file sharing, cloud storage, dropbox, share links, upload links, webdav, desktop sync]
+built_with: [python, django, go]
+requires:
+  roostack: "0.1.3"              # sso.oidc.start_path
+
+settings:
+  # The administrator. Seafile makes it on its first start from the
+  # environment, where only a password Roostack generates can go; the
+  # install hook then gives it the password typed here.
+  - key: admin_email
+    title: Administrator's email address
+    description: How they sign in to Seafile.
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: first_admin_password
+    title: Administrator's first password, replaced at install
+    type: secret
+    generate: true
+  - key: jwt_private_key
+    title: Key Seafile signs its tokens with
+    type: secret
+    generate: true
+
+  # Links (the maintainer, 2026-10-30): share links expire after 7 days
+  # unless someone chooses up to 90, upload links after 7 and at most 30.
+  - key: share_link_days
+    title: Share links expire after, in days
+    description: Someone sharing can choose another time, up to the longest below.
+    type: int
+    default: 7
+  - key: share_link_days_max
+    title: Longest a share link can last, in days
+    type: int
+    default: 90
+  - key: upload_link_days
+    title: Upload links expire after, in days
+    description: Anyone with an upload link can add files to the folder it's for, counted against its owner's space.
+    type: int
+    default: 7
+  - key: upload_link_days_max
+    title: Longest an upload link can last, in days
+    type: int
+    default: 30
+  - key: share_link_password
+    title: Require passwords on share links
+    type: bool
+    default: false
+  - key: report_abuse
+    title: Show a Report abuse button on shared files
+    type: bool
+    default: true
+
+containers:
+  app:
+    image: docker.io/seafileltd/seafile-mc:13.0.28@sha256:b0c90832126bf432db908449f1bb450211e6bbf75a2193bab3399e2a9636eccf
+    env:
+      # Its address. The lab's address is always https; until it has one
+      # Seafile can't make working links anyway, and its first start stops
+      # at "localhost is not a valid ip or domain", so it's given an IP.
+      SEAFILE_SERVER_HOSTNAME: '{{ if eq .Routes.web.Host "localhost" }}127.0.0.1{{ else }}{{ .Routes.web.Host }}{{ end }}'
+      SEAFILE_SERVER_PROTOCOL: https
+      TIME_ZONE: "{{ .Lab.TimeZone }}"
+      # The databases, which Roostack makes: Seafile's setup uses them as
+      # they are (USE_EXISTING_DB) rather than asking for MariaDB's root.
+      SEAFILE_MYSQL_DB_HOST: "{{ .Databases.main.Host }}"
+      SEAFILE_MYSQL_DB_PORT: "{{ .Databases.main.Port }}"
+      SEAFILE_MYSQL_DB_USER: "{{ .Databases.main.User }}"
+      SEAFILE_MYSQL_DB_SEAFILE_DB_NAME: "{{ .Databases.main.Name }}"
+      SEAFILE_MYSQL_DB_CCNET_DB_NAME: "{{ .Databases.main.Schemas.ccnet }}"
+      SEAFILE_MYSQL_DB_SEAHUB_DB_NAME: "{{ .Databases.main.Schemas.seahub }}"
+      USE_EXISTING_DB: "1"
+      CACHE_PROVIDER: redis
+      REDIS_HOST: "{{ .Databases.cache.Host }}"
+      REDIS_PORT: "6379"
+      INIT_SEAFILE_ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+      ENABLE_SEADOC: "false"
+      ENABLE_NOTIFICATION_SERVER: "false"
+      SEAFILE_LOG_TO_STDOUT: "true"
+    secrets:
+      SEAFILE_MYSQL_DB_PASSWORD: databases.main.password
+      JWT_PRIVATE_KEY: jwt_private_key
+      # Never left to the image's default (asecret): read only while
+      # Seafile has no accounts, then replaced by the install hook.
+      INIT_SEAFILE_ADMIN_PASSWORD: first_admin_password
+    mounts:
+      - { storage: data, path: /shared }
+      - { storage: logs, path: /shared/seafile/logs }
+    health:
+      http: { port: 80, path: /api2/ping/ }
+    depends_on: [databases.main, databases.cache]
+    memory: 700 MB               # 644 MB in use, measured 2026-10-31
+
+storage:
+  # conf/ (its settings and SECRET_KEY), seafile-data/ (the libraries, as
+  # blocks shared between files and versions, not plain files) and
+  # seahub-data/ (avatars, and thumbnails it can make again). Seafile moves
+  # them here on its first start, so they can't be storage of their own.
+  data:
+    title: Your libraries, and Seafile's settings
+    class: critical
+    location: media              # the large data disk, if one is configured
+  logs:
+    title: Its logs
+    class: replaceable
+
+databases:
+  main:
+    type: mariadb                # the seafile database; ccnet and seahub beside it
+    schemas: [ccnet, seahub]
+  cache:
+    type: redis
+    backup: false                # a cache: Seafile fills it again
+
+config_files:
+  seahub:
+    title: Seafile's web settings
+    storage: data
+    path: seafile/conf/seahub_settings.py
+    format: python
+    block: true
+    content: |
+      # Settings come from this file only, not from the admin pages.
+      ENABLE_SETTINGS_VIA_WEB = False
+      ENABLE_SIGNUP = False
+      CSRF_TRUSTED_ORIGINS = [{{ json .Routes.web.URL }}]
+
+      SHARE_LINK_EXPIRE_DAYS_DEFAULT = {{ .Settings.share_link_days }}
+      SHARE_LINK_EXPIRE_DAYS_MAX = {{ .Settings.share_link_days_max }}
+      UPLOAD_LINK_EXPIRE_DAYS_DEFAULT = {{ .Settings.upload_link_days }}
+      UPLOAD_LINK_EXPIRE_DAYS_MAX = {{ .Settings.upload_link_days_max }}
+      SHARE_LINK_FORCE_USE_PASSWORD = {{ if .Settings.share_link_password }}True{{ else }}False{{ end }}
+      ENABLE_SHARE_LINK_REPORT_ABUSE = {{ if .Settings.report_abuse }}True{{ else }}False{{ end }}
+      {{- if .SSO.Enabled }}
+
+      # Single sign-on through the lab's sign-in page (OAuth2 with its
+      # addresses: Community Edition doesn't read OIDC discovery). The
+      # provider's name keeps people linked if the lab's address changes.
+      ENABLE_OAUTH = True
+      OAUTH_CREATE_UNKNOWN_USER = True
+      OAUTH_ACTIVATE_USER_AFTER_CREATION = True
+      OAUTH_PROVIDER = "roostack"
+      OAUTH_CLIENT_ID = {{ json .SSO.ClientID }}
+      OAUTH_CLIENT_SECRET = {{ .SSO.ClientSecret }}
+      OAUTH_REDIRECT_URL = {{ json (printf "%s/oauth/callback/" .Routes.web.URL) }}
+      OAUTH_AUTHORIZATION_URL = {{ json .SSO.AuthorizeURL }}
+      OAUTH_TOKEN_URL = {{ json .SSO.TokenURL }}
+      OAUTH_USER_INFO_URL = {{ json .SSO.UserinfoURL }}
+      OAUTH_SCOPE = ["openid", "profile", "email"]
+      OAUTH_ATTRIBUTE_MAP = {
+          "sub": (True, "uid"),
+          "email": (False, "email"),
+          "name": (False, "name"),
+      }
+      # The desktop apps sign in through the browser too.
+      CLIENT_SSO_VIA_LOCAL_BROWSER = True
+      {{- end }}
+
+hooks:
+  # The administrator's password: Seafile made the account on its first
+  # start with the generated one; this gives it the one typed at install,
+  # through Seafile's own API. Safe to re-run: if the typed one works
+  # already, nothing changes.
+  - on: install
+    title: Set the administrator's password
+    container: app
+    env:
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      FIRST_PASSWORD: first_admin_password
+      ADMIN_PASSWORD: admin_password
+    command:
+      - python3
+      - -c
+      - |
+        import json, os, sys, urllib.error, urllib.parse, urllib.request
+        api = "http://127.0.0.1:8000"
+        email = os.environ["ADMIN_EMAIL"]
+
+        def call(method, path, data, token=None):
+            req = urllib.request.Request(api + path, method=method,
+                data=urllib.parse.urlencode(data).encode())
+            if token:
+                req.add_header("Authorization", "Token " + token)
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.load(r)
+
+        def token(password):
+            try:
+                return call("POST", "/api2/auth-token/", {"username": email, "password": password})["token"]
+            except urllib.error.HTTPError as e:
+                if e.code == 400:
+                    return None
+                raise
+
+        if token(os.environ["ADMIN_PASSWORD"]):
+            print("The administrator's password is set already.")
+            sys.exit(0)
+        t = token(os.environ["FIRST_PASSWORD"])
+        if not t:
+            sys.exit("Seafile has no administrator " + email + " with the first password.")
+        call("PUT", "/api/v2.1/admin/users/" + urllib.parse.quote(email) + "/",
+             {"password": os.environ["ADMIN_PASSWORD"]}, t)
+        if not token(os.environ["ADMIN_PASSWORD"]):
+            sys.exit("Seafile didn't take the new password.")
+        print("The administrator's password is set.")
+
+  # After a restore, or if Seafile reports a damaged library: checks every
+  # library's blocks, and changes nothing.
+  - on: action
+    name: check-libraries
+    title: Check the libraries
+    description: Reads every library and reports any file whose blocks are missing or damaged. It changes nothing, and can take a while on a large server.
+    container: app
+    command: [/opt/seafile/seafile-server-latest/seaf-fsck.sh]
+
+  # Deleting a file, or its old versions expiring, frees the disk only
+  # once garbage collection has run; the image doesn't schedule it.
+  # Online since Seafile 12: it runs while people use Seafile.
+  - on: schedule
+    name: free-space
+    title: Free up space
+    description: Removes blocks that no file or version uses any more.
+    container: app
+    every: week
+    timeout: 2h
+    command: [/scripts/gc.sh]
+
+routes:
+  web:
+    container: app
+    port: 80
+    subdomain: seafile
+    exposure: private
+    # The apps upload in blocks; the web pages send a whole file at once.
+    max_body_size: 10GB
+    # Seafile never shows an upload as a page: HTML comes as a download
+    # (application/octet-stream, with nosniff), and SVG sandboxed.
+    public:
+      # Its system administration, kept home-only like other packages'
+      # admin pages; the paths are seahub 13.0.28's (urls.py and
+      # api2/urls.py, read 2026-11-06). People's own pages and the apps
+      # use none of them.
+      private_paths:
+        - path: /sys
+          reason: Seafile's system administration (users, groups, every library, links and settings). Anyone who gets an administrator's password could use it.
+        - path: /useradmin
+          reason: Seafile's older pages for adding and removing users and resetting their passwords.
+        - path: /api/v2.1/admin
+          reason: The API behind Seafile's system administration.
+        - path: /api2/accounts
+          reason: Seafile's older API for making, changing and deleting accounts.
+        - path: /api2/two-factor-auth
+          reason: Seafile's API for turning off someone's two-factor authentication.
+      login_paths:
+        - /accounts/login
+        - /api2/auth-token        # the apps and WebDAV clients' sign-in
+
+# Single sign-on (SPEC.md §5.2): Seafile's OAuth2, set in its settings
+# file above. It makes an account at someone's first sign-in, or uses the
+# one with their email address. It has no groups in Community Edition, so
+# nobody from the lab is an administrator by themselves.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/oauth/callback/]
+    start_path: /oauth/login/
+    existing_accounts: email
+  note: The administrator made at install keeps their password, and can make others administrators on Seafile's admin pages. WebDAV still needs a password set in Seafile.
