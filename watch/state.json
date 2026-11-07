@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-07T16:37:44.344964084Z",
+  "last_run": "2026-11-07T20:28:10.655677609Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -1553,6 +1553,7 @@
     "GHSA-fqjr-23c8-gg9m": "doesn't affect the registry's versions",
     "GHSA-fvcv-3m26-pcqx": "digest",
     "GHSA-fwh9-qg68-vxp4": "doesn't affect the registry's versions",
+    "GHSA-fwp7-34mv-hm2r": "doesn't affect the registry's versions",
     "GHSA-fwxr-j5w2-587m": "digest",
     "GHSA-fx83-v9x8-x52w": "digest",
     "GHSA-fx95-gwfc-grgc": "doesn't affect the registry's versions",
@@ -1869,6 +1870,7 @@
     "GHSA-v53p-9fqp-m79j": "digest",
     "GHSA-v56q-mh7h-f735": "digest",
     "GHSA-v576-3wvq-xh3c": "digest",
+    "GHSA-v673-332q-cq35": "digest",
     "GHSA-v6h2-p8h4-qcjw": "digest",
     "GHSA-v6pj-gxxw-phfw": "digest",
     "GHSA-v6q3-xqxm-6f5v": "doesn't affect the registry's versions",
@@ -91877,6 +91879,34 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-07T16:38:17.422785459Z"
+    },
+    {
+      "id": "GHSA-v673-332q-cq35",
+      "source": "GitHub's advisories for miniflux/v2",
+      "title": "Miniflux: Stored XSS via javascript: URLs in iframe src attributes",
+      "link": "https://github.com/miniflux/v2/security/advisories/GHSA-v673-332q-cq35",
+      "package": "miniflux",
+      "affected": [
+        "2.3.3-roostack.1",
+        "2.3.3-roostack.2",
+        "2.3.3-roostack.3"
+      ],
+      "fixed": "2.3.4-roostack.1",
+      "fixed_upstream": "\u003e= 2.3.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 4.7
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 4.7).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-07T20:28:16.865709462Z"
     }
   ]
 }
