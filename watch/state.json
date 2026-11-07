@@ -1,6 +1,12 @@
 {
-  "last_run": "2026-11-06T23:28:40.576250219Z",
+  "last_run": "2026-11-07T16:37:44.344964084Z",
   "seen": {
+    "BIT-dotnet-2026-96958": "digest",
+    "BIT-dotnet-2026-96959": "digest",
+    "BIT-dotnet-2026-96960": "digest",
+    "BIT-dotnet-sdk-2026-96958": "digest",
+    "BIT-dotnet-sdk-2026-96959": "digest",
+    "BIT-dotnet-sdk-2026-96960": "digest",
     "BIT-golang-2022-1705": "digest",
     "BIT-golang-2022-1962": "digest",
     "BIT-golang-2022-27664": "digest",
@@ -583,6 +589,8 @@
     "CVE-2026-114619": "digest",
     "CVE-2026-114620": "digest",
     "CVE-2026-11525": "digest",
+    "CVE-2026-115754": "digest",
+    "CVE-2026-115897": "digest",
     "CVE-2026-115927": "digest",
     "CVE-2026-116289": "digest",
     "CVE-2026-116296": "digest",
@@ -602,6 +610,7 @@
     "CVE-2026-116674": "drafted 2026-0018",
     "CVE-2026-116678": "digest",
     "CVE-2026-116689": "drafted 2026-0046",
+    "CVE-2026-116693": "digest",
     "CVE-2026-116802": "digest",
     "CVE-2026-116803": "digest",
     "CVE-2026-116804": "digest",
@@ -609,6 +618,7 @@
     "CVE-2026-117646": "digest",
     "CVE-2026-117677": "digest",
     "CVE-2026-117685": "digest",
+    "CVE-2026-118258": "digest",
     "CVE-2026-118386": "digest",
     "CVE-2026-118394": "digest",
     "CVE-2026-118395": "digest",
@@ -644,11 +654,13 @@
     "CVE-2026-12590": "digest",
     "CVE-2026-13149": "digest",
     "CVE-2026-13346": "digest",
+    "CVE-2026-13676": "digest",
     "CVE-2026-13697": "digest",
     "CVE-2026-14257": "digest",
     "CVE-2026-14643": "digest",
     "CVE-2026-15157": "digest",
     "CVE-2026-15603": "digest",
+    "CVE-2026-16221": "digest",
     "CVE-2026-16728": "digest",
     "CVE-2026-16729": "digest",
     "CVE-2026-1703": "digest",
@@ -927,6 +939,8 @@
     "CVE-2026-61556": "digest",
     "CVE-2026-61801": "digest",
     "CVE-2026-63209": "digest",
+    "CVE-2026-6321": "digest",
+    "CVE-2026-6322": "digest",
     "CVE-2026-63374": "digest",
     "CVE-2026-6357": "digest",
     "CVE-2026-63627": "digest",
@@ -967,6 +981,7 @@
     "CVE-2026-69248": "digest",
     "CVE-2026-69249": "digest",
     "CVE-2026-6951": "digest",
+    "CVE-2026-70162": "digest",
     "CVE-2026-71429": "digest",
     "CVE-2026-71497": "digest",
     "CVE-2026-72815": "digest",
@@ -1022,6 +1037,7 @@
     "CVE-2026-83615": "digest",
     "CVE-2026-83616": "digest",
     "CVE-2026-83619": "digest",
+    "CVE-2026-84008": "digest",
     "CVE-2026-84292": "digest",
     "CVE-2026-84303": "digest",
     "CVE-2026-84304": "digest",
@@ -1077,6 +1093,9 @@
     "CVE-2026-96760": "drafted 2026-0014",
     "CVE-2026-96778": "digest",
     "CVE-2026-9679": "digest",
+    "CVE-2026-96958": "digest",
+    "CVE-2026-96959": "digest",
+    "CVE-2026-96960": "digest",
     "CVE-2026-97030": "digest",
     "CVE-2026-97031": "digest",
     "CVE-2026-97032": "digest",
@@ -1108,6 +1127,7 @@
     "GHSA-2883-xcg3-v3hh": "digest",
     "GHSA-28wg-ghj8-5hjv": "digest",
     "GHSA-2c27-4x43-jrm6": "digest",
+    "GHSA-2fmv-rv2c-59x7": "digest",
     "GHSA-2g87-pp6c-29x5": "digest",
     "GHSA-2gc4-cqfq-p2gv": "digest",
     "GHSA-2gqq-gqf2-x968": "digest",
@@ -1147,6 +1167,7 @@
     "GHSA-39m8-27wv-hr27": "digest",
     "GHSA-39q2-94rc-95cp": "digest",
     "GHSA-3c22-5j5m-4jq7": "digest",
+    "GHSA-3cmx-xjww-583x": "digest",
     "GHSA-3f6p-5ww8-9rcr": "digest",
     "GHSA-3f7j-7jwc-fxfj": "digest",
     "GHSA-3fv3-hhmm-4x2q": "digest",
@@ -1192,6 +1213,7 @@
     "GHSA-48c2-rrv3-qjmp": "digest",
     "GHSA-48qf-xh34-q73r": "drafted 2026-0015",
     "GHSA-494j-54xm-rwp3": "digest",
+    "GHSA-4c8g-83qw-93j6": "digest",
     "GHSA-4cwx-7wf7-3272": "digest",
     "GHSA-4ffr-jq9g-5ffx": "digest",
     "GHSA-4g23-2xm8-66gc": "digest",
@@ -1340,6 +1362,7 @@
     "GHSA-7gcm-g887-7qv7": "digest",
     "GHSA-7h2j-956f-4vf2": "digest",
     "GHSA-7hhh-6rmp-j9qf": "digest",
+    "GHSA-7hqp-7c5m-4vq6": "digest",
     "GHSA-7jg8-8m5x-6j9r": "digest",
     "GHSA-7mwm-ghpf-9vrm": "digest",
     "GHSA-7mx3-vvmw-hjmv": "digest",
@@ -1361,6 +1384,7 @@
     "GHSA-83g3-92jg-28cx": "digest",
     "GHSA-83rp-q473-j88c": "doesn't affect the registry's versions",
     "GHSA-8436-99hf-9mmv": "digest",
+    "GHSA-846f-f764-76mx": "digest",
     "GHSA-856c-92hv-3vxx": "digest",
     "GHSA-8575-cr6v-7jh4": "doesn't affect the registry's versions",
     "GHSA-858h-whjf-mvg5": "drafted 2026-0010",
@@ -1456,6 +1480,7 @@
     "GHSA-c2j3-45gr-mqc4": "digest",
     "GHSA-c36c-7pc2-f2ph": "digest",
     "GHSA-c38w-74pg-36hr": "digest",
+    "GHSA-c399-9853-6jmj": "digest",
     "GHSA-c3cr-qq9g-666c": "digest",
     "GHSA-c3jg-qh8m-j3h2": "digest",
     "GHSA-c45m-jm46-mwxg": "digest",
@@ -1655,6 +1680,7 @@
     "GHSA-m462-7rxw-wvpg": "digest",
     "GHSA-m4p7-r5rc-7g4j": "digest",
     "GHSA-m5hp-x2xc-7jqq": "doesn't affect the registry's versions",
+    "GHSA-m5mm-p8h7-m29v": "digest",
     "GHSA-m6fv-jmcg-4jfg": "digest",
     "GHSA-m7fp-h3p4-hr49": "digest",
     "GHSA-m7jm-9gc2-mpf2": "digest",
@@ -1692,6 +1718,7 @@
     "GHSA-mwp4-54f8-5fhr": "digest",
     "GHSA-p293-qw3h-jr36": "digest",
     "GHSA-p34h-wq7j-h5v6": "digest",
+    "GHSA-p3jp-9v83-76w9": "digest",
     "GHSA-p3m5-59mp-jv5r": "digest",
     "GHSA-p3pc-g8m5-hrrr": "doesn't affect the registry's versions",
     "GHSA-p3rv-cr5f-9gjh": "doesn't affect the registry's versions",
@@ -1734,6 +1761,7 @@
     "GHSA-pxg6-pf52-xh8x": "digest",
     "GHSA-pxh4-856f-4h89": "digest",
     "GHSA-q2hr-2g5m-vwhr": "digest",
+    "GHSA-q3j6-qgpj-74h6": "digest",
     "GHSA-q3jh-wrc6-jgq8": "digest",
     "GHSA-q45j-58j2-45rg": "digest",
     "GHSA-q4h4-gmj2-qvw2": "digest",
@@ -1802,6 +1830,7 @@
     "GHSA-r7g4-qg5f-qqm2": "digest",
     "GHSA-r7r6-cc7p-4v5m": "digest",
     "GHSA-r825-w8mm-5pxw": "digest",
+    "GHSA-r955-8q5j-3h83": "digest",
     "GHSA-rcmh-qjqh-p98v": "digest",
     "GHSA-rcr6-4jqh-j84m": "doesn't affect the registry's versions",
     "GHSA-rfgq-q3w2-pmv2": "digest",
@@ -1827,9 +1856,11 @@
     "GHSA-rxhg-2pw9-vf25": "digest",
     "GHSA-rxp7-6hxx-x8q5": "digest",
     "GHSA-v245-v573-v5vm": "digest",
+    "GHSA-v2hh-gcrm-f6hx": "digest",
     "GHSA-v2p3-6f5h-6hhf": "digest",
     "GHSA-v2v4-37r5-5v8g": "digest",
     "GHSA-v2wj-7wpq-c8vv": "digest",
+    "GHSA-v39h-62p7-jpjc": "digest",
     "GHSA-v3r7-h72x-cjcm": "digest",
     "GHSA-v3xr-g6p2-fvgv": "doesn't affect the registry's versions",
     "GHSA-v422-hmwv-36x6": "digest",
@@ -1934,6 +1965,7 @@
     "GHSA-x6wf-f3px-wcqx": "digest",
     "GHSA-x746-7m8f-x49c": "digest",
     "GHSA-x8c3-3rp8-2j46": "doesn't affect the registry's versions",
+    "GHSA-x94g-w73q-hpcw": "digest",
     "GHSA-x97p-jq2g-jp4f": "digest",
     "GHSA-xcq7-p3pf-p88h": "digest",
     "GHSA-xcx6-jx8p-x3h5": "digest",
@@ -2578,6 +2610,8 @@
     "UBUNTU-CVE-2026-120245": "digest",
     "UBUNTU-CVE-2026-120246": "digest",
     "UBUNTU-CVE-2026-120247": "digest",
+    "UBUNTU-CVE-2026-120749": "digest",
+    "UBUNTU-CVE-2026-123273": "digest",
     "UBUNTU-CVE-2026-12345": "digest",
     "UBUNTU-CVE-2026-12706": "digest",
     "UBUNTU-CVE-2026-13608": "digest",
@@ -91371,6 +91405,478 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-06T18:23:23.003078861Z"
+    },
+    {
+      "id": "GHSA-7hqp-7c5m-4vq6",
+      "aliases": [
+        "BIT-dotnet-2026-96960",
+        "BIT-dotnet-sdk-2026-96960",
+        "CVE-2026-96960"
+      ],
+      "source": "OSV, for pkg:nuget/System.Security.Cryptography.Xml@10.0.12 in its image",
+      "title": "AliasVault: Microsoft Security Advisory CVE-2026-96960 - .NET and Visual Studio Denial of Service Vulnerability (in System.Security.Cryptography.Xml 10.0.12)",
+      "link": "https://osv.dev/vulnerability/GHSA-7hqp-7c5m-4vq6",
+      "package": "aliasvault",
+      "affected": [
+        "0.31.1-roostack.1"
+      ],
+      "fixed_upstream": "System.Security.Cryptography.Xml 9.0.21",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.01203,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.275635862Z"
+    },
+    {
+      "id": "GHSA-r955-8q5j-3h83",
+      "aliases": [
+        "BIT-dotnet-2026-96958",
+        "BIT-dotnet-sdk-2026-96958",
+        "CVE-2026-96958"
+      ],
+      "source": "OSV, for pkg:nuget/System.Security.Cryptography.Xml@10.0.12 in its image",
+      "title": "AliasVault: Microsoft Security Advisory CVE-2026-96958 - .NET and Visual Studio Denial of Service Vulnerability (in System.Security.Cryptography.Xml 10.0.12)",
+      "link": "https://osv.dev/vulnerability/GHSA-r955-8q5j-3h83",
+      "package": "aliasvault",
+      "affected": [
+        "0.31.1-roostack.1"
+      ],
+      "fixed_upstream": "System.Security.Cryptography.Xml 9.0.21",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.01203,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.68867867Z"
+    },
+    {
+      "id": "GHSA-846f-f764-76mx",
+      "aliases": [
+        "CVE-2026-84008"
+      ],
+      "source": "OSV, for pkg:nuget/System.Security.Cryptography.Pkcs@10.0.12 in its image",
+      "title": "AliasVault: Microsoft Security Advisory CVE-2026-84008 - .NET Denial of Service Vulnerability (in System.Security.Cryptography.Pkcs 10.0.12)",
+      "link": "https://osv.dev/vulnerability/GHSA-846f-f764-76mx",
+      "package": "aliasvault",
+      "affected": [
+        "0.31.1-roostack.1"
+      ],
+      "fixed_upstream": "System.Security.Cryptography.Pkcs 9.0.21",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00991,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.337813158Z"
+    },
+    {
+      "id": "GHSA-c399-9853-6jmj",
+      "aliases": [
+        "BIT-dotnet-2026-96959",
+        "BIT-dotnet-sdk-2026-96959",
+        "CVE-2026-96959"
+      ],
+      "source": "OSV, for pkg:nuget/System.Security.Cryptography.Xml@10.0.12 in its image",
+      "title": "AliasVault: Microsoft Security Advisory CVE-2026-96959 - .NET and Visual Studio Denial of Service Vulnerability (in System.Security.Cryptography.Xml 10.0.12)",
+      "link": "https://osv.dev/vulnerability/GHSA-c399-9853-6jmj",
+      "package": "aliasvault",
+      "affected": [
+        "0.31.1-roostack.1"
+      ],
+      "fixed_upstream": "System.Security.Cryptography.Xml 9.0.21",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00969,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.395248582Z"
+    },
+    {
+      "id": "GHSA-2fmv-rv2c-59x7",
+      "aliases": [
+        "CVE-2026-70162"
+      ],
+      "source": "OSV, for pkg:nuget/System.Security.Cryptography.Pkcs@10.0.12 in its image",
+      "title": "AliasVault: Microsoft Security Advisory CVE-2026-70162 - .NET Denial of Service Vulnerability (in System.Security.Cryptography.Pkcs 10.0.12)",
+      "link": "https://osv.dev/vulnerability/GHSA-2fmv-rv2c-59x7",
+      "package": "aliasvault",
+      "affected": [
+        "0.31.1-roostack.1"
+      ],
+      "fixed_upstream": "System.Security.Cryptography.Pkcs 9.0.21",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00895,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.115659059Z"
+    },
+    {
+      "id": "GHSA-4c8g-83qw-93j6",
+      "aliases": [
+        "CVE-2026-13676"
+      ],
+      "source": "OSV, for pkg:npm/fast-uri@3.1.0 in its image",
+      "title": "Wiki.js: fast-uri vulnerable to host confusion via failed IDN canonicalization (in fast-uri 3.1.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-4c8g-83qw-93j6",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1"
+      ],
+      "fixed_upstream": "fast-uri 2.4.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00692,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.224069655Z"
+    },
+    {
+      "id": "GHSA-q3j6-qgpj-74h6",
+      "aliases": [
+        "CVE-2026-6321"
+      ],
+      "source": "OSV, for pkg:npm/fast-uri@3.1.0 in its image",
+      "title": "Wiki.js: fast-uri vulnerable to path traversal via percent-encoded dot segments (in fast-uri 3.1.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-q3j6-qgpj-74h6",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1"
+      ],
+      "fixed_upstream": "fast-uri 2.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00634,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.626357347Z"
+    },
+    {
+      "id": "GHSA-v39h-62p7-jpjc",
+      "aliases": [
+        "CVE-2026-6322"
+      ],
+      "source": "OSV, for pkg:npm/fast-uri@3.1.0 in its image",
+      "title": "Wiki.js: fast-uri vulnerable to host confusion via percent-encoded authority delimiters (in fast-uri 3.1.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-v39h-62p7-jpjc",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1"
+      ],
+      "fixed_upstream": "fast-uri 2.4.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00512,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.826827943Z"
+    },
+    {
+      "id": "GHSA-x94g-w73q-hpcw",
+      "aliases": [
+        "CVE-2026-116693"
+      ],
+      "source": "OSV, for pkg:npm/dd-trace@5.130.0 in its image",
+      "title": "Outline: dd-trace: ReDOS in URL query string obfuscation (in dd-trace 5.130.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-x94g-w73q-hpcw",
+      "package": "outline",
+      "affected": [
+        "1.12.0-roostack.1"
+      ],
+      "fixed_upstream": "dd-trace 6.20.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00449,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.879686631Z"
+    },
+    {
+      "id": "GHSA-v2hh-gcrm-f6hx",
+      "aliases": [
+        "CVE-2026-16221"
+      ],
+      "source": "OSV, for pkg:npm/fast-uri@3.1.0 in its image",
+      "title": "Wiki.js: fast-uri vulnerable to host confusion via literal backslash authority delimiter (in fast-uri 3.1.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-v2hh-gcrm-f6hx",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1"
+      ],
+      "fixed_upstream": "fast-uri 4.1.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00436,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.756334019Z"
+    },
+    {
+      "id": "GHSA-m5mm-p8h7-m29v",
+      "aliases": [
+        "CVE-2026-115754",
+        "CVE-2026-115897"
+      ],
+      "source": "OSV, for pkg:npm/serialize-javascript@7.0.5 in its image",
+      "title": "Outline: Serialize JavaScript: Cross-site scripting (XSS) via unescaped \u003c/script at the end of a serialized function body (in serialize-javascript 7.0.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-m5mm-p8h7-m29v",
+      "package": "outline",
+      "affected": [
+        "1.12.0-roostack.1"
+      ],
+      "fixed_upstream": "serialize-javascript 7.1.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00307,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.454800138Z"
+    },
+    {
+      "id": "GHSA-3cmx-xjww-583x",
+      "aliases": [
+        "CVE-2026-118258"
+      ],
+      "source": "OSV, for pkg:npm/i18next-http-backend@4.0.3 in its image",
+      "title": "Outline: i18next-http-backend: Query-parameter injection through \u0026 and = in lng when loadPath/addPath puts {{lng}} in the query string (in i18next-http-backend 4.0.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-3cmx-xjww-583x",
+      "package": "outline",
+      "affected": [
+        "1.12.0-roostack.1"
+      ],
+      "fixed_upstream": "i18next-http-backend 4.0.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.0028,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.165747914Z"
+    },
+    {
+      "id": "GHSA-p3jp-9v83-76w9",
+      "source": "OSV, for pkg:nuget/Microsoft.NETCore.App.Runtime.linux-musl-x64@10.0.13 in its image",
+      "title": "AliasVault: Microsoft Security Advisory CVE-2026-111497 - .NET Brotli Decoder Out-of-bounds Write Vulnerability (in Microsoft.NETCore.App.Runtime.linux-musl-x64 10.0.13)",
+      "link": "https://osv.dev/vulnerability/GHSA-p3jp-9v83-76w9",
+      "package": "aliasvault",
+      "affected": [
+        "0.31.1-roostack.1"
+      ],
+      "fixed_upstream": "Microsoft.NETCore.App.Runtime.linux-musl-x64 11.0.0-rc.3.26522.148",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:16.566881021Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-120749",
+      "source": "OSV, for pkg:deb/ubuntu/dbus@1.14.10-4ubuntu4.1?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-120749 (in dbus 1.14.10-4ubuntu4.1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-120749",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:17.346016116Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-120749",
+      "source": "OSV, for pkg:deb/ubuntu/dbus@1.14.10-4ubuntu4.1?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-120749 (in dbus 1.14.10-4ubuntu4.1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-120749",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:17.346020394Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-120749",
+      "source": "OSV, for pkg:deb/ubuntu/dbus@1.14.10-4ubuntu4.1?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-120749 (in dbus 1.14.10-4ubuntu4.1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-120749",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:17.346022828Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-123273",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-123273 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-123273",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-07T16:38:17.422785459Z"
     }
   ]
 }
