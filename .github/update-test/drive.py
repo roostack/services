@@ -205,7 +205,9 @@ def wait_healthy(deadline_minutes, want_version=None):
 
 
 def journal():
-    logs = vm("sudo journalctl _UID=$(id -u roostack) -n 40 --no-pager | cut -c1-300", check=False)
+    # Health checks every 10 seconds would otherwise fill what's kept, and hide
+    # why an app stopped.
+    logs = vm("sudo journalctl _UID=$(id -u roostack) -n 5000 --no-pager | grep -vE 'health_status|exec_died|podman-[0-9]+[.]scope' | tail -n 60 | cut -c1-300", check=False)
     return logs + "\n" + vm("sudo journalctl -u roostack -n 25 --no-pager | grep -v setup_code | cut -c1-300", check=False)
 
 
