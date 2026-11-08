@@ -1,11 +1,12 @@
-# Drafted by roostack registry watch on 2026-10-29 from OSV, for pkg:npm/next@15.5.21 in its image.
-# Check every line before merging: the title (what it lets someone do), the
-# severity in Roostack's meaning, and the versions (docs/RED-BUTTON-PLAN.md §10.1.3).
-title: 'Linkwarden: Next.js: Unauthenticated Remote Code Execution in Image Optimization API when SVG files are used (in next…'
-severity: critical
+# Drafted by roostack registry watch on 2026-10-29 from OSV, for pkg:npm/next@15.5.21 in its image,
+# and checked on 2026-11-09: Linkwarden's image carries sharp 0.35.3 (fixed in 0.35.5), and Next.js's
+# image optimiser (/_next/image) answers without signing in. Linkwarden is private by default, so only
+# a public Linkwarden can be reached this way. All three versions use the same image, and none is fixed yet.
+title: 'Linkwarden: a crafted image can let someone run code on the server through Next.js''s image optimiser'
+severity: high
 exploited: false
-published: "2026-10-29"
+published: "2026-11-09"
 link: https://osv.dev/vulnerability/GHSA-2464-fhr4-w9xw
 affects:
     linkwarden:
-        versions: [2.16.3-roostack.3]
+        versions: [2.16.3-roostack.1, 2.16.3-roostack.2, 2.16.3-roostack.3]
