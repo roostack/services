@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-08T06:38:27.959576117Z",
+  "last_run": "2026-11-08T19:03:47.290752546Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -1581,6 +1581,7 @@
     "GHSA-g82p-27g4-864h": "doesn't affect the registry's versions",
     "GHSA-g842-9rc4-69pw": "digest",
     "GHSA-g8m3-5g58-fq7m": "digest",
+    "GHSA-g9g5-qxp7-f7v2": "doesn't affect the registry's versions",
     "GHSA-g9hc-g4w6-4mfx": "digest",
     "GHSA-g9pc-8g42-g6vq": "digest",
     "GHSA-gc5v-m9x4-r6x2": "digest",
