@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-08T19:03:47.290752546Z",
+  "last_run": "2026-11-09T12:02:29.48309863Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -188,11 +188,14 @@
     "BIT-pillow-2026-59198": "digest",
     "BIT-pillow-2026-59199": "digest",
     "BIT-pillow-2026-59200": "digest",
+    "BIT-pillow-2026-59203": "digest",
     "BIT-pillow-2026-59204": "digest",
     "BIT-pillow-2026-59205": "digest",
     "BIT-pillow-2026-96636": "digest",
     "BIT-pillow-2026-96639": "digest",
     "BIT-pillow-2026-96640": "digest",
+    "BIT-setuptools-2024-6345": "digest",
+    "BIT-setuptools-2025-47273": "digest",
     "BIT-setuptools-2026-59890": "digest",
     "CVE-2015-8851": "digest",
     "CVE-2016-20018": "digest",
@@ -275,6 +278,7 @@
     "CVE-2023-29406": "digest",
     "CVE-2023-29409": "digest",
     "CVE-2023-32681": "digest",
+    "CVE-2023-36308": "digest",
     "CVE-2023-37920": "digest",
     "CVE-2023-39318": "digest",
     "CVE-2023-39319": "digest",
@@ -337,6 +341,7 @@
     "CVE-2024-52798": "digest",
     "CVE-2024-55565": "digest",
     "CVE-2024-58379": "digest",
+    "CVE-2024-6345": "digest",
     "CVE-2025-0913": "digest",
     "CVE-2025-12758": "digest",
     "CVE-2025-13033": "digest",
@@ -355,6 +360,7 @@
     "CVE-2025-4574": "digest",
     "CVE-2025-45768": "digest",
     "CVE-2025-4673": "digest",
+    "CVE-2025-47273": "digest",
     "CVE-2025-47906": "digest",
     "CVE-2025-47907": "digest",
     "CVE-2025-47912": "digest",
@@ -427,11 +433,15 @@
     "CVE-2026-101916": "digest",
     "CVE-2026-101917": "digest",
     "CVE-2026-101918": "digest",
+    "CVE-2026-102265": "digest",
+    "CVE-2026-102266": "digest",
     "CVE-2026-102267": "digest",
     "CVE-2026-102268": "digest",
     "CVE-2026-102269": "digest",
     "CVE-2026-102270": "digest",
     "CVE-2026-102271": "digest",
+    "CVE-2026-102272": "digest",
+    "CVE-2026-102273": "digest",
     "CVE-2026-102274": "digest",
     "CVE-2026-102275": "digest",
     "CVE-2026-102276": "digest",
@@ -444,6 +454,8 @@
     "CVE-2026-102826": "digest",
     "CVE-2026-102827": "drafted 2026-0010",
     "CVE-2026-102828": "digest",
+    "CVE-2026-102992": "digest",
+    "CVE-2026-103001": "digest",
     "CVE-2026-103292": "digest",
     "CVE-2026-103923": "digest",
     "CVE-2026-104182": "digest",
@@ -580,6 +592,7 @@
     "CVE-2026-114501": "digest",
     "CVE-2026-114509": "digest",
     "CVE-2026-114603": "digest",
+    "CVE-2026-114604": "digest",
     "CVE-2026-114605": "digest",
     "CVE-2026-114607": "digest",
     "CVE-2026-114613": "digest",
@@ -591,6 +604,7 @@
     "CVE-2026-114620": "digest",
     "CVE-2026-11525": "digest",
     "CVE-2026-115754": "digest",
+    "CVE-2026-115887": "digest",
     "CVE-2026-115897": "digest",
     "CVE-2026-115927": "digest",
     "CVE-2026-116289": "digest",
@@ -918,6 +932,7 @@
     "CVE-2026-59198": "digest",
     "CVE-2026-59199": "digest",
     "CVE-2026-59200": "digest",
+    "CVE-2026-59203": "digest",
     "CVE-2026-59204": "digest",
     "CVE-2026-59205": "digest",
     "CVE-2026-59724": "digest",
@@ -1006,6 +1021,7 @@
     "CVE-2026-75931": "digest",
     "CVE-2026-75975": "digest",
     "CVE-2026-76172": "digest",
+    "CVE-2026-77037": "digest",
     "CVE-2026-77063": "digest",
     "CVE-2026-77078": "digest",
     "CVE-2026-77439": "digest",
@@ -1061,6 +1077,7 @@
     "CVE-2026-8769": "digest",
     "CVE-2026-87776": "digest",
     "CVE-2026-87859": "digest",
+    "CVE-2026-88932": "digest",
     "CVE-2026-89407": "digest",
     "CVE-2026-89425": "digest",
     "CVE-2026-90711": "digest",
@@ -1184,6 +1201,7 @@
     "GHSA-3mh5-gqfm-phgj": "digest",
     "GHSA-3p68-rc4w-qgx5": "digest",
     "GHSA-3ppc-4f35-3m26": "digest",
+    "GHSA-3pph-fpjx-jg34": "digest",
     "GHSA-3pq3-5fj3-cg6v": "digest",
     "GHSA-3v7f-55p6-f55p": "digest",
     "GHSA-3wc5-fcw2-2329": "digest",
@@ -1278,6 +1296,7 @@
     "GHSA-5p4m-2wfm-xmqj": "digest",
     "GHSA-5pwr-322w-8jr4": "digest",
     "GHSA-5r4p-p66f-jhc7": "digest",
+    "GHSA-5rjg-fvgr-3xxf": "digest",
     "GHSA-5v7r-6r5c-r473": "digest",
     "GHSA-5wmx-573v-2qwq": "digest",
     "GHSA-5wr8-gcqf-gqf3": "digest",
@@ -1302,6 +1321,7 @@
     "GHSA-66ff-xgx4-vchm": "digest",
     "GHSA-66m4-5jjr-2rg5": "doesn't affect the registry's versions",
     "GHSA-677m-j7p3-52f9": "digest",
+    "GHSA-67c8-pqhq-4rmx": "digest",
     "GHSA-67hx-6x53-jw92": "digest",
     "GHSA-67mh-4wv8-2f99": "digest",
     "GHSA-685m-2w69-288q": "digest",
@@ -1322,6 +1342,7 @@
     "GHSA-6h2f-c8jm-84hc": "digest",
     "GHSA-6h8r-xr42-gp59": "digest",
     "GHSA-6j4f-fj2g-mc7p": "digest",
+    "GHSA-6m8p-37cv-c4f5": "digest",
     "GHSA-6pq8-jhm2-2vcw": "digest",
     "GHSA-6pv5-8rp7-8c75": "doesn't affect the registry's versions",
     "GHSA-6q48-6c7w-9gw2": "drafted 2026-0036",
@@ -1397,6 +1418,7 @@
     "GHSA-86j7-9j95-vpqj": "digest",
     "GHSA-86qp-5c8j-p5mr": "digest",
     "GHSA-86w9-cpqp-85rv": "digest",
+    "GHSA-87m5-mch4-5f2q": "digest",
     "GHSA-88qc-6ch9-mc3j": "digest",
     "GHSA-8988-9cw3-xx77": "digest",
     "GHSA-898c-q2cr-xwhg": "digest",
@@ -1427,6 +1449,7 @@
     "GHSA-8rrh-rw8j-w5fx": "digest",
     "GHSA-8v84-f9pq-wr9x": "digest",
     "GHSA-8vvx-rff5-p5rq": "digest",
+    "GHSA-8wjv-2p76-3863": "digest",
     "GHSA-8wmf-6v46-5gfg": "digest",
     "GHSA-8x88-c5mf-7j5w": "digest",
     "GHSA-8xcm-r25x-g524": "digest",
@@ -1460,6 +1483,7 @@
     "GHSA-9h7g-h754-c8x2": "doesn't affect the registry's versions",
     "GHSA-9hjg-9r4m-mvj7": "digest",
     "GHSA-9hw9-ch79-4vh6": "digest",
+    "GHSA-9j54-fg26-wv3r": "digest",
     "GHSA-9j6q-wvj5-jgjg": "digest",
     "GHSA-9jrq-w75r-8gcw": "digest",
     "GHSA-9m4w-fmjw-fvjq": "doesn't affect the registry's versions",
@@ -1486,6 +1510,7 @@
     "GHSA-c3cr-qq9g-666c": "digest",
     "GHSA-c3jg-qh8m-j3h2": "digest",
     "GHSA-c45m-jm46-mwxg": "digest",
+    "GHSA-c4qx-w738-7hr3": "digest",
     "GHSA-c5mf-xmp2-59rc": "digest",
     "GHSA-c6gr-qvv4-5v3f": "digest",
     "GHSA-c6hw-5grf-ff96": "digest",
@@ -1517,6 +1542,7 @@
     "GHSA-cwq7-782w-pxcc": "digest",
     "GHSA-cwqr-hh33-gh44": "digest",
     "GHSA-cx2f-j9fh-8g68": "digest",
+    "GHSA-cx63-2mw6-8hw5": "digest",
     "GHSA-cxjh-pqwp-8mfp": "digest",
     "GHSA-cxp5-3px4-pw24": "digest",
     "GHSA-f23m-r3pf-42rh": "digest",
@@ -1576,6 +1602,7 @@
     "GHSA-g5hg-p3ph-g8qg": "digest",
     "GHSA-g6x2-hccm-hh4m": "digest",
     "GHSA-g73g-hqqh-jr95": "digest",
+    "GHSA-g75f-g53v-794x": "digest",
     "GHSA-g7cr-3p24-7wf7": "digest",
     "GHSA-g7r4-m6w7-qqqr": "digest",
     "GHSA-g82p-27g4-864h": "doesn't affect the registry's versions",
@@ -1598,6 +1625,7 @@
     "GHSA-gr94-w7qr-f4j3": "digest",
     "GHSA-grv7-fg5c-xmjg": "digest",
     "GHSA-gvmj-g25r-r7wr": "digest",
+    "GHSA-gvp8-978c-rx2q": "digest",
     "GHSA-gvwx-54wh-qm9j": "digest",
     "GHSA-gx76-c99x-2c96": "digest",
     "GHSA-gx83-3vf8-gh7j": "digest",
@@ -1744,6 +1772,7 @@
     "GHSA-pcg2-g6cj-q92c": "digest",
     "GHSA-pchr-8j38-3x4p": "digest",
     "GHSA-pf86-5x62-jrwf": "digest",
+    "GHSA-pg7v-jwj7-p798": "digest",
     "GHSA-pg9f-39pc-qf8g": "digest",
     "GHSA-ph9p-34f9-6g65": "digest",
     "GHSA-phj9-mv4w-65pm": "digest",
@@ -1757,6 +1786,7 @@
     "GHSA-ppp5-5v6c-4jwp": "digest",
     "GHSA-pq67-2wwv-3xjx": "digest",
     "GHSA-pq67-6m6q-mj2v": "digest",
+    "GHSA-pq85-v5r4-w5xj": "digest",
     "GHSA-pqg4-j6r4-53mv": "digest",
     "GHSA-pqxq-w44r-73xw": "digest",
     "GHSA-pr4g-9qp2-g8j8": "digest",
@@ -1777,6 +1807,7 @@
     "GHSA-q675-qj96-32m9": "digest",
     "GHSA-q686-2qmg-hqc7": "digest",
     "GHSA-q6x5-8v7m-xcrf": "digest",
+    "GHSA-q7pp-wcgr-pffx": "digest",
     "GHSA-q7qp-rjg7-q26m": "digest",
     "GHSA-q83h-524g-xf6h": "digest",
     "GHSA-q84f-53jg-9ppm": "digest",
@@ -1789,6 +1820,7 @@
     "GHSA-qccp-gfcp-xxvc": "digest",
     "GHSA-qcgm-ggp8-22qc": "digest",
     "GHSA-qffp-2rhf-9h96": "digest",
+    "GHSA-qfvm-cv95-jqjf": "digest",
     "GHSA-qg66-h68v-5x2h": "doesn't affect the registry's versions",
     "GHSA-qhr7-859c-m2p7": "digest",
     "GHSA-qm7x-rc44-rrqw": "digest",
@@ -1829,6 +1861,7 @@
     "GHSA-r6mh-qg79-rqj2": "digest",
     "GHSA-r6ph-v2qm-q3c2": "digest",
     "GHSA-r6q2-hw4h-h46w": "digest",
+    "GHSA-r6x4-923q-g947": "digest",
     "GHSA-r73j-pqj5-w3x7": "digest",
     "GHSA-r766-rf9f-588h": "digest",
     "GHSA-r7f2-6fj8-6fg2": "doesn't affect the registry's versions",
@@ -1915,6 +1948,7 @@
     "GHSA-vxr8-fq34-vvx9": "digest",
     "GHSA-vxvm-qww3-2fh7": "digest",
     "GHSA-w293-vg96-wgc3": "digest",
+    "GHSA-w2cx-738m-mc7w": "digest",
     "GHSA-w2rr-34g9-rvrj": "digest",
     "GHSA-w3rx-r6r6-pgpr": "digest",
     "GHSA-w44r-93j7-qv28": "digest",
@@ -1972,6 +2006,7 @@
     "GHSA-x6wf-f3px-wcqx": "digest",
     "GHSA-x746-7m8f-x49c": "digest",
     "GHSA-x8c3-3rp8-2j46": "doesn't affect the registry's versions",
+    "GHSA-x8rm-f576-gq67": "digest",
     "GHSA-x94g-w73q-hpcw": "digest",
     "GHSA-x97p-jq2g-jp4f": "digest",
     "GHSA-x9r2-wh7w-h4qc": "digest",
@@ -2204,6 +2239,7 @@
     "PYSEC-2024-230": "digest",
     "PYSEC-2024-60": "digest",
     "PYSEC-2025-183": "digest",
+    "PYSEC-2025-49": "digest",
     "PYSEC-2026-120": "digest",
     "PYSEC-2026-1283": "digest",
     "PYSEC-2026-1284": "digest",
@@ -2225,6 +2261,7 @@
     "PYSEC-2026-1847": "digest",
     "PYSEC-2026-1872": "digest",
     "PYSEC-2026-1873": "digest",
+    "PYSEC-2026-1918": "digest",
     "PYSEC-2026-196": "digest",
     "PYSEC-2026-1994": "digest",
     "PYSEC-2026-1995": "digest",
@@ -2262,6 +2299,7 @@
     "PYSEC-2026-3444": "digest",
     "PYSEC-2026-3447": "digest",
     "PYSEC-2026-3451": "digest",
+    "PYSEC-2026-3452": "digest",
     "PYSEC-2026-3453": "digest",
     "PYSEC-2026-3454": "digest",
     "PYSEC-2026-3455": "digest",
@@ -2284,11 +2322,16 @@
     "PYSEC-2026-4114": "digest",
     "PYSEC-2026-4140": "digest",
     "PYSEC-2026-4141": "digest",
+    "PYSEC-2026-4142": "digest",
+    "PYSEC-2026-4143": "digest",
     "PYSEC-2026-4144": "digest",
     "PYSEC-2026-4145": "digest",
+    "PYSEC-2026-4146": "digest",
     "PYSEC-2026-4147": "digest",
     "PYSEC-2026-4148": "digest",
     "PYSEC-2026-4149": "digest",
+    "PYSEC-2026-4150": "digest",
+    "PYSEC-2026-4151": "digest",
     "PYSEC-2026-4152": "digest",
     "PYSEC-2026-4175": "digest",
     "PYSEC-2026-4176": "digest",
@@ -92019,6 +92062,740 @@
       "why": "the source rates it low.",
       "weak": "it isn't critical, and nothing says it's being used in attacks",
       "found": "2026-11-08T06:38:40.145285936Z"
+    },
+    {
+      "id": "GHSA-cx63-2mw6-8hw5",
+      "aliases": [
+        "BIT-setuptools-2024-6345",
+        "CVE-2024-6345",
+        "PYSEC-2026-1918"
+      ],
+      "source": "OSV, for pkg:pypi/setuptools@68.1.2 in its image",
+      "title": "Seafile: setuptools vulnerable to Command Injection via package URL (in setuptools 68.1.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-cx63-2mw6-8hw5",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "setuptools 70.0.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.01939,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.045911017Z"
+    },
+    {
+      "id": "PYSEC-2026-1918",
+      "aliases": [
+        "BIT-setuptools-2024-6345",
+        "CVE-2024-6345",
+        "GHSA-cx63-2mw6-8hw5"
+      ],
+      "source": "OSV, for pkg:pypi/setuptools@68.1.2 in its image",
+      "title": "Seafile: setuptools vulnerable to Command Injection via package URL (in setuptools 68.1.2)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-1918",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "setuptools 70.0.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.01939,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.674404476Z"
+    },
+    {
+      "id": "GHSA-5rjg-fvgr-3xxf",
+      "aliases": [
+        "BIT-setuptools-2025-47273",
+        "CVE-2025-47273",
+        "PYSEC-2025-49"
+      ],
+      "source": "OSV, for pkg:pypi/setuptools@68.1.2 in its image",
+      "title": "Seafile: setuptools has a path traversal vulnerability in PackageIndex.download that leads to Arbitrary File Write (in setuptools 68.1.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-5rjg-fvgr-3xxf",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "setuptools 78.1.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.01592,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:06.773583019Z"
+    },
+    {
+      "id": "PYSEC-2025-49",
+      "aliases": [
+        "BIT-setuptools-2025-47273",
+        "CVE-2025-47273",
+        "GHSA-5rjg-fvgr-3xxf"
+      ],
+      "source": "OSV, for pkg:pypi/setuptools@68.1.2 in its image",
+      "title": "Seafile: PYSEC-2025-49 (in setuptools 68.1.2)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2025-49",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "setuptools 78.1.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.01592,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.624721381Z"
+    },
+    {
+      "id": "GHSA-3pph-fpjx-jg34",
+      "aliases": [
+        "CVE-2026-88932"
+      ],
+      "source": "OSV, for pkg:npm/multer@2.2.0 in its image",
+      "title": "AFFiNE: multer vulnerable to Denial of Service via orphaned disk writes on aborted uploads (in multer 2.2.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-3pph-fpjx-jg34",
+      "package": "affine",
+      "affected": [
+        "0.27.4-roostack.1"
+      ],
+      "fixed_upstream": "multer 2.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00532,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:06.724534071Z"
+    },
+    {
+      "id": "GHSA-c4qx-w738-7hr3",
+      "aliases": [
+        "CVE-2026-114604"
+      ],
+      "source": "OSV, for pkg:npm/%40graphql-tools/utils@11.2.2 in its image",
+      "title": "AFFiNE: GraphQL Tools: Prototype pollution in mergeIncrementalResult via non-primitive path segments (in utils 11.2.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-c4qx-w738-7hr3",
+      "package": "affine",
+      "affected": [
+        "0.27.4-roostack.1"
+      ],
+      "fixed_upstream": "utils 12.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00521,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:06.992983139Z"
+    },
+    {
+      "id": "GHSA-67c8-pqhq-4rmx",
+      "aliases": [
+        "CVE-2026-102992"
+      ],
+      "source": "OSV, for pkg:npm/piscina@5.2.0 in its image",
+      "title": "AFFiNE: piscina: Prototype-pollution gadget in ThreadPool.options allows RCE via execArgv / loadBalancer / env (in piscina 5.2.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-67c8-pqhq-4rmx",
+      "package": "affine",
+      "affected": [
+        "0.27.4-roostack.1"
+      ],
+      "fixed_upstream": "piscina 6.0.0-rc.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "critical",
+      "Exploited": false,
+      "EPSS": 0.00512,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:06.832451777Z"
+    },
+    {
+      "id": "GHSA-x8rm-f576-gq67",
+      "aliases": [
+        "CVE-2026-115887"
+      ],
+      "source": "OSV, for pkg:npm/graphql-scalars@1.24.2 in its image",
+      "title": "AFFiNE: graphql-scalars PhoneNumber scalar is vulnerable to regular expression denial of service (in graphql-scalars 1.24.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-x8rm-f576-gq67",
+      "package": "affine",
+      "affected": [
+        "0.27.4-roostack.1"
+      ],
+      "fixed_upstream": "graphql-scalars 2.0.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00487,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.516107964Z"
+    },
+    {
+      "id": "GHSA-qfvm-cv95-jqjf",
+      "aliases": [
+        "CVE-2026-77037"
+      ],
+      "source": "OSV, for pkg:npm/multer@2.2.0 in its image",
+      "title": "AFFiNE: multer vulnerable to Denial of Service via file descriptor leak on aborted uploads (in multer 2.2.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-qfvm-cv95-jqjf",
+      "package": "affine",
+      "affected": [
+        "0.27.4-roostack.1"
+      ],
+      "fixed_upstream": "multer 2.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00457,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.344379522Z"
+    },
+    {
+      "id": "GHSA-pg7v-jwj7-p798",
+      "aliases": [
+        "BIT-pillow-2026-59203",
+        "CVE-2026-59203",
+        "PYSEC-2026-3452"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@12.2.0 in its image",
+      "title": "Seafile: Pillow EpsImagePlugin negative %%BeginBinary byte count causes infinite loop denial of service (in pillow 12.2.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-pg7v-jwj7-p798",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00399,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.234892163Z"
+    },
+    {
+      "id": "PYSEC-2026-3452",
+      "aliases": [
+        "BIT-pillow-2026-59203",
+        "CVE-2026-59203",
+        "GHSA-pg7v-jwj7-p798"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@12.2.0 in its image",
+      "title": "Seafile: PYSEC-2026-3452 (in pillow 12.2.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-3452",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "pillow 12.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00399,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.723811966Z"
+    },
+    {
+      "id": "GHSA-q7pp-wcgr-pffx",
+      "aliases": [
+        "CVE-2023-36308"
+      ],
+      "source": "OSV, for pkg:golang/github.com/disintegration/imaging@v1.6.2 in its image",
+      "title": "Memos: Crash when processing crafted TIFF files (in imaging v1.6.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-q7pp-wcgr-pffx",
+      "package": "memos",
+      "affected": [
+        "26.11.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00385,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.28062726Z"
+    },
+    {
+      "id": "GHSA-8wjv-2p76-3863",
+      "aliases": [
+        "CVE-2026-102265",
+        "PYSEC-2026-4142"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.13.0 in its image",
+      "title": "Seafile: PyJWT: Uncaught RecursionError in jwt.decode() on deeply nested token header (in pyjwt 2.13.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-8wjv-2p76-3863",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.14.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00343,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:06.887579233Z"
+    },
+    {
+      "id": "PYSEC-2026-4142",
+      "aliases": [
+        "CVE-2026-102265",
+        "GHSA-8wjv-2p76-3863"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.13.0 in its image",
+      "title": "Seafile: PyJWT: Uncaught RecursionError in jwt.decode() on deeply nested token header (in pyjwt 2.13.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-4142",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.14.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00343,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.841020584Z"
+    },
+    {
+      "id": "GHSA-gvp8-978c-rx2q",
+      "aliases": [
+        "CVE-2026-103001",
+        "PYSEC-2026-4146"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.13.0 in its image",
+      "title": "Seafile: PyJWT.decode() reintroduces options-dict mutation, enabling silent claim-verification bypass on dict reuse (in pyjwt 2.13.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-gvp8-978c-rx2q",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00257,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.148538787Z"
+    },
+    {
+      "id": "PYSEC-2026-4146",
+      "aliases": [
+        "CVE-2026-103001",
+        "GHSA-gvp8-978c-rx2q"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.13.0 in its image",
+      "title": "Seafile: PyJWT.decode() reintroduces options-dict mutation, enabling silent claim-verification bypass on dict reuse (in pyjwt 2.13.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-4146",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00257,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.946564406Z"
+    },
+    {
+      "id": "GHSA-9j54-fg26-wv3r",
+      "aliases": [
+        "CVE-2026-102266",
+        "PYSEC-2026-4143"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.13.0 in its image",
+      "title": "Seafile: PyJWT: PyJWK accepts empty HMAC keys, bypassing PyJWT's empty-key validation (in pyjwt 2.13.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-9j54-fg26-wv3r",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.14.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00225,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:06.942582561Z"
+    },
+    {
+      "id": "PYSEC-2026-4143",
+      "aliases": [
+        "CVE-2026-102266",
+        "GHSA-9j54-fg26-wv3r"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.13.0 in its image",
+      "title": "Seafile: PyJWT: PyJWK accepts empty HMAC keys, bypassing PyJWT's empty-key validation (in pyjwt 2.13.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-4143",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.14.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00225,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.89583019Z"
+    },
+    {
+      "id": "GHSA-r6x4-923q-g947",
+      "aliases": [
+        "CVE-2026-102272",
+        "PYSEC-2026-4150"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.13.0 in its image",
+      "title": "Seafile: PyJWT BOM Bypass (in pyjwt 2.13.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-r6x4-923q-g947",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.14.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00216,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.404793235Z"
+    },
+    {
+      "id": "PYSEC-2026-4150",
+      "aliases": [
+        "CVE-2026-102272",
+        "GHSA-r6x4-923q-g947"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.13.0 in its image",
+      "title": "Seafile: PyJWT BOM Bypass (in pyjwt 2.13.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-4150",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.14.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00216,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:08.052348971Z"
+    },
+    {
+      "id": "GHSA-w2cx-738m-mc7w",
+      "aliases": [
+        "CVE-2026-102273",
+        "PYSEC-2026-4151"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.13.0 in its image",
+      "title": "Seafile: PyJWT accepts public JWK containers as HMAC secrets (in pyjwt 2.13.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-w2cx-738m-mc7w",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.14.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00175,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.465859022Z"
+    },
+    {
+      "id": "PYSEC-2026-4151",
+      "aliases": [
+        "CVE-2026-102273",
+        "GHSA-w2cx-738m-mc7w"
+      ],
+      "source": "OSV, for pkg:pypi/pyjwt@2.13.0 in its image",
+      "title": "Seafile: PyJWT accepts public JWK containers as HMAC secrets (in pyjwt 2.13.0)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-4151",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "pyjwt 2.14.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00175,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:08.107434162Z"
+    },
+    {
+      "id": "GHSA-pq85-v5r4-w5xj",
+      "source": "GitHub's advisories for requarks/wiki",
+      "title": "Wiki.js: Page-move destination authorization bypass moves content into denied branches",
+      "link": "https://github.com/requarks/wiki/security/advisories/GHSA-pq85-v5r4-w5xj",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.2.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e=3.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 5.4
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.4).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-09T12:02:45.528970297Z"
+    },
+    {
+      "id": "GHSA-6m8p-37cv-c4f5",
+      "source": "GitHub's advisories for requarks/wiki",
+      "title": "Wiki.js: Asset write authorization bypass allows overwriting protected files and moving assets into denied folders",
+      "link": "https://github.com/requarks/wiki/security/advisories/GHSA-6m8p-37cv-c4f5",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.2.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e=3.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 7.1
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 7.1).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-09T12:02:45.528987933Z"
+    },
+    {
+      "id": "GHSA-87m5-mch4-5f2q",
+      "source": "GitHub's advisories for requarks/wiki",
+      "title": "Wiki.js: Page-creation authorization bypass allows publishing in denied branches",
+      "link": "https://github.com/requarks/wiki/security/advisories/GHSA-87m5-mch4-5f2q",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.2.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e=3.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 5.4
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.4).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-09T12:02:45.528993161Z"
+    },
+    {
+      "id": "GHSA-g75f-g53v-794x",
+      "source": "OSV, for pkg:pypi/bleach@6.3.0 in its image",
+      "title": "Seafile: Bleach linkify(parse_email=True) CPU exhaustion via unbounded email regex scanning (in bleach 6.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-g75f-g53v-794x",
+      "package": "seafile",
+      "affected": [
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-09T12:03:07.093356824Z"
     }
   ]
 }
