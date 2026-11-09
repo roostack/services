@@ -1,0 +1,165 @@
+# Jotty: one container, no database. Notes and checklists are Markdown
+# files, and accounts, sessions, and settings JSON files, all in its data
+# folder; its admin's themes and styles go in a config folder. Image
+# digest looked up 2026-11-09. The review and what was tried on a lab:
+# docs/review-notes-2026-11.md.
+schema: roostack/v1alpha1
+name: jotty
+title: Jotty
+description: Notes and checklists kept as plain Markdown files, with sharing, reminders, and live editing together
+version: 1.29.2-roostack.1
+
+about:
+  maker: fccview and contributors
+  website: https://jotty.page
+  source: https://github.com/fccview/jotty
+  licence: AGPL-3.0-only
+  releases: https://github.com/fccview/jotty/releases/tag/{version}
+  # The project's logo: where it came from is in registry.yaml.
+  icon: icon.png
+  categories: [documents, productivity]
+  keywords: [notes, checklists, to-do, markdown, lists, kanban, reminders, google keep]
+built_with: [node, nextjs]
+requires:
+  roostack: "0.1.3"              # sso.oidc.start_path
+
+settings:
+  # The administrator, written into Jotty's accounts file by the install
+  # hook below. Until then Jotty's own setup page would make whoever
+  # reaches it first the administrator: the address stays private until
+  # the hook has run.
+  - key: admin_username
+    title: Administrator username
+    description: For signing in to Jotty. With the lab's sign-in, use your username here so that it's the same account.
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+
+containers:
+  app:
+    image: ghcr.io/fccview/jotty:1.29.2@sha256:5295d8a85aada46519ed6a1822d5989a373583f42017a346e8a62b44d75af71a
+    env:
+      APP_URL: "{{ .Routes.web.URL }}"
+      # Jotty checks each request's session by asking itself: here, not
+      # through the lab's address.
+      INTERNAL_API_URL: http://localhost:3000
+      HTTPS: "true"                # secure cookies; Jotty wants exactly "true"
+      # Jotty would tell its admins of new versions from GitHub every
+      # 8 hours, with instructions for Docker; Roostack offers its updates.
+      STOP_CHECK_UPDATES: "yes"
+    mounts:
+      - { storage: data, path: /app/data }
+      - { storage: config, path: /app/config }
+    health:
+      http: { port: 3000, path: /api/health }
+    memory: 200 MB
+    quadlet:
+      Container:
+        # The image's entrypoint drops from root to 1000 with su-exec,
+        # which can't change its groups under Roostack's Podman; started
+        # as 1000, it skips that (as Jotty's own compose file does).
+        # Mapped to Roostack's user, so the folders are its own.
+        User: "1000:1000"
+        UserNS: keep-id:uid=1000,gid=1000
+
+storage:
+  data:
+    title: Your notes, checklists, attachments, and accounts
+    class: critical
+  config:
+    title: Jotty's themes, emoji, and styles
+    class: critical
+
+hooks:
+  # The administrator, written into data/users/users.json only while it
+  # has no accounts, under Jotty's own lock (proper-lockfile's
+  # users.json.lock folder), as Jotty's own setup writes it: Jotty keeps a
+  # password as its SHA-256. Safe to re-run: an accounts file with anyone
+  # in it is left as it is.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - node
+      - -e
+      - |
+        const fs = require('fs'), c = require('crypto')
+        const dir = '/app/data/users', file = dir + '/users.json', lock = file + '.lock'
+        const name = process.env.ADMIN_USERNAME
+        fs.mkdirSync(dir, { recursive: true })
+        for (let i = 0; ; i++) {
+          try { fs.mkdirSync(lock); break } catch (e) {
+            if (i > 100) { console.error('Jotty is holding its accounts file.'); process.exit(1) }
+            Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 100)
+          }
+        }
+        try {
+          let users = []
+          try { users = JSON.parse(fs.readFileSync(file, 'utf8')) } catch {}
+          if (Array.isArray(users) && users.length > 0) {
+            console.log('Jotty has accounts already: the administrator is kept as it is.')
+          } else {
+            users = [{ uuid: c.randomUUID(), username: name,
+              passwordHash: c.createHash('sha256').update(process.env.ADMIN_PASSWORD).digest('hex'),
+              isAdmin: true, isSuperAdmin: true, createdAt: new Date().toISOString(),
+              preferredDateFormat: 'system', preferredTimeFormat: 'system' }]
+            const tmp = file + '.' + c.randomUUID() + '.tmp'
+            fs.writeFileSync(tmp, JSON.stringify(users, null, 2))
+            fs.renameSync(tmp, file)
+            for (const kind of ['notes', 'checklists']) fs.mkdirSync('/app/data/' + kind + '/' + name, { recursive: true })
+            for (const f of ['sessions.json', 'session-data.json']) if (!fs.existsSync(dir + '/' + f)) fs.writeFileSync(dir + '/' + f, '{}')
+            console.log('The administrator is made.')
+          }
+        } finally { fs.rmdirSync(lock) }
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: notes
+    exposure: private
+    max_body_size: 1GB           # Jotty's own limit; attachments are 10 MB unless its admin raises it
+    monitor: { path: /api/health, statuses: [200] }
+    # Anyone with an account can share a note, checklist, or folder with
+    # everyone, at /public/..., with its attachments; nothing turns that
+    # off. HTML comes as a download; images, SVG included, are shown, SVG
+    # with a sandbox (checked 2026-11-09). SVG as a download waits for
+    # Roostack's Caddy (registry.yaml).
+    public:
+      login_paths:
+        - /auth/login
+        - /auth/verify-mfa
+        - /auth/setup
+
+# Single sign-on (SPEC.md §5.2): Jotty signs people in through OIDC from
+# its environment, making an account at their first sign-in, or using the
+# account with the same username. The lab's Owners and Admins become its
+# admins (it never takes admin away). Its password form stays, so the
+# administrator made at install keeps theirs.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/api/oidc/callback]
+    start_path: /api/oidc/login
+    admins: true
+    existing_accounts: username
+  env:
+    app:
+      AUTH_MODE: oidc
+      SSO_FALLBACK_LOCAL: "yes"
+      OIDC_ISSUER: "{{ .SSO.Issuer }}"
+      OIDC_CLIENT_ID: "{{ .SSO.ClientID }}"
+      OIDC_ADMIN_GROUPS: "{{ .SSO.AdminGroup }}"
+  secrets:
+    app:
+      OIDC_CLIENT_SECRET: sso.client_secret
+  note: Jotty's own passwords keep working beside it. Someone whose lab username matches an account in Jotty will sign in to that account, and the lab's Admins become Jotty's admins, which can't be undone from the lab.

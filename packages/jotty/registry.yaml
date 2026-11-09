@@ -1,0 +1,12 @@
+# What the registry says about this package, kept by the registry's
+# maintainers rather than the package's author. See README.md.
+# icon.png is the project's logo, to identify the app: the project's own
+# public/app-icons/logos/logo.png (AGPL-3.0, as the app), made 256 px
+# (2026-11-09).
+tier: official
+maintainers:
+  - roostack
+# No approval needed for roost.ac (the maintainer, 2026-11-09: note-taking
+# apps are safe enough). An SVG attached to a public note is still shown
+# inline, sandboxed; Roostack's Caddy making it a download (the registry's
+# change 7) is fast-tracked, and a new revision will use it.

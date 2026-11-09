@@ -1,0 +1,11 @@
+# What the registry says about this package, kept by the registry's
+# maintainers rather than the package's author. See README.md.
+# icon.png is the project's logo, to identify the app: the project's own
+# web/public/logo.webp (MIT, as the app), made a 256 px PNG (2026-11-09).
+tier: official
+maintainers:
+  - roostack
+# No approval needed for roost.ac (the maintainer, 2026-11-09: note-taking
+# apps are safe enough). A share link still shows an uploaded SVG inline,
+# without scripts; Roostack's Caddy making it a download (the registry's
+# change 7) is fast-tracked, and a new revision will use it.
