@@ -199,8 +199,8 @@ routes:
     # to anyone when public_reading is on, with their attachments. HTML,
     # scripts, and XML come as downloads, and anything but images and
     # PDFs too; images, SVG included, are shown, with a CSP that allows
-    # no scripts (checked 2026-11-09). registry.yaml says why it needs
-    # approval for roost.ac.
+    # no scripts (checked 2026-11-09). SVG as a download waits for
+    # Roostack's Caddy (registry.yaml).
     public:
       login_paths:
         - /api/auth/signin
