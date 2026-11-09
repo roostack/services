@@ -9,12 +9,12 @@ Upstream facts were checked on 2026-11-09 against each project's repository (Git
 - **Kept: wait and see.** It's six months old and one person's project. Its package (`kept@1.9.4-roostack.1`, tried on a lab) stays on the branch `claude/kept`, unmerged; look at it again in 2027.
 - **Package Memos and Jotty,** and **AFFiNE too** (despite its licence, below). All three are in this change.
 
-## For the maintainer to decide
+## Then (the maintainer, 2026-11-09)
 
-1. **Memos and Jotty on roost.ac.** Both show an uploaded SVG inline on a share link or public page, sandboxed or with a strict CSP but not as a download, which the decision of 2026-10-31 ("downloads only") doesn't allow. Their `registry.yaml` has the `roost_ac` approval flag for now, so their public addresses need Roostack Cloud's approval on roost.ac and the relay. The alternative is Roostack's Caddy making uploaded SVG a download (change 7 of the file-sharing review), after which the flag can go. Recommended: keep the flags until change 7.
-2. **AFFiNE's licence for hosted labs.** Its server is under AFFiNE's Enterprise Edition licence except the parts "distributed as part of AFFiNE CE" (MPL-2.0), and nothing says which parts those are; its README calls the self-hosted version the Community Edition, "free for self-host". Fine for an Owner's own lab, but Roostack Cloud's hosted labs would be AFFiNE run for customers: a question for docs/LEGAL.md in Cloud's repository before hosted labs offer it.
-3. **AFFiNE's telemetry.** Its web app sends usage events to `app.affine.pro` and errors to Sentry from each visitor's browser, on by default, with only a per-person switch (Settings, About). The package can't turn it off. Offer it anyway, with a line in its description or notes, or wait for a setting upstream (an issue to raise).
-4. **The single sign-on card for Kept** (when Kept is looked at again): Roostack's card says "Kept will make each person an account the first time they sign in", which isn't true. Proposed: `sso.oidc.existing_accounts: connect`.
+1. **Memos and Jotty need no approval for roost.ac:** note-taking apps are safe enough. Both still show an uploaded SVG inline on a share link or public page (with a strict CSP or a sandbox), which "downloads only" (2026-10-31) doesn't allow, so Roostack's Caddy making uploaded SVG and HTML a download (change 7 of the file-sharing review) is fast-tracked, in its own session with the two Roostack findings below. New revisions of Memos and Jotty will use it.
+2. **AFFiNE's licence is fine:** Roostack provides tools for people to host apps themselves, and doesn't host or resell them, so self-hosting AFFiNE's Community Edition is what an Owner does. (The earlier worry assumed hosted labs.)
+3. **AFFiNE's telemetry must be very clear before installing.** For now `web/notices.json` says it on the registry's page; Roostack's session is adding a package field for a notice on the install and service pages, which AFFiNE's next revision will use.
+4. **Kept: wait and see,** including the single sign-on card's wrong claim that it makes accounts (`sso.oidc.existing_accounts: connect` proposed).
 
 ## Kept
 

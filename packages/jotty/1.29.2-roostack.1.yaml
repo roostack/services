@@ -132,8 +132,8 @@ routes:
     # Anyone with an account can share a note, checklist, or folder with
     # everyone, at /public/..., with its attachments; nothing turns that
     # off. HTML comes as a download; images, SVG included, are shown, SVG
-    # with a sandbox (checked 2026-11-09). registry.yaml says why it needs
-    # approval for roost.ac.
+    # with a sandbox (checked 2026-11-09). SVG as a download waits for
+    # Roostack's Caddy (registry.yaml).
     public:
       login_paths:
         - /auth/login
