@@ -1,0 +1,252 @@
+# Wiki.js 3: one container and Postgres. Pages, uploads, accounts and settings
+# are all in the database. The image's /wiki/data is a cache that starts empty
+# in a fresh container, or it holds the disk or Git storage an administrator
+# can turn on, which this package doesn't keep or back up. Mounting nothing
+# there means the container can run as the image's user without
+# UserNS=keep-id, whose first start would change the owner of every file of
+# this 2.45 GB image (Docmost's 893 MB took 12 minutes on a dev VM, of the 15
+# a container's start may take). wiki-js is the 2.x line: there's no upgrade
+# between them, only Wiki.js's own export and import (Roostack's help, "Moving
+# from Wiki.js 2 to 3").
+# Image digest looked up 2026-11-06.
+schema: roostack/v1alpha1
+name: wiki-js-3
+title: Wiki.js
+description: A wiki for writing and organising shared documentation
+version: 3.3.0-roostack.1
+
+about:
+  maker: Nicolas Giard (Requarks), with backers
+  website: https://js.wiki
+  source: https://github.com/requarks/wiki
+  licence: AGPL-3.0-only
+  support: https://js.wiki/donate
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [documents]
+  keywords: [wiki, documentation, knowledge base, markdown, confluence alternative]
+built_with: [node, git]
+requires:
+  roostack: "0.1.3"              # sso.oidc.start_path
+
+settings:
+  # The administrator, set by the install hook below.
+  - key: admin_email
+    title: Your email address
+    description: For signing in to Wiki.js as its administrator
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack will forget it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hooks succeed
+  # Without ADMIN_PASS, Wiki.js's first start makes admin@example.com with a
+  # password everyone knows. With this, nobody can sign in until the install
+  # hook replaces it with yours; after that it opens nothing.
+  - key: first_password
+    title: Wiki.js's first password
+    type: secret
+    generate: true
+  # A key the install hook makes, which single sign-on's hook uses to set
+  # Wiki.js's sign-in through its API. It carries the Administrators group's
+  # permissions, as Wiki.js's narrower groups can't change sign-in, so
+  # Roostack keeps it like a password.
+  - key: settings_key
+    title: Roostack's key to Wiki.js
+    description: Wiki.js makes it at install so that Roostack can set up single sign-on. It has full access to Wiki.js (Wiki.js has no narrower key that can change its sign-in), and is never shown.
+    type: secret
+    from_hook: true
+
+containers:
+  app:
+    image: ghcr.io/requarks/wiki:3.3.0@sha256:9cd23ece11ac49d2cbdb1d75a96224c8959a35d15b5dd969fa7fa9c325dbc357
+    env:
+      DB_HOST: "{{ .Databases.main.Host }}"
+      DB_PORT: "{{ .Databases.main.Port }}"
+      DB_USER: "{{ .Databases.main.User }}"
+      DB_NAME: "{{ .Databases.main.Name }}"
+    secrets:
+      DB_PASS: databases.main.password
+      ADMIN_PASS: first_password
+    health:
+      # Wiki.js has no health address: this is the public answer its pages
+      # start from, which needs its database.
+      http: { port: 3000, path: /_api/sites/localhost }
+    depends_on: [databases.main]
+    memory: 500 MB
+
+databases:
+  main:
+    type: postgres               # pages, history, uploads, accounts, settings
+
+hooks:
+  # Your administrator account, with your email and password; Wiki.js told to
+  # trust Roostack's proxy, the only way to its port, for the visitor's address
+  # and https in the addresses it makes; and a key for Roostack, printed, and
+  # only it, on standard output, which Roostack keeps as settings_key; all else
+  # goes to standard error, the log. Safe to re-run: it signs in with your
+  # password once that's set, and revokes any older key named Roostack. The
+  # Connect action below runs the same script.
+  - on: install
+    title: Set up your administrator account
+    container: app
+    env:
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    saves: settings_key
+    command: &make-key
+      - node
+      - -e
+      - |
+        let cookie = ''
+        const api = async (method, path, body) => {
+          const r = await fetch('http://localhost:3000/_api' + path, { method,
+            headers: { ...(body ? { 'Content-Type': 'application/json' } : {}), ...(cookie ? { cookie } : {}) },
+            body: body ? JSON.stringify(body) : undefined })
+          const set = r.headers.getSetCookie()
+          if (set.length) cookie = set.map((c) => c.split(';')[0]).join('; ')
+          const out = await r.json().catch(() => ({}))
+          return { ok: r.ok, status: r.status, out }
+        }
+        const must = async (what, method, path, body) => {
+          const r = await api(method, path, body)
+          if (!r.ok) throw new Error(what + ' failed (' + r.status + '): ' + (r.out.message || ''))
+          return r.out
+        }
+        ;(async () => {
+          const site = await must('Reading the site', 'GET', '/sites/localhost')
+          const strategies = await must('Reading its sign-in methods', 'GET', '/sites/' + site.id + '/auth/strategies')
+          const local = strategies.find((s) => s.activeStrategy.strategy.key === 'local')
+          if (!local) throw new Error('Wiki.js has no sign-in with a password')
+          const signIn = (username, password) => api('PUT', '/sites/' + site.id + '/auth/login', { strategyId: local.id, username, password })
+          const email = process.env.ADMIN_EMAIL, password = process.env.ADMIN_PASSWORD
+          let done = await signIn(email, password)
+          if (!done.out.authenticated && process.env.ADMIN_PASS) {
+            done = await signIn('admin@example.com', process.env.ADMIN_PASS)
+            if (done.out.authenticated) {
+              const me = await must('Reading the first account', 'GET', '/users/whoami')
+              await must('Setting your email address', 'PUT', '/users/' + me.id, { email })
+              await must('Setting your password', 'PUT', '/users/' + me.id + '/password', { newPassword: password })
+              console.error('Your administrator account is ready.')
+            }
+          }
+          if (!done.out.authenticated) throw new Error('Signing in as the administrator failed: ' + (done.out.message || done.status))
+          await must('Trusting Roostack\'s proxy', 'PUT', '/system/security', { trustProxy: true })
+          await must('Turning on Wiki.js\'s API', 'PUT', '/system/api', { isEnabled: true })
+          for (const k of await must('Reading its keys', 'GET', '/api-keys')) {
+            if (k.name === 'Roostack' && !k.isRevoked) await must('Revoking the old key', 'POST', '/api-keys/' + k.id + '/revoke')
+          }
+          const admins = (await must('Reading its groups', 'GET', '/groups')).find((g) => g.name === 'Administrators')
+          const made = await must('Making the key', 'POST', '/api-keys', { name: 'Roostack', expiration: '3y', groups: [admins.id] })
+          console.error("Made a key named Roostack, for Wiki.js's sign-in settings.")
+          process.stdout.write(made.key + '\n')
+        })().catch((e) => { console.error('Wiki.js:', e.message); process.exit(1) })
+
+  # For a Wiki.js whose key is gone: revoked in Wiki.js, or past the three
+  # years Wiki.js's longest key lasts. The Single sign-on card offers it.
+  - on: action
+    name: connect
+    title: Connect Roostack to Wiki.js
+    description: Roostack will make a key and keep it so that it can set up single sign-on. Type Wiki.js's administrator email and password once, and Roostack will keep only the key.
+    container: app
+    inputs:
+      - { key: email, title: Administrator email, type: string }
+      - { key: password, title: Administrator password, type: secret }
+    env:
+      ADMIN_EMAIL: "{{ .Inputs.email }}"
+    secrets:
+      ADMIN_PASSWORD: inputs.password
+    saves: settings_key
+    command: *make-key
+
+  # Single sign-on (SPEC.md §5.2): Wiki.js keeps its sign-in methods in its
+  # database, each at an address with a random ID that Wiki.js would choose,
+  # and the sign-in page must know that address before anything runs, so this
+  # hook adds the method's row itself with the fixed ID below, the only thing
+  # it writes to the database directly; all the rest goes through the API. The
+  # method is offered on the site's sign-in page. Lab members land in Editors,
+  # a group made here the first time, which can read and edit pages (the
+  # maintainer's choice for Wiki.js, 2026-10-20), and later changes to it in
+  # Wiki.js stay. The lab's Owners and Admins land in Administrators too. Off
+  # turns the method off and forgets its secret, keeping the accounts it made.
+  # Safe to run again.
+  - on: sso
+    title: Set Wiki.js's sign-in
+    container: app
+    env:
+      NAME: "{{ .SSO.ProviderName }}"
+      ISSUER: "{{ .SSO.Issuer }}"
+      CLIENT_ID: "{{ .SSO.ClientID }}"
+    secrets:
+      API_KEY: settings_key
+      CLIENT_SECRET: sso.client_secret
+    command:
+      - node
+      - -e
+      - |
+        const ID = '7b0c5a3e-7d1f-4e6a-9c41-726f6f737461'
+        const { Client } = require('/wiki/backend/node_modules/pg')
+        const must = async (what, method, path, body) => {
+          const r = await fetch('http://localhost:3000/_api' + path, { method,
+            headers: { Authorization: 'Bearer ' + process.env.API_KEY, ...(body ? { 'Content-Type': 'application/json' } : {}) },
+            body: body ? JSON.stringify(body) : undefined })
+          const out = await r.json().catch(() => ({}))
+          if (!r.ok) throw new Error(what + ' failed (' + r.status + '): ' + (out.message || ''))
+          return out
+        }
+        const on = process.env.ROOSTACK_SSO === 'on', name = process.env.NAME
+        const roles = ['read:pages', 'write:pages', 'manage:pages', 'delete:pages', 'read:source', 'read:history',
+          'read:assets', 'write:assets', 'read:comments', 'write:comments', 'read:glossary', 'read:notes', 'write:feedback']
+        ;(async () => {
+          const db = new Client({ host: process.env.DB_HOST, port: +process.env.DB_PORT, user: process.env.DB_USER,
+            password: process.env.DB_PASS, database: process.env.DB_NAME })
+          await db.connect()
+          await db.query("INSERT INTO wiki.authentication (id, module) VALUES ($1, 'oidc') ON CONFLICT (id) DO NOTHING", [ID])
+          await db.end()
+          if (on && !(await must('Reading its groups', 'GET', '/groups')).find((g) => g.name === 'Editors')) {
+            const made = await must('Making the Editors group', 'POST', '/groups', { name: 'Editors' })
+            await must("Setting the Editors group's permissions", 'PUT', '/groups/' + made.id, { rules: [{ id: crypto.randomUUID(), name: 'Default Rule',
+              roles, match: 'START', mode: 'ALLOW', path: '', tags: [], locales: [], sites: [] }] })
+            console.log('The Editors group can read and edit pages.')
+          }
+          await must('Setting single sign-on', 'PUT', '/authentication/strategies/' + ID, { displayName: name, isEnabled: on, registration: true,
+            config: { clientId: process.env.CLIENT_ID, clientSecret: on ? process.env.CLIENT_SECRET : '', issuer: process.env.ISSUER, useDiscovery: true,
+              scopes: 'openid profile email groups', mapGroups: true, groupsClaim: 'groups', unassignMissingGroups: true } })
+          const site = await must('Reading the site', 'GET', '/sites/localhost')
+          const offered = (await must('Reading its sign-in methods', 'GET', '/sites/' + site.id + '/auth/strategies'))
+          if (on && !offered.find((s) => s.id === ID)) {
+            await must('Offering it on the sign-in page', 'PUT', '/sites/' + site.id, { authStrategies: [
+              ...offered.map((s) => ({ id: s.id, order: s.order, isVisible: s.isVisible })), { id: ID, order: offered.length, isVisible: true }] })
+          }
+          console.log(on ? "Wiki.js's sign-in now offers the lab's sign-in page." : "Wiki.js's single sign-on is off.")
+        })().catch((e) => { console.error('Wiki.js:', e.message); process.exit(1) })
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: wiki
+    exposure: private
+    max_body_size: 50MB          # uploads; Wiki.js's own limit is 10 MB a file by default
+    public:
+      login_paths:
+        - /login
+        - /_api/auth
+
+# Single sign-on (SPEC.md §5.2): set through Wiki.js's API by the sso hook
+# above, with the key Roostack keeps. The ID is the hook's.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/_api/auth/7b0c5a3e-7d1f-4e6a-9c41-726f6f737461/callback]
+    start_path: /_api/auth/7b0c5a3e-7d1f-4e6a-9c41-726f6f737461/authorize
+    groups:
+      users: editors             # Wiki.js's groups, by name, whatever the case
+      admins: administrators
+    admins: true
+    existing_accounts: email
+  note: The account made at install keeps its password, and API keys stay Wiki.js's own.
