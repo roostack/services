@@ -3,6 +3,10 @@
 # its signing key in a config folder beside the settings file Roostack
 # writes. Image digest looked up 2026-11-09. The review and what was tried
 # on a lab: docs/review-notes-2026-11.md.
+#
+# Its web app sends usage data to app.affine.pro and errors to Sentry from
+# each visitor's browser, on by default, with only a per-person switch: the
+# package can't turn it off. web/notices.json says so on the registry's page.
 schema: roostack/v1alpha1
 name: affine
 title: AFFiNE

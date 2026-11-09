@@ -6,9 +6,7 @@
 tier: official
 maintainers:
   - roostack
-# Anyone with an account can publish a note at /public/... with its
-# attachments, and nothing in Jotty turns that off; an SVG attached to one
-# is shown as a page, sandboxed, rather than downloaded (decided
-# 2026-10-31: downloads only). Set 2026-11-09, waiting for the maintainer.
-roost_ac:
-  approval: Anyone with an account can publish notes to everyone, and an SVG attached to one is shown as a page rather than downloaded.
+# No approval needed for roost.ac (the maintainer, 2026-11-09: note-taking
+# apps are safe enough). An SVG attached to a public note is still shown
+# inline, sandboxed; Roostack's Caddy making it a download (the registry's
+# change 7) is fast-tracked, and a new revision will use it.

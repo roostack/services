@@ -1,3 +1,4 @@
 {
-  "plex": "Plex, the Plex Play logo and Plex Media Server are trademarks of Plex and used under a license."
+  "plex": "Plex, the Plex Play logo and Plex Media Server are trademarks of Plex and used under a license.",
+  "affine": "AFFiNE's web app will send usage data to AFFiNE (app.affine.pro) and error reports to Sentry from each person's browser. It's on by default: each person can turn it off in AFFiNE, under Settings and About, but the lab can't turn it off for everyone."
 }
