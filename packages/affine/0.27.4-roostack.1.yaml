@@ -1,0 +1,182 @@
+# AFFiNE: one container, with Postgres and Redis run by Roostack. Its
+# documents are in Postgres, its uploaded files in a storage folder, and
+# its signing key in a config folder beside the settings file Roostack
+# writes. Image digest looked up 2026-11-09. The review and what was tried
+# on a lab: docs/review-notes-2026-11.md.
+schema: roostack/v1alpha1
+name: affine
+title: AFFiNE
+description: Documents, whiteboards, and databases in one workspace, for writing and planning together
+version: 0.27.4-roostack.1
+
+about:
+  maker: Toeverything and contributors
+  website: https://affine.pro
+  source: https://github.com/toeverything/AFFiNE
+  # The server is under AFFiNE's own licence except the parts in its
+  # Community Edition, which are MPL-2.0; the web app is MIT. The README
+  # calls the published self-hosted version the Community Edition, free
+  # to self-host (docs/review-notes-2026-11.md).
+  licence: MIT AND MPL-2.0 AND LicenseRef-AFFiNE-EE
+  releases: https://github.com/toeverything/AFFiNE/releases/tag/v{version}
+  # The project's logo: where it came from is in registry.yaml.
+  icon: icon.png
+  categories: [documents, productivity]
+  keywords: [notes, documents, whiteboard, wiki, notion, miro, knowledge base, collaboration, markdown]
+built_with: [node, rust]
+requires:
+  roostack: "0.1.3"              # sso.oidc.start_path
+
+settings:
+  # The administrator, made by the install hook below through AFFiNE's
+  # first-run setup. Until then its setup page would make whoever reaches
+  # it first the administrator: the address stays private until the hook
+  # has run.
+  - key: admin_email
+    title: Administrator email address
+    description: For signing in to AFFiNE
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: 8 to 32 characters (AFFiNE's own limits). Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: signups_allowed
+    title: Allow anyone to create an account
+    description: AFFiNE signs people up by emailing them a code, so this needs its email set up too (in its admin panel)
+    type: bool
+    default: false
+
+containers:
+  app:
+    image: ghcr.io/toeverything/affine:0.27.4@sha256:b649f5ce2384ffdf13c23bccf81d759e15973d59d0b0058af65d895a84373099
+    # AFFiNE's migrations, and its signing key the first time, before the
+    # server: its own compose file runs the same script as a separate job
+    # before each start, and every step is safe to repeat.
+    command: [sh, -c, "node ./scripts/self-host-predeploy.js && exec node ./dist/main.js"]
+    env:
+      AFFINE_SERVER_EXTERNAL_URL: "{{ .Routes.web.URL }}"
+      AFFINE_SERVER_HTTPS: "true"              # secure cookies
+      AFFINE_INDEXER_ENABLED: "false"          # needs Manticore or Elasticsearch
+      REDIS_SERVER_HOST: "{{ .Databases.cache.Host }}"
+      REDIS_SERVER_PORT: "{{ .Databases.cache.Port }}"
+      CHECKPOINT_DISABLE: "1"                  # Prisma's update check
+    secrets:
+      DATABASE_URL: databases.main.url
+    mounts:
+      - { storage: files, path: /root/.affine/storage }
+      - { storage: config, path: /root/.affine/config }
+    health:
+      http: { port: 3010, path: /info }
+    memory: 1 GB
+
+storage:
+  files:
+    title: Files uploaded to documents, and avatars
+    class: critical
+  config:
+    title: AFFiNE's signing key and settings
+    class: critical
+    # private.key, made by AFFiNE's first start, signs and encrypts its
+    # tokens: without it, everyone signs in again and calendar links break.
+
+databases:
+  main:
+    # Roostack's Postgres 17. AFFiNE tests on 16 with pgvector; without
+    # pgvector its migrations skip only the tables for AI search, and its
+    # AI features are off.
+    type: postgres
+  cache:
+    type: redis                  # its cache, queues, and live sync
+    backup: false
+
+config_files:
+  settings:
+    title: AFFiNE's settings
+    storage: config
+    path: config.json
+    format: json
+    # What AFFiNE takes only from this file or its admin panel (0.27.4's
+    # schema.json). A value saved in its admin panel wins over this file.
+    # While single sign-on is on, people from the lab get an account the
+    # first time they sign in, or use the one with their email address.
+    content: |
+      {
+        "auth": {
+          "allowSignup": {{ if .Settings.signups_allowed }}true{{ else }}false{{ end }},
+          "allowSignupForOauth": {{ if .SSO.Enabled }}true{{ else }}false{{ end }}
+        },
+        "flags": {
+          "allowGuestDemoWorkspace": false
+        }
+        {{- if .SSO.Enabled }},
+        "oauth": {
+          "providers.oidc": {
+            "clientId": {{ json .SSO.ClientID }},
+            "clientSecret": {{ .SSO.ClientSecret }},
+            "issuer": {{ json .SSO.Issuer }},
+            "allowPrivateNetwork": true,
+            "args": { "scope": "openid profile email" }
+          }
+        }
+        {{- end }}
+      }
+
+hooks:
+  # The administrator, through AFFiNE's first-run setup. Safe to re-run:
+  # once anyone has an account, AFFiNE answers 403 and nothing changes.
+  - on: install
+    container: app
+    env:
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - node
+      - -e
+      - |
+        const body = JSON.stringify({ email: process.env.ADMIN_EMAIL, password: process.env.ADMIN_PASSWORD, name: process.env.ADMIN_EMAIL.split('@')[0] })
+        fetch('http://127.0.0.1:3010/api/setup/create-admin-user', { method: 'POST', headers: { 'content-type': 'application/json' }, body })
+          .then(async (res) => {
+            const text = await res.text()
+            if (res.ok) { console.log('The administrator is made.'); return }
+            if (res.status === 403) { console.log('AFFiNE has accounts already: the administrator is kept as it is.'); return }
+            console.error('Making the administrator failed:', res.status, text.slice(0, 300)); process.exit(1)
+          })
+          .catch((e) => { console.error('AFFiNE is not answering yet:', e.message); process.exit(1) })
+
+routes:
+  web:
+    container: app
+    port: 3010
+    subdomain: affine
+    exposure: private
+    max_body_size: 100MB         # AFFiNE's own limit for one file on a free self-hosted server
+    monitor: { path: /info, statuses: [200] }
+    # A workspace's owner can publish documents to everyone, and anyone
+    # can then fetch that workspace's files by their key. Files are sent
+    # with nosniff, and HTML, SVG, XML, and scripts as downloads (checked
+    # 2026-11-09). New accounts can't share for their first 24 hours.
+    public:
+      login_paths:
+        - /api/auth/sign-in
+        - /api/auth/magic-link
+        - /api/auth/preflight
+        - /api/oauth/preflight
+        - /api/oauth/callback
+        - /api/setup/create-admin-user
+
+# Single sign-on (SPEC.md §5.2): AFFiNE takes one OIDC provider from its
+# settings file, beside its own passwords. Someone signing in for the
+# first time gets an account, or the one with their email address. No
+# groups: administrators are made in AFFiNE's admin panel.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/oauth/callback]
+    start_path: /oauth/login?provider=OIDC
+    existing_accounts: email
+  note: AFFiNE's own passwords keep working beside it. Its administrators are made in its admin panel; the lab's Admins aren't made AFFiNE's admins.
