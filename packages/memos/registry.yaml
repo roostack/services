@@ -1,0 +1,13 @@
+# What the registry says about this package, kept by the registry's
+# maintainers rather than the package's author. See README.md.
+# icon.png is the project's logo, to identify the app: the project's own
+# web/public/logo.webp (MIT, as the app), made a 256 px PNG (2026-11-09).
+tier: official
+maintainers:
+  - roostack
+# Until Roostack's Caddy can make uploaded SVG a download (the registry's
+# change 7), a share link shows an uploaded SVG as a page on the lab's
+# address: without scripts, but still a page (decided 2026-10-31: downloads
+# only). Set 2026-11-09, waiting for the maintainer.
+roost_ac:
+  approval: Anyone with an account can share a memo by link, and an SVG attached to it is shown as a page rather than downloaded.
