@@ -1,0 +1,222 @@
+# Memos: one container, SQLite. The database and attachments are in one
+# folder. Its administrator, sign-ups, who can read without signing in,
+# and the lab's sign-in come from its declarative configuration, a JSON
+# file Roostack writes, which Memos applies each time it starts. Image
+# digest looked up 2026-11-09. The review and what was tried on a lab:
+# docs/review-notes-2026-11.md.
+schema: roostack/v1alpha1
+name: memos
+title: Memos
+description: Jot down short notes and ideas in a timeline, with tags, checklists, and attachments
+version: 26.11.0-roostack.1
+
+about:
+  maker: The Memos project (usememos)
+  website: https://usememos.com
+  source: https://github.com/usememos/memos
+  licence: MIT
+  support: https://github.com/sponsors/usememos
+  releases: https://github.com/usememos/memos/releases/tag/{version}
+  # The project's logo: where it came from is in registry.yaml.
+  icon: icon.png
+  categories: [documents, productivity]
+  keywords: [notes, memos, microblog, journal, ideas, markdown, timeline, tags]
+built_with: [go]
+requires:
+  roostack: "0.1.2"              # config_files, sso.oidc.existing_accounts
+
+settings:
+  # The administrator, declared in the configuration below, so Memos
+  # makes it before anyone can reach it.
+  - key: admin_username
+    title: Administrator username
+    description: For signing in to Memos, in lower-case letters, digits, and dashes
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Administrator password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once setup has finished
+  - key: signups_allowed
+    title: Allow anyone to create an account
+    description: Otherwise only an administrator can add people (or they come from the lab's sign-in, once it's on)
+    type: bool
+    default: false
+  - key: public_reading
+    title: Let people read public memos without signing in
+    description: Memos marked Public will be shown to anyone who opens Memos' address, as well as on share links
+    type: bool
+    default: false
+
+containers:
+  app:
+    image: docker.io/neosmemo/memos:26.11.0@sha256:087e7dc6b76b31fcd1107a5767398b2a310ced209adb791efd8760c745dc8034
+    env:
+      MEMOS_PORT: "5230"
+      MEMOS_INSTANCE_URL: "{{ .Routes.web.URL }}"
+      MEMOS_CONFIG_DIR: /etc/memos/config
+    mounts:
+      - { storage: data, path: /var/opt/memos }
+      - { storage: config, path: /etc/memos/config, readonly: true }
+    health:
+      http: { port: 5230, path: /healthz }
+    memory: 50 MB
+    quadlet:
+      Container:
+        # The image's entrypoint starts as root to change the data
+        # folder's owner and drops to 10001 with su-exec, which can't
+        # change its groups under Roostack's Podman. Started as 10001, it
+        # skips that and runs Memos: mapped to Roostack's user, so the
+        # folder is its own.
+        User: "10001:10001"
+        UserNS: keep-id:uid=10001,gid=10001
+
+storage:
+  data:
+    title: Your memos and attachments
+    class: critical
+  config:
+    title: Memos' configuration, which Roostack writes
+    class: replaceable
+
+databases:
+  main:
+    type: sqlite
+    path: data/memos_prod.db
+
+config_files:
+  memos:
+    title: Memos' configuration
+    storage: config
+    path: roostack.json
+    format: json
+    # Memos' declarative configuration (proto/api/configuration.proto in
+    # 26.11.0). Each group it names is managed whole, and read-only in
+    # Memos' settings, except the fields lifecycle releases below, which
+    # the administrator can change there. The administrator's password is
+    # sent only when the account is made: afterwards it's theirs to
+    # change in Memos.
+    #
+    # While single sign-on is on, people from the lab get an account the
+    # first time they sign in, and nobody else can sign up or sign in with
+    # a password: only administrators keep theirs. When it's off, the
+    # provider is removed (Memos refuses a configuration that just drops
+    # a provider it manages).
+    content: |
+      {
+        {{- if .SSO.Enabled }}
+        "identityProviders": [
+          {
+            "name": "identity-providers/roostack",
+            "type": "OAUTH2",
+            "title": {{ json .SSO.ProviderName }},
+            "config": {
+              "oauth2Config": {
+                "clientId": {{ json .SSO.ClientID }},
+                "clientSecret": {{ .SSO.ClientSecret }},
+                "authUrl": {{ json .SSO.AuthorizeURL }},
+                "tokenUrl": {{ json .SSO.TokenURL }},
+                "userInfoUrl": {{ json .SSO.UserinfoURL }},
+                "scopes": ["openid", "profile", "email"],
+                "fieldMapping": { "identifier": "sub", "displayName": "name", "email": "email" }
+              }
+            }
+          }
+        ],
+        {{- else }}
+        "removed": [
+          { "resource": "identity-providers/roostack", "destroy": true }
+        ],
+        {{- end }}
+        "instanceSettings": [
+          {
+            "name": "instance/settings/ACCESS",
+            "accessSetting": { "accessMode": {{ if .Settings.public_reading }}"INSTANCE_ACCESS_MODE_PUBLIC"{{ else }}"INSTANCE_ACCESS_MODE_PRIVATE"{{ end }} }
+          },
+          {
+            "name": "instance/settings/GENERAL",
+            "generalSetting": {
+              {{- if .SSO.Enabled }}
+              "disallowUserRegistration": false,
+              "disallowPasswordAuth": true
+              {{- else }}
+              "disallowUserRegistration": {{ if .Settings.signups_allowed }}false{{ else }}true{{ end }},
+              "disallowPasswordAuth": false
+              {{- end }}
+            }
+          }
+        ],
+        "users": [
+          {
+            "name": "users/{{ .Settings.admin_username }}",
+            "username": {{ json .Settings.admin_username }},
+            "role": "ADMIN",
+            "password": {{ .Secrets.admin_password }}
+          }
+        ],
+        "lifecycle": [
+          { "resource": "users/{{ .Settings.admin_username }}", "preventDestroy": true, "writeOnlyVersion": 1 },
+          {
+            "resource": "instance/settings/GENERAL",
+            "ignoreChanges": [
+              "generalSetting.customProfile",
+              "generalSetting.disallowChangeUsername",
+              "generalSetting.disallowChangeNickname",
+              "generalSetting.weekStartDayOffset",
+              "generalSetting.additionalStyle",
+              "generalSetting.additionalScript"
+            ]
+          }
+        ]
+      }
+
+hooks:
+  # Memos applies its configuration, making the administrator, before it
+  # answers at all, so setup has finished once it answers. Roostack then
+  # forgets the password and writes the file again without it: it does
+  # that only after install hooks, so the package needs one (Roostack 0.1.4).
+  - on: install
+    container: app
+    command:
+      - /bin/sh
+      - -c
+      - |
+        wget -q -O /dev/null http://127.0.0.1:5230/healthz || { echo 'Memos is not answering yet.' >&2; exit 1; }
+        echo 'Memos has applied its configuration: the administrator is made.'
+
+routes:
+  web:
+    container: app
+    port: 5230
+    subdomain: memos
+    exposure: private
+    max_body_size: 100MB
+    monitor: { path: /healthz, statuses: [200] }
+    # Memos shows a memo to anyone with its share link, and public memos
+    # to anyone when public_reading is on, with their attachments. HTML,
+    # scripts, and XML come as downloads, and anything but images and
+    # PDFs too; images, SVG included, are shown, with a CSP that allows
+    # no scripts (checked 2026-11-09). SVG as a download waits for
+    # Roostack's Caddy (registry.yaml).
+    public:
+      login_paths:
+        - /api/auth/signin
+        - /memos.api.v1.AuthService/SignIn
+        - /api/users
+        - /memos.api.v1.UserService/CreateUser
+
+# Single sign-on (SPEC.md §5.2): Memos takes the lab as an OAuth2
+# provider through its configuration file above. It links a person by the
+# lab's subject only, never by email or username, so someone who already
+# has a Memos account gets a new one beside it, unless they connect the
+# lab from their own settings while signed in with their password first.
+# No groups: administrators are made in Memos.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/auth/callback]
+    existing_accounts: separate
+  note: Memos' administrators keep their passwords. Anyone else made in Memos before single sign-on was on can't sign in with their password while it's on, so connect their accounts to the lab first, in Memos' settings.
