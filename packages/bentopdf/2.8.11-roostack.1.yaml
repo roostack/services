@@ -1,0 +1,67 @@
+# BentoPDF: one container, nginx serving a static site; every PDF tool runs
+# in the browser, so nothing is stored and nothing is backed up. Image
+# digest looked up 2026-11-10.
+#
+# The project's "Self-Hosted build" (bentopdf-simple): every tool, without
+# the marketing pages of its commercial build, as its README advises for
+# self-hosting. The image is built from nginx-unprivileged and runs as its
+# own user (nginx), so it needs no options.
+#
+# Files are never sent anywhere, but the browser fetches some of the tools
+# themselves from elsewhere when one first needs them, as the image's
+# Content-Security-Policy lists (checked 2026-11-10): PyMuPDF, Ghostscript,
+# CoherentPDF, PDFium, fonts, and OCR from jsDelivr, fonts from Google
+# Fonts and githack, and, for the digital signature tool only, issuers'
+# certificates through the project's proxy (bentopdf-cors-proxy on
+# Cloudflare Workers). Their addresses are fixed when the image is built;
+# BentoPDF's WASM Settings page changes the engines' for one browser.
+# Merging and compressing needed none of them. Serving everything from
+# the lab would mean the registry building its own image (the project's
+# air-gapped build).
+schema: roostack/v1alpha1
+name: bentopdf
+title: BentoPDF
+description: Merges, splits, converts, compresses, signs and edits PDFs, all in your browser, so your files never leave your computer
+version: 2.8.11-roostack.1
+
+about:
+  maker: the BentoPDF team
+  website: https://www.bentopdf.com
+  source: https://github.com/alam00000/bentopdf
+  licence: AGPL-3.0-only         # or a commercial licence, which isn't needed here
+  support: https://github.com/sponsors/alam00000
+  releases: https://github.com/alam00000/bentopdf/releases/tag/v{version}
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [documents]
+  keywords: [pdf, merge, split, convert, compress, sign, ocr, private]
+built_with: [nginx]
+requires:
+  roostack: "0.1"
+
+containers:
+  app:
+    image: ghcr.io/alam00000/bentopdf-simple:2.8.11@sha256:3bbab98791694b77bc70ab03bf1b2ea89e568a75ef172c27d95cbdbdf810038f
+    env:
+      ROBOTS_NOINDEX: "true"     # if the Owner makes it public, search engines leave it out
+    health:
+      http: { port: 8080, path: / }
+    memory: 10 MB                # 2.5 MB in use after merging and compressing, measured 2026-11-10
+
+routes:
+  web:
+    container: app
+    port: 8080
+    subdomain: bentopdf          # pdf is Stirling-PDF's
+    exposure: private
+    public:
+      unsafe: >-
+        BentoPDF has no accounts, so anyone who finds its address could use it,
+        and each tool they open downloads its program from your server. Keep it
+        on your home network.
+
+# Single sign-on (SPEC.md §5.2): with no accounts of its own, BentoPDF goes
+# behind the wall, so only the people the Owner chooses reach it.
+sso:
+  forward_auth:
+    route: web
