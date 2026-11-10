@@ -1,0 +1,152 @@
+# Koillection: one container (FrankenPHP serving the Symfony app) and
+# Postgres. Image digest looked up 2026-11-10.
+#
+# The image's entrypoint runs as the container's root (Roostack's own user
+# on the host): it migrates the database, makes the API's signing keys,
+# gives /uploads to its own user (1001), and starts FrankenPHP. The keys
+# are made again at each start, with a new passphrase, so API tokens last
+# until the next restart; the web app's sessions are signed with
+# APP_SECRET, which Roostack keeps.
+#
+# Koillection can fetch an item's details from a web page someone gives
+# it (scrapers, off until a person sets one up), through
+# curl-impersonate, which the image preloads.
+#
+# Photos are served straight from /uploads by FrankenPHP, without signing
+# in, at addresses with random names, and with a CSP that allows nothing
+# (checked 2026-11-10).
+schema: roostack/v1alpha1
+name: koillection
+title: Koillection
+description: Catalogues your collections (books, games, records, anything), with photos, fields of your own, and loans
+version: 1.8.5-roostack.1
+
+about:
+  maker: Benjamin Jonard and contributors
+  source: https://github.com/benjaminjonard/koillection
+  licence: MIT
+  releases: https://github.com/benjaminjonard/koillection/releases/tag/{version}
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [home, documents]
+  keywords: [collections, catalogue, books, games, vinyl, comics, inventory, wishlist]
+built_with: [php, frankenphp, chromium]
+requires:
+  roostack: "0.1.5"              # sso.forward_auth.own_sign_in
+
+settings:
+  # The administrator, made by the install hook below: Koillection makes
+  # whoever first opens /first-connection its administrator, so the hook
+  # does that before anyone else can.
+  - key: admin_username
+    title: Your username
+    description: For signing in to Koillection, 2 to 32 letters, digits, or underscores
+    type: string
+    required: true
+    install_only: true
+  - key: admin_email
+    title: Your email address
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters, with a letter and a digit or a symbol. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: app_secret
+    title: Sign-in secret
+    type: secret
+    generate: true               # signs sessions; kept across restarts
+
+containers:
+  app:
+    image: docker.io/koillection/koillection:1.8.5@sha256:57066babed67dfbbc31496e95ea109db4a65606701f02814baa917632dee6811
+    env:
+      APP_ENV: prod
+      APP_DEBUG: "0"
+      DB_DRIVER: pdo_pgsql
+      DB_HOST: "{{ .Databases.main.Host }}"
+      DB_PORT: "{{ .Databases.main.Port }}"
+      DB_NAME: "{{ .Databases.main.Name }}"
+      DB_USER: "{{ .Databases.main.User }}"
+      DB_VERSION: "17"           # Roostack's Postgres
+      # Secure session cookies once the lab has an address with HTTPS;
+      # without one, it's reached at http://localhost.
+      HTTPS_ENABLED: "{{ if .Lab.Domain }}1{{ else }}0{{ end }}"
+      PHP_TZ: "{{ .Lab.TimeZone }}"
+      UPLOAD_MAX_FILESIZE: 100M  # as the route allows
+    secrets:
+      DB_PASSWORD: databases.main.password
+      APP_SECRET: app_secret
+    mounts:
+      - { storage: uploads, path: /uploads }
+    health:
+      http: { port: 80, path: / }
+    depends_on: [databases.main]
+    memory: 150 MB               # 83 MB in use after adding a collection with a photo, measured 2026-11-10; PHP may use up to 512 MB
+
+storage:
+  uploads:
+    title: Photos of your items
+    class: critical
+
+databases:
+  main:
+    type: postgres               # collections, items, fields, accounts
+
+hooks:
+  # The administrator, through Koillection's own first-connection form
+  # (the image has curl). Safe to re-run: once an account exists, the form
+  # isn't there any more.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+      ADMIN_TZ: "{{ .Lab.TimeZone }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - /bin/bash
+      - -c
+      - |
+        url=http://127.0.0.1:80/first-connection jar=$(mktemp)
+        page=$(curl -s -c "$jar" -b "$jar" -w '\n%{http_code}' "$url") || { echo 'Koillection is not answering yet.' >&2; exit 1; }
+        case "${page##*$'\n'}" in
+          200) ;;
+          302) echo 'Koillection already has its administrator.'; exit 0 ;;
+          *) echo "Koillection answered ${page##*$'\n'}." >&2; exit 1 ;;
+        esac
+        token=$(printf '%s' "$page" | grep -o '<input[^>]*user\[_token\][^>]*>' | sed -n 's/.*value="\([^"]*\)".*/\1/p')
+        [ -n "$token" ] || { echo "Koillection's form has no token." >&2; exit 1; }
+        code=$(curl -s -o /dev/null -w '%{http_code}' -c "$jar" -b "$jar" "$url" \
+          --data-urlencode "user[username]=$ADMIN_USERNAME" --data-urlencode "user[email]=$ADMIN_EMAIL" \
+          --data-urlencode "user[plainPassword][first]=$ADMIN_PASSWORD" --data-urlencode "user[plainPassword][second]=$ADMIN_PASSWORD" \
+          --data-urlencode "user[timezone]=$ADMIN_TZ" --data-urlencode "user[dateFormat]=Y-m-d" --data-urlencode "user[_token]=$token")
+        [ "$code" = 302 ] || { echo 'Koillection refused the account: check the username (2 to 32 letters, digits, or underscores) and the password (8 characters, with a letter and a digit or a symbol).' >&2; exit 1; }
+        echo 'The administrator is made.'
+
+routes:
+  web:
+    container: app
+    port: 80
+    subdomain: collections
+    exposure: private
+    max_body_size: 100MB         # photos
+    public:
+      # Its sign-in form is at /, which login_paths can't name without
+      # the whole site; these are the other two ways in.
+      login_paths:
+        - /api/authentication_token
+        - /first-connection
+
+# Single sign-on (SPEC.md §5.2): Koillection has no OIDC, so it goes behind
+# the wall and keeps its own sign-in: only the people you choose can reach
+# it, and they still sign in to Koillection.
+sso:
+  forward_auth:
+    route: web
+    own_sign_in: true
+  note: Collections people have shared publicly, and anything using Koillection's API, won't work for anyone who can't sign in here while this is on.
