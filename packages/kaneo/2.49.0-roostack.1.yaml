@@ -1,0 +1,157 @@
+# Kaneo: one container (its API and web app, behind the image's own
+# nginx) and Postgres, which holds everything. Image digest looked up
+# 2026-11-10.
+#
+# Kaneo moved from SQLite to PostgreSQL in 2.x; this is the bundled image
+# (ghcr.io/usekaneo/kaneo), which runs as its own user (1001). Uploads go
+# only to S3-compatible storage, which isn't set up here, so images in
+# tasks are off. Telemetry: Sentry only with a DSN, and the web app's
+# Plausible only on Kaneo Cloud (checked 2026-11-10), so neither here.
+schema: roostack/v1alpha1
+name: kaneo
+title: Kaneo
+description: Plans projects on boards, lists, and timelines, with tasks, labels, and time tracking, kept simple
+version: 2.49.0-roostack.1
+
+about:
+  maker: the Kaneo team
+  website: https://kaneo.app
+  source: https://github.com/usekaneo/kaneo
+  licence: MIT
+  support: https://github.com/sponsors/andrejsshell
+  releases: https://github.com/usekaneo/kaneo/releases/tag/v{version}
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [productivity]
+  keywords: [project management, kanban, boards, tasks, gantt, issues, jira alternative]
+built_with: [node, nginx]
+requires:
+  roostack: "0.1"
+
+settings:
+  # Your account, made by the install hook below: Kaneo makes its first
+  # account the instance's administrator, even while sign-ups are off.
+  - key: admin_name
+    title: Your name
+    type: string
+    required: true
+    install_only: true
+  - key: admin_email
+    title: Your email address
+    description: For signing in to Kaneo
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: signups_allowed
+    title: Allow anyone to create an account
+    description: Otherwise people join with an invitation to a workspace
+    type: bool
+    default: false
+  - key: auth_secret
+    title: Sign-in secret
+    type: secret
+    generate: true               # signs sessions; kept across restarts
+  - key: notification_key
+    title: Key for notification settings
+    type: secret
+    generate: true               # encrypts the tokens people save for notifications
+
+containers:
+  app:
+    image: ghcr.io/usekaneo/kaneo:2.49.0@sha256:cd1826b1aba3ce736015cadf6f6c975d923aac00f4b6aaa7aedb29bc722dae49
+    env:
+      KANEO_CLIENT_URL: "{{ .Routes.web.URL }}"
+      # Only "true" locks sign-ups off; otherwise Kaneo's own admin
+      # setting decides, which starts on.
+      DISABLE_REGISTRATION: "{{ if .Settings.signups_allowed }}false{{ else }}true{{ end }}"
+    secrets:
+      DATABASE_URL: databases.main.url
+      AUTH_SECRET: auth_secret
+      NOTIFICATION_SECRET_ENCRYPTION_KEY: notification_key
+    health:
+      http: { port: 5173, path: /api/health }
+    depends_on: [databases.main]
+    memory: 250 MB               # 160 MB in use after making a workspace and a project, measured 2026-11-10
+
+databases:
+  main:
+    type: postgres               # workspaces, projects, tasks, accounts
+
+hooks:
+  # Your account, through Kaneo's own sign-up (better-auth). Safe to
+  # re-run: an existing account is kept.
+  - on: install
+    container: app
+    env:
+      ADMIN_NAME: "{{ .Settings.admin_name }}"
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+      SITE_URL: "{{ .Routes.web.URL }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - node
+      - -e
+      - |
+        // node:http with the site's own address as Origin, which
+        // better-auth checks.
+        const http = require('node:http')
+        const body = JSON.stringify({ name: process.env.ADMIN_NAME, email: process.env.ADMIN_EMAIL, password: process.env.ADMIN_PASSWORD })
+        const req = http.request({ host: '127.0.0.1', port: 5173, path: '/api/auth/sign-up/email', method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body), Origin: process.env.SITE_URL } }, (res) => {
+          let data = ''
+          res.on('data', (c) => { data += c })
+          res.on('end', () => {
+            let out = {}
+            try { out = JSON.parse(data) } catch {}
+            if (res.statusCode >= 200 && res.statusCode < 300) { console.log('Your account is made.'); return }
+            if (/already exists/i.test(out.message || '') || /USER_ALREADY_EXISTS/.test(out.code || '')) { console.log('The account already exists.'); return }
+            console.error('Signing up failed:', res.statusCode, out.message || data.slice(0, 200)); process.exit(1)
+          })
+        })
+        req.on('error', (e) => { console.error('Kaneo is not answering yet:', e.message); process.exit(1) })
+        req.end(body)
+
+routes:
+  web:
+    container: app
+    port: 5173
+    subdomain: projects
+    exposure: private
+    public:
+      login_paths:
+        - /api/auth/sign-in
+        - /api/auth/sign-up
+        - /api/auth/forget-password
+        - /api/auth/reset-password
+
+# Single sign-on (SPEC.md §5.2): Kaneo signs people in through OIDC
+# (better-auth's generic OAuth, from the environment). While it's on,
+# people from the lab get an account at their first sign-in, and nobody
+# can sign up with a password: Kaneo's own sign-in stays for accounts
+# that have a password. Kaneo links the lab's sign-in to an account it
+# has already only if that account's email is verified, which needs
+# Kaneo's email set up, so someone with a password account is refused
+# (account_not_linked) and keeps signing in with the password (tried
+# 2026-11-10); existing_accounts says nothing, as none of its values fit.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/api/auth/oauth2/callback/custom]
+  env:
+    app:
+      CUSTOM_OAUTH_CLIENT_ID: "{{ .SSO.ClientID }}"
+      CUSTOM_OAUTH_DISCOVERY_URL: "{{ .SSO.DiscoveryURL }}"
+      CUSTOM_OAUTH_SCOPES: openid,profile,email
+      CUSTOM_OAUTH_NAME: "{{ .SSO.ProviderName }}"
+      DISABLE_REGISTRATION: "false"
+      DISABLE_PASSWORD_REGISTRATION: "true"
+  secrets:
+    app:
+      CUSTOM_OAUTH_CLIENT_SECRET: sso.client_secret
+  note: Nobody can sign up with a password while it's on. Accounts made with a password, such as yours from the install, keep signing in with it.
