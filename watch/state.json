@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-09T22:39:52.699174376Z",
+  "last_run": "2026-11-10T04:18:12.185847704Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -1166,6 +1166,7 @@
     "GHSA-2v4p-qf9q-27wj": "digest",
     "GHSA-2vr4-cq9g-pvrc": "digest",
     "GHSA-2x7j-588g-ccc2": "digest",
+    "GHSA-2xf4-7cpj-c6rq": "doesn't affect the registry's versions",
     "GHSA-2xp9-vwfh-vxw4": "digest",
     "GHSA-2xpw-w6gg-jr37": "digest",
     "GHSA-322m-ff4g-9vx9": "doesn't affect the registry's versions",
@@ -2643,6 +2644,7 @@
     "UBUNTU-CVE-2026-118448": "digest",
     "UBUNTU-CVE-2026-119123": "digest",
     "UBUNTU-CVE-2026-119124": "digest",
+    "UBUNTU-CVE-2026-119170": "digest",
     "UBUNTU-CVE-2026-119371": "digest",
     "UBUNTU-CVE-2026-119372": "digest",
     "UBUNTU-CVE-2026-119373": "digest",
@@ -5091,6 +5093,60 @@
       "why": "the source rates it low (CVSS 2.3).",
       "weak": "it isn't critical, and nothing says it's being used in attacks",
       "found": "2026-11-09T22:39:59.859365215Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-119170",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-119170 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-119170",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-10T04:18:49.560342735Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-119170",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-119170 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-119170",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-10T04:18:49.560349756Z"
     }
   ]
 }
