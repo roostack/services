@@ -155,9 +155,13 @@ file, which it checks against the index's SHA-256 before showing it.
   Roostack commit, which `web/roostack/SYNCED` names. Publish checks them
   against that commit on every run (`tools/check-roostack.sh`).
 - **`web/notices.json`** holds notices for a service's page, by package
-  name: what a project asks for (Plex's trademark notice), and what
-  someone should know before installing it (AFFiNE's telemetry). Package
-  files can't change once published, so these live here.
+  name: what a project asks for (Plex's trademark notice), and, for a
+  version published before its package could say so, what someone should
+  know before installing it (AFFiNE 0.27.4-roostack.1's telemetry).
+  Package files can't change once published, so these live here. A new
+  version says what to know before installing in its own `about.notice`
+  (Roostack after 0.1.4), which the page shows as a warning at the top of
+  "About", as Roostack's install page does.
 - **Logos** are each project's own, shown to identify its app; where they
   came from, and any terms, is in each package's `registry.yaml`. The page
   says a listing doesn't mean a project is affiliated with Roostack or

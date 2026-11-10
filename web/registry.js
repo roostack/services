@@ -321,6 +321,12 @@ async function renderService(name) {
   }
   const pkg = file.pkg, about = pkg.about || {};
   const notice = (await loadNotices())[p.name];
+  // What to know before installing it, from the package (about.notice,
+  // Roostack after 0.1.4), shown as Roostack's install page shows it.
+  const warning = typeof about.notice === "string" && about.notice.trim() ? about.notice : null;
+  // notices.json's text for a version from before about.notice isn't
+  // repeated once the package says the same itself.
+  const extra = notice && notice.trim() !== (warning || "").trim() ? notice : null;
   // The logo links to the project (as Plex's guidelines ask of its logo).
   const home = about.website || about.source;
   if (/^https:\/\//.test(home || "")) {
@@ -335,6 +341,7 @@ async function renderService(name) {
 
   const left = h("div", { class: "reg-col" },
     section("About",
+      warning ? h("div", { class: "notice notice-warn reg-warning" }, h("p", {}, warning)) : null,
       facts([
         ["Made by", about.maker],
         ["Licence", about.licence === "closed" ? "Not open source" : about.licence],
@@ -345,7 +352,7 @@ async function renderService(name) {
         ["Categories", (about.categories || p.categories || []).map(c => CATEGORY[c] || c).join(", ")],
         ["Keywords", (about.keywords || []).join(", ")],
       ]),
-      notice ? h("p", { class: "hint reg-notice" }, notice) : null),
+      extra ? h("p", { class: "hint reg-notice" }, extra) : null),
     routes.length ? section("Web addresses", ...routes.map(([key, r]) => h("div", { class: "reg-route" },
       h("h3", {}, r.subdomain ? [code(r.subdomain + "."), " your lab's address"] : key),
       facts([
