@@ -1,0 +1,227 @@
+# Donetick: one container (the Go server, which serves its web app too)
+# and SQLite. Image digest looked up 2026-11-10.
+#
+# Donetick reads its settings from /config/selfhosted.yaml, which it makes
+# with a random signing key if it isn't there. Environment variables only
+# override keys that file already has (Viper), and its template leaves
+# some out (scopes, PKCE, local storage), so Roostack writes the whole
+# file instead (config_files), from the template in 0.1.86
+# (config/selfhosted.yaml.example). The database's path is the one
+# setting it takes only from the environment (DT_SQLITE_PATH).
+schema: roostack/v1alpha1
+name: donetick
+title: Donetick
+description: Shares out chores and tasks in a household, with reminders, rotations, and points
+version: 0.1.86-roostack.1
+
+about:
+  maker: the Donetick project
+  website: https://donetick.com
+  source: https://github.com/donetick/donetick
+  licence: AGPL-3.0-only         # "AGPLv3", read as -only, as for Jotty and Seafile
+  releases: https://github.com/donetick/donetick/releases/tag/v{version}
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [productivity, home]
+  keywords: [chores, tasks, household, family, reminders, to-do, rotation]
+built_with: [go]
+requires:
+  roostack: "0.1.2"              # config_files, sso.oidc.existing_accounts
+
+settings:
+  # Your account, made by the install hook below: Donetick makes accounts
+  # only by signing up.
+  - key: admin_username
+    title: Your username
+    description: For signing in to Donetick, 4 to 20 letters, digits, or dashes
+    type: string
+    required: true
+    install_only: true
+  - key: admin_email
+    title: Your email address
+    description: Donetick finds you by it when you sign in through the lab
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: 8 to 64 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: signups_allowed
+    title: Allow anyone to create an account
+    description: Otherwise people join with an invitation, or through the lab's sign-in
+    type: bool
+    default: false
+    install_value: true          # on until the install hook has signed you up
+  - key: jwt_secret
+    title: Sign-in secret
+    type: secret
+    generate: true               # signs sessions and file links; kept across restarts
+
+containers:
+  app:
+    # Runs as the container's root (Roostack's own user on the host).
+    image: docker.io/donetick/donetick:v0.1.86@sha256:66253a32a8e8ed8c49c49418b43abe1181db23e07defe97748d2cb7508c487cd
+    env:
+      DT_ENV: selfhosted
+      DT_SQLITE_PATH: /donetick-data/donetick.db
+    mounts:
+      - { storage: data,   path: /donetick-data }
+      - { storage: config, path: /config, readonly: true }
+    health:
+      http: { port: 2021, path: /api/v1/health }
+    memory: 50 MB                # 35 MB in use after a task and a photo, measured 2026-11-10
+
+storage:
+  data:
+    title: Your chores, history, and photos
+    class: critical
+  config:
+    title: Donetick's settings file
+    class: replaceable
+
+databases:
+  main:
+    type: sqlite
+    path: data/donetick.db
+
+config_files:
+  settings:
+    title: Donetick's settings
+    storage: config
+    path: selfhosted.yaml
+    format: yaml
+    # While single sign-on is on, the OAuth2 provider is the lab's; while
+    # it's off, its client ID is empty, which turns it off in Donetick.
+    content: |
+      name: "selfhosted"
+      is_done_tick_dot_com: false
+      is_user_creation_disabled: {{ if .Settings.signups_allowed }}false{{ else }}true{{ end }}
+      telegram:
+        token: ""
+      pushover:
+        token: ""
+      database:
+        type: "sqlite"
+        migration: true
+      jwt:
+        secret: {{ .Secrets.jwt_secret }}
+        session_time: 168h
+        max_refresh: 1440h
+      server:
+        port: 2021
+        read_timeout: 10s
+        write_timeout: 10s
+        rate_period: 60s
+        rate_limit: 300
+        cors_allow_origins:
+          # Donetick's phone apps
+          - "https://localhost"
+          - "http://localhost"
+          - "capacitor://localhost"
+        serve_frontend: true
+        serve_swagger: false
+        public_host: {{ json .Routes.web.URL }}
+      logging:
+        level: "info"
+        encoding: "json"
+        development: false
+      scheduler_jobs:
+        due_job: 30m
+        overdue_job: 3h
+        pre_due_job: 3h
+      email:
+        # No email is set up, so a password reset's link is written to
+        # Donetick's log, which the service's page shows Admins.
+        log_raw_url: true
+      storage:
+        # Photos and files, in the data folder rather than S3.
+        storage_type: "local"
+        base_path: "/donetick-data/files"
+        max_user_storage: 0
+        max_file_size: 0
+      oauth2:
+        {{- if .SSO.Enabled }}
+        client_id: {{ json .SSO.ClientID }}
+        client_secret: {{ .SSO.ClientSecret }}
+        auth_url: {{ json .SSO.AuthorizeURL }}
+        token_url: {{ json .SSO.TokenURL }}
+        user_info_url: {{ json .SSO.UserinfoURL }}
+        redirect_url: {{ json (print .Routes.web.URL "/auth/oauth2") }}
+        name: {{ json .SSO.ProviderName }}
+        pkce: true
+        scopes: ["openid", "profile", "email"]
+        {{- else }}
+        client_id: ""
+        {{- end }}
+      realtime:
+        enabled: true
+        sse_enabled: true
+        heartbeat_interval: 60s
+        connection_timeout: 120s
+        max_connections: 1000
+        max_connections_per_user: 5
+        event_queue_size: 2048
+        cleanup_interval: 2m
+        stale_threshold: 5m
+        enable_compression: true
+        enable_stats: true
+        allowed_origins:
+          - "*"
+      bridge:
+        enabled: false
+
+hooks:
+  # Your account, through Donetick's own sign-up (busybox wget: the image
+  # has no curl). Safe to re-run: if signing up is refused but signing in
+  # with the same password works, the account is there already.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - /bin/sh
+      - -c
+      - |
+        api=http://127.0.0.1:2021/api/v1
+        wget -q -O /dev/null $api/health || { echo 'Donetick is not answering yet.' >&2; exit 1; }
+        q() { printf '%s' "$1" | sed 's/\\/\\\\/g; s/"/\\"/g'; }
+        u=$(q "$ADMIN_USERNAME") p=$(q "$ADMIN_PASSWORD")
+        post() { wget -q -O /dev/null --header 'Content-Type: application/json' --post-data "$2" "$api/$1"; }
+        if post auth/ "{\"username\":\"$u\",\"email\":\"$(q "$ADMIN_EMAIL")\",\"password\":\"$p\",\"displayName\":\"$u\"}"; then
+          echo 'Your account is made.'
+        elif post auth/login "{\"username\":\"$u\",\"password\":\"$p\"}"; then
+          echo 'The account already exists.'
+        else
+          echo 'Donetick refused the sign-up: check the username (4 to 20 characters) and the password (8 to 64).' >&2; exit 1
+        fi
+
+routes:
+  web:
+    container: app
+    port: 2021
+    subdomain: chores
+    exposure: private
+    max_body_size: 50MB          # photos on chores
+    public:
+      login_paths:
+        - /api/v1/auth/login
+        - /api/v1/auth/mfa/verify
+        - /api/v1/auth/reset
+        - /api/v1/auth/password
+
+# Single sign-on (SPEC.md §5.2): Donetick signs people in through OAuth2,
+# with the lab's addresses given one by one. It uses the account with the
+# same email, or makes one, even while sign-ups are off. Donetick's admins
+# are per circle (a household), so the lab's groups aren't mapped.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/auth/oauth2]
+    existing_accounts: email
+  note: Donetick makes the account even while its sign-ups are off. Its phone apps can sign in either way.
