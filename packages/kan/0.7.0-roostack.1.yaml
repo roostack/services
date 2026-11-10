@@ -1,0 +1,151 @@
+# Kan: one container (the Next.js app) and Postgres, which holds
+# everything. Image digest looked up 2026-11-10.
+#
+# The project's compose file runs its migrations from a second image
+# (kan-migrate) before the app; the app's image carries the same
+# migrations and runs them as it starts when RUN_MIGRATIONS is true, so
+# one container is enough. The image is distroless: no shell, so the
+# install hook is Node. Attachments and avatars go only to S3-compatible
+# storage, which isn't set up here, so they're off. Kan is before 1.0, and
+# GitHub marks its releases as pre-releases.
+schema: roostack/v1alpha1
+name: kan
+title: Kan
+description: Boards, lists, and cards for your projects and plans, like Trello, with labels, checklists, and comments
+version: 0.7.0-roostack.1
+
+about:
+  maker: the Kan team
+  website: https://kan.bn
+  source: https://github.com/kanbn/kan
+  licence: AGPL-3.0-only         # "AGPLv3", read as -only, as for Jotty and Seafile
+  releases: https://github.com/kanbn/kan/releases/tag/v{version}
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [productivity]
+  keywords: [kanban, boards, trello alternative, cards, projects, tasks, lists]
+built_with: [node, nextjs]
+requires:
+  roostack: "0.1.2"              # sso.oidc.existing_accounts
+
+settings:
+  # Your account, made by the install hook below: Kan makes accounts only
+  # by signing up.
+  - key: admin_name
+    title: Your name
+    type: string
+    required: true
+    install_only: true
+  - key: admin_email
+    title: Your email address
+    description: For signing in to Kan
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: signups_allowed
+    title: Allow anyone to create an account
+    description: Otherwise people join with an invitation to a workspace
+    type: bool
+    default: false
+    install_value: true          # on until the install hook has signed you up
+  - key: auth_secret
+    title: Sign-in secret
+    type: secret
+    generate: true               # signs sessions; kept across restarts
+
+containers:
+  app:
+    image: ghcr.io/kanbn/kan:0.7.0@sha256:99d60e0b539ae70c76d1a02d04e96fd17cfe1d1a6c6bab6e9f9107e644dd8038
+    env:
+      NEXT_PUBLIC_BASE_URL: "{{ .Routes.web.URL }}"
+      RUN_MIGRATIONS: "true"
+      NEXT_PUBLIC_ALLOW_CREDENTIALS: "true"
+      # Kan refuses every new account but invited ones while this is true,
+      # through any way of signing in.
+      NEXT_PUBLIC_DISABLE_SIGN_UP: "{{ if .Settings.signups_allowed }}false{{ else }}true{{ end }}"
+      NEXT_PUBLIC_DISABLE_EMAIL: "true"   # no email is set up
+    secrets:
+      POSTGRES_URL: databases.main.url
+      BETTER_AUTH_SECRET: auth_secret
+    health:
+      http: { port: 3000, path: /api/health }
+    depends_on: [databases.main]
+    memory: 200 MB               # 100 MB in use after making a workspace and a board, measured 2026-11-10
+
+databases:
+  main:
+    type: postgres               # workspaces, boards, cards, accounts
+
+hooks:
+  # Your account, through Kan's own sign-up (better-auth), with the site's
+  # own address as Origin, which better-auth checks. Safe to re-run: an
+  # existing account is kept.
+  - on: install
+    container: app
+    env:
+      ADMIN_NAME: "{{ .Settings.admin_name }}"
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+      SITE_URL: "{{ .Routes.web.URL }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - /nodejs/bin/node
+      - -e
+      - |
+        const http = require('node:http')
+        const body = JSON.stringify({ name: process.env.ADMIN_NAME, email: process.env.ADMIN_EMAIL, password: process.env.ADMIN_PASSWORD })
+        const req = http.request({ host: '127.0.0.1', port: 3000, path: '/api/auth/sign-up/email', method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body), Origin: process.env.SITE_URL } }, (res) => {
+          let data = ''
+          res.on('data', (c) => { data += c })
+          res.on('end', () => {
+            let out = {}
+            try { out = JSON.parse(data) } catch {}
+            if (res.statusCode >= 200 && res.statusCode < 300) { console.log('Your account is made.'); return }
+            if (/already exists/i.test(out.message || '') || /USER_ALREADY_EXISTS/.test(out.code || '')) { console.log('The account already exists.'); return }
+            console.error('Signing up failed:', res.statusCode, out.message || data.slice(0, 200)); process.exit(1)
+          })
+        })
+        req.on('error', (e) => { console.error('Kan is not answering yet:', e.message); process.exit(1) })
+        req.end(body)
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: boards
+    exposure: private
+    public:
+      login_paths:
+        - /api/auth/sign-in
+        - /api/auth/sign-up
+        - /api/auth/forget-password
+        - /api/auth/reset-password
+
+# Single sign-on (SPEC.md §5.2): Kan signs people in through OIDC
+# (better-auth's generic OAuth, from the environment), beside its own
+# passwords. It uses the account with the same email (better-auth links
+# it, since the lab says the email is verified), or makes one. Sign-ups
+# follow the setting either way: while they're off, someone from the lab
+# needs an invitation to a workspace first (tried 2026-11-10: refused
+# with unable_to_create_user). Its button says "Continue with OIDC",
+# which Kan doesn't let a package change.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/api/auth/oauth2/callback/oidc]
+    existing_accounts: email
+  env:
+    app:
+      OIDC_CLIENT_ID: "{{ .SSO.ClientID }}"
+      OIDC_DISCOVERY_URL: "{{ .SSO.DiscoveryURL }}"
+  secrets:
+    app:
+      OIDC_CLIENT_SECRET: sso.client_secret
+  note: While sign-ups are off, someone from the lab needs an invitation to a workspace before they can sign in.
