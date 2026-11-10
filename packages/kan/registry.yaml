@@ -1,0 +1,8 @@
+# What the registry says about this package, kept by the registry's
+# maintainers rather than the package's author. See README.md.
+# icon.png is the project's logo, to identify the app: its web app's
+# icon-512.png (apps/web/public in its repository, v0.7.0), made 256 px
+# (2026-11-10).
+tier: official
+maintainers:
+  - roostack
