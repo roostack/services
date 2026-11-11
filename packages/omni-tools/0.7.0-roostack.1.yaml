@@ -1,0 +1,67 @@
+# OmniTools: one container, nginx serving a static site; every tool runs in
+# the browser, so nothing is stored and nothing is backed up. Image digest
+# looked up 2026-11-11.
+#
+# The image is the project's own, built on nginx:alpine. Its nginx starts
+# as the image's root user, which rootless Podman maps to Roostack's user,
+# and serves on port 80 inside the container.
+#
+# The project's 0.7.0 image was built from commit 3962355, eleven commits
+# before the v0.7.0 tag, so its pages say "v0.6.0 (3962355)", and its PDF
+# editor is still SimplePDF's (the tag's is EmbedPDF).
+#
+# Most tools never send files anywhere, but the browser fetches some things
+# from elsewhere (this image's files, read 2026-11-11): the GitHub star
+# button in the menu bar from ghbtns.com, on every page; and, when a tool
+# first needs one, FFmpeg's engine from unpkg, pdf.js's worker from cdnjs,
+# OCR's worker from jsDelivr, background removal's model from img.ly, and
+# Ghostscript's engine from the project's CDN (cdn-wasm.b-cdn.net). The PDF
+# editor is SimplePDF's own page (react-editor.simplepdf.com) in a frame,
+# so a PDF opened there goes to that page. Prettifying JSON and compressing
+# a PNG needed none of them. Their addresses are fixed when the image is
+# built.
+schema: roostack/v1alpha1
+name: omni-tools
+title: OmniTools
+description: Everyday tools for images, video, audio, PDFs, text, and numbers, nearly all of which work on your files in your browser
+version: 0.7.0-roostack.1
+
+about:
+  maker: Ibrahima G. Coulibaly and contributors
+  website: https://omnitools.app
+  source: https://github.com/iib0011/omni-tools
+  licence: MIT
+  support: https://github.com/sponsors/iib0011
+  releases: https://github.com/iib0011/omni-tools/releases/tag/v{version}
+  # The project's logo: where it came from, and its terms, are in registry.yaml.
+  icon: icon.png
+  categories: [productivity, documents]
+  keywords: [image, video, audio, pdf, json, csv, convert, compress, private]
+built_with: [nginx]
+requires:
+  roostack: "0.1"
+
+containers:
+  app:
+    image: docker.io/iib0011/omni-tools:0.7.0@sha256:85f0e052a97326396c753e39de0ef74631c0783999ccca81ebc36262903ec9fa
+    health:
+      http: { port: 80, path: / }
+    memory: 10 MB                # 4.1 MB in use after prettifying JSON and compressing a PNG, measured 2026-11-11
+
+routes:
+  web:
+    container: app
+    port: 80
+    subdomain: tools
+    exposure: private
+    public:
+      unsafe: >-
+        OmniTools has no accounts, so anyone who finds its address could use it,
+        and each tool they open downloads its program from your server. Keep it
+        on your home network.
+
+# Single sign-on (SPEC.md §5.2): with no accounts of its own, OmniTools goes
+# behind the wall, so only the people the Owner chooses reach it.
+sso:
+  forward_auth:
+    route: web
