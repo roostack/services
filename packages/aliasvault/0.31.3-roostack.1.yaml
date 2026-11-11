@@ -1,0 +1,343 @@
+# AliasVault: a password manager whose server also receives the email
+# for its aliases. Its own images, one for each part (the web app, the
+# API, the admin panel, the mail receiver, and the task runner), behind
+# its own nginx, which sends /api and /admin to their containers; Roostack
+# runs PostgreSQL, which holds everything that matters: accounts, the
+# vaults and received email (both encrypted by the people's own keys), and
+# the admin account.
+#
+# Inside a container, AliasVault reads its secrets only from files
+# (SECRETS_PATH), so each .NET container writes the ones it needs there
+# from its environment as it starts, inside the container, then starts
+# AliasVault.
+#
+# Its mail receiver only receives: it never sends, forwards or bounces,
+# and refuses any domain it isn't given. Mail needs the internet's port 25
+# to reach the server, which the Owner opens (the "email" connection,
+# below) and forwards on their router. A domain under roost.ac is always
+# left out: Roostack Cloud's names aren't for email.
+# Image digests looked up 2026-11-11.
+schema: roostack/v1alpha1
+name: aliasvault
+title: AliasVault
+description: Password manager that makes an email alias for each login and receives its email
+version: 0.31.3-roostack.1
+
+about:
+  # XIVISOFT, the author's business, owns the name and logo; its
+  # trademark policy (TRADEMARKS.md, §5) allows the logo in a catalogue.
+  maker: Leendert de Borst (XIVISOFT) and contributors
+  website: https://www.aliasvault.com
+  source: https://github.com/aliasvault/aliasvault
+  # LICENSE.md is the AGPL 3.0 with no "or later": read as -only.
+  licence: AGPL-3.0-only
+  releases: https://github.com/aliasvault/aliasvault/releases/tag/{version}
+  icon: icon.png
+  categories: [passwords]
+  keywords: [password manager, email aliases, passkeys, two-factor, privacy, end-to-end encryption, bitwarden alternative]
+built_with: [dotnet]
+requires:
+  roostack: "0.1.2"              # addresses waiting for setup
+
+settings:
+  - key: admin_password
+    title: Admin panel password
+    description: For AliasVault's admin panel (user "admin"), where you invite people and see its email statistics. At least 12 characters. Roostack keeps only its hash.
+    type: secret
+    min_length: 12
+    install_only: true           # deleted once the install hook succeeds
+  - key: signups_allowed
+    title: Let anyone create an account
+    description: When it's off, people join with an invitation made in the admin panel (Users, then Invites), you included.
+    type: bool
+    default: false
+  - key: email_domains
+    title: Domains for email aliases
+    description: >-
+      Domains of your own whose email AliasVault will receive, separated
+      by commas, such as aliases.smith.family. Each needs an MX record
+      pointing at this server, and the email connection turned on and
+      forwarded from your router's port 25. Names under roost.ac can't be
+      used. Without a domain, AliasVault offers only SpamOK's public
+      domains, whose email anyone who guesses an address can read.
+    type: string
+  - key: jwt_key
+    title: Key for signing sign-in tokens
+    type: secret
+    generate: true
+
+containers:
+  # AliasVault's own nginx, in front of the others: / to the web app, /api
+  # to the API, /admin to the admin panel. It finds them by the names
+  # its config uses (NetworkAlias below). Its HTTPS port and self-made
+  # certificate are unused: Roostack's proxy talks to it on 80. So its
+  # config would tell the others the visitor came over http (its
+  # $scheme), and the admin panel would send people to http:// addresses,
+  # with its cookies; Roostack's addresses are always https, so the
+  # container says so before starting nginx.
+  proxy:
+    image: ghcr.io/aliasvault/reverse-proxy:0.31.3@sha256:0e5493322c3cd1a478e9ccab5aa782962bb0bc7141c2f812813a0d56841a1f69
+    command:
+      - -c
+      - >-
+        sed -i 's/X-Forwarded-Proto [^;]*;/X-Forwarded-Proto https;/' /etc/nginx/nginx-80-443.conf &&
+        exec /docker-entrypoint.sh
+    env:
+      FORCE_HTTPS_REDIRECT: "false"
+      MAX_UPLOAD_SIZE_MB: "100"
+      DEPLOYMENT_MODE: roostack
+    mounts:
+      # The install hook and the reset action, which run here because
+      # this image has OpenSSL, write the admin password's hash here.
+      - { storage: admin, path: /roostack }
+    # nginx looks its upstreams up as it starts, and stops if one isn't there.
+    depends_on: [containers.client, containers.api, containers.admin]
+    memory: 10 MB                # 3 MB in use, measured 2026-11-06
+    quadlet:
+      Container:
+        Entrypoint: /bin/sh      # its image's is its own start script, run above
+
+  client:
+    image: ghcr.io/aliasvault/client:0.31.3@sha256:1d2a9209f6c31b7b16ab279ea3a17097ecf7029aef408a9173150a064e7db871
+    env:
+      PUBLIC_REGISTRATION_ENABLED: "{{ .Settings.signups_allowed }}"
+    memory: 10 MB                # 3 MB in use, measured 2026-11-06
+    quadlet:
+      Container:
+        NetworkAlias: client
+
+  api:
+    image: ghcr.io/aliasvault/api:0.31.3@sha256:4ace0b9261901492ad0ab416148d6ecea5aca0a77e33ef74184af7531dc4f232
+    # (One line: Quadlet's Exec= takes no line breaks. No % or ${…}.)
+    command:
+      - -c
+      - >-
+        set -f;
+        umask 077;
+        mkdir -p /tmp/secrets;
+        printenv POSTGRES_PASSWORD > /tmp/secrets/postgres_password;
+        printenv JWT_KEY > /tmp/secrets/jwt_key;
+        unset POSTGRES_PASSWORD JWT_KEY;
+        PRIVATE_EMAIL_DOMAINS='';
+        for d in $(echo "$EMAIL_DOMAINS" | tr 'A-Z,;' 'a-z  '); do
+        case $d in
+        roost.ac|*.roost.ac|roost.ac.|*.roost.ac.) echo "Leaving out $d: names under roost.ac can't receive email." >&2;;
+        *) PRIVATE_EMAIL_DOMAINS="$PRIVATE_EMAIL_DOMAINS,$d";;
+        esac;
+        done;
+        export PRIVATE_EMAIL_DOMAINS="$(echo "$PRIVATE_EMAIL_DOMAINS" | sed 's/^,//')";
+        exec dotnet AliasVault.Api.dll
+    env: &database
+      SECRETS_PATH: /tmp/secrets
+      POSTGRES_HOST: "{{ .Databases.main.Host }}"
+      POSTGRES_PORT: "{{ .Databases.main.Port }}"
+      POSTGRES_DATABASE: "{{ .Databases.main.Name }}"
+      POSTGRES_USER: "{{ .Databases.main.User }}"
+      PUBLIC_REGISTRATION_ENABLED: "{{ .Settings.signups_allowed }}"
+      EMAIL_DOMAINS: "{{ .Settings.email_domains }}"
+    secrets:
+      POSTGRES_PASSWORD: databases.main.password
+      JWT_KEY: jwt_key
+    health:
+      cmd: wget -q -O /dev/null http://127.0.0.1:3001/api/
+    depends_on: [databases.main]
+    memory: 100 MB               # 66 MB in use, measured 2026-11-06
+    quadlet:
+      Container:
+        Entrypoint: /bin/sh      # its image's is dotnet
+        NetworkAlias: api
+
+  # Waits for the admin password's hash (the install hook writes it),
+  # then starts the admin panel, which makes the admin from it the first
+  # time. When the reset action writes a newer one, it stops the panel so
+  # that it starts again and takes it.
+  admin:
+    image: ghcr.io/aliasvault/admin:0.31.3@sha256:06fe4a5943698e9bbc9767a84e0a15976b1d7b8c0266f92b5b557ec3bcb11399
+    command:
+      - -c
+      - >-
+        trap 'exit 0' TERM INT;
+        f=/roostack/admin_password_hash;
+        s=/tmp/secrets;
+        [ -s $f ] || echo 'Waiting for Roostack to set the admin password.';
+        until [ -s $f ]; do sleep 2; done;
+        umask 077;
+        mkdir -p $s;
+        printenv POSTGRES_PASSWORD > $s/postgres_password;
+        unset POSTGRES_PASSWORD;
+        cp $f $s/admin_password_hash;
+        dotnet AliasVault.Admin.dll & p=$!;
+        trap 'kill $p; wait $p; exit 0' TERM INT;
+        while kill -0 $p 2>/dev/null; do
+        sleep 5;
+        cmp -s $f $s/admin_password_hash || { echo 'The admin password was reset: restarting the admin panel.'; kill $p; wait $p; exit 1; };
+        done;
+        wait $p
+    env:
+      SECRETS_PATH: /tmp/secrets
+      POSTGRES_HOST: "{{ .Databases.main.Host }}"
+      POSTGRES_PORT: "{{ .Databases.main.Port }}"
+      POSTGRES_DATABASE: "{{ .Databases.main.Name }}"
+      POSTGRES_USER: "{{ .Databases.main.User }}"
+    secrets:
+      POSTGRES_PASSWORD: databases.main.password
+    mounts:
+      - { storage: admin, path: /roostack, readonly: true }
+    depends_on: [databases.main]
+    memory: 60 MB                # 35 MB in use, measured 2026-11-06
+    quadlet:
+      Container:
+        Entrypoint: /bin/sh      # its image's is dotnet
+        NetworkAlias: admin
+
+  # The mail receiver: port 25 inside, the "email" connection outside.
+  smtp:
+    image: ghcr.io/aliasvault/smtp:0.31.3@sha256:ba910dc31a118c19a6b5c2412465e8c1ac0e10dc936a788acbc67f267f839d01
+    command:
+      - -c
+      - >-
+        set -f;
+        umask 077;
+        mkdir -p /tmp/secrets;
+        printenv POSTGRES_PASSWORD > /tmp/secrets/postgres_password;
+        unset POSTGRES_PASSWORD;
+        PRIVATE_EMAIL_DOMAINS='';
+        for d in $(echo "$EMAIL_DOMAINS" | tr 'A-Z,;' 'a-z  '); do
+        case $d in
+        roost.ac|*.roost.ac|roost.ac.|*.roost.ac.) echo "Leaving out $d: names under roost.ac can't receive email." >&2;;
+        *) PRIVATE_EMAIL_DOMAINS="$PRIVATE_EMAIL_DOMAINS,$d";;
+        esac;
+        done;
+        export PRIVATE_EMAIL_DOMAINS="$(echo "$PRIVATE_EMAIL_DOMAINS" | sed 's/^,//')";
+        exec dotnet AliasVault.SmtpService.dll
+    env: *database
+    secrets:
+      POSTGRES_PASSWORD: databases.main.password
+    depends_on: [databases.main]
+    memory: 60 MB                # 32-37 MB in use, measured 2026-11-06
+    quadlet:
+      Container:
+        Entrypoint: /bin/sh      # its image's is dotnet
+
+  # Cleans up: old and unclaimed email, expired sign-ins, logs.
+  task-runner:
+    image: ghcr.io/aliasvault/task-runner:0.31.3@sha256:5caa079688a0713ccfabce858ee50a21be7c1ebc36c686efd1ce865f81ba5a1f
+    command:
+      - -c
+      - >-
+        umask 077;
+        mkdir -p /tmp/secrets;
+        printenv POSTGRES_PASSWORD > /tmp/secrets/postgres_password;
+        unset POSTGRES_PASSWORD;
+        exec dotnet AliasVault.TaskRunner.dll
+    env: *database
+    secrets:
+      POSTGRES_PASSWORD: databases.main.password
+    depends_on: [databases.main]
+    memory: 60 MB                # 32-37 MB in use, measured 2026-11-06
+    quadlet:
+      Container:
+        Entrypoint: /bin/sh      # its image's is dotnet
+
+storage:
+  admin:
+    title: The admin panel password's hash
+    class: critical              # small; keeps the admin as it was after a restore
+
+databases:
+  main:
+    type: postgres               # accounts, vaults and email, all encrypted by their owners
+
+links:
+  - title: Admin panel
+    description: Users, invitations, email statistics and logs (user "admin", with the password set at install)
+    route: web
+    path: /admin
+
+hooks:
+  # The admin password's hash, as AliasVault's admin panel reads it:
+  # ASP.NET Identity's format 3 (a 0x01 byte, then PBKDF2's PRF
+  # HMAC-SHA512, 100,000 rounds, and the salt's length, each four bytes
+  # big-endian, then the salt and the 32-byte key), in base64, a "|", and
+  # when it was made. Safe to re-run: once the file exists, it's kept.
+  # (No % or ${…} in hooks: systemd-run, which runs them, may expand them.)
+  - on: install
+    title: Set the admin password
+    container: proxy
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command: &hash
+      - /bin/sh
+      - -c
+      - |
+        f=/roostack/admin_password_hash
+        if [ -s "$f" ] && [ -z "$RESET" ]; then
+          echo 'The admin password is already set.'
+          exit 0
+        fi
+        set -e
+        umask 077
+        t=$(mktemp -d)
+        trap 'rm -rf "$t"' EXIT
+        openssl rand 16 > "$t/salt"
+        salt=$(od -An -tx1 "$t/salt" | tr -d ' \n')
+        openssl kdf -keylen 32 -kdfopt digest:SHA512 -kdfopt "pass:$ADMIN_PASSWORD" \
+          -kdfopt "hexsalt:$salt" -kdfopt iter:100000 -binary PBKDF2 > "$t/key"
+        printf '\001\000\000\000\002\000\001\206\240\000\000\000\020' > "$t/hash"
+        cat "$t/salt" "$t/key" >> "$t/hash"
+        [ "$(wc -c < "$t/hash")" -eq 61 ] || { echo "The hash isn't the right length." >&2; exit 1; }
+        echo "$(base64 < "$t/hash" | tr -d '\n')|$(date -u -Iseconds)" > "$f.new"
+        mv "$f.new" "$f"
+        echo 'The admin password is set.'
+
+  - on: action
+    name: reset-admin-password
+    title: Reset the admin password
+    description: Sets a new password for the admin panel and turns its two-factor sign-in off, for when it's forgotten or the admin is locked out. The admin panel will restart.
+    container: proxy
+    inputs:
+      - key: password
+        title: New admin password
+        description: At least 12 characters.
+        type: secret
+        min_length: 12
+    env:
+      RESET: "yes"
+    secrets:
+      ADMIN_PASSWORD: inputs.password
+    command: *hash
+
+routes:
+  web:
+    container: proxy
+    port: 80
+    subdomain: aliasvault
+    exposure: private
+    max_body_size: 100MB         # vault uploads; AliasVault's nginx allows the same
+    public:
+      private_paths:
+        - path: /admin
+          reason: AliasVault's admin panel, which manages every account and the server's settings. Anyone who guessed or stole its password could use it.
+      login_paths:               # SRP's two steps, two-factor, and sign-ups, in both API versions
+        - /api/v1/Auth/login
+        - /api/v1/Auth/validate
+        - /api/v1/Auth/validate-2fa
+        - /api/v1/Auth/validate-recovery-code
+        - /api/v1/Auth/register
+        - /api/v2/Auth/login
+        - /api/v2/Auth/validate
+        - /api/v2/Auth/validate-2fa
+        - /api/v2/Auth/validate-recovery-code
+        - /api/v2/Auth/register
+
+ports:
+  email:
+    title: Email for your aliases (SMTP)
+    description: Receives email for the domains in AliasVault's settings. Make it public and forward your router's port 25 to it; many home internet providers block port 25.
+    container: smtp
+    port: 25
+    host_port: 2525              # below 1024 isn't allowed; the router maps 25 to it
+
+# No single sign-on: each vault is encrypted with a key from its master
+# password, which AliasVault checks by SRP, so there's no separate login
+# that a sign-in elsewhere could replace (unlike Vaultwarden's).
