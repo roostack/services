@@ -1,0 +1,201 @@
+# Pingvin Share X: one container (its frontend, its backend and the Caddy
+# that joins them on port 3000), SQLite. Its settings come from a
+# config.yaml Roostack writes; while that file exists, its own settings
+# pages are read-only. Image digest looked up 2026-11-12.
+schema: roostack/v1alpha1
+name: pingvin-share-x
+title: Pingvin Share X
+description: Shares files with links that expire, and asks people to send you files
+version: 2.1.1-roostack.1
+
+about:
+  maker: smp46 and contributors, continuing Pingvin Share
+  website: https://smp46.github.io/pingvin-share-x/
+  source: https://github.com/smp46/pingvin-share-x
+  licence: BSD-2-Clause
+  support: https://github.com/sponsors/smp46
+  releases: https://github.com/smp46/pingvin-share-x/releases/tag/v{version}
+  icon: icon.png
+  categories: [documents, productivity]
+  keywords: [file sharing, file transfer, send files, receive files, share links, file requests, wetransfer]
+built_with: [node, nextjs]
+requires:
+  roostack: "0.1.6"              # upload_paths
+
+settings:
+  # Your account, signed up by the install hook below while sign-ups are
+  # on: Pingvin Share X makes the first account its administrator.
+  - key: admin_username
+    title: Your username
+    description: Letters, digits, dots and underscores, 3 to 32 of them
+    type: string
+    required: true
+    install_only: true
+  - key: admin_email
+    title: Your email address
+    description: For signing in to Pingvin Share X
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+  - key: signups_allowed
+    title: Allow anyone to create an account
+    description: Otherwise you add people from Pingvin Share X's Users page, or they come from the lab's sign-in when single sign-on is on
+    type: bool
+    default: false
+    # Sign-ups are on until the install hook has signed you up.
+    install_value: true
+  - key: max_expiration_days
+    title: Longest a share can last, in days
+    description: Someone sharing can choose less. 0 lets shares last for ever.
+    type: int
+    default: 30
+  - key: max_share_gb
+    title: Largest share, in GB
+    type: int
+    default: 10
+
+containers:
+  app:
+    image: docker.io/smp46/pingvin-share-x:v2.1.1@sha256:7b3a70a6f016eb63dab0b7bda8431373fc8b0c5120a58d9572cb5ffdae241739
+    env:
+      CONFIG_FILE: /opt/app/config/config.yaml
+      TRUST_PROXY: "true"          # its own Caddy, behind Roostack's, takes X-Forwarded-For
+      # Where its own Caddy keeps its state: the container's user can't
+      # write to the image's home.
+      XDG_CONFIG_HOME: /tmp
+      XDG_DATA_HOME: /tmp
+    mounts:
+      - { storage: data, path: /opt/app/backend/data }
+      - { storage: shares, path: /opt/app/backend/data/uploads }
+      - { storage: logo, path: /opt/app/frontend/public/img }
+      - { storage: config, path: /opt/app/config, readonly: true }
+    health:
+      http: { port: 3000, path: /api/health }
+    memory: 400 MB               # 315 MB in use, measured 2026-11-12
+    quadlet:
+      Container:
+        # The image starts as its own user when it isn't root, and reads
+        # its config file as that user: run it as 1000, mapped to
+        # Roostack's user, so its folders and its config file are its own.
+        User: "1000:1000"
+        UserNS: keep-id:uid=1000,gid=1000
+
+storage:
+  data:
+    title: Its database
+    class: critical
+  shares:
+    title: The files people share
+    class: critical
+    location: media              # the large data disk, if one is configured
+  logo:
+    title: Its logo
+    class: critical              # replaced on its own page, if anyone does
+  config:
+    title: Its settings file
+    class: replaceable           # Roostack writes it again from the settings
+
+databases:
+  main:
+    type: sqlite
+    path: data/pingvin-share.db
+
+config_files:
+  settings:
+    title: Pingvin Share X's settings
+    storage: config
+    path: config.yaml
+    format: yaml
+    # Only what Roostack decides; anything left out keeps Pingvin Share
+    # X's default, since its settings pages are read-only while this file
+    # exists. Email isn't set up: shares can't be sent by email.
+    content: |
+      general:
+        appUrl: {{ json .Routes.web.URL }}
+      security:
+        secureCookies: "true"
+        allowRegistration: {{ if .Settings.signups_allowed }}"true"{{ else }}"false"{{ end }}
+        allowUnauthenticatedShares: "false"
+      share:
+        maxExpiration: "{{ .Settings.max_expiration_days }} days"
+        maxSize: "{{ .Settings.max_share_gb }}000000000"
+      {{- if .SSO.Enabled }}
+      oauth:
+        allowRegistration: "true"
+        oidc-enabled: "true"
+        oidc-discoveryUri: {{ json .SSO.DiscoveryURL }}
+        oidc-clientId: {{ json .SSO.ClientID }}
+        oidc-clientSecret: {{ .SSO.ClientSecret }}
+        oidc-scope: openid email profile groups
+        oidc-usernameClaim: preferred_username
+        oidc-rolePath: groups
+        oidc-roleGeneralAccess: {{ json .SSO.UserGroup }}
+        oidc-roleAdminAccess: {{ json .SSO.AdminGroup }}
+      {{- end }}
+
+hooks:
+  # Your account, signed up through Pingvin Share X's own sign-up while
+  # sign-ups are on (above). Safe to re-run: an account that exists is
+  # kept as it is.
+  - on: install
+    container: app
+    env:
+      ADMIN_USERNAME: "{{ .Settings.admin_username }}"
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - node
+      - -e
+      - |
+        const http = require('node:http')
+        const body = JSON.stringify({ username: process.env.ADMIN_USERNAME, email: process.env.ADMIN_EMAIL, password: process.env.ADMIN_PASSWORD })
+        const req = http.request({ host: '127.0.0.1', port: 8080, path: '/api/auth/signUp', method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) } }, (res) => {
+          let data = ''
+          res.on('data', (c) => { data += c })
+          res.on('end', () => {
+            if (res.statusCode >= 200 && res.statusCode < 300) { console.log('Your account is made.'); return }
+            if (/already|exists|in use/i.test(data)) { console.log('The account already exists.'); return }
+            console.error('Signing up failed:', res.statusCode, data.slice(0, 300)); process.exit(1)
+          })
+        })
+        req.on('error', (e) => { console.error('Pingvin Share X is not answering yet:', e.message); process.exit(1) })
+        req.end(body)
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: send
+    exposure: private
+    max_body_size: 50MB          # uploads come in 10 MB parts
+    # Shared files: Roostack's proxy shows only plain images, audio, video
+    # and text from here, and makes anything else (HTML, SVG) a download.
+    # Pingvin Share X would otherwise preview them in a sandbox.
+    upload_paths:
+      - /api/shares/*/files
+    public:
+      login_paths:
+        - /api/auth/signIn
+        - /api/auth/signUp
+        - /api/auth/signIn/totp
+
+# Single sign-on (SPEC.md §5.2): Pingvin Share X signs people in through
+# OIDC with the provider's configuration, making an account at their
+# first sign-in, and reads the groups claim: everyone with access is let
+# in, and the lab's Owners and Admins are its administrators. An account
+# it already has with the same email isn't linked: signing in through the
+# lab is refused until its owner links it from their account page.
+sso:
+  oidc:
+    route: web
+    redirect_paths: [/api/oauth/callback/oidc]
+    admins: true
+  note: Someone who already has an account in Pingvin Share X with the same email links single sign-on from their account page, signed in with their password; until then, signing in through the lab is refused.
