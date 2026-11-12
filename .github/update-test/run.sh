@@ -18,7 +18,10 @@ dir=$(mktemp -d)
 ssh_port=${SSH_PORT:-2299} seed_port=${SEED_PORT:-18999} ui_port=${UI_PORT:-18899}
 cache=${IMAGE_CACHE:-$dir}
 base_url=https://cloud.debian.org/images/cloud/trixie/latest
-image=debian-13-genericcloud-amd64.qcow2
+# Debian's generic image, with cloud-init and every driver: its build of
+# 2026-11-11 stopped publishing the smaller genericcloud one, whose name
+# then answered 404.
+image=debian-13-generic-amd64.qcow2
 
 finish() {
 	status=$?
