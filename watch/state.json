@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-11T16:33:23.170490998Z",
+  "last_run": "2026-11-12T13:11:39.39742971Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -119,6 +119,8 @@
     "BIT-golang-2026-56859": "digest",
     "BIT-golang-2026-56860": "digest",
     "BIT-golang-2026-56862": "digest",
+    "BIT-golang-2026-56864": "digest",
+    "BIT-golang-2026-56865": "digest",
     "BIT-golang-2026-56866": "digest",
     "BIT-golang-2026-78659": "digest",
     "BIT-golang-2026-78660": "digest",
@@ -383,6 +385,7 @@
     "CVE-2025-58189": "digest",
     "CVE-2025-5889": "digest",
     "CVE-2025-59343": "digest",
+    "CVE-2025-59471": "digest",
     "CVE-2025-61723": "digest",
     "CVE-2025-61724": "digest",
     "CVE-2025-61725": "digest",
@@ -400,8 +403,10 @@
     "CVE-2025-66418": "digest",
     "CVE-2025-66471": "digest",
     "CVE-2025-68121": "digest",
+    "CVE-2025-68130": "digest",
     "CVE-2025-69534": "digest",
     "CVE-2025-69725": "digest",
+    "CVE-2025-69873": "digest",
     "CVE-2025-71329": "digest",
     "CVE-2025-71330": "digest",
     "CVE-2025-7338": "digest",
@@ -466,6 +471,7 @@
     "CVE-2026-104844": "digest",
     "CVE-2026-104845": "digest",
     "CVE-2026-104846": "digest",
+    "CVE-2026-104850": "digest",
     "CVE-2026-104851": "digest",
     "CVE-2026-104852": "digest",
     "CVE-2026-105661": "digest",
@@ -528,6 +534,10 @@
     "CVE-2026-111758": "digest",
     "CVE-2026-111759": "digest",
     "CVE-2026-111766": "digest",
+    "CVE-2026-111767": "digest",
+    "CVE-2026-111768": "digest",
+    "CVE-2026-111769": "digest",
+    "CVE-2026-111771": "digest",
     "CVE-2026-111943": "digest",
     "CVE-2026-111997": "digest",
     "CVE-2026-112390": "digest",
@@ -707,6 +717,7 @@
     "CVE-2026-20706": "digest",
     "CVE-2026-21441": "digest",
     "CVE-2026-22701": "digest",
+    "CVE-2026-23527": "digest",
     "CVE-2026-2359": "digest",
     "CVE-2026-23745": "digest",
     "CVE-2026-23896": "digest",
@@ -715,13 +726,17 @@
     "CVE-2026-23950": "digest",
     "CVE-2026-24001": "digest",
     "CVE-2026-24049": "digest",
+    "CVE-2026-24051": "digest",
     "CVE-2026-24791": "digest",
     "CVE-2026-24842": "digest",
     "CVE-2026-25038": "digest",
+    "CVE-2026-25128": "digest",
     "CVE-2026-25547": "digest",
     "CVE-2026-25639": "digest",
     "CVE-2026-25645": "digest",
     "CVE-2026-25679": "digest",
+    "CVE-2026-25680": "digest",
+    "CVE-2026-25681": "digest",
     "CVE-2026-25714": "digest",
     "CVE-2026-25896": "digest",
     "CVE-2026-25990": "digest",
@@ -729,6 +744,7 @@
     "CVE-2026-26278": "digest",
     "CVE-2026-26960": "digest",
     "CVE-2026-26996": "digest",
+    "CVE-2026-27136": "digest",
     "CVE-2026-27139": "digest",
     "CVE-2026-27142": "digest",
     "CVE-2026-27145": "digest",
@@ -740,6 +756,7 @@
     "CVE-2026-27903": "digest",
     "CVE-2026-27904": "digest",
     "CVE-2026-27942": "digest",
+    "CVE-2026-27980": "digest",
     "CVE-2026-28231": "digest",
     "CVE-2026-28291": "digest",
     "CVE-2026-28292": "digest",
@@ -748,10 +765,12 @@
     "CVE-2026-28684": "digest",
     "CVE-2026-28699": "digest",
     "CVE-2026-28744": "digest",
+    "CVE-2026-29057": "digest",
     "CVE-2026-29060": "digest",
     "CVE-2026-29061": "digest",
     "CVE-2026-29063": "digest",
     "CVE-2026-29084": "digest",
+    "CVE-2026-29181": "digest",
     "CVE-2026-2950": "digest",
     "CVE-2026-29786": "digest",
     "CVE-2026-30922": "digest",
@@ -770,12 +789,15 @@
     "CVE-2026-32288": "digest",
     "CVE-2026-32289": "digest",
     "CVE-2026-32597": "digest",
+    "CVE-2026-32763": "digest",
     "CVE-2026-33036": "digest",
     "CVE-2026-3304": "digest",
+    "CVE-2026-33128": "digest",
     "CVE-2026-33151": "digest",
     "CVE-2026-33186": "digest",
     "CVE-2026-33349": "digest",
     "CVE-2026-33420": "digest",
+    "CVE-2026-33468": "digest",
     "CVE-2026-33532": "digest",
     "CVE-2026-33671": "digest",
     "CVE-2026-33672": "digest",
@@ -786,6 +808,8 @@
     "CVE-2026-33812": "digest",
     "CVE-2026-33813": "digest",
     "CVE-2026-33814": "digest",
+    "CVE-2026-33815": "digest",
+    "CVE-2026-33816": "digest",
     "CVE-2026-33818": "digest",
     "CVE-2026-33894": "digest",
     "CVE-2026-34073": "digest",
@@ -794,6 +818,7 @@
     "CVE-2026-34986": "digest",
     "CVE-2026-3520": "digest",
     "CVE-2026-35209": "digest",
+    "CVE-2026-39356": "digest",
     "CVE-2026-39820": "digest",
     "CVE-2026-39821": "digest",
     "CVE-2026-39822": "digest",
@@ -811,9 +836,11 @@
     "CVE-2026-39834": "digest",
     "CVE-2026-39835": "digest",
     "CVE-2026-39836": "digest",
+    "CVE-2026-39883": "digest",
     "CVE-2026-40175": "digest",
     "CVE-2026-40192": "digest",
     "CVE-2026-40895": "digest",
+    "CVE-2026-40898": "digest",
     "CVE-2026-41178": "digest",
     "CVE-2026-41238": "digest",
     "CVE-2026-41239": "digest",
@@ -825,6 +852,7 @@
     "CVE-2026-41673": "digest",
     "CVE-2026-41674": "digest",
     "CVE-2026-41675": "digest",
+    "CVE-2026-41889": "digest",
     "CVE-2026-41907": "digest",
     "CVE-2026-41988": "digest",
     "CVE-2026-42033": "digest",
@@ -844,8 +872,10 @@
     "CVE-2026-42338": "digest",
     "CVE-2026-42499": "digest",
     "CVE-2026-42500": "digest",
+    "CVE-2026-42502": "digest",
     "CVE-2026-42504": "digest",
     "CVE-2026-42505": "digest",
+    "CVE-2026-42506": "digest",
     "CVE-2026-42507": "digest",
     "CVE-2026-42508": "digest",
     "CVE-2026-42890": "digest",
@@ -865,7 +895,21 @@
     "CVE-2026-44492": "digest",
     "CVE-2026-44495": "digest",
     "CVE-2026-44496": "digest",
+    "CVE-2026-44572": "digest",
+    "CVE-2026-44573": "digest",
+    "CVE-2026-44574": "digest",
+    "CVE-2026-44575": "digest",
+    "CVE-2026-44576": "digest",
+    "CVE-2026-44577": "digest",
+    "CVE-2026-44578": "digest",
+    "CVE-2026-44579": "digest",
+    "CVE-2026-44580": "digest",
+    "CVE-2026-44581": "digest",
+    "CVE-2026-44582": "digest",
+    "CVE-2026-44635": "digest",
     "CVE-2026-44705": "digest",
+    "CVE-2026-45109": "digest",
+    "CVE-2026-45364": "digest",
     "CVE-2026-4539": "digest",
     "CVE-2026-45409": "digest",
     "CVE-2026-45623": "digest",
@@ -910,6 +954,10 @@
     "CVE-2026-49978": "digest",
     "CVE-2026-50105": "digest",
     "CVE-2026-5079": "digest",
+    "CVE-2026-53512": "digest",
+    "CVE-2026-53514": "digest",
+    "CVE-2026-53516": "digest",
+    "CVE-2026-53518": "digest",
     "CVE-2026-53550": "digest",
     "CVE-2026-53655": "digest",
     "CVE-2026-54058": "digest",
@@ -937,6 +985,8 @@
     "CVE-2026-56859": "digest",
     "CVE-2026-56860": "digest",
     "CVE-2026-56862": "digest",
+    "CVE-2026-56864": "digest",
+    "CVE-2026-56865": "digest",
     "CVE-2026-56866": "digest",
     "CVE-2026-56876": "digest",
     "CVE-2026-57886": "digest",
@@ -981,6 +1031,14 @@
     "CVE-2026-6357": "digest",
     "CVE-2026-63627": "digest",
     "CVE-2026-63628": "digest",
+    "CVE-2026-64641": "digest",
+    "CVE-2026-64643": "digest",
+    "CVE-2026-64644": "digest",
+    "CVE-2026-64645": "digest",
+    "CVE-2026-64646": "digest",
+    "CVE-2026-64647": "digest",
+    "CVE-2026-64648": "digest",
+    "CVE-2026-64649": "digest",
     "CVE-2026-64847": "digest",
     "CVE-2026-65898": "digest",
     "CVE-2026-65899": "digest",
@@ -1005,6 +1063,10 @@
     "CVE-2026-67327": "digest",
     "CVE-2026-6733": "digest",
     "CVE-2026-67333": "digest",
+    "CVE-2026-67334": "digest",
+    "CVE-2026-67335": "digest",
+    "CVE-2026-67336": "digest",
+    "CVE-2026-67337": "digest",
     "CVE-2026-67577": "digest",
     "CVE-2026-68497": "digest",
     "CVE-2026-69152": "digest",
@@ -1089,6 +1151,9 @@
     "CVE-2026-85024": "digest",
     "CVE-2026-85152": "digest",
     "CVE-2026-85393": "digest",
+    "CVE-2026-86251": "digest",
+    "CVE-2026-86252": "digest",
+    "CVE-2026-86253": "digest",
     "CVE-2026-8643": "digest",
     "CVE-2026-86472": "digest",
     "CVE-2026-87018": "digest",
@@ -1143,7 +1208,9 @@
     "CVE-2026-97687": "digest",
     "CVE-2026-97688": "digest",
     "CVE-2026-97689": "digest",
+    "GHSA-22cc-p3c6-wpvm": "digest",
     "GHSA-22hg-r758-rrw9": "digest",
+    "GHSA-22jm-h49p-29qw": "digest",
     "GHSA-22jq-vg5j-6vgg": "digest",
     "GHSA-22p9-wv53-3rq4": "digest",
     "GHSA-238p-pmpm-9mq7": "digest",
@@ -1158,7 +1225,9 @@
     "GHSA-259r-337f-4rfw": "digest",
     "GHSA-25cw-38mq-q7m6": "digest",
     "GHSA-265q-28rp-chq5": "digest",
+    "GHSA-267c-6grr-h53f": "digest",
     "GHSA-268h-hp4c-crq3": "digest",
+    "GHSA-26hh-7cqf-hhc6": "digest",
     "GHSA-27h8-gf7j-v5hc": "digest",
     "GHSA-27p8-2357-5qqv": "digest",
     "GHSA-27r3-jxmh-p828": "digest",
@@ -1167,6 +1236,7 @@
     "GHSA-28wg-ghj8-5hjv": "digest",
     "GHSA-2c27-4x43-jrm6": "digest",
     "GHSA-2fmv-rv2c-59x7": "digest",
+    "GHSA-2g4f-4pwh-qvx6": "digest",
     "GHSA-2g87-pp6c-29x5": "digest",
     "GHSA-2gc4-cqfq-p2gv": "digest",
     "GHSA-2gqq-gqf2-x968": "digest",
@@ -1184,6 +1254,7 @@
     "GHSA-2v35-w6hq-6mfw": "digest",
     "GHSA-2v37-7h3g-55p8": "digest",
     "GHSA-2v4p-qf9q-27wj": "digest",
+    "GHSA-2vg6-77g8-24mp": "digest",
     "GHSA-2vgq-wchc-25w7": "digest",
     "GHSA-2vr4-cq9g-pvrc": "digest",
     "GHSA-2x7j-588g-ccc2": "digest",
@@ -1201,8 +1272,10 @@
     "GHSA-3547-9m27-7rxg": "digest",
     "GHSA-354h-gmhv-mr9c": "doesn't affect the registry's versions",
     "GHSA-35p6-xmwp-9g52": "digest",
+    "GHSA-36qx-fr4f-26g5": "digest",
     "GHSA-374f-7chj-9948": "digest",
     "GHSA-37ch-88jc-xwx2": "digest",
+    "GHSA-37qj-frw5-hhjh": "digest",
     "GHSA-37xv-m4w7-j2fh": "digest",
     "GHSA-3832-6r8h-9cfm": "doesn't affect the registry's versions",
     "GHSA-38jv-5279-wg99": "digest",
@@ -1218,6 +1291,7 @@
     "GHSA-3g3m-2fjr-6pw4": "digest",
     "GHSA-3g43-6gmg-66jw": "digest",
     "GHSA-3g4v-f5gv-c7xf": "digest",
+    "GHSA-3g8h-86w9-wvmq": "digest",
     "GHSA-3h5v-q93c-6h6q": "digest",
     "GHSA-3j72-p6qg-6xp7": "digest",
     "GHSA-3jp2-3mrg-2vxc": "digest",
@@ -1231,6 +1305,7 @@
     "GHSA-3wc5-fcw2-2329": "digest",
     "GHSA-3ww4-gg4f-jr7f": "digest",
     "GHSA-3wwx-pv8p-q78v": "digest",
+    "GHSA-3x4c-7xq6-9pq8": "digest",
     "GHSA-3x7x-943g-269w": "doesn't affect the registry's versions",
     "GHSA-3xgq-45jj-v275": "digest",
     "GHSA-3xpg-4rpp-hhhm": "digest",
@@ -1240,6 +1315,7 @@
     "GHSA-4374-p667-p6c8": "digest",
     "GHSA-43fc-jf86-j433": "digest",
     "GHSA-43fp-rhv2-5gv8": "digest",
+    "GHSA-43p4-m455-4f4j": "digest",
     "GHSA-4487-j8r4-4g2f": "digest",
     "GHSA-44fp-w29j-9vj5": "digest",
     "GHSA-44g4-m2mj-wpvx": "digest",
@@ -1251,19 +1327,24 @@
     "GHSA-45hq-cxwh-f6vc": "digest",
     "GHSA-45vh-rpc8-hxpp": "digest",
     "GHSA-462x-pgg6-55fp": "digest",
+    "GHSA-4633-3j49-mh5q": "digest",
     "GHSA-4642-5mcj-2rqw": "digest",
     "GHSA-467c-4w7p-8427": "doesn't affect the registry's versions",
     "GHSA-469m-x4mw-38r3": "doesn't affect the registry's versions",
+    "GHSA-46jr-4wx8-v453": "digest",
     "GHSA-474x-hrwr-fgx4": "digest",
     "GHSA-48c2-rrv3-qjmp": "digest",
     "GHSA-48qf-xh34-q73r": "drafted 2026-0015",
+    "GHSA-492v-c6pp-mqqv": "digest",
     "GHSA-494j-54xm-rwp3": "digest",
+    "GHSA-4c39-4ccg-62r3": "digest",
     "GHSA-4c8g-83qw-93j6": "digest",
     "GHSA-4cwx-7wf7-3272": "digest",
     "GHSA-4ffr-jq9g-5ffx": "digest",
     "GHSA-4g23-2xm8-66gc": "digest",
     "GHSA-4grx-2x9w-596c": "digest",
     "GHSA-4hqw-qxg8-jxx2": "digest",
+    "GHSA-4hxc-9384-m385": "digest",
     "GHSA-4j4g-m7mr-hp5j": "doesn't affect the registry's versions",
     "GHSA-4jmf-h2cm-hg7w": "digest",
     "GHSA-4jqv-mc3x-m676": "digest",
@@ -1310,6 +1391,7 @@
     "GHSA-5c9x-8gcm-mpgx": "digest",
     "GHSA-5cgq-3rg8-m6cv": "digest",
     "GHSA-5cpq-8wj7-hf2v": "digest",
+    "GHSA-5cv4-jp36-h3mw": "digest",
     "GHSA-5cwg-6vw7-rj6p": "drafted 2026-0050",
     "GHSA-5fg8-2547-mr8q": "digest",
     "GHSA-5gjj-6r7v-ph3x": "digest",
@@ -1353,6 +1435,7 @@
     "GHSA-685m-2w69-288q": "digest",
     "GHSA-6889-vf6x-f3g5": "digest",
     "GHSA-68fv-2mgg-jv7q": "digest",
+    "GHSA-68g3-v927-f742": "digest",
     "GHSA-698v-4r3x-3vcv": "digest",
     "GHSA-69cg-p879-7622": "digest",
     "GHSA-69hj-f68j-2879": "digest",
@@ -1373,10 +1456,12 @@
     "GHSA-6jjx-fxr3-8vf2": "digest",
     "GHSA-6m8p-37cv-c4f5": "digest",
     "GHSA-6pq8-jhm2-2vcw": "digest",
+    "GHSA-6prh-2h8m-c8cw": "digest",
     "GHSA-6pv5-8rp7-8c75": "doesn't affect the registry's versions",
     "GHSA-6q48-6c7w-9gw2": "drafted 2026-0036",
     "GHSA-6q6j-f24j-p477": "doesn't affect the registry's versions",
     "GHSA-6qrw-m8cv-hcxf": "drafted 2026-0044",
+    "GHSA-6qxp-vccf-f47h": "digest",
     "GHSA-6r8x-57c9-28j4": "digest",
     "GHSA-6rw7-vpxm-498p": "digest",
     "GHSA-6v38-4h7w-rj9h": "drafted 2026-0014",
@@ -1387,6 +1472,7 @@
     "GHSA-6vqw-3v5j-54x4": "digest",
     "GHSA-6wvx-3r32-xmcg": "digest",
     "GHSA-727h-3vm5-qwq6": "digest",
+    "GHSA-72gr-qfp7-vwhw": "digest",
     "GHSA-72gw-mp4g-v24j": "digest",
     "GHSA-72rm-x7xr-v679": "digest",
     "GHSA-72xf-g2v4-qvf3": "digest",
@@ -1429,6 +1515,7 @@
     "GHSA-7rv5-mrxv-xcr9": "digest",
     "GHSA-7v5j-mph8-9w6g": "doesn't affect the registry's versions",
     "GHSA-7vr2-2fgp-9w7p": "drafted 2026-0030",
+    "GHSA-7w99-5wm4-3g79": "digest",
     "GHSA-7wch-p9px-956x": "digest",
     "GHSA-7wwv-vh3v-89cq": "digest",
     "GHSA-8225-6cvr-8pqp": "digest",
@@ -1454,13 +1541,16 @@
     "GHSA-8988-9cw3-xx77": "digest",
     "GHSA-898c-q2cr-xwhg": "digest",
     "GHSA-89gr-r52h-f8rx": "digest",
+    "GHSA-89xv-2m56-2m9x": "digest",
     "GHSA-8c25-f3mj-v6h8": "digest",
     "GHSA-8c8m-p3m8-cjg8": "digest",
     "GHSA-8cf7-32gw-wr33": "digest",
     "GHSA-8cj5-5rvv-wf4v": "digest",
+    "GHSA-8cpq-38p9-67gx": "digest",
     "GHSA-8g5g-8vmr-9782": "digest",
     "GHSA-8g99-g36h-5p2w": "digest",
     "GHSA-8gc5-j5rx-235r": "digest",
+    "GHSA-8h8q-6873-q5fj": "digest",
     "GHSA-8hhh-mqpg-jpxc": "doesn't affect the registry's versions",
     "GHSA-8hrf-8g6f-7xwp": "digest",
     "GHSA-8j56-f865-gqq2": "digest",
@@ -1490,6 +1580,7 @@
     "GHSA-93w7-49m2-cqwg": "doesn't affect the registry's versions",
     "GHSA-94rx-fqm6-q23v": "doesn't affect the registry's versions",
     "GHSA-952p-6rrq-rcjv": "digest",
+    "GHSA-955p-x3mx-jcvp": "digest",
     "GHSA-95rc-wc32-gm53": "digest",
     "GHSA-965c-763c-88jm": "digest",
     "GHSA-965w-775f-mr7g": "digest",
@@ -1512,12 +1603,16 @@
     "GHSA-9fr6-4gfg-395g": "digest",
     "GHSA-9g5q-2w5x-hmxf": "digest",
     "GHSA-9g87-8gwq-4xqp": "digest",
+    "GHSA-9g9p-9gw9-jx7f": "digest",
+    "GHSA-9h47-pqcx-hjr4": "digest",
     "GHSA-9h6g-pr28-7cqp": "digest",
     "GHSA-9h7g-h754-c8x2": "doesn't affect the registry's versions",
+    "GHSA-9h8m-3fm2-qjrq": "digest",
     "GHSA-9hjg-9r4m-mvj7": "digest",
     "GHSA-9hw9-ch79-4vh6": "digest",
     "GHSA-9j54-fg26-wv3r": "digest",
     "GHSA-9j6q-wvj5-jgjg": "digest",
+    "GHSA-9jj7-4m8r-rfcm": "digest",
     "GHSA-9jrq-w75r-8gcw": "digest",
     "GHSA-9m4w-fmjw-fvjq": "doesn't affect the registry's versions",
     "GHSA-9m57-25v3-79x9": "digest",
@@ -1544,6 +1639,7 @@
     "GHSA-c3cr-qq9g-666c": "digest",
     "GHSA-c3jg-qh8m-j3h2": "digest",
     "GHSA-c45m-jm46-mwxg": "digest",
+    "GHSA-c4j6-fc7j-m34r": "digest",
     "GHSA-c4qx-w738-7hr3": "digest",
     "GHSA-c5mf-xmp2-59rc": "digest",
     "GHSA-c6gr-qvv4-5v3f": "digest",
@@ -1562,6 +1658,7 @@
     "GHSA-cfqx-5gg4-25m2": "digest",
     "GHSA-cg2g-xh64-v4q7": "digest",
     "GHSA-cg87-wmx4-v546": "digest",
+    "GHSA-ch38-3q93-fwg8": "digest",
     "GHSA-cj63-jhhr-wcxv": "digest",
     "GHSA-cjmm-f4jc-qw8r": "digest",
     "GHSA-cm22-4g7w-348p": "digest",
@@ -1598,11 +1695,13 @@
     "GHSA-f794-r6xc-hf3v": "digest",
     "GHSA-f886-m6hf-6m8v": "digest",
     "GHSA-f88m-g3jw-g9cj": "digest",
+    "GHSA-f897-62hf-6gxq": "digest",
     "GHSA-f98w-7cxr-ff2h": "digest",
     "GHSA-f9xw-jh8m-3mwq": "digest",
     "GHSA-fc9g-5qg7-mf45": "digest",
     "GHSA-fch4-3c6x-j4gc": "digest",
     "GHSA-ffc3-869f-jxw9": "digest",
+    "GHSA-ffhc-5mcf-pf4q": "digest",
     "GHSA-fhv5-28vv-h8m8": "digest",
     "GHSA-fj3w-jwp8-x2g3": "digest",
     "GHSA-fj7v-r99m-22gq": "digest",
@@ -1610,10 +1709,12 @@
     "GHSA-fjgf-rc76-4x9p": "digest",
     "GHSA-fjxv-7rqg-78g4": "digest",
     "GHSA-fm9c-5rcf-2q5p": "digest",
+    "GHSA-fmh4-wcc4-5jm3": "digest",
     "GHSA-fph4-wmhf-6fwf": "digest",
     "GHSA-fpmh-frq8-7rj8": "digest",
     "GHSA-fq56-3cx3-fjxp": "digest",
     "GHSA-fqjr-23c8-gg9m": "doesn't affect the registry's versions",
+    "GHSA-frvp-7c67-39w9": "digest",
     "GHSA-fvcv-3m26-pcqx": "digest",
     "GHSA-fwh9-qg68-vxp4": "doesn't affect the registry's versions",
     "GHSA-fwp7-34mv-hm2r": "doesn't affect the registry's versions",
@@ -1625,6 +1726,7 @@
     "GHSA-fxqj-rqcc-2cmp": "digest",
     "GHSA-fxw3-8676-67fm": "digest",
     "GHSA-g357-x5c3-c72p": "digest",
+    "GHSA-g38m-r43w-p2q7": "digest",
     "GHSA-g3hv-75wg-m249": "digest",
     "GHSA-g47c-3xmw-q6m2": "digest",
     "GHSA-g4hw-fg4c-89mq": "doesn't affect the registry's versions",
@@ -1652,27 +1754,32 @@
     "GHSA-gfjp-2p8f-94qv": "doesn't affect the registry's versions",
     "GHSA-gfr2-rv44-r23c": "digest",
     "GHSA-gg2r-wvfm-q9rx": "digest",
+    "GHSA-ggv3-7p47-pfv8": "digest",
     "GHSA-gh4c-6fx4-qh6g": "digest",
     "GHSA-gh4j-gqv2-49f6": "digest",
     "GHSA-ghc9-756g-vrcv": "digest",
     "GHSA-gj48-438w-jh9v": "digest",
     "GHSA-gjj9-fvfp-jw63": "digest",
     "GHSA-gm62-xv2j-4w53": "digest",
+    "GHSA-gpj5-g38j-94v9": "digest",
     "GHSA-gqgv-6jq5-jjj9": "digest",
     "GHSA-gr94-w7qr-f4j3": "digest",
     "GHSA-grv7-fg5c-xmjg": "digest",
     "GHSA-gvmj-g25r-r7wr": "digest",
     "GHSA-gvp8-978c-rx2q": "digest",
     "GHSA-gvwx-54wh-qm9j": "digest",
+    "GHSA-gx5p-jg67-6x7h": "digest",
     "GHSA-gx76-c99x-2c96": "digest",
     "GHSA-gx83-3vf8-gh7j": "digest",
     "GHSA-gxpj-cx7g-858c": "digest",
+    "GHSA-h25m-26qc-wcjf": "digest",
     "GHSA-h2v8-394m-p7vv": "digest",
     "GHSA-h35f-9h28-mq5c": "digest",
     "GHSA-h3mg-xc3c-68pw": "digest",
     "GHSA-h452-7996-h45h": "digest",
     "GHSA-h46v-rmh6-fq4f": "drafted 2026-0042",
     "GHSA-h4gh-qq45-vh27": "digest",
+    "GHSA-h64f-5h5j-jqjh": "digest",
     "GHSA-h67p-54hq-rp68": "digest",
     "GHSA-h6cr-wjv9-3cpp": "digest",
     "GHSA-h6q6-9hqw-rwfv": "digest",
@@ -1683,6 +1790,7 @@
     "GHSA-hcpx-6fm6-wx23": "digest",
     "GHSA-hf55-9cwq-2x64": "doesn't affect the registry's versions",
     "GHSA-hffm-xvc3-vprc": "digest",
+    "GHSA-hfvc-g4fc-pqhx": "digest",
     "GHSA-hfxv-24rg-xrqf": "digest",
     "GHSA-hhhv-q57g-882q": "digest",
     "GHSA-hj66-6f7g-4r5v": "digest",
@@ -1712,6 +1820,7 @@
     "GHSA-j6r3-76f7-8jcv": "digest",
     "GHSA-j722-3hvf-c9vr": "digest",
     "GHSA-j759-j44w-7fr8": "digest",
+    "GHSA-j88v-2chj-qfwx": "digest",
     "GHSA-j8r2-6x86-q33q": "digest",
     "GHSA-j8rh-479h-cp32": "digest",
     "GHSA-j8rw-jp99-435v": "digest",
@@ -1766,15 +1875,18 @@
     "GHSA-m8rv-5g2x-5cg5": "digest",
     "GHSA-m943-m63m-w62w": "digest",
     "GHSA-m959-cc7f-wv43": "digest",
+    "GHSA-m99w-x7hq-7vfj": "digest",
     "GHSA-m9gg-hp2v-232j": "digest",
     "GHSA-mcj8-r9mp-w47p": "digest",
     "GHSA-mf69-7pqq-86vx": "digest",
     "GHSA-mf6p-vqpw-3r7x": "digest",
     "GHSA-mf9v-mfxr-j63j": "digest",
     "GHSA-mf9w-mj56-hr94": "digest",
+    "GHSA-mg66-mrh9-m8jx": "digest",
     "GHSA-mgcc-cww5-fp2q": "digest",
     "GHSA-mghh-pgcx-3jjj": "digest",
     "GHSA-mh29-5h37-fv8m": "digest",
+    "GHSA-mh2q-q3fh-2475": "digest",
     "GHSA-mh99-v99m-4gvg": "digest",
     "GHSA-mhxj-85r3-2x55": "digest",
     "GHSA-mjcv-p78q-w5fw": "digest",
@@ -1782,6 +1894,7 @@
     "GHSA-mm57-4v3p-rchx": "digest",
     "GHSA-mm7p-fcc7-pg87": "digest",
     "GHSA-mmx7-hfxf-jppx": "digest",
+    "GHSA-mp2g-9vg9-f4cg": "digest",
     "GHSA-mp6q-xf9x-fwf7": "digest",
     "GHSA-mp9q-4q6m-44f5": "digest",
     "GHSA-mqqf-5wvp-8fh8": "digest",
@@ -1804,6 +1917,7 @@
     "GHSA-p632-vh57-j6x4": "digest",
     "GHSA-p6gq-j5cr-w38f": "digest",
     "GHSA-p6pp-m3f8-5c89": "digest",
+    "GHSA-p6v2-xcpg-h6xw": "digest",
     "GHSA-p6vx-979v-rg4c": "digest",
     "GHSA-p77j-4mvh-x3m3": "digest",
     "GHSA-p7p2-pm6f-rg6x": "digest",
@@ -1813,6 +1927,7 @@
     "GHSA-p8wg-vrv2-v86f": "digest",
     "GHSA-p92q-9vqr-4j8v": "digest",
     "GHSA-p98j-92pf-mc4p": "digest",
+    "GHSA-p9j2-gv94-2wf4": "digest",
     "GHSA-pcg2-g6cj-q92c": "digest",
     "GHSA-pchr-8j38-3x4p": "digest",
     "GHSA-pf86-5x62-jrwf": "digest",
@@ -1835,7 +1950,9 @@
     "GHSA-pqxq-w44r-73xw": "digest",
     "GHSA-pr4g-9qp2-g8j8": "digest",
     "GHSA-prgh-xp8r-p3m5": "digest",
+    "GHSA-pv5w-4p9q-p3v2": "digest",
     "GHSA-pvjf-7jrm-6w9g": "doesn't affect the registry's versions",
+    "GHSA-pw9m-5jxm-xr6h": "digest",
     "GHSA-pw9p-v7r6-gx4p": "digest",
     "GHSA-pwv6-vv43-88gr": "digest",
     "GHSA-pxg6-pf52-xh8x": "digest",
@@ -1844,6 +1961,7 @@
     "GHSA-q3j6-qgpj-74h6": "digest",
     "GHSA-q3jh-wrc6-jgq8": "digest",
     "GHSA-q45j-58j2-45rg": "digest",
+    "GHSA-q4gf-8mx6-v5v3": "digest",
     "GHSA-q4h4-gmj2-qvw2": "digest",
     "GHSA-q4xh-88c3-wmh7": "digest",
     "GHSA-q5x6-grh5-fqgc": "digest",
@@ -1858,6 +1976,7 @@
     "GHSA-q89f-h332-8q2h": "doesn't affect the registry's versions",
     "GHSA-q8mj-m7cp-5q26": "digest",
     "GHSA-q8pj-2vqx-8ggc": "digest",
+    "GHSA-q8wf-6r8g-63ch": "digest",
     "GHSA-q9gm-9c7q-c5hq": "digest",
     "GHSA-q9v8-vwgh-x2mc": "digest",
     "GHSA-qc2q-p7wx-3px3": "digest",
@@ -1938,6 +2057,7 @@
     "GHSA-rqf8-2568-r7mc": "digest",
     "GHSA-rv73-9c8w-jp4c": "digest",
     "GHSA-rv95-896h-c2vc": "digest",
+    "GHSA-rvq5-wwqv-78pq": "digest",
     "GHSA-rx4f-c7p8-82vq": "digest",
     "GHSA-rxhg-2pw9-vf25": "digest",
     "GHSA-rxp7-6hxx-x8q5": "digest",
@@ -1973,6 +2093,7 @@
     "GHSA-vcp6-2qc6-gvq3": "digest",
     "GHSA-vf2m-468p-8v99": "digest",
     "GHSA-vfgh-jcmw-g37q": "digest",
+    "GHSA-vfv6-92ff-j949": "digest",
     "GHSA-vghf-hv5q-vc2g": "digest",
     "GHSA-vgwf-h737-ff37": "digest",
     "GHSA-vh5m-fc9v-m84g": "digest",
@@ -1987,6 +2108,7 @@
     "GHSA-vp96-hxj8-p424": "digest",
     "GHSA-vpq2-c234-7xj6": "digest",
     "GHSA-vqfx-gj96-3w95": "digest",
+    "GHSA-vvgj-x9jq-8cj9": "digest",
     "GHSA-vvjj-xcjg-gr5g": "digest",
     "GHSA-vvm8-gf78-28g4": "digest",
     "GHSA-vvpx-j8f3-3w6h": "digest",
@@ -2023,6 +2145,7 @@
     "GHSA-wf5p-g6vw-rhxx": "digest",
     "GHSA-wf6x-7x77-mvgw": "digest",
     "GHSA-wf93-45jw-7689": "digest",
+    "GHSA-wfc6-r584-vfw7": "digest",
     "GHSA-wh4c-j3r5-mjhp": "digest",
     "GHSA-whj4-6x5x-4v2j": "digest",
     "GHSA-wjgm-6hv5-3cvf": "digest",
@@ -2031,11 +2154,13 @@
     "GHSA-wjx4-4jcj-g98j": "digest",
     "GHSA-wm7h-9275-46v2": "digest",
     "GHSA-wmmp-3585-3rmp": "digest",
+    "GHSA-wmrf-hv6w-mr66": "digest",
     "GHSA-wp5v-5wj6-j2fh": "digest",
     "GHSA-wp97-x4hv-qvhp": "digest",
     "GHSA-wq5f-xc86-pv6w": "digest",
     "GHSA-wqp7-x3pw-xc5r": "digest",
     "GHSA-wqvq-jvpq-h66f": "digest",
+    "GHSA-wr4h-v87w-p3r7": "digest",
     "GHSA-wr8v-9x5q-ggcm": "digest",
     "GHSA-wrh9-cjv3-2hpw": "digest",
     "GHSA-wrvr-8mpx-r7pp": "digest",
@@ -2043,6 +2168,7 @@
     "GHSA-wwfq-95jq-3m3c": "digest",
     "GHSA-wx44-9m3m-rjqx": "digest",
     "GHSA-wxcq-p34j-7cjj": "digest",
+    "GHSA-wxw3-q3m9-c3jr": "digest",
     "GHSA-x33c-w48q-qrgc": "digest",
     "GHSA-x33g-cr3x-6449": "digest",
     "GHSA-x3mg-q38v-m562": "doesn't affect the registry's versions",
@@ -2070,8 +2196,10 @@
     "GHSA-xcx6-jx8p-x3h5": "digest",
     "GHSA-xf7r-hgr6-v32p": "digest",
     "GHSA-xfqq-h54g-92f8": "doesn't affect the registry's versions",
+    "GHSA-xg6x-h9c9-2m83": "digest",
     "GHSA-xgh8-jp6q-p5x8": "digest",
     "GHSA-xgmm-8j9v-c9wx": "digest",
+    "GHSA-xgrm-4fwx-7qm8": "digest",
     "GHSA-xh39-mxw9-34pp": "doesn't affect the registry's versions",
     "GHSA-xhj5-c3g8-pfj8": "digest",
     "GHSA-xhjh-pmcv-23jw": "digest",
@@ -2183,6 +2311,7 @@
     "GO-2026-4340": "digest",
     "GO-2026-4341": "digest",
     "GO-2026-4342": "digest",
+    "GO-2026-4394": "digest",
     "GO-2026-4403": "digest",
     "GO-2026-4601": "digest",
     "GO-2026-4602": "digest",
@@ -2196,6 +2325,8 @@
     "GO-2026-4696": "digest",
     "GO-2026-4698": "digest",
     "GO-2026-4762": "digest",
+    "GO-2026-4771": "digest",
+    "GO-2026-4772": "digest",
     "GO-2026-4815": "digest",
     "GO-2026-4864": "digest",
     "GO-2026-4865": "digest",
@@ -2216,6 +2347,7 @@
     "GO-2026-4981": "digest",
     "GO-2026-4982": "digest",
     "GO-2026-4986": "digest",
+    "GO-2026-5004": "digest",
     "GO-2026-5005": "digest",
     "GO-2026-5006": "digest",
     "GO-2026-5013": "digest",
@@ -2229,7 +2361,12 @@
     "GO-2026-5021": "digest",
     "GO-2026-5023": "digest",
     "GO-2026-5024": "digest",
+    "GO-2026-5025": "digest",
     "GO-2026-5026": "digest",
+    "GO-2026-5027": "digest",
+    "GO-2026-5028": "digest",
+    "GO-2026-5029": "digest",
+    "GO-2026-5030": "digest",
     "GO-2026-5031": "digest",
     "GO-2026-5032": "digest",
     "GO-2026-5033": "digest",
@@ -2240,6 +2377,9 @@
     "GO-2026-5062": "digest",
     "GO-2026-5066": "digest",
     "GO-2026-5158": "digest",
+    "GO-2026-5426": "digest",
+    "GO-2026-5506": "digest",
+    "GO-2026-5676": "digest",
     "GO-2026-5774": "digest",
     "GO-2026-5775": "digest",
     "GO-2026-5777": "digest",
@@ -2254,6 +2394,8 @@
     "GO-2026-6089": "digest",
     "GO-2026-6090": "digest",
     "GO-2026-6091": "digest",
+    "GO-2026-6179": "digest",
+    "GO-2026-6180": "digest",
     "GO-2026-6218": "digest",
     "GO-2026-6222": "digest",
     "GO-2026-6278": "digest",
@@ -10643,6 +10785,2166 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-11T16:34:11.280037432Z"
+    },
+    {
+      "id": "GHSA-c4j6-fc7j-m34r",
+      "aliases": [
+        "CVE-2026-44578"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js vulnerable to server-side request forgery in applications using WebSocket upgrades (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-c4j6-fc7j-m34r",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.35539,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.802695802Z"
+    },
+    {
+      "id": "GHSA-267c-6grr-h53f",
+      "aliases": [
+        "CVE-2026-44575"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js has a Middleware / Proxy bypass in App Router applications via segment-prefetch routes (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-267c-6grr-h53f",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.01594,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.000264713Z"
+    },
+    {
+      "id": "GHSA-m99w-x7hq-7vfj",
+      "aliases": [
+        "CVE-2026-64641"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js: Denial of Service in App Router using Server Actions (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-m99w-x7hq-7vfj",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00856,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.774501118Z"
+    },
+    {
+      "id": "GHSA-26hh-7cqf-hhc6",
+      "aliases": [
+        "CVE-2026-45109"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js has a Middleware / Proxy bypass in App Router applications via segment-prefetch routes - Incomplete Fix Follow-Up (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-26hh-7cqf-hhc6",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.6",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00854,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.207605499Z"
+    },
+    {
+      "id": "GHSA-mh2q-q3fh-2475",
+      "aliases": [
+        "CVE-2026-29181",
+        "GO-2026-5506"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel@v1.39.0 in its image",
+      "title": "Donetick: OpenTelemetry-Go: multi-value `baggage` header extraction causes excessive allocations (remote dos amplification) (in otel v1.39.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-mh2q-q3fh-2475",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "otel 1.41.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00821,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.871922567Z"
+    },
+    {
+      "id": "GO-2026-5506",
+      "aliases": [
+        "CVE-2026-29181",
+        "GHSA-mh2q-q3fh-2475"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel@v1.39.0 in its image",
+      "title": "Donetick: OpenTelemetry-Go: Multi-value baggage header extraction causes excessive allocations in go.opentelemetry.io/otel (in otel v1.39.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5506",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "otel 1.41.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00821,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.408446171Z"
+    },
+    {
+      "id": "GHSA-36qx-fr4f-26g5",
+      "aliases": [
+        "CVE-2026-44573"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js has a Middleware / Proxy bypass in Pages Router applications using i18n (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-36qx-fr4f-26g5",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00796,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.347240496Z"
+    },
+    {
+      "id": "GHSA-mg66-mrh9-m8jx",
+      "aliases": [
+        "CVE-2026-44579"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js vulnerable to Denial of Service via connection exhaustion in applications using Cache Components (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-mg66-mrh9-m8jx",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00746,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.82256799Z"
+    },
+    {
+      "id": "GHSA-h64f-5h5j-jqjh",
+      "aliases": [
+        "CVE-2026-44577"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js has a Denial of Service in the Image Optimization API (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-h64f-5h5j-jqjh",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00739,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.529531229Z"
+    },
+    {
+      "id": "GHSA-3x4c-7xq6-9pq8",
+      "aliases": [
+        "CVE-2026-27980"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js: Unbounded next/image disk cache growth can exhaust storage (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-3x4c-7xq6-9pq8",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 15.5.14",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00725,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.480157415Z"
+    },
+    {
+      "id": "GHSA-q8wf-6r8g-63ch",
+      "aliases": [
+        "CVE-2026-64644"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js: Denial of Service in the Image Optimization API using SVGs (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-q8wf-6r8g-63ch",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00666,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.263866061Z"
+    },
+    {
+      "id": "GHSA-492v-c6pp-mqqv",
+      "aliases": [
+        "CVE-2026-44574"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js has a Middleware / Proxy bypass through dynamic route parameter injection (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-492v-c6pp-mqqv",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00636,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.700546748Z"
+    },
+    {
+      "id": "GHSA-xgrm-4fwx-7qm8",
+      "aliases": [
+        "CVE-2026-33815",
+        "GO-2026-4771"
+      ],
+      "source": "OSV, for pkg:golang/github.com/jackc/pgx/v5@v5.5.5 in its image",
+      "title": "Donetick: pgx contains memory-safety vulnerability (in v5 v5.5.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-xgrm-4fwx-7qm8",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "v5 5.9.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "critical",
+      "Exploited": false,
+      "EPSS": 0.00629,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.774299476Z"
+    },
+    {
+      "id": "GO-2026-4771",
+      "aliases": [
+        "CVE-2026-33815",
+        "GHSA-xgrm-4fwx-7qm8"
+      ],
+      "source": "OSV, for pkg:golang/github.com/jackc/pgx/v5@v5.5.5 in its image",
+      "title": "Donetick: CVE-2026-33815 in github.com/jackc/pgx (in v5 v5.5.5)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4771",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "v5 5.9.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00629,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.95770774Z"
+    },
+    {
+      "id": "GHSA-mp2g-9vg9-f4cg",
+      "aliases": [
+        "CVE-2026-23527"
+      ],
+      "source": "OSV, for pkg:npm/h3@1.15.1 in its image",
+      "title": "Kan: h3 v1 has Request Smuggling (TE.TE) issue (in h3 1.15.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-mp2g-9vg9-f4cg",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "h3 1.15.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00626,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.919001992Z"
+    },
+    {
+      "id": "GHSA-wr4h-v87w-p3r7",
+      "aliases": [
+        "CVE-2026-86253"
+      ],
+      "source": "OSV, for pkg:npm/h3@1.15.1 in its image",
+      "title": "Kan: h3 has a Path Traversal via Percent-Encoded Dot Segments in serveStatic Allows Arbitrary File Read (in h3 1.15.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-wr4h-v87w-p3r7",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "h3 1.15.6",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00618,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.61789977Z"
+    },
+    {
+      "id": "GHSA-37qj-frw5-hhjh",
+      "aliases": [
+        "CVE-2026-25128"
+      ],
+      "source": "OSV, for pkg:npm/fast-xml-parser@5.2.5 in its image",
+      "title": "Kan: fast-xml-parser has RangeError DoS Numeric Entities Bug (in fast-xml-parser 5.2.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-37qj-frw5-hhjh",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "fast-xml-parser 5.3.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00612,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.391811551Z"
+    },
+    {
+      "id": "GHSA-46jr-4wx8-v453",
+      "aliases": [
+        "CVE-2026-111768"
+      ],
+      "source": "OSV, for pkg:npm/%40modelcontextprotocol/sdk@1.29.0 in its image",
+      "title": "Kan: MCP TypeScript SDK: One HTTP request within the default size limit could exhaust server memory during validation (in sdk 1.29.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-46jr-4wx8-v453",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "sdk 2.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00598,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.650399709Z"
+    },
+    {
+      "id": "GHSA-22cc-p3c6-wpvm",
+      "aliases": [
+        "CVE-2026-33128"
+      ],
+      "source": "OSV, for pkg:npm/h3@1.15.1 in its image",
+      "title": "Kan: h3 has a Server-Sent Events Injection via Unsanitized Newlines in Event Stream Fields (in h3 1.15.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-22cc-p3c6-wpvm",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "h3 1.15.6",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00596,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:21.856045126Z"
+    },
+    {
+      "id": "GHSA-9jj7-4m8r-rfcm",
+      "aliases": [
+        "CVE-2026-33816",
+        "GO-2026-4772"
+      ],
+      "source": "OSV, for pkg:golang/github.com/jackc/pgx/v5@v5.5.5 in its image",
+      "title": "Donetick: Memory-safety vulnerability in github.com/jackc/pgx/v5. (in v5 v5.5.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-9jj7-4m8r-rfcm",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "v5 5.9.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "critical",
+      "Exploited": false,
+      "EPSS": 0.00583,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.757793267Z"
+    },
+    {
+      "id": "GO-2026-4772",
+      "aliases": [
+        "CVE-2026-33816",
+        "GHSA-9jj7-4m8r-rfcm"
+      ],
+      "source": "OSV, for pkg:golang/github.com/jackc/pgx/v5@v5.5.5 in its image",
+      "title": "Donetick: CVE-2026-33816 in github.com/jackc/pgx (in v5 v5.5.5)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4772",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "v5 5.9.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00583,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.002192285Z"
+    },
+    {
+      "id": "GHSA-rvq5-wwqv-78pq",
+      "aliases": [
+        "CVE-2026-111771"
+      ],
+      "source": "OSV, for pkg:npm/%40modelcontextprotocol/sdk@1.29.0 in its image",
+      "title": "Kan: MCP TypeScript SDK: Server bearer authentication accepted tokens issued for another service (in sdk 1.29.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-rvq5-wwqv-78pq",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "sdk 2.3.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00541,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.310176877Z"
+    },
+    {
+      "id": "GHSA-2g4f-4pwh-qvx6",
+      "aliases": [
+        "CVE-2025-69873"
+      ],
+      "source": "OSV, for pkg:npm/ajv@8.17.1 in its image",
+      "title": "Kan: ajv has ReDoS when using `$data` option (in ajv 8.17.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-2g4f-4pwh-qvx6",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "ajv 6.14.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00539,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.247932383Z"
+    },
+    {
+      "id": "GHSA-4c39-4ccg-62r3",
+      "aliases": [
+        "CVE-2026-64646"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js: Unbounded Server Action payload in Edge runtime (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-4c39-4ccg-62r3",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00524,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.975026005Z"
+    },
+    {
+      "id": "GHSA-955p-x3mx-jcvp",
+      "aliases": [
+        "CVE-2026-64643"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js: Unauthenticated disclosure of internal Server Function endpoints (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-955p-x3mx-jcvp",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0051,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.518249504Z"
+    },
+    {
+      "id": "GHSA-9g9p-9gw9-jx7f",
+      "aliases": [
+        "CVE-2025-59471"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js self-hosted applications vulnerable to DoS via Image Optimizer remotePatterns configuration (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-9g9p-9gw9-jx7f",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.1.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00487,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.567890707Z"
+    },
+    {
+      "id": "GHSA-ggv3-7p47-pfv8",
+      "aliases": [
+        "CVE-2026-29057"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js: HTTP request smuggling in rewrites (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-ggv3-7p47-pfv8",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 15.5.13",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00464,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.289244754Z"
+    },
+    {
+      "id": "GHSA-xg6x-h9c9-2m83",
+      "aliases": [
+        "CVE-2026-67337"
+      ],
+      "source": "OSV, for pkg:npm/better-auth@1.4.6 in its image",
+      "title": "Kan: Better Auth Has Two-Factor Authentication Bypass via Premature Session Caching (session.cookieCache) (in better-auth 1.4.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-xg6x-h9c9-2m83",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "better-auth 1.4.9",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "critical",
+      "Exploited": false,
+      "EPSS": 0.00462,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.722785643Z"
+    },
+    {
+      "id": "GHSA-89xv-2m56-2m9x",
+      "aliases": [
+        "CVE-2026-64649"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js: Server-Side Request Forgery in Server Actions on custom servers (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-89xv-2m56-2m9x",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00459,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.376392471Z"
+    },
+    {
+      "id": "GHSA-p9j2-gv94-2wf4",
+      "aliases": [
+        "CVE-2026-64645"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js: Server-Side Request Forgery in rewrites via attacker-controlled destination hostname (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-p9j2-gv94-2wf4",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00457,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.070496249Z"
+    },
+    {
+      "id": "GHSA-wmrf-hv6w-mr66",
+      "aliases": [
+        "CVE-2026-32763"
+      ],
+      "source": "OSV, for pkg:npm/kysely@0.28.8 in its image",
+      "title": "Kan: SQL Injection via unsanitized JSON path keys when ignoring/silencing compilation errors or using `Kysely\u003cany\u003e`. (in kysely 0.28.8)",
+      "link": "https://osv.dev/vulnerability/GHSA-wmrf-hv6w-mr66",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "kysely 0.28.12",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00436,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.552761015Z"
+    },
+    {
+      "id": "GHSA-72gr-qfp7-vwhw",
+      "aliases": [
+        "CVE-2026-86251"
+      ],
+      "source": "OSV, for pkg:npm/h3@1.15.1 in its image",
+      "title": "Kan: h3: Double Decoding in `serveStatic` Bypasses `resolveDotSegments` Path Traversal Protection via `%252e%252e` (in h3 1.15.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-72gr-qfp7-vwhw",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "h3 1.15.9",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00428,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.27887387Z"
+    },
+    {
+      "id": "GHSA-8cpq-38p9-67gx",
+      "aliases": [
+        "CVE-2026-33468"
+      ],
+      "source": "OSV, for pkg:npm/kysely@0.28.8 in its image",
+      "title": "Kan: Kysely has a MySQL SQL Injection via Insufficient Backslash Escaping in `sql.lit(string)` usage or similar methods that append string literal values into the compiled SQL strings (in kysely 0.28.8)",
+      "link": "https://osv.dev/vulnerability/GHSA-8cpq-38p9-67gx",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "kysely 0.28.14",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00426,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.424919893Z"
+    },
+    {
+      "id": "GHSA-7w99-5wm4-3g79",
+      "aliases": [
+        "CVE-2026-53518"
+      ],
+      "source": "OSV, for pkg:npm/better-auth@1.4.6 in its image",
+      "title": "Kan: @better-auth/oauth-provider's OAuth authorization-code grant allows concurrent redemption when two token requests race the find-then-delete primitive (in better-auth 1.4.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-7w99-5wm4-3g79",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "better-auth 1.6.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00409,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.325033625Z"
+    },
+    {
+      "id": "GHSA-6prh-2h8m-c8cw",
+      "aliases": [
+        "CVE-2026-111769"
+      ],
+      "source": "OSV, for pkg:npm/%40modelcontextprotocol/sdk@1.29.0 in its image",
+      "title": "Kan: MCP TypeScript client SDK: HTTP client transports and OAuth requests followed cross-origin redirects and re-sent custom headers and request bodies (in sdk 1.29.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-6prh-2h8m-c8cw",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "sdk 2.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00405,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.177795245Z"
+    },
+    {
+      "id": "GHSA-gpj5-g38j-94v9",
+      "aliases": [
+        "CVE-2026-39356"
+      ],
+      "source": "OSV, for pkg:npm/drizzle-orm@0.42.0 in its image",
+      "title": "Kan: Drizzle ORM has SQL injection via improperly escaped SQL identifiers (in drizzle-orm 0.42.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-gpj5-g38j-94v9",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "drizzle-orm 1.0.0-beta.20",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00399,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.3389212Z"
+    },
+    {
+      "id": "GHSA-43p4-m455-4f4j",
+      "aliases": [
+        "CVE-2025-68130"
+      ],
+      "source": "OSV, for pkg:npm/%40trpc/server@11.5.0 in its image",
+      "title": "Kan: tRPC has possible prototype pollution in `experimental_nextAppDirCaller` (in server 11.5.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-43p4-m455-4f4j",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "server 11.8.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00397,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.553937449Z"
+    },
+    {
+      "id": "GHSA-vvgj-x9jq-8cj9",
+      "aliases": [
+        "CVE-2026-40898",
+        "GO-2026-5676"
+      ],
+      "source": "OSV, for pkg:golang/github.com/quic-go/quic-go@v0.59.0 in its image",
+      "title": "Donetick: quic-go: HTTP/3 QPACK Trailer Expansion Memory Exhaustion (in quic-go v0.59.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-vvgj-x9jq-8cj9",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "quic-go 0.59.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00396,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.450176401Z"
+    },
+    {
+      "id": "GO-2026-5676",
+      "aliases": [
+        "CVE-2026-40898",
+        "GHSA-vvgj-x9jq-8cj9"
+      ],
+      "source": "OSV, for pkg:golang/github.com/quic-go/quic-go@v0.59.0 in its image",
+      "title": "Donetick: HTTP/3 QPACK Trailer Expansion Memory Exhaustion in github.com/quic-go/quic-go (in quic-go v0.59.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5676",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "quic-go 0.59.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00396,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.471266835Z"
+    },
+    {
+      "id": "GHSA-68g3-v927-f742",
+      "aliases": [
+        "CVE-2026-64648"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js: Cache confusion of response bodies for requests with bodies (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-68g3-v927-f742",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00374,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.116204945Z"
+    },
+    {
+      "id": "GHSA-pv5w-4p9q-p3v2",
+      "aliases": [
+        "CVE-2026-44635"
+      ],
+      "source": "OSV, for pkg:npm/kysely@0.28.8 in its image",
+      "title": "Kan: Kysely: JSON-path traversal injection via unsanitized path-leg metacharacters in `JSONPathBuilder.key()` / `.at()` (in kysely 0.28.8)",
+      "link": "https://osv.dev/vulnerability/GHSA-pv5w-4p9q-p3v2",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "kysely 0.28.17",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00362,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.124118255Z"
+    },
+    {
+      "id": "GHSA-4hxc-9384-m385",
+      "aliases": [
+        "CVE-2026-86252"
+      ],
+      "source": "OSV, for pkg:npm/h3@1.15.1 in its image",
+      "title": "Kan: h3: SSE Event Injection via Unsanitized Carriage Return (`\\r`) in EventStream Data and Comment Fields (Bypass of CVE Fix) (in h3 1.15.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-4hxc-9384-m385",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "h3 1.15.9",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0036,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.02408662Z"
+    },
+    {
+      "id": "GHSA-j88v-2chj-qfwx",
+      "aliases": [
+        "CVE-2026-41889",
+        "GO-2026-5004"
+      ],
+      "source": "OSV, for pkg:golang/github.com/jackc/pgx/v5@v5.5.5 in its image",
+      "title": "Donetick: pgx: SQL Injection via placeholder confusion with dollar quoted string literals (in v5 v5.5.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-j88v-2chj-qfwx",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "v5 5.9.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00356,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.653207597Z"
+    },
+    {
+      "id": "GO-2026-5004",
+      "aliases": [
+        "CVE-2026-41889",
+        "GHSA-j88v-2chj-qfwx"
+      ],
+      "source": "OSV, for pkg:golang/github.com/jackc/pgx/v5@v5.5.5 in its image",
+      "title": "Donetick: SQL Injection via placeholder confusion with dollar quoted string literals in github.com/jackc/pgx (in v5 v5.5.5)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5004",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "v5 5.9.2",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00356,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.043408002Z"
+    },
+    {
+      "id": "GHSA-4633-3j49-mh5q",
+      "aliases": [
+        "CVE-2026-64647"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js: Cache confusion of response bodies for requests with bodies containing invalid UTF-8 byte sequences (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-4633-3j49-mh5q",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00351,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.601040146Z"
+    },
+    {
+      "id": "GHSA-22jm-h49p-29qw",
+      "aliases": [
+        "CVE-2026-111767"
+      ],
+      "source": "OSV, for pkg:npm/%40modelcontextprotocol/sdk@1.29.0 in its image",
+      "title": "Kan: MCP TypeScript SDK: Experimental tasks were not tied to the session that created them (in sdk 1.29.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-22jm-h49p-29qw",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "sdk 1.32.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00345,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:21.954030945Z"
+    },
+    {
+      "id": "GHSA-5cv4-jp36-h3mw",
+      "aliases": [
+        "CVE-2026-25680",
+        "GO-2026-5028"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/net@v0.49.0 in its image",
+      "title": "Donetick: Go Net HTML parser is vulnerable to denial of service (in net v0.49.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-5cv4-jp36-h3mw",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "net 0.55.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00326,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.068628853Z"
+    },
+    {
+      "id": "GO-2026-5028",
+      "aliases": [
+        "CVE-2026-25680",
+        "GHSA-5cv4-jp36-h3mw"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/net@v0.49.0 in its image",
+      "title": "Donetick: Invoking denial of service when parsing arbitrary HTML in golang.org/x/net/html (in net v0.49.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5028",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "net 0.55.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00326,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.185560828Z"
+    },
+    {
+      "id": "GHSA-2vg6-77g8-24mp",
+      "aliases": [
+        "CVE-2026-67334"
+      ],
+      "source": "OSV, for pkg:npm/better-auth@1.4.6 in its image",
+      "title": "Kan: Better Auth: Stale sessions persist after user deletion across admin, anonymous, and SCIM flows (in better-auth 1.4.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-2vg6-77g8-24mp",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "better-auth 1.6.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00323,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.303551669Z"
+    },
+    {
+      "id": "GHSA-3g8h-86w9-wvmq",
+      "aliases": [
+        "CVE-2026-44572"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js's Middleware / Proxy redirects can be cache-poisoned (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-3g8h-86w9-wvmq",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00298,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:22.438989832Z"
+    },
+    {
+      "id": "GO-2026-6180",
+      "aliases": [
+        "BIT-golang-2026-56864",
+        "CVE-2026-56864"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/mod@v0.32.0 in its image",
+      "title": "Donetick: Ignore unrelated, unauthenticated hashes in Lookup in golang.org/x/mod/sumdb (in mod v0.32.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6180",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "mod 0.40.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00298,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.59562003Z"
+    },
+    {
+      "id": "GHSA-p6v2-xcpg-h6xw",
+      "aliases": [
+        "CVE-2026-45364"
+      ],
+      "source": "OSV, for pkg:npm/better-auth@1.4.6 in its image",
+      "title": "Kan: Better Auth: Rate limiter keys IPv6 addresses individually and is bypassable via prefix rotation (in better-auth 1.4.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-p6v2-xcpg-h6xw",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "better-auth 1.5.0-beta.9",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00295,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.022887233Z"
+    },
+    {
+      "id": "GHSA-wfc6-r584-vfw7",
+      "aliases": [
+        "CVE-2026-44576"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js vulnerable to cache poisoning in React Server Component responses (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-wfc6-r584-vfw7",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00295,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.500657087Z"
+    },
+    {
+      "id": "GHSA-g38m-r43w-p2q7",
+      "aliases": [
+        "CVE-2026-53516"
+      ],
+      "source": "OSV, for pkg:npm/better-auth@1.4.6 in its image",
+      "title": "Kan: Better Auth has an account takeover issue via OAuth auto-link to unverified pre-registered email (in better-auth 1.4.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-g38m-r43w-p2q7",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "better-auth 1.6.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00289,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.103843806Z"
+    },
+    {
+      "id": "GHSA-wxw3-q3m9-c3jr",
+      "aliases": [
+        "CVE-2026-67335"
+      ],
+      "source": "OSV, for pkg:npm/better-auth@1.4.6 in its image",
+      "title": "Kan: Better Auth: OAuth callback accepts mismatched `state` when cookie-backed state storage is used without PKCE (in better-auth 1.4.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-wxw3-q3m9-c3jr",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "better-auth 1.6.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00283,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.668448626Z"
+    },
+    {
+      "id": "GHSA-6qxp-vccf-f47h",
+      "aliases": [
+        "CVE-2026-104850"
+      ],
+      "source": "OSV, for pkg:npm/%40modelcontextprotocol/sdk@1.29.0 in its image",
+      "title": "Kan: MCP TypeScript SDK: OAuth client could send credentials to an authorization server chosen by the MCP server (in sdk 1.29.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-6qxp-vccf-f47h",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "sdk 2.2.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00282,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.224206389Z"
+    },
+    {
+      "id": "GHSA-pw9m-5jxm-xr6h",
+      "aliases": [
+        "CVE-2026-53512"
+      ],
+      "source": "OSV, for pkg:npm/better-auth@1.4.6 in its image",
+      "title": "Kan: Better Auth: OAuth refresh-token replay via missing client authentication on oidc-provider and mcp plugins (in better-auth 1.4.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-pw9m-5jxm-xr6h",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "better-auth 1.6.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "critical",
+      "Exploited": false,
+      "EPSS": 0.00275,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.173401821Z"
+    },
+    {
+      "id": "GHSA-hfvc-g4fc-pqhx",
+      "aliases": [
+        "CVE-2026-39883",
+        "GO-2026-5426"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0 in its image",
+      "title": "Donetick: opentelemetry-go: BSD kenv command not using absolute path enables PATH hijacking (in sdk v1.39.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-hfvc-g4fc-pqhx",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "sdk 1.43.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00262,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.602721669Z"
+    },
+    {
+      "id": "GO-2026-5426",
+      "aliases": [
+        "CVE-2026-39883",
+        "GHSA-hfvc-g4fc-pqhx"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0 in its image",
+      "title": "Donetick: Opentelemetry-go: BSD kenv command not using absolute path enables PATH hijacking in go.opentelemetry.io/otel/sdk (in sdk v1.39.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5426",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "sdk 1.43.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00262,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.36321789Z"
+    },
+    {
+      "id": "GHSA-9h47-pqcx-hjr4",
+      "aliases": [
+        "CVE-2026-67336"
+      ],
+      "source": "OSV, for pkg:npm/better-auth@1.4.6 in its image",
+      "title": "Kan: Better Auth has insecure cryptographic defaults in oidcProvider: alg=none advertised and plain PKCE accepted by default (in better-auth 1.4.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-9h47-pqcx-hjr4",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "better-auth 1.6.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00236,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.632943837Z"
+    },
+    {
+      "id": "GO-2026-5025",
+      "aliases": [
+        "CVE-2026-42506"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/net@v0.49.0 in its image",
+      "title": "Donetick: Invoking incorrect handling of namespaced elements in foreign content in golang.org/x/net/html (in net v0.49.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5025",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "net 0.55.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00235,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.088573542Z"
+    },
+    {
+      "id": "GHSA-ffhc-5mcf-pf4q",
+      "aliases": [
+        "CVE-2026-44581"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js vulnerable to cross-site scripting in App Router applications using CSP nonces (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-ffhc-5mcf-pf4q",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00226,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.925415642Z"
+    },
+    {
+      "id": "GHSA-gx5p-jg67-6x7h",
+      "aliases": [
+        "CVE-2026-44580"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js has cross-site scripting in beforeInteractive scripts with untrusted input (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-gx5p-jg67-6x7h",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00223,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.411096049Z"
+    },
+    {
+      "id": "GO-2026-5027",
+      "aliases": [
+        "CVE-2026-42502"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/net@v0.49.0 in its image",
+      "title": "Donetick: Invoking incorrect handling of HTML elements in foreign content in golang.org/x/net/html (in net v0.49.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5027",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "net 0.55.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00223,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.13258918Z"
+    },
+    {
+      "id": "GO-2026-5029",
+      "aliases": [
+        "CVE-2026-25681"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/net@v0.49.0 in its image",
+      "title": "Donetick: Invoking incorrect handling of character references in DOCTYPE nodes in golang.org/x/net/html (in net v0.49.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5029",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "net 0.55.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00223,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.239661213Z"
+    },
+    {
+      "id": "GO-2026-5030",
+      "aliases": [
+        "CVE-2026-27136"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/net@v0.49.0 in its image",
+      "title": "Donetick: Invoking duplicate attributes can cause XSS in golang.org/x/net/html (in net v0.49.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-5030",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "net 0.55.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00223,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.298682885Z"
+    },
+    {
+      "id": "GHSA-vfv6-92ff-j949",
+      "aliases": [
+        "CVE-2026-44582"
+      ],
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js vulnerable to cache poisoning via collisions in React Server Component cache-busting (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-vfv6-92ff-j949",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00215,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.35865419Z"
+    },
+    {
+      "id": "GHSA-fmh4-wcc4-5jm3",
+      "aliases": [
+        "CVE-2026-53514"
+      ],
+      "source": "OSV, for pkg:npm/better-auth@1.4.6 in its image",
+      "title": "Kan: Better Auth vulnerable to unauthorized invitation acceptance via unverified email match in organization plugin (in better-auth 1.4.6)",
+      "link": "https://osv.dev/vulnerability/GHSA-fmh4-wcc4-5jm3",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "better-auth 1.6.11",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00201,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.993459481Z"
+    },
+    {
+      "id": "GHSA-9h8m-3fm2-qjrq",
+      "aliases": [
+        "CVE-2026-24051",
+        "GO-2026-4394"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0 in its image",
+      "title": "Donetick: OpenTelemetry Go SDK Vulnerable to Arbitrary Code Execution via PATH Hijacking (in sdk v1.39.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-9h8m-3fm2-qjrq",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "sdk 1.40.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00176,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.681103132Z"
+    },
+    {
+      "id": "GO-2026-4394",
+      "aliases": [
+        "CVE-2026-24051",
+        "GHSA-9h8m-3fm2-qjrq"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/sdk@v1.39.0 in its image",
+      "title": "Donetick: OpenTelemetry Go SDK Vulnerable to Arbitrary Code Execution via PATH Hijacking in go.opentelemetry.io/otel/sdk (in sdk v1.39.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-4394",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "sdk 1.40.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00176,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.910219147Z"
+    },
+    {
+      "id": "GO-2026-6179",
+      "aliases": [
+        "BIT-golang-2026-56865",
+        "CVE-2026-56865"
+      ],
+      "source": "OSV, for pkg:golang/golang.org/x/mod@v0.32.0 in its image",
+      "title": "Donetick: Fix transparency log tile verification bypass in golang.org/x/mod/sumdb/tlog (in mod v0.32.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6179",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "mod 0.40.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00129,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:26.54449441Z"
+    },
+    {
+      "id": "GHSA-ch38-3q93-fwg8",
+      "source": "GitHub's advisories for miniflux/v2",
+      "title": "Miniflux: Password changes did not require the current password or sign out existing sessions",
+      "link": "https://github.com/miniflux/v2/security/advisories/GHSA-ch38-3q93-fwg8",
+      "package": "miniflux",
+      "affected": [
+        "2.3.3-roostack.1",
+        "2.3.3-roostack.2",
+        "2.3.3-roostack.3",
+        "2.3.4-roostack.1"
+      ],
+      "fixed": "2.3.5-roostack.1",
+      "fixed_upstream": "\u003e= 2.3.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 2.7
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low (CVSS 2.7).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-12T13:11:51.279496832Z"
+    },
+    {
+      "id": "GHSA-8h8q-6873-q5fj",
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js Vulnerable to Denial of Service with Server Components (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-8h8q-6873-q5fj",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.472945939Z"
+    },
+    {
+      "id": "GHSA-f897-62hf-6gxq",
+      "source": "OSV, for pkg:npm/%40modelcontextprotocol/sdk@1.29.0 in its image",
+      "title": "Kan: MCP TypeScript SDK: HTTP server transports and handlers did not limit request body size or JSON-RPC batch length (in sdk 1.29.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-f897-62hf-6gxq",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "sdk 2.0.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:23.881546382Z"
+    },
+    {
+      "id": "GHSA-frvp-7c67-39w9",
+      "source": "OSV, for pkg:npm/%40hono/node-server@1.19.14 in its image",
+      "title": "Kan: Node.js Adapter for Hono: Path traversal in `serve-static` on Windows via encoded backslash (`%5C`) (in node-server 1.19.14)",
+      "link": "https://osv.dev/vulnerability/GHSA-frvp-7c67-39w9",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "node-server 1.19.15",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "critical",
+      "why": "its CVSS vector says anyone on the network can use it, without an account or anyone's help, to reach data or the system.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.043863491Z"
+    },
+    {
+      "id": "GHSA-h25m-26qc-wcjf",
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js HTTP request deserialization can lead to DoS when using insecure React Server Components (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-h25m-26qc-wcjf",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.1.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:24.482006444Z"
+    },
+    {
+      "id": "GHSA-q4gf-8mx6-v5v3",
+      "source": "OSV, for pkg:npm/next@15.5.9 in its image",
+      "title": "Kan: Next.js has a Denial of Service with Server Components (in next 15.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-q4gf-8mx6-v5v3",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.2.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-12T13:12:25.217619154Z"
     }
   ]
 }
