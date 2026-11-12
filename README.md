@@ -57,6 +57,11 @@ updates.yaml         what the update check follows for each package (Updates)
   it, and so it can change without a new version (Roostack's SPEC §6.11,
   "Roostack Cloud's names and relay").
 
+Only packages are kept here. Documentation that weighs a service's
+risks, such as the reviews written before an app is packaged, is kept
+in a private repository instead, so a package file's comment that names
+`docs/review-<topic>-<date>.md` refers to a file there.
+
 ## Tiers
 
 - **Official:** maintained by the Roostack project, reviewed, and tested on
