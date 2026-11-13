@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-12T21:03:44.07785057Z",
+  "last_run": "2026-11-13T02:05:33.755595022Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -341,6 +341,9 @@
     "CVE-2024-47081": "digest",
     "CVE-2024-47764": "digest",
     "CVE-2024-52798": "digest",
+    "CVE-2024-55071": "digest",
+    "CVE-2024-55072": "digest",
+    "CVE-2024-55073": "digest",
     "CVE-2024-55565": "digest",
     "CVE-2024-58379": "digest",
     "CVE-2024-6345": "digest",
@@ -695,6 +698,17 @@
     "CVE-2026-125350": "digest",
     "CVE-2026-12590": "digest",
     "CVE-2026-126066": "digest",
+    "CVE-2026-126190": "digest",
+    "CVE-2026-126192": "digest",
+    "CVE-2026-126210": "digest",
+    "CVE-2026-126343": "digest",
+    "CVE-2026-126355": "digest",
+    "CVE-2026-126356": "digest",
+    "CVE-2026-126357": "digest",
+    "CVE-2026-126358": "digest",
+    "CVE-2026-126359": "digest",
+    "CVE-2026-128066": "digest",
+    "CVE-2026-128067": "drafted 2026-0045",
     "CVE-2026-13149": "digest",
     "CVE-2026-13346": "digest",
     "CVE-2026-13676": "digest",
@@ -1292,6 +1306,7 @@
     "GHSA-3g43-6gmg-66jw": "digest",
     "GHSA-3g4v-f5gv-c7xf": "digest",
     "GHSA-3g8h-86w9-wvmq": "digest",
+    "GHSA-3gg2-335m-rxc6": "digest",
     "GHSA-3h5v-q93c-6h6q": "digest",
     "GHSA-3j72-p6qg-6xp7": "digest",
     "GHSA-3jp2-3mrg-2vxc": "digest",
@@ -1332,7 +1347,9 @@
     "GHSA-467c-4w7p-8427": "doesn't affect the registry's versions",
     "GHSA-469m-x4mw-38r3": "doesn't affect the registry's versions",
     "GHSA-46jr-4wx8-v453": "digest",
+    "GHSA-46wx-v44x-9hh2": "digest",
     "GHSA-474x-hrwr-fgx4": "digest",
+    "GHSA-478x-7v3h-xrc9": "doesn't affect the registry's versions",
     "GHSA-48c2-rrv3-qjmp": "digest",
     "GHSA-48qf-xh34-q73r": "drafted 2026-0015",
     "GHSA-492v-c6pp-mqqv": "digest",
@@ -1343,12 +1360,15 @@
     "GHSA-4ffr-jq9g-5ffx": "digest",
     "GHSA-4g23-2xm8-66gc": "digest",
     "GHSA-4grx-2x9w-596c": "digest",
+    "GHSA-4h7h-rv7c-7m2v": "digest",
     "GHSA-4hqw-qxg8-jxx2": "digest",
     "GHSA-4hxc-9384-m385": "digest",
     "GHSA-4j4g-m7mr-hp5j": "doesn't affect the registry's versions",
+    "GHSA-4j63-6c4x-wfg4": "digest",
     "GHSA-4jmf-h2cm-hg7w": "digest",
     "GHSA-4jqv-mc3x-m676": "digest",
     "GHSA-4jv9-3563-23j3": "digest",
+    "GHSA-4m76-xfj5-7975": "digest",
     "GHSA-4mjr-xmp4-gh2g": "digest",
     "GHSA-4mxg-3p6v-xgq3": "digest",
     "GHSA-4p3w-j4w9-5jqw": "drafted 2026-0013",
@@ -1401,6 +1421,7 @@
     "GHSA-5p2g-fcmc-qvqq": "digest",
     "GHSA-5p39-cfhj-2xmp": "digest",
     "GHSA-5p4m-2wfm-xmqj": "digest",
+    "GHSA-5pvv-vjm6-v952": "doesn't affect the registry's versions",
     "GHSA-5pwr-322w-8jr4": "digest",
     "GHSA-5r4p-p66f-jhc7": "digest",
     "GHSA-5rjg-fvgr-3xxf": "digest",
@@ -1583,6 +1604,7 @@
     "GHSA-94rx-fqm6-q23v": "doesn't affect the registry's versions",
     "GHSA-952p-6rrq-rcjv": "digest",
     "GHSA-955p-x3mx-jcvp": "digest",
+    "GHSA-9567-2v7c-m8fh": "doesn't affect the registry's versions",
     "GHSA-95rc-wc32-gm53": "digest",
     "GHSA-965c-763c-88jm": "digest",
     "GHSA-965w-775f-mr7g": "digest",
@@ -1684,6 +1706,7 @@
     "GHSA-f2g6-542v-9j58": "digest",
     "GHSA-f38f-5xpm-9r7c": "digest",
     "GHSA-f38q-mgvj-vph7": "digest",
+    "GHSA-f3gj-65x4-cx2m": "digest",
     "GHSA-f3qw-qg77-hmm4": "doesn't affect the registry's versions",
     "GHSA-f4gw-2p7v-4548": "digest",
     "GHSA-f596-whhp-79r4": "digest",
@@ -1704,6 +1727,8 @@
     "GHSA-fch4-3c6x-j4gc": "digest",
     "GHSA-ffc3-869f-jxw9": "digest",
     "GHSA-ffhc-5mcf-pf4q": "digest",
+    "GHSA-ffm3-6h69-69jh": "doesn't affect the registry's versions",
+    "GHSA-ffx9-4vvj-2rrq": "doesn't affect the registry's versions",
     "GHSA-fhv5-28vv-h8m8": "digest",
     "GHSA-fj3w-jwp8-x2g3": "digest",
     "GHSA-fj7v-r99m-22gq": "digest",
@@ -1786,6 +1811,7 @@
     "GHSA-h67p-54hq-rp68": "digest",
     "GHSA-h6cr-wjv9-3cpp": "digest",
     "GHSA-h6q6-9hqw-rwfv": "digest",
+    "GHSA-h7mg-cq63-vhpq": "digest",
     "GHSA-h7mw-gpvr-xq4m": "digest",
     "GHSA-h8r8-wccr-v5f2": "digest",
     "GHSA-hcff-qv74-7hr4": "digest",
@@ -1801,6 +1827,7 @@
     "GHSA-hm4w-wwcw-mr6r": "digest",
     "GHSA-hmw2-7cc7-3qxx": "digest",
     "GHSA-hpcv-96wg-7vj8": "digest",
+    "GHSA-hprp-p75x-793q": "doesn't affect the registry's versions",
     "GHSA-hqq2-xqr2-fmx2": "doesn't affect the registry's versions",
     "GHSA-hqq3-7jhf-c5jx": "digest",
     "GHSA-hqr4-qq8f-hg3x": "digest",
@@ -1849,6 +1876,7 @@
     "GHSA-jp82-f5mq-hwhp": "digest",
     "GHSA-jp82-jpqv-5vv3": "digest",
     "GHSA-jppx-rxg9-jmrx": "digest",
+    "GHSA-jpvv-r467-5p4w": "digest",
     "GHSA-jq2g-h4xr-4mcr": "doesn't affect the registry's versions",
     "GHSA-jq35-7prp-9v3f": "digest",
     "GHSA-jqcg-44mw-7w3h": "digest",
@@ -1896,6 +1924,7 @@
     "GHSA-mjw6-4jj6-33hc": "digest",
     "GHSA-mm57-4v3p-rchx": "digest",
     "GHSA-mm7p-fcc7-pg87": "digest",
+    "GHSA-mmhr-3c5m-f64f": "digest",
     "GHSA-mmx7-hfxf-jppx": "digest",
     "GHSA-mp2g-9vg9-f4cg": "digest",
     "GHSA-mp56-ppfx-qchg": "doesn't affect the registry's versions",
@@ -2000,6 +2029,7 @@
     "GHSA-qr28-fpjm-wq7f": "digest",
     "GHSA-qrmc-fj45-qfc2": "digest",
     "GHSA-qrxm-fqhp-jwvm": "digest",
+    "GHSA-qv5m-9pm6-hqp3": "digest",
     "GHSA-qvfw-j98x-7q72": "digest",
     "GHSA-qw65-cvwx-89v3": "digest",
     "GHSA-qw6h-vgh9-j6wx": "digest",
@@ -2085,6 +2115,7 @@
     "GHSA-v6q3-xqxm-6f5v": "doesn't affect the registry's versions",
     "GHSA-v7v2-63g5-gwf7": "digest",
     "GHSA-v845-jxx5-vc9f": "digest",
+    "GHSA-v89r-qfp9-95gv": "doesn't affect the registry's versions",
     "GHSA-v8fg-2rw7-q452": "digest",
     "GHSA-v8gr-m533-ghj9": "digest",
     "GHSA-v923-w3x8-wh69": "digest",
@@ -2097,6 +2128,7 @@
     "GHSA-vcp6-2qc6-gvq3": "digest",
     "GHSA-vf2m-468p-8v99": "digest",
     "GHSA-vfgh-jcmw-g37q": "digest",
+    "GHSA-vfrg-4mv4-26c3": "digest",
     "GHSA-vfv6-92ff-j949": "digest",
     "GHSA-vghf-hv5q-vc2g": "digest",
     "GHSA-vgwf-h737-ff37": "digest",
@@ -2162,6 +2194,7 @@
     "GHSA-wp5v-5wj6-j2fh": "digest",
     "GHSA-wp97-x4hv-qvhp": "digest",
     "GHSA-wq5f-xc86-pv6w": "digest",
+    "GHSA-wqgw-9xfh-qf2g": "digest",
     "GHSA-wqp7-x3pw-xc5r": "digest",
     "GHSA-wqvq-jvpq-h66f": "digest",
     "GHSA-wr4h-v87w-p3r7": "digest",
@@ -2197,6 +2230,7 @@
     "GHSA-x97p-jq2g-jp4f": "digest",
     "GHSA-x9r2-wh7w-h4qc": "digest",
     "GHSA-xcq7-p3pf-p88h": "digest",
+    "GHSA-xcvg-w56q-r89m": "drafted 2026-0045",
     "GHSA-xcx6-jx8p-x3h5": "digest",
     "GHSA-xf7r-hgr6-v32p": "digest",
     "GHSA-xfqq-h54g-92f8": "doesn't affect the registry's versions",
@@ -2748,9 +2782,11 @@
     "UBUNTU-CVE-2026-103226": "digest",
     "UBUNTU-CVE-2026-103963": "digest",
     "UBUNTU-CVE-2026-103995": "digest",
+    "UBUNTU-CVE-2026-104619": "digest",
     "UBUNTU-CVE-2026-104620": "digest",
     "UBUNTU-CVE-2026-105081": "digest",
     "UBUNTU-CVE-2026-105083": "digest",
+    "UBUNTU-CVE-2026-105437": "digest",
     "UBUNTU-CVE-2026-106564": "digest",
     "UBUNTU-CVE-2026-106565": "digest",
     "UBUNTU-CVE-2026-106566": "digest",
@@ -2771,6 +2807,7 @@
     "UBUNTU-CVE-2026-107208": "digest",
     "UBUNTU-CVE-2026-107209": "digest",
     "UBUNTU-CVE-2026-107210": "digest",
+    "UBUNTU-CVE-2026-107496": "digest",
     "UBUNTU-CVE-2026-107660": "digest",
     "UBUNTU-CVE-2026-107675": "digest",
     "UBUNTU-CVE-2026-107676": "digest",
@@ -2812,6 +2849,7 @@
     "UBUNTU-CVE-2026-110133": "digest",
     "UBUNTU-CVE-2026-111272": "digest",
     "UBUNTU-CVE-2026-112922": "digest",
+    "UBUNTU-CVE-2026-113408": "digest",
     "UBUNTU-CVE-2026-114583": "digest",
     "UBUNTU-CVE-2026-114690": "digest",
     "UBUNTU-CVE-2026-114691": "digest",
@@ -2820,6 +2858,8 @@
     "UBUNTU-CVE-2026-115455": "digest",
     "UBUNTU-CVE-2026-115456": "digest",
     "UBUNTU-CVE-2026-115557": "digest",
+    "UBUNTU-CVE-2026-115559": "digest",
+    "UBUNTU-CVE-2026-115791": "digest",
     "UBUNTU-CVE-2026-115936": "digest",
     "UBUNTU-CVE-2026-116140": "digest",
     "UBUNTU-CVE-2026-116141": "digest",
@@ -2873,6 +2913,7 @@
     "UBUNTU-CVE-2026-120749": "digest",
     "UBUNTU-CVE-2026-123273": "digest",
     "UBUNTU-CVE-2026-12345": "digest",
+    "UBUNTU-CVE-2026-124249": "digest",
     "UBUNTU-CVE-2026-125064": "digest",
     "UBUNTU-CVE-2026-125065": "digest",
     "UBUNTU-CVE-2026-125066": "digest",
@@ -2994,6 +3035,8 @@
     "UBUNTU-CVE-2026-125268": "digest",
     "UBUNTU-CVE-2026-125269": "digest",
     "UBUNTU-CVE-2026-125270": "digest",
+    "UBUNTU-CVE-2026-125396": "digest",
+    "UBUNTU-CVE-2026-125709": "digest",
     "UBUNTU-CVE-2026-12706": "digest",
     "UBUNTU-CVE-2026-13608": "digest",
     "UBUNTU-CVE-2026-13757": "digest",
@@ -3013,6 +3056,7 @@
     "UBUNTU-CVE-2026-18938": "digest",
     "UBUNTU-CVE-2026-19445": "digest",
     "UBUNTU-CVE-2026-19548": "digest",
+    "UBUNTU-CVE-2026-19552": "digest",
     "UBUNTU-CVE-2026-19553": "digest",
     "UBUNTU-CVE-2026-19672": "digest",
     "UBUNTU-CVE-2026-20884": "digest",
@@ -3295,6 +3339,8 @@
     "UBUNTU-CVE-2026-87865": "digest",
     "UBUNTU-CVE-2026-87910": "digest",
     "UBUNTU-CVE-2026-88387": "digest",
+    "UBUNTU-CVE-2026-88822": "digest",
+    "UBUNTU-CVE-2026-88823": "digest",
     "UBUNTU-CVE-2026-90801": "digest",
     "UBUNTU-CVE-2026-90802": "digest",
     "UBUNTU-CVE-2026-90803": "digest",
@@ -3324,6 +3370,8 @@
     "UBUNTU-CVE-2026-93658": "digest",
     "UBUNTU-CVE-2026-94266": "digest",
     "UBUNTU-CVE-2026-9538": "digest",
+    "UBUNTU-CVE-2026-95691": "digest",
+    "UBUNTU-CVE-2026-95692": "digest",
     "UBUNTU-CVE-2026-96512": "digest",
     "UBUNTU-CVE-2026-96611": "digest",
     "USN-8469-1": "digest",
@@ -12950,6 +12998,1762 @@
       "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-12T13:12:25.217619154Z"
+    },
+    {
+      "id": "GHSA-vfrg-4mv4-26c3",
+      "aliases": [
+        "CVE-2024-55071",
+        "CVE-2024-55072",
+        "CVE-2024-55073"
+      ],
+      "source": "GitHub's advisories for mealie-recipes/mealie",
+      "title": "Mealie: Missing can_organize authorization on Units and Tools mutation endpoints (broken function-level authorization / vertical privesc)",
+      "link": "https://github.com/mealie-recipes/mealie/security/advisories/GHSA-vfrg-4mv4-26c3",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.1",
+        "3.29.0-roostack.2",
+        "3.29.0-roostack.3",
+        "3.29.0-roostack.4"
+      ],
+      "fixed": "3.30.0-roostack.1",
+      "fixed_upstream": "\u003e= 3.30.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 5.4
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0.00313,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.4).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:05:42.742393443Z"
+    },
+    {
+      "id": "GHSA-f3gj-65x4-cx2m",
+      "source": "GitHub's advisories for mealie-recipes/mealie",
+      "title": "Mealie: Event notifiers did not require the Manage household permission",
+      "link": "https://github.com/mealie-recipes/mealie/security/advisories/GHSA-f3gj-65x4-cx2m",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.1",
+        "3.29.0-roostack.2",
+        "3.29.0-roostack.3",
+        "3.29.0-roostack.4"
+      ],
+      "fixed": "3.30.0-roostack.1",
+      "fixed_upstream": "\u003e= 3.30.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 4.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 4.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:05:42.742358147Z"
+    },
+    {
+      "id": "GHSA-3gg2-335m-rxc6",
+      "aliases": [
+        "CVE-2026-126359"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Ghost: Hono: `css` helper does not escape a closing tag split between the template and an interpolated value, allowing HTML injection (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-3gg2-335m-rxc6",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.358568286Z"
+    },
+    {
+      "id": "GHSA-3gg2-335m-rxc6",
+      "aliases": [
+        "CVE-2026-126359"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Kaneo: Hono: `css` helper does not escape a closing tag split between the template and an interpolated value, allowing HTML injection (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-3gg2-335m-rxc6",
+      "package": "kaneo",
+      "affected": [
+        "2.49.0-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.358572775Z"
+    },
+    {
+      "id": "GHSA-3gg2-335m-rxc6",
+      "aliases": [
+        "CVE-2026-126359"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Papra: Hono: `css` helper does not escape a closing tag split between the template and an interpolated value, allowing HTML injection (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-3gg2-335m-rxc6",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.3585754Z"
+    },
+    {
+      "id": "GHSA-46wx-v44x-9hh2",
+      "aliases": [
+        "CVE-2026-126355"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Ghost: Hono: `csrf()` does not check requests sent by hyperlink auditing (`text/ping`) (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-46wx-v44x-9hh2",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.445095813Z"
+    },
+    {
+      "id": "GHSA-46wx-v44x-9hh2",
+      "aliases": [
+        "CVE-2026-126355"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Kaneo: Hono: `csrf()` does not check requests sent by hyperlink auditing (`text/ping`) (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-46wx-v44x-9hh2",
+      "package": "kaneo",
+      "affected": [
+        "2.49.0-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.445099293Z"
+    },
+    {
+      "id": "GHSA-46wx-v44x-9hh2",
+      "aliases": [
+        "CVE-2026-126355"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Papra: Hono: `csrf()` does not check requests sent by hyperlink auditing (`text/ping`) (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-46wx-v44x-9hh2",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.445101874Z"
+    },
+    {
+      "id": "GHSA-4h7h-rv7c-7m2v",
+      "aliases": [
+        "CVE-2026-126356"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Ghost: Hono: `validator('form')` skips validation for `multipart/form-data` requests with extra parameters (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-4h7h-rv7c-7m2v",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.525415497Z"
+    },
+    {
+      "id": "GHSA-4h7h-rv7c-7m2v",
+      "aliases": [
+        "CVE-2026-126356"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Kaneo: Hono: `validator('form')` skips validation for `multipart/form-data` requests with extra parameters (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-4h7h-rv7c-7m2v",
+      "package": "kaneo",
+      "affected": [
+        "2.49.0-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.525419118Z"
+    },
+    {
+      "id": "GHSA-4h7h-rv7c-7m2v",
+      "aliases": [
+        "CVE-2026-126356"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Papra: Hono: `validator('form')` skips validation for `multipart/form-data` requests with extra parameters (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-4h7h-rv7c-7m2v",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.525420494Z"
+    },
+    {
+      "id": "GHSA-4j63-6c4x-wfg4",
+      "aliases": [
+        "CVE-2026-126192"
+      ],
+      "source": "OSV, for pkg:pypi/soupsieve@2.9.2 in its image",
+      "title": "Seafile: Soup Sieve: General sibling combinator inside :has() matches untrusted HTML in quadratic time (in soupsieve 2.9.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-4j63-6c4x-wfg4",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4"
+      ],
+      "fixed_upstream": "soupsieve 2.10.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.614260296Z"
+    },
+    {
+      "id": "GHSA-4m76-xfj5-7975",
+      "aliases": [
+        "CVE-2026-126357"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Ghost: Hono: `mount()` and `app.mount()` can forward a path that bypasses middleware scoped inside the mount prefix (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-4m76-xfj5-7975",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.691618809Z"
+    },
+    {
+      "id": "GHSA-4m76-xfj5-7975",
+      "aliases": [
+        "CVE-2026-126357"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Kaneo: Hono: `mount()` and `app.mount()` can forward a path that bypasses middleware scoped inside the mount prefix (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-4m76-xfj5-7975",
+      "package": "kaneo",
+      "affected": [
+        "2.49.0-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.69162465Z"
+    },
+    {
+      "id": "GHSA-4m76-xfj5-7975",
+      "aliases": [
+        "CVE-2026-126357"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Papra: Hono: `mount()` and `app.mount()` can forward a path that bypasses middleware scoped inside the mount prefix (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-4m76-xfj5-7975",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.691626149Z"
+    },
+    {
+      "id": "GHSA-h7mg-cq63-vhpq",
+      "aliases": [
+        "CVE-2026-126358"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Ghost: Hono: RegExpRouter skips wildcard middleware for some route sets and for paths with an encoded line terminator (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-h7mg-cq63-vhpq",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.774463981Z"
+    },
+    {
+      "id": "GHSA-h7mg-cq63-vhpq",
+      "aliases": [
+        "CVE-2026-126358"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Kaneo: Hono: RegExpRouter skips wildcard middleware for some route sets and for paths with an encoded line terminator (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-h7mg-cq63-vhpq",
+      "package": "kaneo",
+      "affected": [
+        "2.49.0-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.77447021Z"
+    },
+    {
+      "id": "GHSA-h7mg-cq63-vhpq",
+      "aliases": [
+        "CVE-2026-126358"
+      ],
+      "source": "OSV, for pkg:npm/hono@4.13.5 in its image",
+      "title": "Papra: Hono: RegExpRouter skips wildcard middleware for some route sets and for paths with an encoded line terminator (in hono 4.13.5)",
+      "link": "https://osv.dev/vulnerability/GHSA-h7mg-cq63-vhpq",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "hono 4.13.16",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.774471568Z"
+    },
+    {
+      "id": "GHSA-jpvv-r467-5p4w",
+      "aliases": [
+        "CVE-2026-126210"
+      ],
+      "source": "OSV, for pkg:npm/%40hono/node-server@2.0.10 in its image",
+      "title": "Kan: @hono/node-server: Backslash in the request path is parsed as a path separator, bypassing path-based access control at a reverse proxy (in node-server 2.0.10)",
+      "link": "https://osv.dev/vulnerability/GHSA-jpvv-r467-5p4w",
+      "package": "kan",
+      "affected": [
+        "0.7.0-roostack.1"
+      ],
+      "fixed_upstream": "node-server 1.19.18",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.862632704Z"
+    },
+    {
+      "id": "GHSA-jpvv-r467-5p4w",
+      "aliases": [
+        "CVE-2026-126210"
+      ],
+      "source": "OSV, for pkg:npm/%40hono/node-server@2.0.10 in its image",
+      "title": "Kaneo: @hono/node-server: Backslash in the request path is parsed as a path separator, bypassing path-based access control at a reverse proxy (in node-server 2.0.10)",
+      "link": "https://osv.dev/vulnerability/GHSA-jpvv-r467-5p4w",
+      "package": "kaneo",
+      "affected": [
+        "2.49.0-roostack.1"
+      ],
+      "fixed_upstream": "node-server 1.19.18",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.862636919Z"
+    },
+    {
+      "id": "GHSA-jpvv-r467-5p4w",
+      "aliases": [
+        "CVE-2026-126210"
+      ],
+      "source": "OSV, for pkg:npm/%40hono/node-server@2.0.10 in its image",
+      "title": "Papra: @hono/node-server: Backslash in the request path is parsed as a path separator, bypassing path-based access control at a reverse proxy (in node-server 2.0.10)",
+      "link": "https://osv.dev/vulnerability/GHSA-jpvv-r467-5p4w",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "node-server 1.19.18",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.862638583Z"
+    },
+    {
+      "id": "GHSA-mmhr-3c5m-f64f",
+      "aliases": [
+        "CVE-2026-126190"
+      ],
+      "source": "OSV, for pkg:pypi/soupsieve@2.10 in its image",
+      "title": "Mealie: Soup Sieve: Polynomial-time denial of service in the descendant combinator (in soupsieve 2.10)",
+      "link": "https://osv.dev/vulnerability/GHSA-mmhr-3c5m-f64f",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3",
+        "3.29.0-roostack.4",
+        "3.30.0-roostack.1"
+      ],
+      "fixed_upstream": "soupsieve 4.0.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.945236501Z"
+    },
+    {
+      "id": "GHSA-mmhr-3c5m-f64f",
+      "aliases": [
+        "CVE-2026-126190"
+      ],
+      "source": "OSV, for pkg:pypi/soupsieve@2.10 in its image",
+      "title": "Seafile: Soup Sieve: Polynomial-time denial of service in the descendant combinator (in soupsieve 2.10)",
+      "link": "https://osv.dev/vulnerability/GHSA-mmhr-3c5m-f64f",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "soupsieve 4.0.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:12.945241025Z"
+    },
+    {
+      "id": "GHSA-qv5m-9pm6-hqp3",
+      "aliases": [
+        "CVE-2026-126343"
+      ],
+      "source": "OSV, for pkg:npm/%40hono/node-server@2.0.10 in its image",
+      "title": "Kaneo: @hono/node-server: Unhandled `ECONNRESET` on the socket during an asynchronous WebSocket upgrade crashes the process (in node-server 2.0.10)",
+      "link": "https://osv.dev/vulnerability/GHSA-qv5m-9pm6-hqp3",
+      "package": "kaneo",
+      "affected": [
+        "2.49.0-roostack.1"
+      ],
+      "fixed_upstream": "node-server 2.1.6",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:13.03322097Z"
+    },
+    {
+      "id": "GHSA-qv5m-9pm6-hqp3",
+      "aliases": [
+        "CVE-2026-126343"
+      ],
+      "source": "OSV, for pkg:npm/%40hono/node-server@2.0.10 in its image",
+      "title": "Papra: @hono/node-server: Unhandled `ECONNRESET` on the socket during an asynchronous WebSocket upgrade crashes the process (in node-server 2.0.10)",
+      "link": "https://osv.dev/vulnerability/GHSA-qv5m-9pm6-hqp3",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "fixed_upstream": "node-server 2.1.6",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:13.033223344Z"
+    },
+    {
+      "id": "GHSA-wqgw-9xfh-qf2g",
+      "aliases": [
+        "CVE-2026-128066"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@12.3.0 in its image",
+      "title": "Immich: Pillow: Memory DoS in TIFF and EXIF IFD parsing via overlapping tag data (in pillow 12.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-wqgw-9xfh-qf2g",
+      "package": "immich",
+      "affected": [
+        "3.3.3-roostack.3",
+        "3.3.5-roostack.1",
+        "3.3.5-roostack.2",
+        "3.3.6-roostack.1"
+      ],
+      "fixed_upstream": "pillow 13.0.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:13.130955349Z"
+    },
+    {
+      "id": "GHSA-wqgw-9xfh-qf2g",
+      "aliases": [
+        "CVE-2026-128066"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@12.3.0 in its image",
+      "title": "Mealie: Pillow: Memory DoS in TIFF and EXIF IFD parsing via overlapping tag data (in pillow 12.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-wqgw-9xfh-qf2g",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3",
+        "3.29.0-roostack.4"
+      ],
+      "fixed_upstream": "pillow 13.0.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:13.130960581Z"
+    },
+    {
+      "id": "GHSA-wqgw-9xfh-qf2g",
+      "aliases": [
+        "CVE-2026-128066"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@12.3.0 in its image",
+      "title": "Paperless-ngx: Pillow: Memory DoS in TIFF and EXIF IFD parsing via overlapping tag data (in pillow 12.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-wqgw-9xfh-qf2g",
+      "package": "paperless-ngx",
+      "affected": [
+        "3.3.2-roostack.3"
+      ],
+      "fixed_upstream": "pillow 13.0.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:13.130962905Z"
+    },
+    {
+      "id": "GHSA-wqgw-9xfh-qf2g",
+      "aliases": [
+        "CVE-2026-128066"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@12.3.0 in its image",
+      "title": "Seafile: Pillow: Memory DoS in TIFF and EXIF IFD parsing via overlapping tag data (in pillow 12.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-wqgw-9xfh-qf2g",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "pillow 13.0.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:13.130964573Z"
+    },
+    {
+      "id": "GHSA-wqgw-9xfh-qf2g",
+      "aliases": [
+        "CVE-2026-128066"
+      ],
+      "source": "OSV, for pkg:pypi/pillow@12.3.0 in its image",
+      "title": "Stirling-PDF: Pillow: Memory DoS in TIFF and EXIF IFD parsing via overlapping tag data (in pillow 12.3.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-wqgw-9xfh-qf2g",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1"
+      ],
+      "fixed_upstream": "pillow 13.0.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T02:06:13.130967248Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-104619",
+      "source": "OSV, for pkg:deb/ubuntu/packagekit@1.2.8-2ubuntu1.5?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-104619 (in packagekit 1.2.8-2ubuntu1.5)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-104619",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.064302039Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-105437",
+      "source": "OSV, for pkg:deb/ubuntu/git@1%3A2.43.0-1ubuntu7.3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-105437 (in git 1%3A2.43.0-1ubuntu7.3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-105437",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.159172053Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-107496",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-107496 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-107496",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.253897666Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-107496",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-107496 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-107496",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.25390157Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-107496",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-107496 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-107496",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.253911734Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-107496",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-107496 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-107496",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.253914848Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-113408",
+      "source": "OSV, for pkg:deb/ubuntu/git@1%3A2.43.0-1ubuntu7.3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-113408 (in git 1%3A2.43.0-1ubuntu7.3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-113408",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.34247956Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-115559",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-115559 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-115559",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.471090783Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-115559",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-115559 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-115559",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.471095929Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-115791",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-115791 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-115791",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.567856764Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-115791",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-115791 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-115791",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.567862176Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-124249",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-124249 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-124249",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.66481316Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-124249",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-124249 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-124249",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.66481838Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-125396",
+      "source": "OSV, for pkg:deb/ubuntu/ghostscript@10.06.0~dfsg-3ubuntu1.2?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-125396 (in ghostscript 10.06.0~dfsg-3ubuntu1.2)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-125396",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:14.745486356Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-125709",
+      "source": "OSV, for pkg:deb/ubuntu/gcc-13@13.3.0-6ubuntu2~24.04.1?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-125709 (in gcc-13 13.3.0-6ubuntu2~24.04.1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-125709",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.325525592Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-19552",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-19552 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-19552",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.426717851Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-19552",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-19552 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-19552",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.426724314Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-88822",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-88822 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-88822",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.524895721Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-88822",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-88822 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-88822",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.524900187Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-88822",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-88822 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-88822",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.524902659Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-88822",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-88822 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-88822",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.524905819Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-88823",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-88823 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-88823",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.616369052Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-88823",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-88823 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-88823",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.616374316Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-88823",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-88823 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-88823",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.616377216Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-88823",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-88823 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-88823",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.6163815Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95691",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-95691 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95691",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.699699208Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95691",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-95691 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95691",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.69970276Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95691",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-95691 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95691",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.699704664Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95691",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-95691 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95691",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.699707589Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95692",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-95692 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95692",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.792530304Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95692",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-95692 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95692",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.792534751Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95692",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-95692 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95692",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.792537129Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95692",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.15?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-95692 (in openssl 3.0.13-0ubuntu3.15)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95692",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T02:06:15.792540256Z"
     }
   ]
 }
