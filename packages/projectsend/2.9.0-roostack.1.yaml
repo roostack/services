@@ -1,0 +1,170 @@
+# ProjectSend: one container (nginx, PHP-FPM, its queue workers and its
+# scheduler, under supervisord), MySQL and Redis run by Roostack. Its own
+# settings (mail, sign-ups, branding, sign-in providers) are kept in its
+# database and changed on its Settings pages. Image digest looked up
+# 2026-10-31.
+schema: roostack/v1alpha1
+name: projectsend
+title: ProjectSend
+description: Sends files to your clients, each with a sign-in of their own, and lets them send files back
+version: 2.9.0-roostack.1
+
+about:
+  maker: Ignacio Nelson and contributors
+  website: https://www.projectsend.org
+  source: https://github.com/projectsend/projectsend
+  licence: GPL-2.0-or-later
+  releases: https://github.com/projectsend/projectsend/releases/tag/v{version}
+  icon: icon.png
+  categories: [documents, productivity]
+  keywords: [client portal, file sharing, send files, clients, file transfer, share links, uploads]
+built_with: [php, laravel]
+requires:
+  roostack: "0.1.5"              # a wall in front of its own sign-in
+
+settings:
+  # The first administrator, made by the install hook below with
+  # ProjectSend's own command. Its setup page, which would otherwise make
+  # one for whoever reaches it first, is private (below) and has nothing
+  # to do once there's an administrator.
+  - key: admin_name
+    title: Your name
+    type: string
+    required: true
+    install_only: true
+  - key: admin_email
+    title: Your email address
+    description: For signing in to ProjectSend
+    type: string
+    required: true
+    install_only: true
+  - key: admin_password
+    title: Your password
+    description: At least 8 characters. Roostack forgets it once the account exists.
+    type: secret
+    min_length: 8
+    install_only: true           # deleted once the install hook succeeds
+
+containers:
+  app:
+    # Starts as the container's root (Roostack's own user on the host),
+    # which its entrypoint needs, and runs ProjectSend as www-data. Not
+    # keep-id: that would start it as www-data, and the entrypoint can't
+    # switch users from there.
+    image: docker.io/projectsend/projectsend:2.9.0@sha256:210d7e6a46f1f06c861f85d98798ee01b8ec29f99953d68f5211df6c6f518d8a
+    env:
+      APP_URL: "{{ .Routes.web.URL }}"
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_TIMEZONE: "{{ .Lab.TimeZone }}"
+      LOG_CHANNEL: stderr          # its log is the container's, on the service page
+      LOG_LEVEL: info
+      DB_CONNECTION: mysql
+      DB_HOST: "{{ .Databases.main.Host }}"
+      DB_PORT: "{{ .Databases.main.Port }}"
+      DB_DATABASE: "{{ .Databases.main.Name }}"
+      DB_USERNAME: "{{ .Databases.main.User }}"
+      REDIS_HOST: "{{ .Databases.cache.Host }}"
+      REDIS_PORT: "{{ .Databases.cache.Port }}"
+      CACHE_STORE: redis
+      SESSION_DRIVER: redis
+      QUEUE_CONNECTION: redis
+      # Only Roostack's proxy reaches the container's port, and it sets
+      # X-Forwarded-For to the visitor's address, so ProjectSend's login
+      # limits and download log see the visitor.
+      TRUSTED_PROXIES: "*"
+      # Nothing is sent until mail is set up on ProjectSend's Settings →
+      # Email page; until then messages go to its log.
+      MAIL_MAILER: log
+      # Staff (who upload and manage clients) set up two-factor at their
+      # first sign-in. Written once, on the first start; an administrator
+      # can change it on ProjectSend's Settings pages afterwards.
+      PROJECTSEND_TWO_FACTOR_ENFORCEMENT: staff
+    secrets:
+      DB_PASSWORD: databases.main.password
+    mounts:
+      - { storage: storage, path: /var/www/html/storage }
+    health:
+      http: { port: 80, path: /up }
+    depends_on: [databases.main, databases.cache]
+    memory: 250 MB               # 200 MB in use, measured 2026-10-31
+
+storage:
+  storage:
+    # Uploaded files, and the generated APP_KEY (storage/.env) that
+    # decrypts the mail and sign-in secrets kept in the database: both
+    # needed to restore.
+    title: Your clients' files and ProjectSend's key
+    class: critical
+    location: media              # the large data disk, if one is configured
+
+databases:
+  main:
+    type: mysql                  # ProjectSend supports MySQL 8, tested on 8.4
+  cache:
+    type: redis                  # sessions, the cache and the job queue
+    backup: false
+
+hooks:
+  # The first administrator, through ProjectSend's own command. Safe to
+  # re-run: --if-none does nothing once a staff account exists. Its first
+  # try can come while the first start is still migrating the database;
+  # Roostack tries again.
+  - on: install
+    container: app
+    env:
+      ADMIN_NAME: "{{ .Settings.admin_name }}"
+      ADMIN_EMAIL: "{{ .Settings.admin_email }}"
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cd /var/www/html
+        exec su-exec www-data php artisan projectsend:admin --if-none --no-interaction \
+          --name="$ADMIN_NAME" --email="$ADMIN_EMAIL" --password="$ADMIN_PASSWORD"
+
+sso:
+  forward_auth:
+    route: web
+    own_sign_in: true
+  note: Clients and anyone you send a link to would need an account on this lab while this is on, so turn it on only if everyone using ProjectSend has one.
+
+routes:
+  web:
+    container: app
+    port: 80
+    subdomain: portal
+    exposure: private
+    max_body_size: 100MB         # ProjectSend's own limit; large files come in 20 MB parts
+    # ProjectSend never shows an uploaded file as a page: only types on its
+    # list of safe ones open in the browser, the rest are downloads, and
+    # HTML and SVG aren't on its list of extensions it accepts.
+    public:
+      private_paths:
+        - path: /setup
+          reason: ProjectSend's setup page, which makes an administrator while there's none. Roostack made yours at install.
+        - path: /mcp
+          reason: Where AI assistants connect to ProjectSend, acting for whoever signs them in. Open it only if you use one from outside home.
+        - path: /oauth/mcp
+          reason: How AI assistants sign in to ProjectSend, which only /mcp needs.
+        - path: /.well-known/oauth-authorization-server
+          reason: How AI assistants find their sign-in, which only /mcp needs.
+        - path: /.well-known/oauth-protected-resource
+          reason: How AI assistants find their sign-in, which only /mcp needs.
+      login_paths:
+        - /login
+        - /two-factor-challenge
+        - /forgot-password
+        - /register
+
+links:
+  - title: Settings
+    description: Mail, sign-ups, branding and sign-in providers (as the administrator)
+    route: web
+    path: /system/settings
+
+# No single sign-on from the lab: ProjectSend takes its sign-in providers
+# (generic OIDC among them) only on its own Settings pages, stored in its
+# database, so Roostack has no way to give it a client and secret.
