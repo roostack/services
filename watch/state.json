@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-13T18:00:17.484576204Z",
+  "last_run": "2026-11-13T23:49:33.856688266Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -703,7 +703,12 @@
     "CVE-2026-126192": "digest",
     "CVE-2026-126193": "digest",
     "CVE-2026-126210": "digest",
+    "CVE-2026-126295": "digest",
+    "CVE-2026-126300": "digest",
+    "CVE-2026-126303": "digest",
+    "CVE-2026-126304": "drafted 2026-0042",
     "CVE-2026-126343": "digest",
+    "CVE-2026-126347": "digest",
     "CVE-2026-126355": "digest",
     "CVE-2026-126356": "digest",
     "CVE-2026-126357": "digest",
@@ -712,6 +717,10 @@
     "CVE-2026-126360": "digest",
     "CVE-2026-128066": "digest",
     "CVE-2026-128067": "drafted 2026-0045",
+    "CVE-2026-128080": "digest",
+    "CVE-2026-128083": "digest",
+    "CVE-2026-128085": "digest",
+    "CVE-2026-128089": "digest",
     "CVE-2026-13149": "digest",
     "CVE-2026-13346": "digest",
     "CVE-2026-13676": "digest",
@@ -1322,6 +1331,7 @@
     "GHSA-3ppc-4f35-3m26": "digest",
     "GHSA-3pph-fpjx-jg34": "digest",
     "GHSA-3pq3-5fj3-cg6v": "digest",
+    "GHSA-3v2p-hm54-8qcq": "digest",
     "GHSA-3v7f-55p6-f55p": "digest",
     "GHSA-3wc5-fcw2-2329": "digest",
     "GHSA-3ww4-gg4f-jr7f": "digest",
@@ -1417,6 +1427,7 @@
     "GHSA-58r4-6rv3-gfh8": "digest",
     "GHSA-5c9x-8gcm-mpgx": "digest",
     "GHSA-5cgq-3rg8-m6cv": "digest",
+    "GHSA-5cjw-f85j-cv6r": "digest",
     "GHSA-5cpq-8wj7-hf2v": "digest",
     "GHSA-5cv4-jp36-h3mw": "digest",
     "GHSA-5cwg-6vw7-rj6p": "drafted 2026-0050",
@@ -1444,6 +1455,7 @@
     "GHSA-5xqc-xp78-3gch": "doesn't affect the registry's versions",
     "GHSA-62hf-57xw-28j9": "digest",
     "GHSA-62p4-gmf7-7g93": "digest",
+    "GHSA-63hm-g96r-2m2q": "digest",
     "GHSA-6457-6jrx-69cr": "digest",
     "GHSA-6475-r3vj-m8vf": "digest",
     "GHSA-64fm-8hw2-v72w": "digest",
@@ -1582,6 +1594,7 @@
     "GHSA-8cf7-32gw-wr33": "digest",
     "GHSA-8cj5-5rvv-wf4v": "digest",
     "GHSA-8cpq-38p9-67gx": "digest",
+    "GHSA-8fx7-8jr8-84rv": "digest",
     "GHSA-8g5g-8vmr-9782": "digest",
     "GHSA-8g74-7x2p-wc6m": "doesn't affect the registry's versions",
     "GHSA-8g99-g36h-5p2w": "digest",
@@ -1750,7 +1763,9 @@
     "GHSA-ffc3-869f-jxw9": "digest",
     "GHSA-ffhc-5mcf-pf4q": "digest",
     "GHSA-ffm3-6h69-69jh": "doesn't affect the registry's versions",
+    "GHSA-ffr9-mgrr-wcvr": "digest",
     "GHSA-ffx9-4vvj-2rrq": "doesn't affect the registry's versions",
+    "GHSA-fg9w-wfp5-j933": "digest",
     "GHSA-fhv5-28vv-h8m8": "digest",
     "GHSA-fj3w-jwp8-x2g3": "digest",
     "GHSA-fj7v-r99m-22gq": "digest",
@@ -1814,6 +1829,7 @@
     "GHSA-gjj9-fvfp-jw63": "digest",
     "GHSA-gm62-xv2j-4w53": "digest",
     "GHSA-gpj5-g38j-94v9": "digest",
+    "GHSA-gpwc-27cw-rh9r": "digest",
     "GHSA-gqgv-6jq5-jjj9": "digest",
     "GHSA-gr94-w7qr-f4j3": "digest",
     "GHSA-grv7-fg5c-xmjg": "digest",
@@ -2037,6 +2053,7 @@
     "GHSA-q675-qj96-32m9": "digest",
     "GHSA-q686-2qmg-hqc7": "digest",
     "GHSA-q6x5-8v7m-xcrf": "digest",
+    "GHSA-q7gw-24fr-5p69": "digest",
     "GHSA-q7pp-wcgr-pffx": "digest",
     "GHSA-q7qp-rjg7-q26m": "digest",
     "GHSA-q83h-524g-xf6h": "digest",
@@ -2055,6 +2072,7 @@
     "GHSA-qf5h-rvv9-mq7h": "digest",
     "GHSA-qffp-2rhf-9h96": "digest",
     "GHSA-qfvm-cv95-jqjf": "digest",
+    "GHSA-qg35-44qx-7vrr": "drafted 2026-0042",
     "GHSA-qg66-h68v-5x2h": "doesn't affect the registry's versions",
     "GHSA-qhr7-859c-m2p7": "digest",
     "GHSA-qm7x-rc44-rrqw": "digest",
@@ -2185,6 +2203,7 @@
     "GHSA-vp96-hxj8-p424": "digest",
     "GHSA-vpq2-c234-7xj6": "digest",
     "GHSA-vqfx-gj96-3w95": "digest",
+    "GHSA-vvf4-9x63-8xvv": "digest",
     "GHSA-vvgj-x9jq-8cj9": "digest",
     "GHSA-vvjj-xcjg-gr5g": "digest",
     "GHSA-vvm8-gf78-28g4": "digest",
@@ -2893,8 +2912,12 @@
     "UBUNTU-CVE-2026-109964": "digest",
     "UBUNTU-CVE-2026-110133": "digest",
     "UBUNTU-CVE-2026-111272": "digest",
+    "UBUNTU-CVE-2026-111760": "digest",
     "UBUNTU-CVE-2026-112922": "digest",
     "UBUNTU-CVE-2026-113408": "digest",
+    "UBUNTU-CVE-2026-114466": "digest",
+    "UBUNTU-CVE-2026-114467": "digest",
+    "UBUNTU-CVE-2026-114469": "digest",
     "UBUNTU-CVE-2026-114583": "digest",
     "UBUNTU-CVE-2026-114690": "digest",
     "UBUNTU-CVE-2026-114691": "digest",
@@ -2956,6 +2979,7 @@
     "UBUNTU-CVE-2026-120246": "digest",
     "UBUNTU-CVE-2026-120247": "digest",
     "UBUNTU-CVE-2026-120749": "digest",
+    "UBUNTU-CVE-2026-121876": "digest",
     "UBUNTU-CVE-2026-123273": "digest",
     "UBUNTU-CVE-2026-12345": "digest",
     "UBUNTU-CVE-2026-124249": "digest",
@@ -3089,6 +3113,7 @@
     "UBUNTU-CVE-2026-15003": "digest",
     "UBUNTU-CVE-2026-15310": "digest",
     "UBUNTU-CVE-2026-15806": "digest",
+    "UBUNTU-CVE-2026-16052": "digest",
     "UBUNTU-CVE-2026-16517": "digest",
     "UBUNTU-CVE-2026-16599": "digest",
     "UBUNTU-CVE-2026-17084": "digest",
@@ -5045,11 +5070,13 @@
     "CVE-2026-111560",
     "CVE-2026-111793",
     "CVE-2026-114625",
+    "CVE-2026-114713",
     "CVE-2026-11645",
     "CVE-2026-116606",
     "CVE-2026-116779",
     "CVE-2026-118527",
     "CVE-2026-119977",
+    "CVE-2026-123039",
     "CVE-2026-123158",
     "CVE-2026-123218",
     "CVE-2026-124194",
@@ -15956,6 +15983,842 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-13T18:01:03.946474145Z"
+    },
+    {
+      "id": "GHSA-ffr9-mgrr-wcvr",
+      "aliases": [
+        "CVE-2026-126300"
+      ],
+      "source": "OSV, for pkg:pypi/nltk@3.10.3 in its image",
+      "title": "Mealie: NLTK: Quadratic CPU exhaustion in TreebankWordTokenizer.span_tokenize via list.pop(0) in quote-restore loop (in nltk 3.10.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-ffr9-mgrr-wcvr",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3",
+        "3.29.0-roostack.4",
+        "3.30.0-roostack.1"
+      ],
+      "fixed_upstream": "nltk 3.10.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00509,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.234647027Z"
+    },
+    {
+      "id": "GHSA-ffr9-mgrr-wcvr",
+      "aliases": [
+        "CVE-2026-126300"
+      ],
+      "source": "OSV, for pkg:pypi/nltk@3.10.3 in its image",
+      "title": "Paperless-ngx: NLTK: Quadratic CPU exhaustion in TreebankWordTokenizer.span_tokenize via list.pop(0) in quote-restore loop (in nltk 3.10.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-ffr9-mgrr-wcvr",
+      "package": "paperless-ngx",
+      "affected": [
+        "3.3.2-roostack.3",
+        "3.3.4-roostack.1",
+        "3.4.2-roostack.1"
+      ],
+      "fixed_upstream": "nltk 3.10.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00509,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.234651083Z"
+    },
+    {
+      "id": "GHSA-8fx7-8jr8-84rv",
+      "aliases": [
+        "CVE-2026-126303"
+      ],
+      "source": "OSV, for pkg:pypi/nltk@3.10.3 in its image",
+      "title": "Mealie: NLTK: Unbounded CPU consumption in SteppingRecursiveDescentParser.parse() with ambiguous or self-embedding grammars (in nltk 3.10.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-8fx7-8jr8-84rv",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3",
+        "3.29.0-roostack.4",
+        "3.30.0-roostack.1"
+      ],
+      "fixed_upstream": "nltk 3.10.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00488,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.15082601Z"
+    },
+    {
+      "id": "GHSA-8fx7-8jr8-84rv",
+      "aliases": [
+        "CVE-2026-126303"
+      ],
+      "source": "OSV, for pkg:pypi/nltk@3.10.3 in its image",
+      "title": "Paperless-ngx: NLTK: Unbounded CPU consumption in SteppingRecursiveDescentParser.parse() with ambiguous or self-embedding grammars (in nltk 3.10.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-8fx7-8jr8-84rv",
+      "package": "paperless-ngx",
+      "affected": [
+        "3.3.2-roostack.3",
+        "3.3.4-roostack.1",
+        "3.4.2-roostack.1"
+      ],
+      "fixed_upstream": "nltk 3.10.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00488,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.150831648Z"
+    },
+    {
+      "id": "GHSA-fg9w-wfp5-j933",
+      "aliases": [
+        "CVE-2026-126295"
+      ],
+      "source": "OSV, for pkg:pypi/nltk@3.10.3 in its image",
+      "title": "Mealie: NLTK: BllipParser passes caller-supplied model paths to the bllipparser C extension with no pathsec check, enabling arbitrary read (in nltk 3.10.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-fg9w-wfp5-j933",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3",
+        "3.29.0-roostack.4",
+        "3.30.0-roostack.1"
+      ],
+      "fixed_upstream": "nltk 3.10.4",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00197,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.324175173Z"
+    },
+    {
+      "id": "GHSA-fg9w-wfp5-j933",
+      "aliases": [
+        "CVE-2026-126295"
+      ],
+      "source": "OSV, for pkg:pypi/nltk@3.10.3 in its image",
+      "title": "Paperless-ngx: NLTK: BllipParser passes caller-supplied model paths to the bllipparser C extension with no pathsec check, enabling arbitrary read (in nltk 3.10.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-fg9w-wfp5-j933",
+      "package": "paperless-ngx",
+      "affected": [
+        "3.3.2-roostack.3",
+        "3.3.4-roostack.1",
+        "3.4.2-roostack.1"
+      ],
+      "fixed_upstream": "nltk 3.10.4",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00197,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.324181472Z"
+    },
+    {
+      "id": "GHSA-5cjw-f85j-cv6r",
+      "aliases": [
+        "CVE-2026-126347"
+      ],
+      "source": "OSV, for pkg:pypi/tornado@6.5.9 in its image",
+      "title": "Paperless-ngx: Tornado: Open redirect via triple-slash redirect paths (in tornado 6.5.9)",
+      "link": "https://osv.dev/vulnerability/GHSA-5cjw-f85j-cv6r",
+      "package": "paperless-ngx",
+      "affected": [
+        "3.3.2-roostack.3",
+        "3.3.4-roostack.1",
+        "3.4.2-roostack.1"
+      ],
+      "fixed_upstream": "tornado 6.6.1",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0.00163,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:15.981263951Z"
+    },
+    {
+      "id": "GHSA-3v2p-hm54-8qcq",
+      "aliases": [
+        "CVE-2026-128080"
+      ],
+      "source": "OSV, for pkg:npm/%40opentelemetry/instrumentation-http@0.221.0 in its image",
+      "title": "AFFiNE: OpenTelemetry JavaScript: Insertion of Sensitive Information into Log File and Exposure of Sensitive Information to an Unauthorized Actor in @opentelemetry/instrumentation-http (in instrumentation-http 0.221.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-3v2p-hm54-8qcq",
+      "package": "affine",
+      "affected": [
+        "0.27.4-roostack.1"
+      ],
+      "fixed_upstream": "instrumentation-http 0.222.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:15.891629746Z"
+    },
+    {
+      "id": "GHSA-63hm-g96r-2m2q",
+      "aliases": [
+        "CVE-2026-128083"
+      ],
+      "source": "OSV, for pkg:composer/laravel/framework@v12.69.3 in its image",
+      "title": "BookStack: Laravel: Task Output Injection - Concurrency Process (in framework v12.69.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-63hm-g96r-2m2q",
+      "package": "bookstack",
+      "affected": [
+        "26.09.2-roostack.1"
+      ],
+      "fixed_upstream": "framework 13.40.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.067459446Z"
+    },
+    {
+      "id": "GHSA-63hm-g96r-2m2q",
+      "aliases": [
+        "CVE-2026-128083"
+      ],
+      "source": "OSV, for pkg:composer/laravel/framework@v12.69.3 in its image",
+      "title": "Lychee: Laravel: Task Output Injection - Concurrency Process (in framework v12.69.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-63hm-g96r-2m2q",
+      "package": "lychee",
+      "affected": [
+        "7.11.1-roostack.2",
+        "7.12.0-roostack.1",
+        "7.12.0-roostack.2",
+        "7.12.2-roostack.1",
+        "7.13.0-roostack.1"
+      ],
+      "fixed_upstream": "framework 13.40.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.067463713Z"
+    },
+    {
+      "id": "GHSA-63hm-g96r-2m2q",
+      "aliases": [
+        "CVE-2026-128083"
+      ],
+      "source": "OSV, for pkg:composer/laravel/framework@v12.69.3 in its image",
+      "title": "ProjectSend: Laravel: Task Output Injection - Concurrency Process (in framework v12.69.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-63hm-g96r-2m2q",
+      "package": "projectsend",
+      "affected": [
+        "2.8.0-roostack.1",
+        "2.8.0-roostack.2",
+        "2.8.1-roostack.1"
+      ],
+      "fixed_upstream": "framework 13.40.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.067467759Z"
+    },
+    {
+      "id": "GHSA-gpwc-27cw-rh9r",
+      "source": "OSV, for pkg:pypi/nltk@3.10.3 in its image",
+      "title": "Mealie: NLTK: Quadratic CPU exhaustion in LegalitySyllableTokenizer.tokenize via unguarded onset reversal loop (in nltk 3.10.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-gpwc-27cw-rh9r",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3",
+        "3.29.0-roostack.4",
+        "3.30.0-roostack.1"
+      ],
+      "fixed_upstream": "nltk 3.10.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.423516625Z"
+    },
+    {
+      "id": "GHSA-gpwc-27cw-rh9r",
+      "source": "OSV, for pkg:pypi/nltk@3.10.3 in its image",
+      "title": "Paperless-ngx: NLTK: Quadratic CPU exhaustion in LegalitySyllableTokenizer.tokenize via unguarded onset reversal loop (in nltk 3.10.3)",
+      "link": "https://osv.dev/vulnerability/GHSA-gpwc-27cw-rh9r",
+      "package": "paperless-ngx",
+      "affected": [
+        "3.3.2-roostack.3",
+        "3.3.4-roostack.1",
+        "3.4.2-roostack.1"
+      ],
+      "fixed_upstream": "nltk 3.10.4",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.423521443Z"
+    },
+    {
+      "id": "GHSA-q7gw-24fr-5p69",
+      "aliases": [
+        "CVE-2026-128085"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/trace@v1.45.0 in its image",
+      "title": "Donetick: opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes (in trace v1.45.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-q7gw-24fr-5p69",
+      "package": "donetick",
+      "affected": [
+        "0.1.86-roostack.1"
+      ],
+      "fixed_upstream": "trace 1.47.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.539797502Z"
+    },
+    {
+      "id": "GHSA-q7gw-24fr-5p69",
+      "aliases": [
+        "CVE-2026-128085"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/trace@v1.45.0 in its image",
+      "title": "Immich: opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes (in trace v1.45.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-q7gw-24fr-5p69",
+      "package": "immich",
+      "affected": [
+        "3.4.1-roostack.1"
+      ],
+      "fixed_upstream": "trace 1.47.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.539801788Z"
+    },
+    {
+      "id": "GHSA-q7gw-24fr-5p69",
+      "aliases": [
+        "CVE-2026-128085"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/trace@v1.45.0 in its image",
+      "title": "Memos: opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes (in trace v1.45.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-q7gw-24fr-5p69",
+      "package": "memos",
+      "affected": [
+        "26.11.0-roostack.1"
+      ],
+      "fixed_upstream": "trace 1.47.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.539803721Z"
+    },
+    {
+      "id": "GHSA-q7gw-24fr-5p69",
+      "aliases": [
+        "CVE-2026-128085"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/trace@v1.45.0 in its image",
+      "title": "PhotoPrism: opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes (in trace v1.45.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-q7gw-24fr-5p69",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "fixed_upstream": "trace 1.47.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.539805073Z"
+    },
+    {
+      "id": "GHSA-q7gw-24fr-5p69",
+      "aliases": [
+        "CVE-2026-128085"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/trace@v1.45.0 in its image",
+      "title": "Plik: opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes (in trace v1.45.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-q7gw-24fr-5p69",
+      "package": "plik",
+      "affected": [
+        "1.4.3-roostack.1",
+        "1.4.3-roostack.2",
+        "1.4.3-roostack.3"
+      ],
+      "fixed_upstream": "trace 1.47.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.539807867Z"
+    },
+    {
+      "id": "GHSA-q7gw-24fr-5p69",
+      "aliases": [
+        "CVE-2026-128085"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/trace@v1.45.0 in its image",
+      "title": "Uptime Kuma: opentelemetry-go: AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes (in trace v1.45.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-q7gw-24fr-5p69",
+      "package": "uptime-kuma",
+      "affected": [
+        "2.5.6-roostack.2",
+        "2.5.8-roostack.1",
+        "2.5.8-roostack.2",
+        "2.5.9-roostack.1",
+        "2.5.10-roostack.1"
+      ],
+      "fixed_upstream": "trace 1.47.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.539810261Z"
+    },
+    {
+      "id": "GHSA-vvf4-9x63-8xvv",
+      "aliases": [
+        "CVE-2026-128089"
+      ],
+      "source": "OSV, for pkg:pypi/dnspython@2.8.0 in its image",
+      "title": "Seafile: dnspython has excessive memory and CPU use (in dnspython 2.8.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-vvf4-9x63-8xvv",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "fixed_upstream": "dnspython 2.9.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T23:50:16.713188547Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-111760",
+      "source": "OSV, for pkg:deb/ubuntu/git@1%3A2.43.0-1ubuntu7.3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-111760 (in git 1%3A2.43.0-1ubuntu7.3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-111760",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T23:50:17.54794805Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-114466",
+      "source": "OSV, for pkg:deb/ubuntu/git@1%3A2.43.0-1ubuntu7.3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-114466 (in git 1%3A2.43.0-1ubuntu7.3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-114466",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T23:50:17.641705428Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-114467",
+      "source": "OSV, for pkg:deb/ubuntu/git@1%3A2.43.0-1ubuntu7.3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-114467 (in git 1%3A2.43.0-1ubuntu7.3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-114467",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T23:50:17.741316217Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-114469",
+      "source": "OSV, for pkg:deb/ubuntu/git@1%3A2.43.0-1ubuntu7.3?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-114469 (in git 1%3A2.43.0-1ubuntu7.3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-114469",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T23:50:17.827588107Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-121876",
+      "source": "OSV, for pkg:deb/ubuntu/systemd@255.4-1ubuntu8.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-121876 (in systemd 255.4-1ubuntu8.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-121876",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T23:50:17.915133655Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-121876",
+      "source": "OSV, for pkg:deb/ubuntu/systemd@255.4-1ubuntu8.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-121876 (in systemd 255.4-1ubuntu8.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-121876",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T23:50:17.915137761Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-121876",
+      "source": "OSV, for pkg:deb/ubuntu/systemd@255.4-1ubuntu8.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-121876 (in systemd 255.4-1ubuntu8.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-121876",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T23:50:17.915140796Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-16052",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-16052 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-16052",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T23:50:18.021629519Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-16052",
+      "source": "OSV, for pkg:deb/ubuntu/python3.12@3.12.3-1ubuntu0.17?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-16052 (in python3.12 3.12.3-1ubuntu0.17)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-16052",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T23:50:18.021634587Z"
     }
   ]
 }
