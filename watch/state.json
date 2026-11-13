@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-13T09:56:02.673203612Z",
+  "last_run": "2026-11-13T18:00:17.484576204Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -699,7 +699,9 @@
     "CVE-2026-12590": "digest",
     "CVE-2026-126066": "digest",
     "CVE-2026-126190": "digest",
+    "CVE-2026-126191": "digest",
     "CVE-2026-126192": "digest",
+    "CVE-2026-126193": "digest",
     "CVE-2026-126210": "digest",
     "CVE-2026-126343": "digest",
     "CVE-2026-126355": "digest",
@@ -707,6 +709,7 @@
     "CVE-2026-126357": "digest",
     "CVE-2026-126358": "digest",
     "CVE-2026-126359": "digest",
+    "CVE-2026-126360": "digest",
     "CVE-2026-128066": "digest",
     "CVE-2026-128067": "drafted 2026-0045",
     "CVE-2026-13149": "digest",
@@ -1248,6 +1251,7 @@
     "GHSA-27vj-qcqg-25rc": "digest",
     "GHSA-2883-xcg3-v3hh": "digest",
     "GHSA-28wg-ghj8-5hjv": "digest",
+    "GHSA-299g-j426-ff48": "digest",
     "GHSA-2c27-4x43-jrm6": "digest",
     "GHSA-2fmv-rv2c-59x7": "digest",
     "GHSA-2g4f-4pwh-qvx6": "digest",
@@ -1399,6 +1403,7 @@
     "GHSA-535w-7cp7-47q4": "digest",
     "GHSA-5375-pq7m-f5r2": "digest",
     "GHSA-537c-gmf6-5ccf": "digest",
+    "GHSA-53rm-773f-4q8c": "digest",
     "GHSA-53vv-xm9f-mm82": "doesn't affect the registry's versions",
     "GHSA-542g-h47m-68v8": "digest",
     "GHSA-54w9-6cc5-9wj9": "doesn't affect the registry's versions",
@@ -1448,6 +1453,7 @@
     "GHSA-65qm-jvmh-6pqg": "digest",
     "GHSA-65r4-943x-97jj": "digest",
     "GHSA-6627-m3xw-93mp": "digest",
+    "GHSA-6655-6qjp-jx7x": "digest",
     "GHSA-6688-9rhm-gjv2": "digest",
     "GHSA-66ff-xgx4-vchm": "digest",
     "GHSA-66m4-5jjr-2rg5": "doesn't affect the registry's versions",
@@ -1479,6 +1485,7 @@
     "GHSA-6j4f-fj2g-mc7p": "digest",
     "GHSA-6jjx-fxr3-8vf2": "digest",
     "GHSA-6m8p-37cv-c4f5": "digest",
+    "GHSA-6pp4-4cxf-xf88": "digest",
     "GHSA-6pq8-jhm2-2vcw": "digest",
     "GHSA-6prh-2h8m-c8cw": "digest",
     "GHSA-6pv5-8rp7-8c75": "doesn't affect the registry's versions",
@@ -1523,6 +1530,7 @@
     "GHSA-7ccc-c43j-4p36": "digest",
     "GHSA-7cq7-4v93-8wjm": "doesn't affect the registry's versions",
     "GHSA-7f33-f4f5-xwgw": "digest",
+    "GHSA-7g44-g9rc-x53w": "digest",
     "GHSA-7gcm-g887-7qv7": "digest",
     "GHSA-7h2j-956f-4vf2": "digest",
     "GHSA-7hhh-6rmp-j9qf": "digest",
@@ -1559,6 +1567,7 @@
     "GHSA-869p-cjfg-cm3x": "digest",
     "GHSA-86ch-2247-gr56": "digest",
     "GHSA-86j7-9j95-vpqj": "digest",
+    "GHSA-86pw-gh6f-cpmg": "digest",
     "GHSA-86qp-5c8j-p5mr": "digest",
     "GHSA-86w9-cpqp-85rv": "digest",
     "GHSA-87m5-mch4-5f2q": "digest",
@@ -1581,6 +1590,7 @@
     "GHSA-8hhh-mqpg-jpxc": "doesn't affect the registry's versions",
     "GHSA-8hrf-8g6f-7xwp": "digest",
     "GHSA-8j56-f865-gqq2": "digest",
+    "GHSA-8jqq-qq46-c657": "digest",
     "GHSA-8m3c-c648-2xjj": "digest",
     "GHSA-8m4g-j4wp-wgcg": "digest",
     "GHSA-8mgp-746c-j5xp": "digest",
@@ -1622,12 +1632,14 @@
     "GHSA-984p-xq9m-4rjw": "digest",
     "GHSA-98hr-q8q8-5j23": "doesn't affect the registry's versions",
     "GHSA-993g-76c3-p5m4": "digest",
+    "GHSA-994c-84qf-j7q9": "digest",
     "GHSA-994j-5c83-r424": "digest",
     "GHSA-9965-vmph-33xx": "digest",
     "GHSA-99f4-grh7-6pcq": "digest",
     "GHSA-99wf-32rc-2767": "doesn't affect the registry's versions",
     "GHSA-9c47-m6qq-7p4h": "digest",
     "GHSA-9c4x-gm8v-wgc4": "digest",
+    "GHSA-9c5c-w94h-xp32": "digest",
     "GHSA-9f6g-j8ch-79g4": "digest",
     "GHSA-9fm3-97px-rjf6": "digest",
     "GHSA-9fr6-4gfg-395g": "digest",
@@ -1657,6 +1669,7 @@
     "GHSA-9v9v-9qvf-h2hj": "digest",
     "GHSA-9vhv-jxww-xfm5": "digest",
     "GHSA-9wg5-mj3p-v49q": "digest",
+    "GHSA-9wp5-gvxp-8wv6": "digest",
     "GHSA-9wv6-86v2-598j": "digest",
     "GHSA-9wx4-h78v-vm56": "digest",
     "GHSA-9xw5-w5jj-pvcg": "digest",
@@ -1761,6 +1774,7 @@
     "GHSA-fxq4-gr55-7x5g": "digest",
     "GHSA-fxqj-rqcc-2cmp": "digest",
     "GHSA-fxw3-8676-67fm": "digest",
+    "GHSA-fxxr-gqx3-p253": "drafted 2026-0041",
     "GHSA-g357-x5c3-c72p": "digest",
     "GHSA-g38m-r43w-p2q7": "digest",
     "GHSA-g3hv-75wg-m249": "digest",
@@ -1923,9 +1937,11 @@
     "GHSA-m8rv-5g2x-5cg5": "digest",
     "GHSA-m943-m63m-w62w": "digest",
     "GHSA-m959-cc7f-wv43": "digest",
+    "GHSA-m978-hrwp-8xg5": "digest",
     "GHSA-m99w-x7hq-7vfj": "digest",
     "GHSA-m9gg-hp2v-232j": "digest",
     "GHSA-mcj8-r9mp-w47p": "digest",
+    "GHSA-mf5v-w3w3-f6cg": "digest",
     "GHSA-mf69-7pqq-86vx": "digest",
     "GHSA-mf6p-vqpw-3r7x": "digest",
     "GHSA-mf9v-mfxr-j63j": "digest",
@@ -1969,6 +1985,7 @@
     "GHSA-p6pp-m3f8-5c89": "digest",
     "GHSA-p6v2-xcpg-h6xw": "digest",
     "GHSA-p6vx-979v-rg4c": "digest",
+    "GHSA-p6x5-mfv9-84qx": "digest",
     "GHSA-p77j-4mvh-x3m3": "digest",
     "GHSA-p7p2-pm6f-rg6x": "digest",
     "GHSA-p88m-4jfj-68fv": "digest",
@@ -2014,6 +2031,7 @@
     "GHSA-q4gf-8mx6-v5v3": "digest",
     "GHSA-q4h4-gmj2-qvw2": "digest",
     "GHSA-q4xh-88c3-wmh7": "digest",
+    "GHSA-q58f-57cg-xfw5": "digest",
     "GHSA-q5x6-grh5-fqgc": "digest",
     "GHSA-q658-hfpg-35qc": "digest",
     "GHSA-q675-qj96-32m9": "digest",
@@ -2154,6 +2172,7 @@
     "GHSA-vfv6-92ff-j949": "digest",
     "GHSA-vghf-hv5q-vc2g": "digest",
     "GHSA-vgwf-h737-ff37": "digest",
+    "GHSA-vh3j-4gg7-7vjw": "digest",
     "GHSA-vh5m-fc9v-m84g": "digest",
     "GHSA-vh66-26gq-q6x8": "digest",
     "GHSA-vj76-c3g6-qr5v": "digest",
@@ -2215,6 +2234,7 @@
     "GHSA-wmrf-hv6w-mr66": "digest",
     "GHSA-wp5v-5wj6-j2fh": "digest",
     "GHSA-wp97-x4hv-qvhp": "digest",
+    "GHSA-wppq-2f6r-wfvm": "digest",
     "GHSA-wq5f-xc86-pv6w": "digest",
     "GHSA-wqgw-9xfh-qf2g": "digest",
     "GHSA-wqp7-x3pw-xc5r": "digest",
@@ -2667,6 +2687,9 @@
     "RUSTSEC-2026-0440": "digest",
     "RUSTSEC-2026-0444": "digest",
     "RUSTSEC-2026-0486": "digest",
+    "RUSTSEC-2026-0523": "digest",
+    "RUSTSEC-2026-0524": "digest",
+    "RUSTSEC-2026-0538": "digest",
     "SNYK-JS-PASSPORT-2840631": "digest",
     "TROVE-2025-013": "digest",
     "UBUNTU-CVE-2013-1438": "digest",
@@ -15385,6 +15408,554 @@
       "why": "the source rates it medium.",
       "weak": "it isn't critical, and nothing says it's being used in attacks",
       "found": "2026-11-13T09:56:13.082479064Z"
+    },
+    {
+      "id": "GHSA-mf5v-w3w3-f6cg",
+      "aliases": [
+        "CVE-2026-126360"
+      ],
+      "source": "OSV, for pkg:pypi/opentelemetry-api@1.45.0 in its image",
+      "title": "Immich: OpenTelemetry Python API: Denial of service through quadratic-time traceparent parsing (in opentelemetry-api 1.45.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-mf5v-w3w3-f6cg",
+      "package": "immich",
+      "affected": [
+        "3.4.1-roostack.1"
+      ],
+      "fixed_upstream": "opentelemetry-api 1.45.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00519,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:01:02.70294942Z"
+    },
+    {
+      "id": "GHSA-mf5v-w3w3-f6cg",
+      "aliases": [
+        "CVE-2026-126360"
+      ],
+      "source": "OSV, for pkg:pypi/opentelemetry-api@1.45.0 in its image",
+      "title": "Mealie: OpenTelemetry Python API: Denial of service through quadratic-time traceparent parsing (in opentelemetry-api 1.45.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-mf5v-w3w3-f6cg",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3",
+        "3.29.0-roostack.4",
+        "3.30.0-roostack.1"
+      ],
+      "fixed_upstream": "opentelemetry-api 1.45.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00519,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:01:02.702953638Z"
+    },
+    {
+      "id": "GHSA-6655-6qjp-jx7x",
+      "aliases": [
+        "CVE-2026-126191"
+      ],
+      "source": "OSV, for pkg:pypi/soupsieve@2.9.2 in its image",
+      "title": "Mealie: Soup Sieve: Exponential ReDoS in selector compilation via \\9-run in CSS_ESCAPES/IDENTIFIER (in soupsieve 2.9.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-6655-6qjp-jx7x",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3",
+        "3.29.0-roostack.4"
+      ],
+      "fixed_upstream": "soupsieve 3.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00434,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:01:02.466356831Z"
+    },
+    {
+      "id": "GHSA-6655-6qjp-jx7x",
+      "aliases": [
+        "CVE-2026-126191"
+      ],
+      "source": "OSV, for pkg:pypi/soupsieve@2.9.2 in its image",
+      "title": "Seafile: Soup Sieve: Exponential ReDoS in selector compilation via \\9-run in CSS_ESCAPES/IDENTIFIER (in soupsieve 2.9.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-6655-6qjp-jx7x",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4"
+      ],
+      "fixed_upstream": "soupsieve 3.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00434,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:01:02.46636113Z"
+    },
+    {
+      "id": "GHSA-7g44-g9rc-x53w",
+      "aliases": [
+        "CVE-2026-126193"
+      ],
+      "source": "OSV, for pkg:pypi/soupsieve@2.9.2 in its image",
+      "title": "Mealie: Soup Sieve: Uncontrolled recursion in CSS parser lets nested pseudo-class selectors exhaust the Python call stack (in soupsieve 2.9.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-7g44-g9rc-x53w",
+      "package": "mealie",
+      "affected": [
+        "3.29.0-roostack.3",
+        "3.29.0-roostack.4"
+      ],
+      "fixed_upstream": "soupsieve 3.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00308,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:01:02.565343448Z"
+    },
+    {
+      "id": "GHSA-7g44-g9rc-x53w",
+      "aliases": [
+        "CVE-2026-126193"
+      ],
+      "source": "OSV, for pkg:pypi/soupsieve@2.9.2 in its image",
+      "title": "Seafile: Soup Sieve: Uncontrolled recursion in CSS parser lets nested pseudo-class selectors exhaust the Python call stack (in soupsieve 2.9.2)",
+      "link": "https://osv.dev/vulnerability/GHSA-7g44-g9rc-x53w",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4"
+      ],
+      "fixed_upstream": "soupsieve 3.0.2",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00308,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:01:02.56535021Z"
+    },
+    {
+      "id": "GHSA-8jqq-qq46-c657",
+      "source": "GitHub's advisories for TryGhost/Ghost",
+      "title": "Ghost: Owner Role Assignment via Content Import",
+      "link": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-8jqq-qq46-c657",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.1",
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed": "6.77.0-roostack.1",
+      "fixed_upstream": "\u003e= 6.76.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 5.5
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.5).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:00:22.506316295Z"
+    },
+    {
+      "id": "GHSA-86pw-gh6f-cpmg",
+      "source": "GitHub's advisories for TryGhost/Ghost",
+      "title": "Ghost: Media Thumbnail Overwrite by Contributors",
+      "link": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-86pw-gh6f-cpmg",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.1",
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed": "6.77.0-roostack.1",
+      "fixed_upstream": "\u003e= 6.76.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 4.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 4.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:00:22.506337454Z"
+    },
+    {
+      "id": "GHSA-m978-hrwp-8xg5",
+      "source": "GitHub's advisories for TryGhost/Ghost",
+      "title": "Ghost: Member Email Enumeration via Stripe Checkout",
+      "link": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-m978-hrwp-8xg5",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.1",
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1",
+        "6.77.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 6.72.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 5.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:00:22.506344297Z"
+    },
+    {
+      "id": "GHSA-p6x5-mfv9-84qx",
+      "source": "GitHub's advisories for TryGhost/Ghost",
+      "title": "Ghost: Imported Media Fetched Over Plaintext HTTP for Protocol-Relative URLs",
+      "link": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-p6x5-mfv9-84qx",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.1",
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed": "6.77.0-roostack.1",
+      "fixed_upstream": "\u003e= 6.76.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 3.1
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low (CVSS 3.1).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:00:22.506349667Z"
+    },
+    {
+      "id": "GHSA-9wp5-gvxp-8wv6",
+      "source": "GitHub's advisories for TryGhost/Ghost",
+      "title": "Ghost: Denial of Service via Crafted Revue Import",
+      "link": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-9wp5-gvxp-8wv6",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.1",
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed": "6.77.0-roostack.1",
+      "fixed_upstream": "\u003e= 6.76.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 6.5
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 6.5).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:00:22.506354726Z"
+    },
+    {
+      "id": "GHSA-9c5c-w94h-xp32",
+      "source": "GitHub's advisories for TryGhost/Ghost",
+      "title": "Ghost: Disclosure of Deleted and Hidden Comment Content via Members Comments API Filters",
+      "link": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-9c5c-w94h-xp32",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.1",
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed": "6.77.0-roostack.1",
+      "fixed_upstream": "\u003e= 6.76.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 5.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:00:22.506360527Z"
+    },
+    {
+      "id": "GHSA-vh3j-4gg7-7vjw",
+      "source": "GitHub's advisories for TryGhost/Ghost",
+      "title": "Ghost: Revenue Data Exposed to Staff Users via Stats Endpoints",
+      "link": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-vh3j-4gg7-7vjw",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.1",
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed": "6.77.0-roostack.1",
+      "fixed_upstream": "\u003e= 6.76.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 4.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 4.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:00:22.506365607Z"
+    },
+    {
+      "id": "GHSA-299g-j426-ff48",
+      "source": "GitHub's advisories for TryGhost/Ghost",
+      "title": "Ghost: Denial of Service via Async Helper ID in Theme Data",
+      "link": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-299g-j426-ff48",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.1",
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed": "6.77.0-roostack.1",
+      "fixed_upstream": "\u003e= 6.77.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 6.5
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 6.5).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:00:22.506370005Z"
+    },
+    {
+      "id": "GHSA-q58f-57cg-xfw5",
+      "source": "GitHub's advisories for TryGhost/Ghost",
+      "title": "Ghost: Private Site Access Code Brute Force via Forged Session Cookies",
+      "link": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-q58f-57cg-xfw5",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.1",
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed": "6.77.0-roostack.1",
+      "fixed_upstream": "\u003e= 6.77.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 5.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:00:22.506374113Z"
+    },
+    {
+      "id": "GHSA-994c-84qf-j7q9",
+      "source": "GitHub's advisories for TryGhost/Ghost",
+      "title": "Ghost: Members-only Content Exposed via Content API Plaintext and Excerpt Fields",
+      "link": "https://github.com/TryGhost/Ghost/security/advisories/GHSA-994c-84qf-j7q9",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.1",
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1"
+      ],
+      "fixed": "6.77.0-roostack.1",
+      "fixed_upstream": "\u003e= 6.77.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 5.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-13T18:00:22.50637808Z"
+    },
+    {
+      "id": "RUSTSEC-2026-0523",
+      "aliases": [
+        "GHSA-53rm-773f-4q8c"
+      ],
+      "source": "OSV, for pkg:cargo/quinn-proto@0.11.18 in its image",
+      "title": "Paperless-ngx: MAX_STREAM_DATA frame can open streams beyond the stream limit (in quinn-proto 0.11.18)",
+      "link": "https://osv.dev/vulnerability/RUSTSEC-2026-0523",
+      "package": "paperless-ngx",
+      "affected": [
+        "3.3.2-roostack.3",
+        "3.3.4-roostack.1",
+        "3.4.2-roostack.1"
+      ],
+      "fixed_upstream": "quinn-proto 0.11.19",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T18:01:03.722643816Z"
+    },
+    {
+      "id": "RUSTSEC-2026-0524",
+      "aliases": [
+        "GHSA-wppq-2f6r-wfvm"
+      ],
+      "source": "OSV, for pkg:cargo/quinn-proto@0.11.18 in its image",
+      "title": "Paperless-ngx: Long Retry token can panic or exhaust memory in a QUIC client (in quinn-proto 0.11.18)",
+      "link": "https://osv.dev/vulnerability/RUSTSEC-2026-0524",
+      "package": "paperless-ngx",
+      "affected": [
+        "3.3.2-roostack.3",
+        "3.3.4-roostack.1",
+        "3.4.2-roostack.1"
+      ],
+      "fixed_upstream": "quinn-proto 0.11.19",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T18:01:03.837826096Z"
+    },
+    {
+      "id": "RUSTSEC-2026-0538",
+      "aliases": [
+        "GHSA-6pp4-4cxf-xf88"
+      ],
+      "source": "OSV, for pkg:cargo/quinn-udp@0.5.15 in its image",
+      "title": "Paperless-ngx: Receive loop can spin after a truncated datagram (in quinn-udp 0.5.15)",
+      "link": "https://osv.dev/vulnerability/RUSTSEC-2026-0538",
+      "package": "paperless-ngx",
+      "affected": [
+        "3.3.2-roostack.3",
+        "3.3.4-roostack.1",
+        "3.4.2-roostack.1"
+      ],
+      "fixed_upstream": "quinn-udp 0.6.3",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-13T18:01:03.946474145Z"
     }
   ]
 }
