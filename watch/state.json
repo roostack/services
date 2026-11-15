@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-14T06:57:38.757649792Z",
+  "last_run": "2026-11-15T11:26:22.743981098Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -410,6 +410,7 @@
     "CVE-2025-69534": "digest",
     "CVE-2025-69725": "digest",
     "CVE-2025-69873": "digest",
+    "CVE-2025-69993": "digest",
     "CVE-2025-71329": "digest",
     "CVE-2025-71330": "digest",
     "CVE-2025-7338": "digest",
@@ -1303,6 +1304,7 @@
     "GHSA-34x7-hfp2-rc4v": "digest",
     "GHSA-3547-9m27-7rxg": "digest",
     "GHSA-354h-gmhv-mr9c": "doesn't affect the registry's versions",
+    "GHSA-35c7-6872-jrh6": "digest",
     "GHSA-35p6-xmwp-9g52": "digest",
     "GHSA-36qx-fr4f-26g5": "digest",
     "GHSA-374f-7chj-9948": "digest",
@@ -1369,6 +1371,7 @@
     "GHSA-46wx-v44x-9hh2": "digest",
     "GHSA-474x-hrwr-fgx4": "digest",
     "GHSA-478x-7v3h-xrc9": "doesn't affect the registry's versions",
+    "GHSA-47c8-3859-4ccf": "digest",
     "GHSA-48c2-rrv3-qjmp": "digest",
     "GHSA-48qf-xh34-q73r": "drafted 2026-0015",
     "GHSA-492v-c6pp-mqqv": "digest",
@@ -1421,6 +1424,7 @@
     "GHSA-542g-h47m-68v8": "digest",
     "GHSA-54w9-6cc5-9wj9": "doesn't affect the registry's versions",
     "GHSA-5528-5vmv-3xc2": "digest",
+    "GHSA-5539-6c4x-464h": "digest",
     "GHSA-55q2-fjhq-7xh7": "digest",
     "GHSA-55wc-3pg8-jfw6": "digest",
     "GHSA-567q-5qvw-pf92": "digest",
@@ -1525,6 +1529,8 @@
     "GHSA-737v-mqg7-c878": "digest",
     "GHSA-73rr-hh4g-fpgx": "digest",
     "GHSA-73wf-gq98-2v4g": "digest",
+    "GHSA-74gh-jx9m-95qj": "digest",
+    "GHSA-74j8-43gw-p2pr": "digest",
     "GHSA-74r2-7ff9-mjj2": "digest",
     "GHSA-752w-5fwx-jx9f": "digest",
     "GHSA-75px-5xx7-5xc7": "digest",
@@ -1574,6 +1580,7 @@
     "GHSA-83rp-q473-j88c": "doesn't affect the registry's versions",
     "GHSA-8436-99hf-9mmv": "digest",
     "GHSA-846f-f764-76mx": "digest",
+    "GHSA-848h-794v-rmq9": "digest",
     "GHSA-856c-92hv-3vxx": "digest",
     "GHSA-8575-cr6v-7jh4": "doesn't affect the registry's versions",
     "GHSA-858h-whjf-mvg5": "drafted 2026-0010",
@@ -1837,6 +1844,7 @@
     "GHSA-gqgv-6jq5-jjj9": "digest",
     "GHSA-gr94-w7qr-f4j3": "digest",
     "GHSA-grv7-fg5c-xmjg": "digest",
+    "GHSA-gv55-77xw-q5v3": "digest",
     "GHSA-gvmj-g25r-r7wr": "digest",
     "GHSA-gvp8-978c-rx2q": "digest",
     "GHSA-gvwx-54wh-qm9j": "digest",
@@ -1924,6 +1932,7 @@
     "GHSA-jp4c-xjxw-mgf9": "digest",
     "GHSA-jp82-f5mq-hwhp": "digest",
     "GHSA-jp82-jpqv-5vv3": "digest",
+    "GHSA-jp85-8jq5-9gv6": "digest",
     "GHSA-jppx-rxg9-jmrx": "digest",
     "GHSA-jpvv-r467-5p4w": "digest",
     "GHSA-jq2g-h4xr-4mcr": "doesn't affect the registry's versions",
@@ -17005,6 +17014,225 @@
       "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
       "weak": "it isn't critical, and nothing says it's being used in attacks",
       "found": "2026-11-14T06:58:14.688004313Z"
+    },
+    {
+      "id": "GHSA-jp85-8jq5-9gv6",
+      "aliases": [
+        "CVE-2025-69993"
+      ],
+      "source": "GitHub's advisories for requarks/wiki",
+      "title": "Wiki.js: Stored XSS in the map block's marker label escalates any account to administrator",
+      "link": "https://github.com/requarks/wiki/security/advisories/GHSA-jp85-8jq5-9gv6",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1",
+        "3.2.0-roostack.1",
+        "3.3.1-roostack.1"
+      ],
+      "fixed_upstream": "\u003e=3.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 9
+      },
+      "Severity": "critical",
+      "Exploited": false,
+      "EPSS": 0.00199,
+      "severity": "high",
+      "why": "the source rates it critical, but nothing says anyone on the internet can use it without signing in (CVSS 9.0).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T11:26:39.899285335Z"
+    },
+    {
+      "id": "GHSA-74gh-jx9m-95qj",
+      "source": "GitHub's advisories for requarks/wiki",
+      "title": "Wiki.js: Missing authorization check allows unauthenticated access to image thumbnails",
+      "link": "https://github.com/requarks/wiki/security/advisories/GHSA-74gh-jx9m-95qj",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1",
+        "3.2.0-roostack.1",
+        "3.3.1-roostack.1"
+      ],
+      "fixed_upstream": "\u003e=3.4.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T11:26:39.899262923Z"
+    },
+    {
+      "id": "GHSA-848h-794v-rmq9",
+      "source": "GitHub's advisories for requarks/wiki",
+      "title": "Wiki.js: Branch-wide page rule bypass by creating a feedback board above protected pages",
+      "link": "https://github.com/requarks/wiki/security/advisories/GHSA-848h-794v-rmq9",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1",
+        "3.2.0-roostack.1",
+        "3.3.1-roostack.1"
+      ],
+      "fixed_upstream": "\u003e=3.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 8.3
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 8.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T11:26:39.899296015Z"
+    },
+    {
+      "id": "GHSA-74j8-43gw-p2pr",
+      "source": "GitHub's advisories for requarks/wiki",
+      "title": "Wiki.js: Edit suggestion review queue discloses page source the reviewer is not allowed to read",
+      "link": "https://github.com/requarks/wiki/security/advisories/GHSA-74j8-43gw-p2pr",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1",
+        "3.2.0-roostack.1",
+        "3.3.1-roostack.1"
+      ],
+      "fixed_upstream": "\u003e=3.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 5.9
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.9).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T11:26:39.899303609Z"
+    },
+    {
+      "id": "GHSA-47c8-3859-4ccf",
+      "source": "GitHub's advisories for requarks/wiki",
+      "title": "Wiki.js: Asset write authorization bypass through a file name that two sanitizer passes do not agree on",
+      "link": "https://github.com/requarks/wiki/security/advisories/GHSA-47c8-3859-4ccf",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1",
+        "3.2.0-roostack.1",
+        "3.3.1-roostack.1"
+      ],
+      "fixed_upstream": "\u003e=3.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 6.5
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 6.5).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T11:26:39.899308448Z"
+    },
+    {
+      "id": "GHSA-gv55-77xw-q5v3",
+      "source": "GitHub's advisories for requarks/wiki",
+      "title": "Wiki.js: An empty locale makes a reference that every locale-scoped group rule ignores",
+      "link": "https://github.com/requarks/wiki/security/advisories/GHSA-gv55-77xw-q5v3",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1",
+        "3.2.0-roostack.1",
+        "3.3.1-roostack.1"
+      ],
+      "fixed_upstream": "\u003e=3.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 6.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 6.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T11:26:39.899314329Z"
+    },
+    {
+      "id": "GHSA-35c7-6872-jrh6",
+      "source": "GitHub's advisories for requarks/wiki",
+      "title": "Wiki.js: Three page-resolution routes answer about pages that are not live",
+      "link": "https://github.com/requarks/wiki/security/advisories/GHSA-35c7-6872-jrh6",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1",
+        "3.2.0-roostack.1",
+        "3.3.1-roostack.1"
+      ],
+      "fixed_upstream": "\u003e=3.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 5.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T11:26:39.899322354Z"
+    },
+    {
+      "id": "GHSA-5539-6c4x-464h",
+      "source": "GitHub's advisories for requarks/wiki",
+      "title": "Wiki.js: A glossary term's documentation path reports the title and existence of any page",
+      "link": "https://github.com/requarks/wiki/security/advisories/GHSA-5539-6c4x-464h",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1",
+        "3.2.0-roostack.1",
+        "3.3.1-roostack.1"
+      ],
+      "fixed_upstream": "\u003e=3.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 4.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 4.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T11:26:39.899327003Z"
     }
   ]
 }
