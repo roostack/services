@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-15T11:26:22.743981098Z",
+  "last_run": "2026-11-15T23:07:10.335382566Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -656,9 +656,11 @@
     "CVE-2026-117685": "digest",
     "CVE-2026-118258": "digest",
     "CVE-2026-118386": "digest",
+    "CVE-2026-118389": "digest",
     "CVE-2026-118394": "digest",
     "CVE-2026-118395": "digest",
     "CVE-2026-118504": "digest",
+    "CVE-2026-118535": "digest",
     "CVE-2026-118663": "digest",
     "CVE-2026-118664": "digest",
     "CVE-2026-118669": "digest",
@@ -690,13 +692,24 @@
     "CVE-2026-119625": "digest",
     "CVE-2026-119627": "digest",
     "CVE-2026-120263": "digest",
+    "CVE-2026-120725": "digest",
+    "CVE-2026-120729": "digest",
+    "CVE-2026-120991": "digest",
     "CVE-2026-12143": "digest",
     "CVE-2026-12151": "digest",
+    "CVE-2026-123002": "drafted 2026-0041",
+    "CVE-2026-123006": "digest",
+    "CVE-2026-123009": "digest",
+    "CVE-2026-123065": "digest",
+    "CVE-2026-123638": "digest",
+    "CVE-2026-123642": "digest",
     "CVE-2026-125332": "digest",
     "CVE-2026-125333": "digest",
     "CVE-2026-125334": "digest",
     "CVE-2026-125335": "digest",
     "CVE-2026-125350": "digest",
+    "CVE-2026-125423": "digest",
+    "CVE-2026-125617": "digest",
     "CVE-2026-12590": "digest",
     "CVE-2026-126066": "digest",
     "CVE-2026-126190": "digest",
@@ -711,6 +724,7 @@
     "CVE-2026-126300": "digest",
     "CVE-2026-126303": "digest",
     "CVE-2026-126304": "drafted 2026-0042",
+    "CVE-2026-126338": "digest",
     "CVE-2026-126343": "digest",
     "CVE-2026-126347": "digest",
     "CVE-2026-126355": "digest",
@@ -719,12 +733,18 @@
     "CVE-2026-126358": "digest",
     "CVE-2026-126359": "digest",
     "CVE-2026-126360": "digest",
+    "CVE-2026-127958": "digest",
     "CVE-2026-128066": "digest",
     "CVE-2026-128067": "drafted 2026-0045",
     "CVE-2026-128080": "digest",
     "CVE-2026-128083": "digest",
     "CVE-2026-128085": "digest",
     "CVE-2026-128089": "digest",
+    "CVE-2026-128359": "digest",
+    "CVE-2026-128365": "digest",
+    "CVE-2026-129337": "digest",
+    "CVE-2026-129341": "digest",
+    "CVE-2026-129525": "digest",
     "CVE-2026-13149": "digest",
     "CVE-2026-13346": "digest",
     "CVE-2026-13676": "digest",
@@ -782,6 +802,7 @@
     "CVE-2026-27459": "digest",
     "CVE-2026-27601": "digest",
     "CVE-2026-27761": "digest",
+    "CVE-2026-27783": "digest",
     "CVE-2026-27837": "digest",
     "CVE-2026-27903": "digest",
     "CVE-2026-27904": "digest",
@@ -1214,6 +1235,7 @@
     "CVE-2026-94484": "digest",
     "CVE-2026-94543": "digest",
     "CVE-2026-9496": "digest",
+    "CVE-2026-95106": "digest",
     "CVE-2026-96636": "digest",
     "CVE-2026-96637": "digest",
     "CVE-2026-96638": "digest",
@@ -1376,6 +1398,7 @@
     "GHSA-48qf-xh34-q73r": "drafted 2026-0015",
     "GHSA-492v-c6pp-mqqv": "digest",
     "GHSA-494j-54xm-rwp3": "digest",
+    "GHSA-49c9-hm8q-6rvq": "digest",
     "GHSA-4c39-4ccg-62r3": "digest",
     "GHSA-4c8g-83qw-93j6": "digest",
     "GHSA-4cwx-7wf7-3272": "digest",
@@ -1394,6 +1417,7 @@
     "GHSA-4mjr-xmp4-gh2g": "digest",
     "GHSA-4mxg-3p6v-xgq3": "digest",
     "GHSA-4p3w-j4w9-5jqw": "drafted 2026-0013",
+    "GHSA-4p89-xcq8-xfhm": "digest",
     "GHSA-4pg4-qvpc-4q3h": "digest",
     "GHSA-4pvx-fwjj-8gpc": "doesn't affect the registry's versions",
     "GHSA-4qv8-2p9j-2685": "digest",
@@ -1443,6 +1467,7 @@
     "GHSA-5j4v-rwqr-vpq7": "digest",
     "GHSA-5j98-mcp5-4vw2": "digest",
     "GHSA-5jgf-p345-68v8": "digest",
+    "GHSA-5mx6-8rwm-52wf": "drafted 2026-0041",
     "GHSA-5p2g-fcmc-qvqq": "digest",
     "GHSA-5p39-cfhj-2xmp": "digest",
     "GHSA-5p4m-2wfm-xmqj": "digest",
@@ -1503,6 +1528,7 @@
     "GHSA-6h8r-xr42-gp59": "digest",
     "GHSA-6j4f-fj2g-mc7p": "digest",
     "GHSA-6jjx-fxr3-8vf2": "digest",
+    "GHSA-6m4f-m9vc-7946": "digest",
     "GHSA-6m8p-37cv-c4f5": "digest",
     "GHSA-6pp4-4cxf-xf88": "digest",
     "GHSA-6pq8-jhm2-2vcw": "digest",
@@ -1531,6 +1557,7 @@
     "GHSA-73wf-gq98-2v4g": "digest",
     "GHSA-74gh-jx9m-95qj": "digest",
     "GHSA-74j8-43gw-p2pr": "digest",
+    "GHSA-74jf-6hjp-549c": "digest",
     "GHSA-74r2-7ff9-mjj2": "digest",
     "GHSA-752w-5fwx-jx9f": "digest",
     "GHSA-75px-5xx7-5xc7": "digest",
@@ -1558,6 +1585,7 @@
     "GHSA-7hqp-7c5m-4vq6": "digest",
     "GHSA-7j23-rprg-3g5q": "digest",
     "GHSA-7jg8-8m5x-6j9r": "digest",
+    "GHSA-7mr2-v9gc-4467": "digest",
     "GHSA-7mwm-ghpf-9vrm": "digest",
     "GHSA-7mx3-vvmw-hjmv": "digest",
     "GHSA-7p6g-mhrh-286p": "digest",
@@ -1584,6 +1612,7 @@
     "GHSA-856c-92hv-3vxx": "digest",
     "GHSA-8575-cr6v-7jh4": "doesn't affect the registry's versions",
     "GHSA-858h-whjf-mvg5": "drafted 2026-0010",
+    "GHSA-859w-9wv7-c5x9": "digest",
     "GHSA-85x2-q946-cp5h": "digest",
     "GHSA-866g-f22w-33x8": "digest",
     "GHSA-869p-cjfg-cm3x": "digest",
@@ -1604,6 +1633,7 @@
     "GHSA-8c8m-p3m8-cjg8": "digest",
     "GHSA-8cf7-32gw-wr33": "digest",
     "GHSA-8cj5-5rvv-wf4v": "digest",
+    "GHSA-8cjj-9p56-j54f": "digest",
     "GHSA-8cpq-38p9-67gx": "digest",
     "GHSA-8fx7-8jr8-84rv": "digest",
     "GHSA-8g5g-8vmr-9782": "digest",
@@ -1620,6 +1650,7 @@
     "GHSA-8mgp-746c-j5xp": "digest",
     "GHSA-8mx5-7m5m-r77g": "digest",
     "GHSA-8p3x-w464-4g6v": "digest",
+    "GHSA-8pmc-9g44-v9gw": "digest",
     "GHSA-8ppf-4f7h-5ppj": "digest",
     "GHSA-8pwg-hcgm-54cp": "doesn't affect the registry's versions",
     "GHSA-8qq5-rm4j-mr97": "digest",
@@ -1653,6 +1684,7 @@
     "GHSA-96hv-2xvq-fx4p": "digest",
     "GHSA-96qg-qxxj-r8xq": "doesn't affect the registry's versions",
     "GHSA-97r2-qh9m-474h": "digest",
+    "GHSA-9827-6wh6-634q": "digest",
     "GHSA-984p-xq9m-4rjw": "digest",
     "GHSA-98hr-q8q8-5j23": "doesn't affect the registry's versions",
     "GHSA-993g-76c3-p5m4": "digest",
@@ -1691,6 +1723,7 @@
     "GHSA-9v8h-qqgm-4m35": "digest",
     "GHSA-9v9h-cgj8-h64p": "digest",
     "GHSA-9v9v-9qvf-h2hj": "digest",
+    "GHSA-9vh6-6hgj-j5m5": "digest",
     "GHSA-9vhv-jxww-xfm5": "digest",
     "GHSA-9wg5-mj3p-v49q": "digest",
     "GHSA-9wp5-gvxp-8wv6": "digest",
@@ -1789,6 +1822,7 @@
     "GHSA-fpmh-frq8-7rj8": "digest",
     "GHSA-fq56-3cx3-fjxp": "digest",
     "GHSA-fqjr-23c8-gg9m": "doesn't affect the registry's versions",
+    "GHSA-frjx-8pcw-8c9q": "digest",
     "GHSA-frvp-7c67-39w9": "digest",
     "GHSA-fvcv-3m26-pcqx": "digest",
     "GHSA-fwh9-qg68-vxp4": "doesn't affect the registry's versions",
@@ -1940,10 +1974,12 @@
     "GHSA-jqcg-44mw-7w3h": "digest",
     "GHSA-jqff-g426-hqxp": "digest",
     "GHSA-jr27-m4p2-rc6r": "digest",
+    "GHSA-jr33-w6w7-86vj": "digest",
     "GHSA-jr45-8vmc-qm54": "digest",
     "GHSA-jr5f-v2jv-69x6": "digest",
     "GHSA-jr76-w9m3-3p68": "digest",
     "GHSA-jrj8-j4f9-9v85": "digest",
+    "GHSA-jrjr-q3rq-f899": "digest",
     "GHSA-jrr6-jr45-3x76": "digest",
     "GHSA-jvwf-75h9-cwgg": "digest",
     "GHSA-jwrc-g2q2-pq5p": "digest",
@@ -2056,6 +2092,7 @@
     "GHSA-q2hr-2g5m-vwhr": "digest",
     "GHSA-q3j6-qgpj-74h6": "digest",
     "GHSA-q3jh-wrc6-jgq8": "digest",
+    "GHSA-q3q9-39vr-q35j": "digest",
     "GHSA-q45j-58j2-45rg": "digest",
     "GHSA-q4gf-8mx6-v5v3": "digest",
     "GHSA-q4h4-gmj2-qvw2": "digest",
@@ -2073,6 +2110,7 @@
     "GHSA-q84f-53jg-9ppm": "digest",
     "GHSA-q89f-h332-8q2h": "doesn't affect the registry's versions",
     "GHSA-q8mj-m7cp-5q26": "digest",
+    "GHSA-q8pg-ggp9-rm9m": "digest",
     "GHSA-q8pj-2vqx-8ggc": "digest",
     "GHSA-q8vh-w9gq-3v96": "digest",
     "GHSA-q8wf-6r8g-63ch": "digest",
@@ -2096,6 +2134,7 @@
     "GHSA-qq9h-g4jm-xgf3": "digest",
     "GHSA-qr28-fpjm-wq7f": "digest",
     "GHSA-qrmc-fj45-qfc2": "digest",
+    "GHSA-qrrc-h266-v49p": "digest",
     "GHSA-qrxm-fqhp-jwvm": "digest",
     "GHSA-qv5m-9pm6-hqp3": "digest",
     "GHSA-qvfw-j98x-7q72": "digest",
@@ -2245,6 +2284,7 @@
     "GHSA-w7pp-m8wf-vj6r": "digest",
     "GHSA-w7vc-732c-9m39": "digest",
     "GHSA-w879-237q-wc7r": "digest",
+    "GHSA-w87g-xmrp-86v2": "digest",
     "GHSA-w889-685w-c8fh": "digest",
     "GHSA-w8wr-v893-vjvp": "digest",
     "GHSA-w9j2-pvgh-6h63": "digest",
@@ -2257,6 +2297,7 @@
     "GHSA-wf6x-7x77-mvgw": "digest",
     "GHSA-wf93-45jw-7689": "digest",
     "GHSA-wfc6-r584-vfw7": "digest",
+    "GHSA-wgx7-537g-xfrg": "digest",
     "GHSA-wh4c-j3r5-mjhp": "digest",
     "GHSA-whj4-6x5x-4v2j": "digest",
     "GHSA-wjgm-6hv5-3cvf": "digest",
@@ -2265,6 +2306,7 @@
     "GHSA-wjx4-4jcj-g98j": "digest",
     "GHSA-wm7h-9275-46v2": "digest",
     "GHSA-wmmp-3585-3rmp": "digest",
+    "GHSA-wmr3-xg9x-vc55": "digest",
     "GHSA-wmrf-hv6w-mr66": "digest",
     "GHSA-wp5v-5wj6-j2fh": "digest",
     "GHSA-wp97-x4hv-qvhp": "digest",
@@ -17233,6 +17275,616 @@
       "why": "the source rates it medium (CVSS 4.3).",
       "weak": "it isn't critical, and nothing says it's being used in attacks",
       "found": "2026-11-15T11:26:39.899327003Z"
+    },
+    {
+      "id": "GHSA-qrrc-h266-v49p",
+      "aliases": [
+        "CVE-2026-129525",
+        "CVE-2026-27783"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Issues-only members can read pull request data through /issues/{index}",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-qrrc-h266-v49p",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 4.3
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0.00351,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 4.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485066275Z"
+    },
+    {
+      "id": "GHSA-w87g-xmrp-86v2",
+      "aliases": [
+        "CVE-2026-123638",
+        "CVE-2026-95106"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Branch protection \"Protected file patterns\" bypass via git C-quoted file names — push and merge gates both fail open; leads to untrusted Actions workflow execution on self-hosted runners when .gitea/** is protected",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-w87g-xmrp-86v2",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 8.5
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00332,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 8.5).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485149281Z"
+    },
+    {
+      "id": "GHSA-859w-9wv7-c5x9",
+      "aliases": [
+        "CVE-2026-127958"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Pending reviews created via the API leak into the PR timeline and feeds",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-859w-9wv7-c5x9",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.484950016Z"
+    },
+    {
+      "id": "GHSA-8pmc-9g44-v9gw",
+      "aliases": [
+        "CVE-2026-120725"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Anonymous Git LFS downloads bypass REQUIRE_SIGNIN_VIEW",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-8pmc-9g44-v9gw",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "low",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it low.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.484976416Z"
+    },
+    {
+      "id": "GHSA-jrjr-q3rq-f899",
+      "aliases": [
+        "CVE-2026-128359"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: OAuth2 provider keeps issuing tokens to disabled users",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-jrjr-q3rq-f899",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 5.4
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 5.4).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.484989911Z"
+    },
+    {
+      "id": "GHSA-7mr2-v9gc-4467",
+      "aliases": [
+        "CVE-2026-125617"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: User org permissions API leaks hidden org membership and role",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-7mr2-v9gc-4467",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.484995512Z"
+    },
+    {
+      "id": "GHSA-9827-6wh6-634q",
+      "aliases": [
+        "CVE-2026-123642"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: AGit proc-receive lets users without PR access create pull requests",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-9827-6wh6-634q",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485002264Z"
+    },
+    {
+      "id": "GHSA-q8pg-ggp9-rm9m",
+      "aliases": [
+        "CVE-2026-120991"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Over-quota container blob upload deletes other owners' package blobs",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-q8pg-ggp9-rm9m",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485011442Z"
+    },
+    {
+      "id": "GHSA-jr33-w6w7-86vj",
+      "aliases": [
+        "CVE-2026-129341"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: DeleteAttachment lets former writers delete release assets they uploaded",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-jr33-w6w7-86vj",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485019216Z"
+    },
+    {
+      "id": "GHSA-8cjj-9p56-j54f",
+      "aliases": [
+        "CVE-2026-129337"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Read-only users can push over HTTP to repositories being migrated",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-8cjj-9p56-j54f",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485051958Z"
+    },
+    {
+      "id": "GHSA-74jf-6hjp-549c",
+      "aliases": [
+        "CVE-2026-128365"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: RemoveTeamReviewRequest treats team id 2 as Actions user, bypassing approvals",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-74jf-6hjp-549c",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.48505857Z"
+    },
+    {
+      "id": "GHSA-49c9-hm8q-6rvq",
+      "aliases": [
+        "CVE-2026-118389"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: RubyGems Compact Index Injection via Newline in Package Metadata — Supply Chain Poisoning",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-49c9-hm8q-6rvq",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4"
+      ],
+      "fixed": "28.3.0-roostack.1",
+      "fixed_upstream": "\u003e= 28.3.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 8.1
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 8.1).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485075091Z"
+    },
+    {
+      "id": "GHSA-9vh6-6hgj-j5m5",
+      "aliases": [
+        "CVE-2026-123009"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Privilege bypass in repo file-editor allows reading private base-repo branches",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-9vh6-6hgj-j5m5",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 7.7
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 7.7).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485087014Z"
+    },
+    {
+      "id": "GHSA-q3q9-39vr-q35j",
+      "aliases": [
+        "CVE-2026-118535"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Repository transfer preserves owner-scoped workflow trust, allowing the new owner to access unrelated repositories' secrets and write token",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-q3q9-39vr-q35j",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 7.3
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 7.3).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485100549Z"
+    },
+    {
+      "id": "GHSA-wmr3-xg9x-vc55",
+      "aliases": [
+        "CVE-2026-120729"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Stored XSS: issue context popup loads a linked raw file as issue info",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-wmr3-xg9x-vc55",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485108354Z"
+    },
+    {
+      "id": "GHSA-wgx7-537g-xfrg",
+      "aliases": [
+        "CVE-2026-126338"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Code comment reply accepts foreign review ID, leaks private diff hunks",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-wgx7-537g-xfrg",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.48512768Z"
+    },
+    {
+      "id": "GHSA-4p89-xcq8-xfhm",
+      "aliases": [
+        "CVE-2026-123065"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Cross-repository attachment file deletion and denial of service via release edit traversal",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-4p89-xcq8-xfhm",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 8.5
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 8.5).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485157326Z"
+    },
+    {
+      "id": "GHSA-frjx-8pcw-8c9q",
+      "aliases": [
+        "CVE-2026-123006"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Password hash material of repository owners exposed to any signed-in user via /repo/search",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-frjx-8pcw-8c9q",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 8.8
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 8.8).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485162766Z"
+    },
+    {
+      "id": "GHSA-6m4f-m9vc-7946",
+      "aliases": [
+        "CVE-2026-125423"
+      ],
+      "source": "GitHub's advisories for go-gitea/gitea",
+      "title": "Gitea: Authenticated RCE during repository auto-initialization via a push race and README.md symlink",
+      "link": "https://github.com/go-gitea/gitea/security/advisories/GHSA-6m4f-m9vc-7946",
+      "package": "gitea",
+      "affected": [
+        "28.1.0-roostack.1",
+        "28.1.0-roostack.2",
+        "28.1.0-roostack.3",
+        "28.1.0-roostack.4",
+        "28.3.0-roostack.1"
+      ],
+      "fixed_upstream": "\u003e= 28.4.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 8.5
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 8.5).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-15T23:07:15.485177284Z"
     }
   ]
 }
