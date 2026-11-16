@@ -43,8 +43,9 @@ containers:
     env:
       TZ: "{{ .Lab.TimeZone }}"
       # Answers queries from anywhere it's reached: they come through the
-      # server's firewall, which lets only the home network in, and arrive
-      # from Podman's network, not the device's own.
+      # server's firewall, which lets in only the home network and the
+      # lab's VPN devices, and a VPN device's address isn't on a network
+      # Pi-hole would call local.
       FTLCONF_dns_listeningMode: all
     secrets:
       FTLCONF_webserver_api_password: admin_password
@@ -53,6 +54,9 @@ containers:
     health:
       http: { port: 80, path: /admin/login }
     memory: 150 MB
+    # Each device's own address, for Pi-hole's per-device limits, groups,
+    # and query log; otherwise every query would come from Podman's.
+    client_addresses: true
 
 storage:
   config:
