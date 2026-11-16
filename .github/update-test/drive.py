@@ -114,17 +114,23 @@ def sign_in(b):
     f.update(username="tester", password=temp)
     where, page, _ = b.go(action or "/login", f)
     password = "Update-test-" + secrets.token_hex(12)
+    # The account's steps are found by their forms' fields, not by their
+    # pages' addresses, which Roostack has moved (the password from
+    # /account to /account/security, the email address from
+    # /account/notifications to /account, in 0.1.6).
+    def form_with(*names):
+        return next((x for x in forms(page) if all(n in x[1] for n in names)), None)
     for _ in range(12):
-        if where in ("/account/2fa", "/2fa") or "name=\"secret\"" in page:
-            action, f = next(x for x in forms(page) if "secret" in x[1])
-            f["code"] = totp(f["secret"])
-            where, page, _ = b.go(action or where, f)
-        elif where == "/account" and "name=\"current\"" in page:
-            action, f = next(x for x in forms(page) if "current" in x[1])
+        if form_with("current", "password", "confirm"):
+            action, f = form_with("current", "password", "confirm")
             f.update(current=temp, password=password, confirm=password)
             where, page, _ = b.go(action or where, f)
-        elif where == "/account/notifications":
-            action, f = next(x for x in forms(page) if "email" in x[1])
+        elif form_with("secret", "code"):
+            action, f = form_with("secret", "code")
+            f["code"] = totp(f["secret"])
+            where, page, _ = b.go(action or where, f)
+        elif where.startswith("/account") and form_with("email"):
+            action, f = form_with("email")
             f["email"] = "tester@example.com"
             where, page, _ = b.go(action or where, f)
         elif where == "/setup/timezone":
