@@ -1,8 +1,9 @@
 # Frigate: a recorder for IP cameras that spots people, cars and animals,
 # one container. Its recordings are large, so they live on the media disk
 # and aren't backed up; its settings and database are. Its web UI is the
-# one without a login of its own (port 5000), so single sign-on is
-# required: only the lab's people chosen for it get through. Intel
+# one with its own login (port 8971, HTTPS with a certificate Frigate
+# makes); port 5000, with no login, stays inside the container, where
+# the install hook gives Frigate's admin the password Roostack made. Intel
 # graphics decode video and run detection (OpenVINO) where there are
 # some; a Coral comes later. Frigate makes its own config file at its
 # first start, and its own editor changes it.
@@ -24,9 +25,15 @@ about:
   keywords: [cameras, cctv, nvr, security cameras, object detection]
 built_with: [python, ffmpeg]
 requires:
-  roostack: "0.1"
+  roostack: "0.1.8"
 
 settings:
+  - key: admin_password
+    title: Admin password
+    description: For Frigate's admin account, which can add cameras and people.
+    type: secret
+    generate: true               # Roostack creates it; stored as a Podman secret
+    reveal: true                 # shown on Frigate's page, to sign in
   - key: hardware_acceleration
     title: Use the GPU for video and detection
     description: Intel graphics, where the server has them. Choose them in Frigate's settings too (ffmpeg's hwaccel_args, and the OpenVINO detector).
@@ -64,22 +71,45 @@ storage:
     class: replaceable           # too large to back up
     location: media
 
+hooks:
+  # The admin account Frigate makes at its first start has a password
+  # only its log shows: this gives it the one Roostack made, through the
+  # API on port 5000, which only the container itself can reach. Safe to
+  # re-run: it sets the same password again.
+  - on: install
+    container: app
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - python3
+      - -c
+      - |
+        import json, os, sys, urllib.request
+        req = urllib.request.Request("http://127.0.0.1:5000/api/users/admin/password",
+                                     json.dumps({"password": os.environ["ADMIN_PASSWORD"]}).encode(),
+                                     {"Content-Type": "application/json"}, method="PUT")
+        try:
+            urllib.request.urlopen(req, timeout=10)
+        except OSError as e:
+            sys.exit("Frigate is still starting (%s)." % e)
+        print("Frigate's admin account has the password Roostack made.")
+
 routes:
   web:
     container: app
-    port: 5000
+    port: 8971
+    self_signed: true            # Frigate's own certificate, on its port with a login
     subdomain: frigate
     exposure: private
     public:
       unsafe: Frigate shows your cameras and their recordings; keep it at home, and reach it from away through the lab's VPN.
 
-# Port 5000 has no login of its own: Roostack's sign-in page is in front
-# of it, so single sign-on can't be turned off.
+# Roostack's sign-in page in front of Frigate's own login, for those who
+# want only the lab's people to reach it at all.
 sso:
-  required: true
   forward_auth:
     route: web
-  note: Everyone signed in through the sign-in page is Frigate's administrator; choose who may use it.
+  note: Frigate will still ask for its own login after the sign-in page, since it keeps its own accounts.
 
 ports:
   rtsp:
