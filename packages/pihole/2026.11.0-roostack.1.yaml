@@ -1,0 +1,94 @@
+# Pi-hole: DNS for the home network that leaves out ads and trackers, one
+# container. Devices ask on port 53, which the server's firewall sends to
+# its port here (a container can't listen below 1024: SPEC.md §8.1,
+# "Well-known ports"); its admin pages go through Caddy. No DHCP: that
+# would need the host's network, which packages don't get.
+# Image digest looked up 2026-11-17.
+schema: roostack/v1alpha1
+name: pihole
+title: Pi-hole
+description: Leaves ads and trackers out for every device on your home network
+version: 2026.11.0-roostack.1
+
+about:
+  maker: the Pi-hole team, volunteers
+  website: https://pi-hole.net
+  source: https://github.com/pi-hole/pi-hole
+  licence: EUPL-1.2
+  support: https://pi-hole.net/donate/
+  releases: https://github.com/pi-hole/docker-pi-hole/releases/tag/{version}
+  env_docs: https://docs.pi-hole.net/docker/configuration/
+  icon: icon.png
+  categories: [network]
+  keywords: [dns, ad blocker, adblock, tracking, privacy]
+  notice: >-
+    Devices will use Pi-hole once your router gives out this server's address as their DNS server. If Pi-hole stops or the
+    server is off, they'll have no DNS until it's back, so keep a second DNS server in the router only if you accept that
+    it lets ads through.
+built_with: [c, php]
+requires:
+  roostack: "0.1.8"
+
+settings:
+  - key: admin_password
+    title: Admin password
+    description: Pi-hole asks for it on its admin pages.
+    type: secret
+    generate: true               # Roostack creates it; stored as a Podman secret
+    reveal: true                 # shown on Pi-hole's page, to sign in
+
+containers:
+  app:
+    image: docker.io/pihole/pihole:2026.11.0@sha256:66c798d79a95c2691f280329c3611dba1746117c61c9f331907ca35a06a52778
+    env:
+      TZ: "{{ .Lab.TimeZone }}"
+      # Answers queries from anywhere it's reached: they come through the
+      # server's firewall, which lets only the home network in, and arrive
+      # from Podman's network, not the device's own.
+      FTLCONF_dns_listeningMode: all
+    secrets:
+      FTLCONF_webserver_api_password: admin_password
+    mounts:
+      - { storage: config, path: /etc/pihole }
+    health:
+      http: { port: 80, path: /admin/login }
+    memory: 150 MB
+
+storage:
+  config:
+    title: Settings, block lists and query history
+    class: critical
+
+routes:
+  web:
+    container: app
+    port: 80
+    subdomain: pihole
+    exposure: private
+    public:
+      unsafe: Pi-hole's admin pages control the home network's DNS and show every device's queries, so they stay at home.
+
+links:
+  - title: Admin pages
+    description: Block lists, groups, and what each device has asked for
+    route: web
+    path: /admin/
+
+ports:
+  dns:
+    title: DNS
+    description: The home network's devices ask Pi-hole for names here.
+    container: app
+    port: 53
+    protocol: udp
+    host_port: 5053
+    outside_port: 53
+    enabled: true
+  dns-tcp:
+    title: DNS over TCP
+    description: For the few answers too long for UDP.
+    container: app
+    port: 53
+    host_port: 5053
+    outside_port: 53
+    enabled: true

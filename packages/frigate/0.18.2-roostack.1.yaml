@@ -1,0 +1,102 @@
+# Frigate: a recorder for IP cameras that spots people, cars and animals,
+# one container. Its recordings are large, so they live on the media disk
+# and aren't backed up; its settings and database are. Its web UI is the
+# one without a login of its own (port 5000), so single sign-on is
+# required: only the lab's people chosen for it get through. Intel
+# graphics decode video and run detection (OpenVINO) where there are
+# some; a Coral comes later. Frigate makes its own config file at its
+# first start, and its own editor changes it.
+# Image digest looked up 2026-11-17.
+schema: roostack/v1alpha1
+name: frigate
+title: Frigate
+description: Records your cameras, and tells you when it sees a person, a car or an animal
+version: 0.18.2-roostack.1
+
+about:
+  maker: Blake Blackshear and contributors
+  website: https://frigate.video
+  source: https://github.com/blakeblackshear/frigate
+  licence: MIT
+  releases: https://github.com/blakeblackshear/frigate/releases/tag/v{version}
+  icon: icon.png
+  categories: [home]
+  keywords: [cameras, cctv, nvr, security cameras, object detection]
+built_with: [python, ffmpeg]
+requires:
+  roostack: "0.1"
+
+settings:
+  - key: hardware_acceleration
+    title: Use the GPU for video and detection
+    description: Intel graphics, where the server has them. Choose them in Frigate's settings too (ffmpeg's hwaccel_args, and the OpenVINO detector).
+    type: bool
+    default: auto                # on if Roostack detects a supported GPU
+
+containers:
+  app:
+    image: ghcr.io/blakeblackshear/frigate:0.18.2@sha256:fd60f99ffd4eb6c42360ed4e14953e270586f239309ab3983e55b2e97ffac09a
+    env:
+      TZ: "{{ .Lab.TimeZone }}"
+    mounts:
+      - { storage: config, path: /config }
+      - { storage: media,  path: /media/frigate }
+    devices:
+      - gpu: intel
+        when: "{{ .Settings.hardware_acceleration }}"
+    health:
+      http: { port: 5000, path: /api/version }
+    memory: 1 GB
+    quadlet:
+      Container:
+        # Frames passed between Frigate's processes: about 64 MB plus more
+        # for each camera; 256 MB fits a few.
+        ShmSize: 256m
+        # Its cache of recent segments, in memory rather than on the disk.
+        Tmpfs: /tmp/cache:size=1g
+
+storage:
+  config:
+    title: Settings, cameras and its database of what it saw
+    class: critical
+  media:
+    title: Recordings and snapshots
+    class: replaceable           # too large to back up
+    location: media
+
+routes:
+  web:
+    container: app
+    port: 5000
+    subdomain: frigate
+    exposure: private
+    public:
+      unsafe: Frigate shows your cameras and their recordings; keep it at home, and reach it from away through the lab's VPN.
+
+# Port 5000 has no login of its own: Roostack's sign-in page is in front
+# of it, so single sign-on can't be turned off.
+sso:
+  required: true
+  forward_auth:
+    route: web
+  note: Everyone signed in through the sign-in page is Frigate's administrator; choose who may use it.
+
+ports:
+  rtsp:
+    title: Live streams (RTSP)
+    description: The cameras' streams, re-shared by Frigate, for other players such as Home Assistant.
+    container: app
+    port: 8554
+    host_port: 8554
+  webrtc:
+    title: Live view (WebRTC)
+    description: Lower-delay live view in the browser at home.
+    container: app
+    port: 8555
+    host_port: 8555
+  webrtc-udp:
+    title: Live view (WebRTC, UDP)
+    container: app
+    port: 8555
+    protocol: udp
+    host_port: 8555
