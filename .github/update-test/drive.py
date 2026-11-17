@@ -9,6 +9,13 @@ backup taken before the update. With no previous version labs can install
 it. Each step must end with every container running and passing its health
 check, and its addresses answering. Prints a table of the steps for the
 run's summary; exits 1 if a step failed.
+
+The lab gets a test address first (`roostack test-address`, Roostack's
+SPEC.md §6.6): lab.localhost, with Caddy's own certificates, so that a
+package that needs the lab's own sign-in can be installed, and each
+service's addresses are checked through Caddy too. A Roostack from before
+the command has none: then a package that needs an address isn't tested,
+and it exits 3 (NOT_TESTED) after saying so.
 """
 import argparse, base64, hashlib, hmac, html, http.cookiejar, os, re, secrets, shlex
 import struct, subprocess, sys, time, urllib.error, urllib.parse, urllib.request
@@ -22,7 +29,12 @@ STATE = "/var/lib/roostack"
 SERVICES = f"{STATE}/services"
 LOCAL = f"{STATE}/local-packages"
 SETTLE = 30          # seconds healthy before a step counts as done
+NOT_TESTED = 3       # the exit status when the lab can't have what the package needs
+ADDRESS = "lab.localhost"
+CADDY_ROOT = f"{STATE}/caddy-data/caddy/pki/authorities/local/root.crt"
+ROOT_COPY = "/tmp/caddy-root.crt"  # readable by the tester, for curl
 results = []
+addressed = False    # the lab has a test address
 
 
 class Failed(Exception):
@@ -152,6 +164,41 @@ def sign_in(b):
     raise Failed(f"signing in stopped at {where}: {text(page)[:300]}")
 
 
+def needs_address():
+    """Whether a version this test installs needs the lab's own sign-in, and so an address (needs-address.sh)."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    versions = [v for v in (a.old, a.to) if v]
+    return any(subprocess.run([os.path.join(here, "needs-address.sh"), a.package, v], cwd=a.repo).returncode == 0 for v in versions)
+
+
+def test_address():
+    """Gives the lab a test address, before the wizard, and waits for Caddy to serve it. False on a Roostack without the command."""
+    global addressed
+    out = vm("sudo roostack test-address", check=False)
+    if "unknown command" in out:
+        return False
+    if "The lab's address is now" not in out and "The lab's address is already" not in out:
+        raise Failed(f"roostack test-address: {out[-800:]}")
+    # Caddy's image is built on the server, from when Roostack is installed
+    # (several minutes), and Caddy makes its certificate authority when it
+    # starts.
+    for _ in range(240):
+        if vm(f"sudo test -f {CADDY_ROOT} && sudo install -m 644 {CADDY_ROOT} {ROOT_COPY} && echo ok", check=False).strip() == "ok":
+            break
+        time.sleep(5)
+    else:
+        raise Failed("Caddy never made its certificate authority: " + vm(f"sudo tail -n 20 {STATE}/caddy-build.log; sudo journalctl -u roostack -n 20 --no-pager | cut -c1-300", check=False))
+    code = ""
+    for _ in range(30):
+        # A redirect counts: to the first-run steps, or to the sign-in page.
+        code = vm(f"curl -s -m 10 -o /dev/null -w '%{{http_code}}' --cacert {ROOT_COPY} --connect-to ::127.0.0.1:443 https://roost.{ADDRESS}/login", check=False).strip()
+        if code[:1] in ("2", "3"):
+            addressed = True
+            return True
+        time.sleep(5)
+    raise Failed(f"Roostack's pages at roost.{ADDRESS} answered {code}")
+
+
 def add_package(version):
     """Puts a package file on the lab as one of the Owner's own."""
     folder = os.path.join(a.repo, "packages", a.package)
@@ -199,6 +246,17 @@ def wait_healthy(deadline_minutes, want_version=None):
             code = vm(f"curl -s -m 20 -o /dev/null -w '%{{http_code}}' http://127.0.0.1:{port}/", check=False).strip()
             if code == "000" or code.startswith("5"):
                 problems.append(f"port {port} answered {code}")
+        # Its addresses through Caddy, with certificates from Caddy's own
+        # authority: the Caddy file for the service names each one.
+        if addressed:
+            site = vm(f"sudo cat {STATE}/caddy/sites/{a.package}.caddy", check=False)
+            hosts = sorted(set(re.findall(r"^@\S+ host (\S+)", site, re.M)))
+            if not hosts:
+                problems.append("Caddy has no addresses for it")
+            for host in hosts:
+                code = vm(f"curl -s -m 20 -o /dev/null -w '%{{http_code}}' --cacert {ROOT_COPY} --connect-to ::127.0.0.1:443 https://{host}/", check=False).strip()
+                if code == "000" or code.startswith("5"):
+                    problems.append(f"{host} answered {code}")
         last = "; ".join(problems)
         if problems:
             good_since = None
@@ -302,9 +360,11 @@ def restore():
     wait_healthy(15)
 
 
-def report():
+def report(note=""):
     lines = [f"### Update test: {a.package} {a.old or '(new)'} → {a.to}", "", "| Step | Result | Time |", "|---|---|---|"]
     lines += [f"| {n} | {r} | {int(t // 60)}m {int(t % 60)}s |" for n, r, t in results]
+    if note:
+        lines += ["", note]
     out = "\n".join(lines) + "\n"
     print(out)
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
@@ -315,7 +375,17 @@ def report():
 
 def main():
     b = Browser()
-    ok = step("Sign in to a new lab", lambda: sign_in(b))
+    have = []
+    ok = step("Give the lab a test address", lambda: have.append(test_address()))
+    if ok and not have[0]:
+        if needs_address():
+            results[-1] = (results[-1][0], "not possible", results[-1][2])
+            report(f"Not tested: {a.package} needs the lab's own sign-in, and so an address, and this Roostack "
+                   "has no `roostack test-address` (it came in a later release). A person should check this update before merging it: "
+                   "it won't merge by itself.")
+            sys.exit(NOT_TESTED)
+        results[-1] = (results[-1][0], "skipped: this Roostack can't", results[-1][2])
+    ok = ok and step("Sign in to a new lab", lambda: sign_in(b))
     ok = ok and step(f"Install {a.old or a.to}", lambda: install(b))
     backed = ok and has_backup()
     if backed:
