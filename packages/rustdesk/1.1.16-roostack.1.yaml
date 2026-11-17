@@ -25,8 +25,9 @@ about:
   categories: [network]
   keywords: [remote desktop, remote support, teamviewer alternative, anydesk alternative]
   notice: >-
-    Set each RustDesk client's ID server to this server's address with :31116, its relay server to the address with :31117,
-    and its key to the one on this page. From outside your home, clients reach it only through your router's port forwarding or the lab's VPN.
+    Set each RustDesk client's ID server to the address on this page with :31116, its relay server to the address with :31117,
+    and its key to the one on this page. For clients outside your home, the Owner can let its connections in from anywhere, under Extra connections,
+    or the clients can use the lab's VPN.
 built_with: [rust]
 requires:
   roostack: "0.1.8"
