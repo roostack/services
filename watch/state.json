@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-17T14:50:43.587659926Z",
+  "last_run": "2026-11-17T23:07:00.321358591Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -635,6 +635,7 @@
     "CVE-2026-111771": "digest",
     "CVE-2026-111943": "digest",
     "CVE-2026-111997": "digest",
+    "CVE-2026-112366": "digest",
     "CVE-2026-112390": "digest",
     "CVE-2026-112391": "digest",
     "CVE-2026-112392": "digest",
@@ -798,6 +799,7 @@
     "CVE-2026-119283": "digest",
     "CVE-2026-119284": "digest",
     "CVE-2026-119299": "digest",
+    "CVE-2026-119351": "digest",
     "CVE-2026-119441": "digest",
     "CVE-2026-119533": "digest",
     "CVE-2026-119625": "digest",
@@ -2045,6 +2047,7 @@
     "GHSA-f98w-7cxr-ff2h": "digest",
     "GHSA-f9xw-jh8m-3mwq": "digest",
     "GHSA-fc2g-4w5p-6whm": "digest",
+    "GHSA-fc5q-39xc-vjpf": "digest",
     "GHSA-fc9g-5qg7-mf45": "digest",
     "GHSA-fch4-3c6x-j4gc": "digest",
     "GHSA-ffc3-869f-jxw9": "digest",
@@ -2531,6 +2534,7 @@
     "GHSA-v9pv-5gc8-w2m6": "digest",
     "GHSA-vc2v-76pw-4v95": "digest",
     "GHSA-vc3p-29h2-gpcp": "digest",
+    "GHSA-vc7v-qv4w-wrv8": "digest",
     "GHSA-vc9j-9wph-qghj": "digest",
     "GHSA-vcc3-ghjq-m6fr": "digest",
     "GHSA-vcp6-2qc6-gvq3": "digest",
@@ -3588,6 +3592,7 @@
     "UBUNTU-CVE-2026-128885": "digest",
     "UBUNTU-CVE-2026-128886": "digest",
     "UBUNTU-CVE-2026-128987": "digest",
+    "UBUNTU-CVE-2026-130335": "digest",
     "UBUNTU-CVE-2026-13608": "digest",
     "UBUNTU-CVE-2026-13757": "digest",
     "UBUNTU-CVE-2026-13858": "digest",
@@ -5553,6 +5558,7 @@
     "CVE-2026-111793",
     "CVE-2026-114625",
     "CVE-2026-114713",
+    "CVE-2026-115731",
     "CVE-2026-11645",
     "CVE-2026-116606",
     "CVE-2026-116779",
@@ -12640,6 +12646,491 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-17T14:51:43.824129153Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Actual Budget: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "actual-budget",
+      "affected": [
+        "26.10.0-roostack.3",
+        "26.11.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113131302Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "AFFiNE: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "affine",
+      "affected": [
+        "0.27.4-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113135351Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Audiobookshelf: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "audiobookshelf",
+      "affected": [
+        "2.37.1-roostack.3",
+        "2.37.2-roostack.1",
+        "2.37.2-roostack.2"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113136822Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Docmost: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "docmost",
+      "affected": [
+        "0.97.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113139228Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Ghost: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "ghost",
+      "affected": [
+        "6.71.0-roostack.2",
+        "6.75.0-roostack.1",
+        "6.77.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113139799Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "HedgeDoc: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "hedgedoc",
+      "affected": [
+        "1.12.0-roostack.4",
+        "1.12.1-roostack.1",
+        "1.12.1-roostack.2"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.11314327Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Immich: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "immich",
+      "affected": [
+        "3.3.3-roostack.3",
+        "3.3.5-roostack.1",
+        "3.3.5-roostack.2",
+        "3.3.6-roostack.1",
+        "3.4.1-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113144989Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Jotty: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "jotty",
+      "affected": [
+        "1.29.2-roostack.1",
+        "1.30.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113151919Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Kaneo: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "kaneo",
+      "affected": [
+        "2.49.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.11315274Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Linkwarden: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "linkwarden",
+      "affected": [
+        "2.16.3-roostack.3",
+        "2.17.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113153656Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Outline: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "outline",
+      "affected": [
+        "1.12.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113156768Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Papra: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "papra",
+      "affected": [
+        "26.7.0-roostack.3",
+        "26.7.1-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113157515Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Uptime Kuma: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "uptime-kuma",
+      "affected": [
+        "2.5.6-roostack.2",
+        "2.5.8-roostack.1",
+        "2.5.8-roostack.2",
+        "2.5.9-roostack.1",
+        "2.5.10-roostack.1",
+        "2.5.11-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113160497Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Wiki.js 2: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "wiki-js",
+      "affected": [
+        "2.5.316-roostack.3",
+        "2.5.317-roostack.1",
+        "2.5.317-roostack.2",
+        "2.5.317-roostack.3"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113162542Z"
+    },
+    {
+      "id": "GHSA-fc5q-39xc-vjpf",
+      "aliases": [
+        "CVE-2026-112366"
+      ],
+      "source": "OSV, for pkg:npm/picomatch@4.0.7 in its image",
+      "title": "Wiki.js: picomatch vulnerable to ReDoS through single-branch repeated extglobs (in picomatch 4.0.7)",
+      "link": "https://osv.dev/vulnerability/GHSA-fc5q-39xc-vjpf",
+      "package": "wiki-js-3",
+      "affected": [
+        "3.1.1-roostack.1",
+        "3.2.0-roostack.1",
+        "3.3.1-roostack.1",
+        "3.4.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0.00335,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:45.113165203Z"
+    },
+    {
+      "id": "GHSA-vc7v-qv4w-wrv8",
+      "aliases": [
+        "CVE-2026-119351"
+      ],
+      "source": "OSV, for pkg:npm/next@16.4.1 in its image",
+      "title": "Jotty: Next.js: Cache leak across root param values in nested 'use cache' functions via delayed inner stream metadata (in next 16.4.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-vc7v-qv4w-wrv8",
+      "package": "jotty",
+      "affected": [
+        "1.29.2-roostack.1",
+        "1.30.0-roostack.1"
+      ],
+      "fixed_upstream": "next 16.4.5",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.0024,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-17T23:07:45.173584013Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130335",
+      "source": "OSV, for pkg:deb/ubuntu/zip@3.0-15ubuntu3?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130335 (in zip 3.0-15ubuntu3)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130335",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-17T23:07:46.906677224Z"
     }
   ]
 }
