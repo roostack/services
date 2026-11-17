@@ -104,12 +104,39 @@ routes:
     public:
       unsafe: Frigate shows your cameras and their recordings; keep it at home, and reach it from away through the lab's VPN.
 
-# Roostack's sign-in page in front of Frigate's own login, for those who
-# want only the lab's people to reach it at all.
+# Single sign-on: Roostack's sign-in page in front, which tells Frigate
+# who signed in (Remote-User, and Remote-Groups, whose "admins" are the
+# lab's Owners and Admins), so Frigate's own login is off meanwhile and
+# the lab's people are its admins or viewers. Frigate reads the headers
+# only on port 8971, which nothing but Roostack's Caddy reaches.
 sso:
   forward_auth:
     route: web
-  note: Frigate will still ask for its own login after the sign-in page, since it keeps its own accounts.
+  note: While it's on, Frigate's own login will be off, and the lab's Owners and Admins will be Frigate's admins and everyone else who may use it a viewer.
+
+# Frigate's own config.yaml, which it makes at its first start and its
+# editor changes: while single sign-on is on, Roostack sets these keys in
+# it (marked "# set by Roostack") and takes them out again when it's off.
+config_files:
+  sign-in:
+    title: Frigate's sign-in through the lab
+    storage: config
+    path: config.yaml
+    format: yaml
+    block: true
+    content: |
+      {{- if .SSO.Enabled }}
+      auth:
+        enabled: false
+      proxy:
+        header_map:
+          user: remote-user
+          role: remote-groups
+          role_map:
+            admin: [{{ .SSO.AdminGroup }}]
+        default_role: viewer
+        logout_url: {{ .SSO.Issuer }}/sign-out
+      {{- end }}
 
 ports:
   rtsp:
