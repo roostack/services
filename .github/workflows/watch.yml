@@ -77,8 +77,10 @@ jobs:
           GH_TOKEN: ${{ secrets.WATCH_TOKEN || github.token }}
           NTFY_URL: ${{ secrets.NTFY_URL }}
         run: |
+          # The Actions bot's address: GitHub credits a commit to the account its
+          # email names (<name>@users.noreply.github.com is the account <name>).
           git config user.name "Roostack watcher"
-          git config user.email "watcher@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           jq -c '.drafts[]' ../summary.json | while read -r d; do
             id=$(jq -r .advisory <<<"$d")
             branch=$(jq -r .branch <<<"$d")
@@ -121,8 +123,10 @@ jobs:
       - name: Keep the watcher's state
         working-directory: services
         run: |
+          # The Actions bot's address: GitHub credits a commit to the account its
+          # email names (<name>@users.noreply.github.com is the account <name>).
           git config user.name "Roostack watcher"
-          git config user.email "watcher@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # Not when only the time of the run changed, unless the kept time
           # is a day old: an hourly commit would be noise on main.
           old=$(git show HEAD:watch/state.json 2>/dev/null || echo '{}')

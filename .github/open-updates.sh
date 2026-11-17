@@ -19,8 +19,10 @@ set -euo pipefail
 report=${1:?the report from roostack registry updates}
 summary=${GITHUB_STEP_SUMMARY:-/dev/stderr}
 
+# The Actions bot's own address: GitHub credits a commit to the account
+# its email names, and <name>@users.noreply.github.com is the account <name>.
 git config user.name "Roostack updates"
-git config user.email "updates@users.noreply.github.com"
+git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 for label in update update:patch update:minor update:major update:other update:revision; do
 	gh label create "$label" --color ededed --force >/dev/null 2>&1 || true
 done
