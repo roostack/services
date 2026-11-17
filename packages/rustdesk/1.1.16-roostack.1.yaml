@@ -1,0 +1,91 @@
+# RustDesk server: the ID and relay servers RustDesk's remote desktop
+# clients use (hbbs and hbbr), from one image as two containers sharing
+# its key. Not HTTP, so its ports are the server's own, not Caddy's.
+# Clients need this server's address and its public key, which its page
+# shows. The key pair is the server's identity: it's kept in
+# backed-up storage and made once, at the first start. On the host its
+# ports are 31115-31117 rather than RustDesk's usual 21115-21117, which
+# are among the ports Roostack keeps for web services: clients are given
+# the ID server as <address>:31116 and the relay as <address>:31117 (the
+# NAT test is the ID server's port less one, so it follows).
+# Image digest looked up 2026-11-17.
+schema: roostack/v1alpha1
+name: rustdesk
+title: RustDesk server
+description: Your own server for RustDesk's remote desktop, so connections to your computers don't go through anyone else's
+version: 1.1.16-roostack.1
+
+about:
+  maker: Purslane Ltd and contributors
+  website: https://rustdesk.com
+  source: https://github.com/rustdesk/rustdesk-server
+  licence: AGPL-3.0-only
+  releases: https://github.com/rustdesk/rustdesk-server/releases/tag/{version}
+  icon: icon.png
+  categories: [network]
+  keywords: [remote desktop, remote support, teamviewer alternative, anydesk alternative]
+  notice: >-
+    Set each RustDesk client's ID server to the address on this page with :31116, its relay server to the address with :31117,
+    and its key to the one on this page. For clients outside your home, the Owner can let its connections in from anywhere, under Extra connections,
+    or the clients can use the lab's VPN.
+built_with: [rust]
+requires:
+  roostack: "0.1.8"
+
+containers:
+  hbbs:
+    # The ID server: introduces clients to each other, and refuses those
+    # without the server's key.
+    image: docker.io/rustdesk/rustdesk-server:1.1.16@sha256:8ecdab65deb7c84652a626380e31d11a8f1fbafd97916d57f95c20628f943c00
+    command: [hbbs]
+    mounts:
+      - { storage: data, path: /root }
+    memory: 64 MB
+  hbbr:
+    # The relay, for connections that can't be made directly.
+    image: docker.io/rustdesk/rustdesk-server:1.1.16@sha256:8ecdab65deb7c84652a626380e31d11a8f1fbafd97916d57f95c20628f943c00
+    command: [hbbr]
+    mounts:
+      - { storage: data, path: /root }
+    memory: 64 MB
+
+storage:
+  data:
+    title: The server's key pair, and the clients it knows
+    class: critical
+
+# The public key, which each client needs: hbbs makes the pair at its
+# first start (its image has nothing but RustDesk's own programs, so the
+# page reads the file, SPEC.md §8.1, "Shown on its page").
+shown:
+  - title: The server's key
+    description: Put it in each RustDesk client, beside this server's address.
+    storage: data
+    path: id_ed25519.pub
+
+ports:
+  nat-test:
+    title: NAT test
+    container: hbbs
+    port: 21115
+    host_port: 31115
+    enabled: true
+  id:
+    title: ID server
+    container: hbbs
+    port: 21116
+    host_port: 31116
+    enabled: true
+  id-udp:
+    title: ID server (UDP)
+    container: hbbs
+    port: 21116
+    protocol: udp
+    host_port: 31116
+    enabled: true
+  relay:
+    title: Relay
+    container: hbbr
+    port: 21117
+    host_port: 31117
+    enabled: true

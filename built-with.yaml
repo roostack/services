@@ -13,6 +13,10 @@
 # package that uses it.
 
 # Languages and runtimes
+- name: c
+  title: C
+  about: A systems language, compiled for the processor, in which memory mistakes become security holes.
+  cpes: []
 - name: dotnet
   title: .NET
   about: Microsoft's runtime for C# and other languages.
@@ -89,6 +93,11 @@
   about: Reads, converts and streams audio and video.
   purls: ["pkg:generic/ffmpeg", "pkg:deb/debian/ffmpeg", "pkg:deb/ubuntu/ffmpeg", "pkg:deb/debian/libavcodec*", "pkg:deb/debian/jellyfin-ffmpeg*", "pkg:deb/ubuntu/libavcodec*", "pkg:deb/ubuntu/jellyfin-ffmpeg*", "pkg:apk/alpine/ffmpeg*"]
   cpes: ["cpe:2.3:a:ffmpeg:ffmpeg:*:*:*:*:*:*:*:*"]
+- name: libtorrent
+  title: libtorrent
+  about: Rasterbar's BitTorrent library, which talks to strangers' computers on the internet.
+  purls: ["pkg:deb/debian/libtorrent-rasterbar*", "pkg:deb/ubuntu/libtorrent-rasterbar*", "pkg:apk/alpine/libtorrent-rasterbar*", "pkg:pypi/libtorrent"]
+  cpes: []
 - name: ghostscript
   title: Ghostscript
   about: Reads and converts PDF and PostScript files.
