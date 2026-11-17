@@ -22,7 +22,8 @@ about:
   categories: [network]
   keywords: [dns, ad blocker, adblock, tracking, privacy]
   notice: >-
-    Devices will use Pi-hole once your router gives out this server's address as their DNS server. If Pi-hole stops or the
+    Devices at home will use Pi-hole once your router gives out this server's address as their DNS server, and the lab's VPN
+    devices will use it by themselves. If Pi-hole stops or the
     server is off, they'll have no DNS until it's back, so keep a second DNS server in the router only if you accept that
     it lets ads through.
 built_with: [c, php]
@@ -47,6 +48,10 @@ containers:
       # lab's VPN devices, and a VPN device's address isn't on a network
       # Pi-hole would call local.
       FTLCONF_dns_listeningMode: all
+      # The lab's names, answered with its home address, so devices at
+      # home reach its services directly, public ones too, and without
+      # the internet (empty on a lab on the internet).
+      FTLCONF_misc_dnsmasq_lines: '{{ with .Lab.HomeAddress }}address=/{{ $.Lab.Domain }}/{{ . }}{{ end }}'
     secrets:
       FTLCONF_webserver_api_password: admin_password
     mounts:
@@ -57,6 +62,10 @@ containers:
     # Each device's own address, for Pi-hole's per-device limits, groups,
     # and query log; otherwise every query would come from Podman's.
     client_addresses: true
+
+# Its DNS port, so the lab can choose it as the DNS server for its
+# devices and servers (Settings, Where it is and DNS).
+dns_server: dns
 
 storage:
   config:
