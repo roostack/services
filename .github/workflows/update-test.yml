@@ -5,12 +5,14 @@
 # step that every container is healthy and its address answers
 # (.github/update-test/). The steps are in the run's summary.
 #
-# If it passes, an official package's patch or rebuild merges by itself once
-# Publish's check has passed too, and only if the repository variable
-# UPDATES_AUTO_MERGE is "true" (.github/update-merge.sh). Everything else
-# waits for a person, as does an update the test can't try: a package that
-# needs the lab's own sign-in, which needs a lab address the test's lab
-# hasn't got (needs-address.sh), passes with a notice that it wasn't tested.
+# The lab has a test address (Roostack's `roostack test-address`), so that
+# a package that needs the lab's own sign-in, such as Outline, can be
+# installed. If it passes, an official package's patch or rebuild merges by
+# itself once Publish's check has passed too, and only if the repository
+# variable UPDATES_AUTO_MERGE is "true" (.github/update-merge.sh). Everything
+# else waits for a person, as does an update the test can't try: on a
+# Roostack from before `roostack test-address`, a package that needs an
+# address (needs-address.sh) passes with a notice that it wasn't tested.
 #
 # Set up, as for the Updates workflow: the binary variables, naming Roostack
 # 0.1.5 or newer, and the secret WATCH_TOKEN (contents and pull requests
@@ -47,9 +49,9 @@ jobs:
       pr: ${{ steps.what.outputs.pr }}
       package: ${{ steps.what.outputs.package }}
       to: ${{ steps.what.outputs.to }}
-      # "false" when the update couldn't be tested (needs-address.sh), so
-      # it never merges by itself.
-      tested: ${{ steps.what.outputs.skip == '' }}
+      # "false" when the update couldn't be tested (drive.py's exit status
+      # 3), so it never merges by itself.
+      tested: ${{ steps.run.outputs.untested != 'true' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -71,32 +73,13 @@ jobs:
           git fetch -q origin "$branch"
           git checkout -q FETCH_HEAD -- "packages/$package"
           from=$(.github/update-test/from.sh "$package" "$to")
-          skip=
-          for v in $from $to; do
-            if .github/update-test/needs-address.sh "$package" "$v"; then
-              skip="$package $v needs the lab's own sign-in, and so a lab address, which the test's lab hasn't got"
-            fi
-          done
           {
             echo "pr=$PR"
             echo "package=$package"
             echo "to=$to"
             echo "from=$from"
-            echo "skip=$skip"
           } >> "$GITHUB_OUTPUT"
-      - name: Say it wasn't tested
-        if: steps.what.outputs.skip != ''
-        env:
-          SKIP: ${{ steps.what.outputs.skip }}
-        run: |
-          echo "::notice::Not tested: $SKIP. A person should check this update before merging it."
-          {
-            echo "## Not tested"
-            echo
-            echo "$SKIP. A person should check this update before merging it: it won't merge by itself."
-          } >> "$GITHUB_STEP_SUMMARY"
       - name: Allow KVM and install QEMU
-        if: steps.what.outputs.skip == ''
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm.rules
           sudo udevadm control --reload-rules
@@ -104,12 +87,22 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq --no-install-recommends qemu-system-x86 qemu-utils
       - name: Install, back up, update and restore on a new lab
-        if: steps.what.outputs.skip == ''
+        id: run
         env:
           PACKAGE: ${{ steps.what.outputs.package }}
           FROM: ${{ steps.what.outputs.from }}
           TO: ${{ steps.what.outputs.to }}
-        run: .github/update-test/run.sh "$PACKAGE" "$FROM" "$TO"
+        run: |
+          status=0
+          .github/update-test/run.sh "$PACKAGE" "$FROM" "$TO" || status=$?
+          # 3: the released Roostack can't give the lab what the package
+          # needs (drive.py, which has said why in the summary).
+          if [ "$status" = 3 ]; then
+            echo "::notice::Not tested: $PACKAGE needs the lab's own sign-in, and this Roostack can't give the test's lab an address. A person should check this update before merging it."
+            echo "untested=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          exit "$status"
 
   merge:
     needs: test
