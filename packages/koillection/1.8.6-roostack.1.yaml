@@ -121,10 +121,16 @@ hooks:
         esac
         token=$(printf '%s' "$page" | grep -o '<input[^>]*user\[_token\][^>]*>' | sed -n 's/.*value="\([^"]*\)".*/\1/p')
         [ -n "$token" ] || { echo "Koillection's form has no token." >&2; exit 1; }
+        # Koillection's form accepts only the zones in PHP's own list, which
+        # leaves out Debian's default, Etc/UTC (older Roostacks give it as
+        # it is), and a zone renamed after this PHP was made. Anything else
+        # is UTC, which the administrator can change in Koillection.
+        tz=$(php -r 'echo in_array(getenv("ADMIN_TZ"), DateTimeZone::listIdentifiers()) ? getenv("ADMIN_TZ") : "UTC";')
+        [ "$tz" = "$ADMIN_TZ" ] || echo "Koillection doesn't know the time zone $ADMIN_TZ, so the administrator's will be UTC until they change it in Koillection's settings."
         code=$(curl -s -o /dev/null -w '%{http_code}' -c "$jar" -b "$jar" "$url" \
           --data-urlencode "user[username]=$ADMIN_USERNAME" --data-urlencode "user[email]=$ADMIN_EMAIL" \
           --data-urlencode "user[plainPassword][first]=$ADMIN_PASSWORD" --data-urlencode "user[plainPassword][second]=$ADMIN_PASSWORD" \
-          --data-urlencode "user[timezone]=$ADMIN_TZ" --data-urlencode "user[dateFormat]=Y-m-d" --data-urlencode "user[_token]=$token")
+          --data-urlencode "user[timezone]=$tz" --data-urlencode "user[dateFormat]=Y-m-d" --data-urlencode "user[_token]=$token")
         [ "$code" = 302 ] || { echo 'Koillection refused the account: check the username (2 to 32 letters, digits, or underscores) and the password (8 characters, with a letter and a digit or a symbol).' >&2; exit 1; }
         echo 'The administrator is made.'
 
