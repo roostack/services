@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-17T23:07:00.321358591Z",
+  "last_run": "2026-11-18T13:26:03.355075889Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -214,6 +214,7 @@
     "BIT-virtualenv-2026-102930": "digest",
     "BIT-virtualenv-2026-102937": "digest",
     "BIT-virtualenv-2026-102938": "digest",
+    "BIT-virtualenv-2026-113713": "digest",
     "BIT-virtualenv-2026-113714": "digest",
     "BIT-virtualenv-2026-113715": "digest",
     "BIT-virtualenv-2026-113716": "digest",
@@ -690,6 +691,7 @@
     "CVE-2026-113654": "digest",
     "CVE-2026-113657": "digest",
     "CVE-2026-113661": "digest",
+    "CVE-2026-113713": "digest",
     "CVE-2026-113714": "digest",
     "CVE-2026-113715": "digest",
     "CVE-2026-113716": "digest",
@@ -1599,6 +1601,7 @@
     "GHSA-4c39-4ccg-62r3": "digest",
     "GHSA-4c8g-83qw-93j6": "digest",
     "GHSA-4cwx-7wf7-3272": "digest",
+    "GHSA-4f8h-vr72-p32c": "digest",
     "GHSA-4ffr-jq9g-5ffx": "digest",
     "GHSA-4fvr-rgm6-gqmc": "digest",
     "GHSA-4g23-2xm8-66gc": "digest",
@@ -3145,6 +3148,7 @@
     "PYSEC-2026-4341": "digest",
     "PYSEC-2026-4342": "digest",
     "PYSEC-2026-4343": "digest",
+    "PYSEC-2026-4372": "digest",
     "PYSEC-2026-800": "digest",
     "PYSEC-2026-89": "digest",
     "RUSTSEC-2023-0006": "digest",
@@ -5938,6 +5942,7 @@
     "crowdsecurity/vpatch-CVE-2026-109619",
     "crowdsecurity/vpatch-CVE-2026-111497",
     "crowdsecurity/vpatch-CVE-2026-114509",
+    "crowdsecurity/vpatch-CVE-2026-114938",
     "crowdsecurity/vpatch-CVE-2026-115886",
     "crowdsecurity/vpatch-CVE-2026-116690",
     "crowdsecurity/vpatch-CVE-2026-1207",
@@ -13131,6 +13136,36 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-17T23:07:46.906677224Z"
+    },
+    {
+      "id": "PYSEC-2026-4372",
+      "aliases": [
+        "BIT-virtualenv-2026-113713",
+        "CVE-2026-113713",
+        "GHSA-4f8h-vr72-p32c"
+      ],
+      "source": "OSV, for pkg:pypi/virtualenv@20.17.1 in its image",
+      "title": "Frigate: PYSEC-2026-4372 (in virtualenv 20.17.1)",
+      "link": "https://osv.dev/vulnerability/PYSEC-2026-4372",
+      "package": "frigate",
+      "affected": [
+        "0.18.2-roostack.1"
+      ],
+      "fixed_upstream": "virtualenv 21.14.10",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00204,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-18T13:26:53.079669195Z"
     }
   ]
 }
