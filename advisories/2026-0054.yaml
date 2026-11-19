@@ -1,0 +1,24 @@
+# Drafted on 2026-11-19 from CISA's list of exploited vulnerabilities, matched by name in the digest
+# of 2026-11-16 (roostack/services#150) and checked against the images: Chromium is fixed in
+# 157.0.8103.50. Uptime Kuma's images carry Chromium 148 to 156 (for its "real browser" monitors),
+# Koillection's 156 (for reading pages it's given), and Linkwarden's Playwright 1.57's own Chromium,
+# before 157 (for archiving every page it saves). Each opens pages from addresses people give it, so
+# a page made for it can run code inside the app's container. None of the registry's versions is
+# fixed yet: add `fixed:` once an update with a fixed Chromium is merged.
+# Check every line before merging: the title (what it lets someone do), the
+# severity in Roostack's meaning, and the versions (docs/RED-BUTTON-PLAN.md §10.1.3).
+title: 'Chromium: a web page Linkwarden, Uptime Kuma or Koillection opens can run code in the app; used in attacks'
+built_with: chromium
+cves: [CVE-2026-125350]
+severity: high
+exploited: true
+published: "2026-11-19"
+link: https://nvd.nist.gov/vuln/detail/CVE-2026-125350
+local: possibly
+affects:
+    linkwarden:
+        versions: [2.16.3-roostack.1, 2.16.3-roostack.2, 2.16.3-roostack.3, 2.17.0-roostack.1]
+    uptime-kuma:
+        versions: [2.5.6-roostack.1, 2.5.6-roostack.2, 2.5.8-roostack.1, 2.5.8-roostack.2, 2.5.9-roostack.1, 2.5.10-roostack.1, 2.5.11-roostack.1]
+    koillection:
+        versions: [1.8.5-roostack.1]
