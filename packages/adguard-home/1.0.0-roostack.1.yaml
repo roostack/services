@@ -1,0 +1,151 @@
+# AdGuard Home: DNS for the home network that leaves out ads and trackers,
+# one container, like Pi-hole. Devices ask on port 53, which the server's
+# firewall sends to its port here (a container can't listen below 1024:
+# SPEC.md §8.1, "Well-known ports"); its admin pages go through Caddy. No
+# DHCP: that would need the host's network, which packages don't get.
+# AdGuard Home starts with a setup wizard that whoever reaches it first
+# would finish, so the install hook finishes it at once, with the
+# password Roostack made. It answers the lab's names from a list
+# Roostack writes; its start step drops its cached copy of that list
+# (found by the marker rule for roostack.invalid), so a changed home
+# address is read at the next start rather than at its daily refresh.
+# Image digest looked up 2026-11-17.
+schema: roostack/v1alpha1
+name: adguard-home
+title: AdGuard Home
+description: Leaves ads and trackers out for every device on your home network
+version: 1.0.0-roostack.1
+
+about:
+  maker: AdGuard Software and contributors
+  website: https://adguard.com/adguard-home/overview.html
+  source: https://github.com/AdguardTeam/AdGuardHome
+  licence: GPL-3.0-only
+  releases: https://github.com/AdguardTeam/AdGuardHome/releases/tag/v{version}
+  icon: icon.png
+  categories: [network]
+  keywords: [dns, ad blocker, adblock, tracking, privacy, pi-hole alternative]
+  notice: >-
+    Devices at home will use AdGuard Home once your router gives out this server's address as their DNS server, and the
+    lab's VPN devices will use it by themselves. If AdGuard Home stops or the server is off, they'll have no DNS until
+    it's back, so keep a second DNS server in the router only if you accept that it lets ads through.
+built_with: [go]
+requires:
+  roostack: "0.1.8"
+
+settings:
+  - key: admin_password
+    title: Admin password
+    description: For AdGuard Home's admin pages, as the user admin.
+    type: secret
+    generate: true               # Roostack creates it; stored as a Podman secret
+    reveal: true                 # shown on AdGuard Home's page, to sign in
+
+containers:
+  app:
+    image: docker.io/adguard/adguardhome:v1.0.0@sha256:f00a586f0d1caa74f149340bfb225014960310488ffa838406b89256900a96c2
+    quadlet:
+      Container:
+        # A shell first, to drop the cached copy of the lab's names (the
+        # header above), then the image's own program and arguments.
+        Entrypoint: /bin/sh
+    command:                     # one line: Quadlet's Exec takes no line breaks
+      - -c
+      - grep -l "^||roostack.invalid^" /opt/adguardhome/work/data/filters/*.txt 2>/dev/null | xargs -r rm -f; exec /opt/adguardhome/AdGuardHome --no-check-update -c /opt/adguardhome/conf/AdGuardHome.yaml -w /opt/adguardhome/work
+    env:
+      TZ: "{{ .Lab.TimeZone }}"
+    mounts:
+      - { storage: conf, path: /opt/adguardhome/conf }
+      - { storage: work, path: /opt/adguardhome/work }
+    health:
+      http: { port: 3000, path: / }
+    memory: 200 MB
+    # Each device's own address, for its per-device settings and query
+    # log; otherwise every query would come from Podman's.
+    client_addresses: true
+
+# Its DNS port, so the lab can choose it as the DNS server for its
+# devices and servers (Settings, Where it is and DNS).
+dns_server: dns
+
+storage:
+  conf:
+    title: Settings, filters chosen and admin account
+    class: critical
+  work:
+    title: Query history, statistics and block lists
+    class: critical
+
+# The lab's names, answered with its home address, so devices at home
+# reach its services directly, public ones too, and without the
+# internet. The install hook adds it as one of AdGuard Home's block
+# lists; the first rule marks it as Roostack's.
+config_files:
+  names:
+    title: The lab's names, answered at home
+    storage: work
+    path: userfilters/roostack.txt
+    format: text
+    content: |
+      ! Written by Roostack: the lab's names, answered with its home address. Roostack will replace any change made here.
+      ||roostack.invalid^$dnsrewrite=NOERROR;TXT;roostack
+      {{- if and .Lab.HomeAddress .Lab.Domain }}
+      ||{{ .Lab.Domain }}^$dnsrewrite=NOERROR;A;{{ .Lab.HomeAddress }}
+      {{- end }}
+
+hooks:
+  # Finishes AdGuard Home's setup wizard before anyone else can, with the
+  # password Roostack made, then adds the lab's names as a block list.
+  # Safe to re-run: once set up, the wizard's address is gone, and the
+  # list is added only if it isn't there.
+  - on: install
+    container: app
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - sh
+      - -c
+      - |
+        set -e
+        A=127.0.0.1:3000
+        F=/opt/adguardhome/work/userfilters/roostack.txt
+        wget -qO- --header "Content-Type: application/json" --post-data "{\"web\":{\"ip\":\"0.0.0.0\",\"port\":3000},\"dns\":{\"ip\":\"0.0.0.0\",\"port\":53},\"username\":\"admin\",\"password\":\"$ADMIN_PASSWORD\"}" http://$A/control/install/configure >/dev/null 2>&1 && sleep 3 || true
+        AUTH="Authorization: Basic $(printf 'admin:%s' "$ADMIN_PASSWORD" | base64)"
+        if ! wget -qO- --header "$AUTH" http://$A/control/filtering/status | grep -q "$F"; then
+          wget -qO- --header "$AUTH" --header "Content-Type: application/json" --post-data "{\"name\":\"The lab's names (Roostack)\",\"url\":\"$F\",\"whitelist\":false}" http://$A/control/filtering/add_url >/dev/null
+        fi
+        echo "AdGuard Home is set up with the admin password Roostack made, and answers the lab's names."
+
+routes:
+  web:
+    container: app
+    port: 3000
+    subdomain: adguard
+    exposure: private
+    public:
+      unsafe: AdGuard Home's admin pages control the home network's DNS and show every device's queries, so they stay at home.
+
+links:
+  - title: Admin pages
+    description: Block lists, clients, and what each device has asked for
+    route: web
+    path: /
+
+ports:
+  dns:
+    title: DNS
+    description: The home network's devices ask AdGuard Home for names here.
+    container: app
+    port: 53
+    protocol: udp
+    host_port: 5054
+    outside_port: 53
+    enabled: true
+  dns-tcp:
+    title: DNS over TCP
+    description: For the few answers too long for UDP.
+    container: app
+    port: 53
+    host_port: 5054
+    outside_port: 53
+    enabled: true
