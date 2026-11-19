@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-19T02:46:09.968778802Z",
+  "last_run": "2026-11-19T20:56:05.378213698Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -3364,6 +3364,7 @@
     "UBUNTU-CVE-2026-107209": "digest",
     "UBUNTU-CVE-2026-107210": "digest",
     "UBUNTU-CVE-2026-107493": "digest",
+    "UBUNTU-CVE-2026-107494": "digest",
     "UBUNTU-CVE-2026-107496": "digest",
     "UBUNTU-CVE-2026-107660": "digest",
     "UBUNTU-CVE-2026-107675": "digest",
@@ -3472,6 +3473,8 @@
     "UBUNTU-CVE-2026-120246": "digest",
     "UBUNTU-CVE-2026-120247": "digest",
     "UBUNTU-CVE-2026-120749": "digest",
+    "UBUNTU-CVE-2026-121481": "digest",
+    "UBUNTU-CVE-2026-121482": "digest",
     "UBUNTU-CVE-2026-121876": "digest",
     "UBUNTU-CVE-2026-123273": "digest",
     "UBUNTU-CVE-2026-12345": "digest",
@@ -3605,6 +3608,26 @@
     "UBUNTU-CVE-2026-128886": "digest",
     "UBUNTU-CVE-2026-128987": "digest",
     "UBUNTU-CVE-2026-130335": "digest",
+    "UBUNTU-CVE-2026-130651": "digest",
+    "UBUNTU-CVE-2026-130652": "digest",
+    "UBUNTU-CVE-2026-130653": "digest",
+    "UBUNTU-CVE-2026-130654": "digest",
+    "UBUNTU-CVE-2026-130655": "digest",
+    "UBUNTU-CVE-2026-130656": "digest",
+    "UBUNTU-CVE-2026-130657": "digest",
+    "UBUNTU-CVE-2026-130658": "digest",
+    "UBUNTU-CVE-2026-130659": "digest",
+    "UBUNTU-CVE-2026-130660": "digest",
+    "UBUNTU-CVE-2026-130661": "digest",
+    "UBUNTU-CVE-2026-130662": "digest",
+    "UBUNTU-CVE-2026-130663": "digest",
+    "UBUNTU-CVE-2026-130664": "digest",
+    "UBUNTU-CVE-2026-130665": "digest",
+    "UBUNTU-CVE-2026-130666": "digest",
+    "UBUNTU-CVE-2026-130667": "digest",
+    "UBUNTU-CVE-2026-130668": "digest",
+    "UBUNTU-CVE-2026-130669": "digest",
+    "UBUNTU-CVE-2026-130670": "digest",
     "UBUNTU-CVE-2026-13608": "digest",
     "UBUNTU-CVE-2026-13757": "digest",
     "UBUNTU-CVE-2026-13858": "digest",
@@ -3885,6 +3908,7 @@
     "UBUNTU-CVE-2026-84366": "digest",
     "UBUNTU-CVE-2026-8461": "digest",
     "UBUNTU-CVE-2026-84782": "digest",
+    "UBUNTU-CVE-2026-84786": "digest",
     "UBUNTU-CVE-2026-8594": "digest",
     "UBUNTU-CVE-2026-86138": "digest",
     "UBUNTU-CVE-2026-86140": "digest",
@@ -3940,6 +3964,7 @@
     "UBUNTU-CVE-2026-93658": "digest",
     "UBUNTU-CVE-2026-94266": "digest",
     "UBUNTU-CVE-2026-9538": "digest",
+    "UBUNTU-CVE-2026-95690": "digest",
     "UBUNTU-CVE-2026-95691": "digest",
     "UBUNTU-CVE-2026-95692": "digest",
     "UBUNTU-CVE-2026-96512": "digest",
@@ -5960,6 +5985,7 @@
     "crowdsecurity/vpatch-CVE-2026-116690",
     "crowdsecurity/vpatch-CVE-2026-1207",
     "crowdsecurity/vpatch-CVE-2026-1281",
+    "crowdsecurity/vpatch-CVE-2026-132825",
     "crowdsecurity/vpatch-CVE-2026-1557",
     "crowdsecurity/vpatch-CVE-2026-20127",
     "crowdsecurity/vpatch-CVE-2026-20127-dca-disclosure",
@@ -13497,6 +13523,1056 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-18T21:34:34.458129925Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-107494",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-107494 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-107494",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.712708019Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-107494",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-107494 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-107494",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.712711765Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-107494",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-107494 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-107494",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.712713818Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-107494",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-107494 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-107494",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.712718034Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-121481",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-121481 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-121481",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.779433454Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-121481",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-121481 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-121481",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.779436278Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-121481",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-121481 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-121481",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.77943762Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-121481",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-121481 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-121481",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.779439363Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-121482",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-121482 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-121482",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.841660564Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-121482",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-121482 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-121482",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.841662687Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-121482",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-121482 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-121482",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.84166453Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-121482",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-121482 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-121482",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.841666152Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130651",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130651 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130651",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.892581087Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130652",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130652 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130652",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:51.965822458Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130653",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130653 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130653",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:52.023071448Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130654",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130654 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130654",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:52.09354857Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130655",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130655 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130655",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:52.149047705Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130656",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130656 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130656",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:52.205640082Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130657",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130657 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130657",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:52.260637434Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130658",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130658 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130658",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:52.314536724Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130659",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130659 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130659",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.029744591Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130660",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130660 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130660",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.09462872Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130661",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130661 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130661",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.151964098Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130662",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130662 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130662",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.206047297Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130663",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130663 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130663",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.257582397Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130664",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130664 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130664",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.313709008Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130665",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130665 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130665",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.405260949Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130666",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130666 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130666",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.459493329Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130667",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130667 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130667",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.515553105Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130668",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130668 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130668",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.575096681Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130669",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130669 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130669",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.656594991Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-130670",
+      "source": "OSV, for pkg:deb/ubuntu/imagemagick@8%3A7.1.2.18%2Bdfsg1-1?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-130670 (in imagemagick 8%3A7.1.2.18%2Bdfsg1-1)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-130670",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.717148958Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-84786",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-84786 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-84786",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.798021964Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-84786",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-84786 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-84786",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.798024718Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-84786",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-84786 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-84786",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.798026671Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-84786",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-84786 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-84786",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.798029525Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95690",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-95690 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95690",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.855843349Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95690",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-95690 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95690",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.855847135Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95690",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-95690 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95690",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.855848507Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-95690",
+      "source": "OSV, for pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.16?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-95690 (in openssl 3.0.13-0ubuntu3.16)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-95690",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-19T20:56:55.85585039Z"
     }
   ]
 }
