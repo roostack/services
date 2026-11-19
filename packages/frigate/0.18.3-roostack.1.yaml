@@ -1,0 +1,159 @@
+# Frigate: a recorder for IP cameras that spots people, cars and animals,
+# one container. Its recordings are large, so they live on the media disk
+# and aren't backed up; its settings and database are. Its web UI is the
+# one with its own login (port 8971, HTTPS with a certificate Frigate
+# makes); port 5000, with no login, stays inside the container, where
+# the install hook gives Frigate's admin the password Roostack made. Intel
+# graphics decode video and run detection (OpenVINO) where there are
+# some; a Coral comes later. Frigate makes its own config file at its
+# first start, and its own editor changes it.
+# Image digest looked up 2026-11-17.
+schema: roostack/v1alpha1
+name: frigate
+title: Frigate
+description: Records your cameras, and tells you when it sees a person, a car or an animal
+version: 0.18.3-roostack.1
+
+about:
+  maker: Blake Blackshear and contributors
+  website: https://frigate.video
+  source: https://github.com/blakeblackshear/frigate
+  licence: MIT
+  releases: https://github.com/blakeblackshear/frigate/releases/tag/v{version}
+  icon: icon.png
+  categories: [home]
+  keywords: [cameras, cctv, nvr, security cameras, object detection]
+built_with: [python, ffmpeg]
+requires:
+  roostack: "0.1.8"
+
+settings:
+  - key: admin_password
+    title: Admin password
+    description: For Frigate's admin account, which can add cameras and people.
+    type: secret
+    generate: true               # Roostack creates it; stored as a Podman secret
+    reveal: true                 # shown on Frigate's page, to sign in
+  - key: hardware_acceleration
+    title: Use the GPU for video and detection
+    description: Intel graphics, where the server has them. Choose them in Frigate's settings too (ffmpeg's hwaccel_args, and the OpenVINO detector).
+    type: bool
+    default: auto                # on if Roostack detects a supported GPU
+
+containers:
+  app:
+    image: ghcr.io/blakeblackshear/frigate:0.18.3@sha256:d1a3e0008557bb3f3314d442ecd4ba68e9b16ab7872d64612649f7a6e5156635
+    env:
+      TZ: "{{ .Lab.TimeZone }}"
+    mounts:
+      - { storage: config, path: /config }
+      - { storage: media,  path: /media/frigate }
+    devices:
+      - gpu: intel
+        when: "{{ .Settings.hardware_acceleration }}"
+    health:
+      http: { port: 5000, path: /api/version }
+    memory: 1 GB
+    quadlet:
+      Container:
+        # Frames passed between Frigate's processes: about 64 MB plus more
+        # for each camera; 256 MB fits a few.
+        ShmSize: 256m
+        # Its cache of recent segments, in memory rather than on the disk.
+        Tmpfs: /tmp/cache:size=1g
+
+storage:
+  config:
+    title: Settings, cameras and its database of what it saw
+    class: critical
+  media:
+    title: Recordings and snapshots
+    class: replaceable           # too large to back up
+    location: media
+
+hooks:
+  # The admin account Frigate makes at its first start has a password
+  # only its log shows: this gives it the one Roostack made, through the
+  # API on port 5000, which only the container itself can reach. Safe to
+  # re-run: it sets the same password again.
+  - on: install
+    container: app
+    secrets:
+      ADMIN_PASSWORD: admin_password
+    command:
+      - python3
+      - -c
+      - |
+        import json, os, sys, urllib.request
+        req = urllib.request.Request("http://127.0.0.1:5000/api/users/admin/password",
+                                     json.dumps({"password": os.environ["ADMIN_PASSWORD"]}).encode(),
+                                     {"Content-Type": "application/json"}, method="PUT")
+        try:
+            urllib.request.urlopen(req, timeout=10)
+        except OSError as e:
+            sys.exit("Frigate is still starting (%s)." % e)
+        print("Frigate's admin account has the password Roostack made.")
+
+routes:
+  web:
+    container: app
+    port: 8971
+    self_signed: true            # Frigate's own certificate, on its port with a login
+    subdomain: frigate
+    exposure: private
+    public:
+      unsafe: Frigate shows your cameras and their recordings; keep it at home, and reach it from away through the lab's VPN.
+
+# Single sign-on: Roostack's sign-in page in front, which tells Frigate
+# who signed in (Remote-User, and Remote-Groups, whose "admins" are the
+# lab's Owners and Admins), so Frigate's own login is off meanwhile and
+# the lab's people are its admins or viewers. Frigate reads the headers
+# only on port 8971, which nothing but Roostack's Caddy reaches.
+sso:
+  forward_auth:
+    route: web
+  note: While it's on, Frigate's own login will be off, and the lab's Owners and Admins will be Frigate's admins and everyone else who may use it a viewer.
+
+# Frigate's own config.yaml, which it makes at its first start and its
+# editor changes: while single sign-on is on, Roostack sets these keys in
+# it (marked "# set by Roostack") and takes them out again when it's off.
+config_files:
+  sign-in:
+    title: Frigate's sign-in through the lab
+    storage: config
+    path: config.yaml
+    format: yaml
+    block: true
+    content: |
+      {{- if .SSO.Enabled }}
+      auth:
+        enabled: false
+      proxy:
+        header_map:
+          user: remote-user
+          role: remote-groups
+          role_map:
+            admin: [{{ .SSO.AdminGroup }}]
+        default_role: viewer
+        logout_url: {{ .SSO.Issuer }}/sign-out
+      {{- end }}
+
+ports:
+  rtsp:
+    title: Live streams (RTSP)
+    description: The cameras' streams, re-shared by Frigate, for other players such as Home Assistant.
+    container: app
+    port: 8554
+    host_port: 8554
+  webrtc:
+    title: Live view (WebRTC)
+    description: Lower-delay live view in the browser at home.
+    container: app
+    port: 8555
+    host_port: 8555
+  webrtc-udp:
+    title: Live view (WebRTC, UDP)
+    container: app
+    port: 8555
+    protocol: udp
+    host_port: 8555
