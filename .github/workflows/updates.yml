@@ -10,13 +10,22 @@
 # its kind as labs read it (update:patch, :minor, :major, :other, or
 # :revision for a rebuild); Publish checks it like any package, and the
 # Update test workflow tries it on a lab, then merges official patches and
-# rebuilds if UPDATES_AUTO_MERGE is on.
+# rebuilds if UPDATES_AUTO_MERGE is on. An update that fixes a known
+# security problem (from its app's advisories on GitHub, or its release
+# notes on Codeberg) is labelled security, and merges by itself even as a
+# minor. Each run also looks for updates that are stuck (a failed test, or
+# waiting for a person for more than 3 days) and pushes each once to the
+# maintainers' phones through ntfy (.github/stuck-updates.sh); the weekly
+# security digest lists them too.
 #
 # Set up, as for the Watch workflow:
 # - the variables ROOSTACK_BINARY_URL and ROOSTACK_BINARY_SHA256 naming a
 #   Roostack release with roostack registry updates (0.1.1 or newer);
-# - the secret WATCH_TOKEN (contents and pull requests write): pull
-#   requests opened with the workflow's own token don't start Publish.
+# - the secret WATCH_TOKEN (contents and pull requests write, and actions
+#   write to start an update's test again): pull requests opened with the
+#   workflow's own token don't start Publish;
+# - the secret NTFY_URL, as for the Watch workflow (without it, nothing is
+#   pushed, and stuck updates are only in the digest).
 name: Updates
 
 on:
@@ -27,6 +36,10 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
+  # For the update tests' results (stuck-updates.sh).
+  checks: read
+  statuses: read
 
 concurrency:
   group: updates
@@ -49,9 +62,18 @@ jobs:
           echo "$SHA256  roostack-bin" | sha256sum -c -
           chmod +x roostack-bin
       - name: Find updates, and write their revisions
+        env:
+          # For the advisories saying what each update fixes.
+          GITHUB_TOKEN: ${{ github.token }}
         run: ./roostack-bin registry updates -repo services -write > updates.json
       - name: Open a pull request for each
         working-directory: services
         env:
           GH_TOKEN: ${{ secrets.WATCH_TOKEN || github.token }}
         run: .github/open-updates.sh ../updates.json
+      - name: Say which updates are stuck
+        working-directory: services
+        env:
+          GH_TOKEN: ${{ secrets.WATCH_TOKEN || github.token }}
+          NTFY_URL: ${{ secrets.NTFY_URL }}
+        run: .github/stuck-updates.sh notify

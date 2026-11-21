@@ -4,7 +4,10 @@
 # 2,888 matches (1.2 MB), so its issue was refused and Watch failed. It
 # keeps the digest's start and as many whole matches as fit (the digest
 # lists the likeliest to be exploited first), then says how many it left
-# out and links the state they're all in.
+# out and links the state they're all in. Its parts (the collapsed
+# <details> sections, and headings such as the stuck updates) always stay,
+# so a part whose matches don't fit is left open-and-shut rather than
+# broken.
 #
 #   tools/fit-digest.sh digest.md <link to watch/state.json> > issue.md
 set -euo pipefail
@@ -18,6 +21,7 @@ LC_ALL=C awk -v max=64000 -v state="$state" '
 		else { full = 1; left++ }
 		item = ""
 	}
+	/^(<\/?details|<summary|## )/ { flush(); printf "%s\n", $0; size += length($0) + 1; next }
 	/^- \*\*/ { flush() }
 	/^- \*\*/ || item != "" { item = item $0 "\n"; next }
 	{ printf "%s\n", $0; size += length($0) + 1 }
