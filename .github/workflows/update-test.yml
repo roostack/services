@@ -7,7 +7,8 @@
 #
 # The lab has a test address (Roostack's `roostack test-address`), so that
 # a package that needs the lab's own sign-in, such as Outline, can be
-# installed. If it passes, an official package's patch or rebuild merges by
+# installed. If it passes, an official package's patch or rebuild, or a
+# minor that fixes a known security problem (labelled security), merges by
 # itself once Publish's check has passed too, and only if the repository
 # variable UPDATES_AUTO_MERGE is "true" (.github/update-merge.sh). Everything
 # else waits for a person, as does an update the test can't try: on a
@@ -125,10 +126,11 @@ jobs:
           curl -fsSL --retry 3 -o roostack-bin "$URL"
           echo "$SHA256  roostack-bin" | sha256sum -c -
           chmod +x roostack-bin
-      - name: Merge it if it's an official package's patch or rebuild
+      - name: Merge it if it's an official package's patch or rebuild, or a minor fixing a security problem
         working-directory: services
         env:
           GH_TOKEN: ${{ secrets.WATCH_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           PR: ${{ needs.test.outputs.pr }}
           PACKAGE: ${{ needs.test.outputs.package }}
           TO: ${{ needs.test.outputs.to }}
