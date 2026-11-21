@@ -13,7 +13,11 @@
 # Weaker matches wait in watch/state.json, which is committed to main when
 # something in it changes, or once a day for the time of the last run (it
 # doesn't start Publish).
-# Mondays: the weaker matches are opened as a digest issue instead.
+# Mondays: the weaker matches are opened as a digest issue instead. It
+# lists the problems that need a decision, collapses those the registry's
+# newest versions have fixed since and libraries inside apps' images that
+# aren't serious, and ends with the update bot's pull requests that are
+# stuck (.github/stuck-updates.sh).
 #
 # Set up:
 # - the variables ROOSTACK_BINARY_URL and ROOSTACK_BINARY_SHA256, as for
@@ -38,6 +42,9 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
+  # For the update tests' results (stuck-updates.sh).
+  checks: read
+  statuses: read
 
 concurrency:
   group: watch
@@ -62,10 +69,17 @@ jobs:
       - name: Watch, or write the digest
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
           SCHEDULE: ${{ github.event.schedule }}
         run: |
           if [ "$SCHEDULE" = "5 8 * * 1" ]; then
             ./roostack-bin registry watch -repo services -digest digest.md
+            # The update bot's pull requests that are stuck go in it too.
+            (cd services && .github/stuck-updates.sh digest) > stuck.md
+            if [ -s stuck.md ]; then
+              [ -f digest.md ] || echo "No weaker matches this week, but some updates are stuck." > digest.md
+              cat stuck.md >> digest.md
+            fi
           else
             ./roostack-bin registry watch -repo services -summary summary.json
             jq -r '.notes[]' summary.json | sed 's/^/Note: /'
