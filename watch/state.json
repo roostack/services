@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-22T18:00:06.930379098Z",
+  "last_run": "2026-11-23T08:07:36.221303974Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -1378,6 +1378,8 @@
     "CVE-2026-78669": "digest",
     "CVE-2026-81726": "digest",
     "CVE-2026-81870": "digest",
+    "CVE-2026-81871": "digest",
+    "CVE-2026-81872": "digest",
     "CVE-2026-82333": "digest",
     "CVE-2026-82417": "digest",
     "CVE-2026-82562": "digest",
@@ -2161,6 +2163,7 @@
     "GHSA-g9pc-8g42-g6vq": "digest",
     "GHSA-gc5v-m9x4-r6x2": "digest",
     "GHSA-gcfj-64vw-6mp9": "digest",
+    "GHSA-gcjh-h69q-9w9g": "digest",
     "GHSA-gcqx-w48m-w2h4": "digest",
     "GHSA-gfjp-2p8f-94qv": "doesn't affect the registry's versions",
     "GHSA-gfr2-rv44-r23c": "digest",
@@ -2219,6 +2222,7 @@
     "GHSA-hhhv-q57g-882q": "digest",
     "GHSA-hhxq-47xx-j5xx": "digest",
     "GHSA-hj66-6f7g-4r5v": "digest",
+    "GHSA-hjf4-fphr-2h65": "digest",
     "GHSA-hjrf-2m68-5959": "digest",
     "GHSA-hm4w-wwcw-mr6r": "digest",
     "GHSA-hmw2-7cc7-3qxx": "digest",
@@ -2630,6 +2634,7 @@
     "GHSA-w2cx-738m-mc7w": "digest",
     "GHSA-w2fm-2cpv-w7v5": "digest",
     "GHSA-w2rr-34g9-rvrj": "digest",
+    "GHSA-w34q-cm8f-9c5x": "digest",
     "GHSA-w3pv-xfw4-ghr7": "digest",
     "GHSA-w3rx-r6r6-pgpr": "digest",
     "GHSA-w44r-93j7-qv28": "digest",
@@ -2944,6 +2949,7 @@
     "GO-2026-6089": "digest",
     "GO-2026-6090": "digest",
     "GO-2026-6091": "digest",
+    "GO-2026-6094": "digest",
     "GO-2026-6163": "digest",
     "GO-2026-6165": "digest",
     "GO-2026-6179": "digest",
@@ -2959,6 +2965,7 @@
     "GO-2026-6441": "digest",
     "GO-2026-6443": "digest",
     "GO-2026-6505": "digest",
+    "GO-2026-6508": "digest",
     "GO-2026-6599": "digest",
     "GO-2026-6600": "digest",
     "GO-2026-6603": "digest",
@@ -2971,6 +2978,7 @@
     "GO-2026-6611": "digest",
     "GO-2026-6612": "digest",
     "GO-2026-6613": "digest",
+    "GO-2026-6615": "digest",
     "GO-2026-6617": "digest",
     "GO-2026-6629": "digest",
     "GO-2026-6686": "digest",
@@ -16182,6 +16190,178 @@
       "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 8.7).",
       "weak": "it isn't critical, and nothing says it's being used in attacks",
       "found": "2026-11-22T18:00:25.038568227Z"
+    },
+    {
+      "id": "GHSA-hjf4-fphr-2h65",
+      "aliases": [
+        "CVE-2026-81872",
+        "GO-2026-6615"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/sdk/log@v0.19.0 in its image",
+      "title": "Pingvin Share X: OpenTelemetry-Go: BatchProcessor can busy-spin when export buffer is full (in log v0.19.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-hjf4-fphr-2h65",
+      "package": "pingvin-share-x",
+      "affected": [
+        "2.1.1-roostack.1"
+      ],
+      "fixed_upstream": "log 0.21.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00383,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-23T08:08:20.160860422Z"
+    },
+    {
+      "id": "GO-2026-6615",
+      "aliases": [
+        "CVE-2026-81872",
+        "GHSA-hjf4-fphr-2h65"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/sdk/log@v0.19.0 in its image",
+      "title": "Pingvin Share X: OpenTelemetry-Go: BatchProcessor can busy-spin when export buffer is full in go.opentelemetry.io/otel/sdk/log (in log v0.19.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6615",
+      "package": "pingvin-share-x",
+      "affected": [
+        "2.1.1-roostack.1"
+      ],
+      "fixed_upstream": "log 0.21.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00383,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-23T08:08:20.497937495Z"
+    },
+    {
+      "id": "GHSA-w34q-cm8f-9c5x",
+      "aliases": [
+        "CVE-2026-81871",
+        "GO-2026-6508"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploggrpc@v0.19.0 in its image",
+      "title": "Pingvin Share X: OpenTelemetry-Go: Log gRPC exporter ignores env TLS certs, bypassing mTLS/pinning (in otlploggrpc v0.19.0)",
+      "link": "https://osv.dev/vulnerability/GHSA-w34q-cm8f-9c5x",
+      "package": "pingvin-share-x",
+      "affected": [
+        "2.1.1-roostack.1"
+      ],
+      "fixed_upstream": "otlploggrpc 0.21.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0.00196,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-23T08:08:20.280540004Z"
+    },
+    {
+      "id": "GO-2026-6508",
+      "aliases": [
+        "CVE-2026-81871",
+        "GHSA-w34q-cm8f-9c5x"
+      ],
+      "source": "OSV, for pkg:golang/go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploggrpc@v0.19.0 in its image",
+      "title": "Pingvin Share X: OpenTelemetry-Go: Log gRPC exporter ignores env TLS certs, bypassing mTLS/pinning in go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploggrpc (in otlploggrpc v0.19.0)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6508",
+      "package": "pingvin-share-x",
+      "affected": [
+        "2.1.1-roostack.1"
+      ],
+      "fixed_upstream": "otlploggrpc 0.21.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0.00196,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-23T08:08:20.425518239Z"
+    },
+    {
+      "id": "GHSA-gcjh-h69q-9w9g",
+      "aliases": [
+        "GO-2026-6094"
+      ],
+      "source": "OSV, for pkg:golang/github.com/google/cel-go@v0.28.1 in its image",
+      "title": "Pingvin Share X: cel-go: JSON Private Fields Exposed via NativeTypes and ParseStructTag (in cel-go v0.28.1)",
+      "link": "https://osv.dev/vulnerability/GHSA-gcjh-h69q-9w9g",
+      "package": "pingvin-share-x",
+      "affected": [
+        "2.1.1-roostack.1"
+      ],
+      "fixed_upstream": "cel-go 0.29.0",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": true,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "moderate",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it moderate.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-23T08:08:20.090322844Z"
+    },
+    {
+      "id": "GO-2026-6094",
+      "aliases": [
+        "GHSA-gcjh-h69q-9w9g"
+      ],
+      "source": "OSV, for pkg:golang/github.com/google/cel-go@v0.28.1 in its image",
+      "title": "Pingvin Share X: JSON private fields exposed via NativeTypes and ParseStructTag in github.com/google/cel-go (in cel-go v0.28.1)",
+      "link": "https://osv.dev/vulnerability/GO-2026-6094",
+      "package": "pingvin-share-x",
+      "affected": [
+        "2.1.1-roostack.1"
+      ],
+      "fixed_upstream": "cel-go 0.30.0",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-23T08:08:20.354136031Z"
     }
   ]
 }
