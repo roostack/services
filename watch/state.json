@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-26T13:04:38.736531801Z",
+  "last_run": "2026-11-26T22:33:12.718828075Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -3756,6 +3756,15 @@
     "UBUNTU-CVE-2026-135744": "digest",
     "UBUNTU-CVE-2026-135745": "digest",
     "UBUNTU-CVE-2026-13608": "digest",
+    "UBUNTU-CVE-2026-137067": "digest",
+    "UBUNTU-CVE-2026-137068": "digest",
+    "UBUNTU-CVE-2026-137069": "digest",
+    "UBUNTU-CVE-2026-137072": "digest",
+    "UBUNTU-CVE-2026-137073": "digest",
+    "UBUNTU-CVE-2026-137074": "digest",
+    "UBUNTU-CVE-2026-137075": "digest",
+    "UBUNTU-CVE-2026-137076": "digest",
+    "UBUNTU-CVE-2026-137082": "digest",
     "UBUNTU-CVE-2026-13757": "digest",
     "UBUNTU-CVE-2026-13858": "digest",
     "UBUNTU-CVE-2026-15003": "digest",
@@ -8239,6 +8248,688 @@
       "why": "the source rates it medium (CVSS 6.9).",
       "weak": "it isn't critical, and nothing says it's being used in attacks",
       "found": "2026-11-26T13:04:41.195160451Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137067",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-137067 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137067",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.038601273Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137067",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-137067 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137067",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.038605073Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137067",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-137067 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137067",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1",
+        "3.4.0-roostack.1",
+        "3.5.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.038608911Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137068",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-137068 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137068",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.090380559Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137068",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-137068 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137068",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.090383362Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137068",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-137068 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137068",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1",
+        "3.4.0-roostack.1",
+        "3.5.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.090387564Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137069",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-137069 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137069",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.139285087Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137069",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-137069 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137069",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.139288865Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137069",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-137069 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137069",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1",
+        "3.4.0-roostack.1",
+        "3.5.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.139292171Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137072",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-137072 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137072",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.186959413Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137072",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-137072 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137072",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.18696422Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137072",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-137072 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137072",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1",
+        "3.4.0-roostack.1",
+        "3.5.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.186967439Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137073",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-137073 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137073",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.237945868Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137073",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-137073 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137073",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.237951102Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137073",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-137073 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137073",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1",
+        "3.4.0-roostack.1",
+        "3.5.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.237954161Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137074",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-137074 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137074",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.290547858Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137074",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-137074 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137074",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.290550698Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137074",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-137074 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137074",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1",
+        "3.4.0-roostack.1",
+        "3.5.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.290553631Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137075",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-137075 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137075",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.340495755Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137075",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-137075 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137075",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.340500833Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137075",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-137075 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137075",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1",
+        "3.4.0-roostack.1",
+        "3.5.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.340503917Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137076",
+      "source": "OSV, for pkg:deb/ubuntu/ffmpeg@7%3A8.0.1-3ubuntu2?arch=amd64\u0026distro=ubuntu-26.04 in its image",
+      "title": "PhotoPrism: UBUNTU-CVE-2026-137076 (in ffmpeg 7%3A8.0.1-3ubuntu2)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137076",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.391721514Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137082",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Plex: UBUNTU-CVE-2026-137082 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137082",
+      "package": "plex",
+      "affected": [
+        "1.43.4.10903-roostack.2",
+        "1.43.5.11079-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.441422559Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137082",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: UBUNTU-CVE-2026-137082 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137082",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.441424953Z"
+    },
+    {
+      "id": "UBUNTU-CVE-2026-137082",
+      "source": "OSV, for pkg:deb/ubuntu/libxml2@2.9.14%2Bdfsg-1.3ubuntu3.9?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Stirling-PDF: UBUNTU-CVE-2026-137082 (in libxml2 2.9.14%2Bdfsg-1.3ubuntu3.9)",
+      "link": "https://osv.dev/vulnerability/UBUNTU-CVE-2026-137082",
+      "package": "stirling-pdf",
+      "affected": [
+        "3.2.0-roostack.3",
+        "3.2.2-roostack.1",
+        "3.3.0-roostack.1",
+        "3.4.0-roostack.1",
+        "3.5.0-roostack.1"
+      ],
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-26T22:34:00.441427895Z"
     }
   ]
 }
