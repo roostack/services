@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-26T03:02:14.105780446Z",
+  "last_run": "2026-11-26T13:04:38.736531801Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -2252,6 +2252,7 @@
     "GHSA-hxh3-vqpv-xpqv": "digest",
     "GHSA-hxm8-2xgr-2p9m": "digest",
     "GHSA-hxxf-235m-72v3": "digest",
+    "GHSA-j2mc-qv7c-j2f8": "digest",
     "GHSA-j456-xh4h-cpf2": "digest",
     "GHSA-j4m9-6w36-pw47": "digest",
     "GHSA-j54r-vc8f-xvx6": "digest",
@@ -8212,6 +8213,32 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-26T03:03:02.276860523Z"
+    },
+    {
+      "id": "GHSA-j2mc-qv7c-j2f8",
+      "source": "GitHub's advisories for aliasvault/aliasvault",
+      "title": "AliasVault: Browser extension autofill could fill credentials of a non-matching website without confirmation",
+      "link": "https://github.com/aliasvault/aliasvault/security/advisories/GHSA-j2mc-qv7c-j2f8",
+      "package": "aliasvault",
+      "affected": [
+        "0.31.1-roostack.1"
+      ],
+      "fixed": "0.31.3-roostack.1",
+      "fixed_upstream": "\u003e= 0.31.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": true,
+        "NoUserAction": false,
+        "High": true,
+        "Score": 6.9
+      },
+      "Severity": "medium",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it medium (CVSS 6.9).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-26T13:04:41.195160451Z"
     }
   ]
 }
