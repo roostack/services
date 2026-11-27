@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-26T22:33:12.718828075Z",
+  "last_run": "2026-11-27T14:15:29.415035173Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -4134,6 +4134,7 @@
     "USN-8996-1": "digest",
     "USN-9001-1": "digest",
     "USN-9006-1": "digest",
+    "USN-9214-1": "digest",
     "X41-2026-002": "digest",
     "crowdsecurity/vpatch-CVE-2026-114509": "digest"
   },
@@ -8930,6 +8931,63 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-26T22:34:00.441427895Z"
+    },
+    {
+      "id": "USN-9214-1",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "PhotoPrism: binutils vulnerabilities (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/USN-9214-1",
+      "package": "photoprism",
+      "affected": [
+        "261007-roostack.2",
+        "261007-roostack.3",
+        "261029-roostack.1"
+      ],
+      "fixed_upstream": "binutils 2.46-3ubuntu2.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-27T14:16:20.753002796Z"
+    },
+    {
+      "id": "USN-9214-1",
+      "source": "OSV, for pkg:deb/ubuntu/binutils@2.42-4ubuntu2.10?arch=amd64\u0026distro=ubuntu-24.04 in its image",
+      "title": "Seafile: binutils vulnerabilities (in binutils 2.42-4ubuntu2.10)",
+      "link": "https://osv.dev/vulnerability/USN-9214-1",
+      "package": "seafile",
+      "affected": [
+        "13.0.28-roostack.1",
+        "13.0.28-roostack.2",
+        "13.0.28-roostack.3",
+        "13.0.28-roostack.4",
+        "14.0.9-roostack.1",
+        "14.0.9-roostack.2"
+      ],
+      "fixed_upstream": "binutils 2.46-3ubuntu2.1",
+      "CVSS": {
+        "Network": false,
+        "NoPrivileges": false,
+        "NoUserAction": false,
+        "High": false,
+        "Score": 0
+      },
+      "Severity": "",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "low",
+      "why": "the source rates it unrated.",
+      "weak": "it was published before the watcher's window, so it's long known",
+      "found": "2026-11-27T14:16:20.753009428Z"
     }
   ]
 }
