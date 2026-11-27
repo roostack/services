@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-11-27T14:15:29.415035173Z",
+  "last_run": "2026-11-27T22:53:40.726269506Z",
   "seen": {
     "BIT-dotnet-2026-96958": "digest",
     "BIT-dotnet-2026-96959": "digest",
@@ -1722,6 +1722,7 @@
     "GHSA-5pv8-vvhc-h7jv": "digest",
     "GHSA-5pvv-vjm6-v952": "doesn't affect the registry's versions",
     "GHSA-5pwr-322w-8jr4": "digest",
+    "GHSA-5q59-fhxv-4r9x": "digest",
     "GHSA-5r4p-p66f-jhc7": "digest",
     "GHSA-5rjg-fvgr-3xxf": "digest",
     "GHSA-5rmc-48h2-hvcm": "digest",
@@ -5747,6 +5748,7 @@
     "CVE-2026-116779",
     "CVE-2026-118527",
     "CVE-2026-119977",
+    "CVE-2026-120705",
     "CVE-2026-123039",
     "CVE-2026-123158",
     "CVE-2026-123218",
@@ -5755,6 +5757,7 @@
     "CVE-2026-125350",
     "CVE-2026-12569",
     "CVE-2026-1281",
+    "CVE-2026-129243",
     "CVE-2026-129448",
     "CVE-2026-131914",
     "CVE-2026-132165",
@@ -5768,6 +5771,7 @@
     "CVE-2026-133968",
     "CVE-2026-1340",
     "CVE-2026-134624",
+    "CVE-2026-136716",
     "CVE-2026-15409",
     "CVE-2026-15410",
     "CVE-2026-1603",
@@ -8988,6 +8992,37 @@
       "why": "the source rates it unrated.",
       "weak": "it was published before the watcher's window, so it's long known",
       "found": "2026-11-27T14:16:20.753009428Z"
+    },
+    {
+      "id": "GHSA-5q59-fhxv-4r9x",
+      "source": "GitHub's advisories for hedgedoc/hedgedoc",
+      "title": "HedgeDoc: Possible authorization check bypass when validating OAuth2 role/SAML group",
+      "link": "https://github.com/hedgedoc/hedgedoc/security/advisories/GHSA-5q59-fhxv-4r9x",
+      "package": "hedgedoc",
+      "affected": [
+        "1.12.0-roostack.1",
+        "1.12.0-roostack.2",
+        "1.12.0-roostack.3",
+        "1.12.0-roostack.4",
+        "1.12.0-roostack.5",
+        "1.12.1-roostack.1",
+        "1.12.1-roostack.2"
+      ],
+      "fixed_upstream": "\u003e= 1.12.3",
+      "CVSS": {
+        "Network": true,
+        "NoPrivileges": false,
+        "NoUserAction": true,
+        "High": true,
+        "Score": 7.6
+      },
+      "Severity": "high",
+      "Exploited": false,
+      "EPSS": 0,
+      "severity": "high",
+      "why": "the source rates it high, but nothing says anyone on the internet can use it without signing in (CVSS 7.6).",
+      "weak": "it isn't critical, and nothing says it's being used in attacks",
+      "found": "2026-11-27T22:53:47.525174703Z"
     }
   ]
 }
